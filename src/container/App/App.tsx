@@ -1,5 +1,15 @@
+import Footer from 'container/Footer/Footer'
+import Header from 'container/Header/Header'
+import Main from 'container/Main/Main'
+
 function App() {
-  return <div className="App">App</div>;
+    return (
+        <>
+            <Header />
+            <Main />
+            <Footer />
+        </>
+    )
 }
 
-export default App;
+export default App
