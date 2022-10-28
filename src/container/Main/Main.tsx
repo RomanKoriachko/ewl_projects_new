@@ -1,8 +1,7 @@
 import './Main.scss'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite'
 import { useState } from 'react'
-import { getDatabase } from 'firebase/database'
+import { getDatabase, ref, set, onValue, child, get } from 'firebase/database'
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -15,6 +14,11 @@ type UserType = {
     email: string
     password: string
     hasAccount: boolean
+}
+type ProjectType = {
+    country: string
+    salary: number
+    projectName: string
 }
 
 const Main = (props: Props) => {
@@ -30,10 +34,6 @@ const Main = (props: Props) => {
     }
 
     const app = initializeApp(firebaseConfig)
-    const db = getFirestore(app)
-    const database = getDatabase(app)
-
-    console.log(database)
 
     const [loginData, setLoginData] = useState<UserType>({
         email: '',
@@ -89,7 +89,72 @@ const Main = (props: Props) => {
             })
     }
 
-    // console.log(loginData)
+    // write database
+
+    const [project, setNewProject] = useState<ProjectType>({
+        country: '',
+        salary: 0,
+        projectName: '',
+    })
+
+    const handleChangeCountry = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            country: e.target.value,
+        }))
+    }
+    const handleChangeSalary = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            salary: Number(e.target.value),
+        }))
+    }
+    const handleChangeProject = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            projectName: e.target.value,
+        }))
+    }
+
+    function writeProjectData(
+        country: string,
+        salary: number,
+        projectName: string
+    ) {
+        const db = getDatabase()
+        set(ref(db, `${projectName}/`), {
+            country: country,
+            salary: salary + ' ' + 'zl',
+        })
+    }
+
+    // read database
+
+    // const db = getDatabase()
+    // const starCountRef = ref(db, 'vacancy/')
+    // let data: [] = []
+    // onValue(starCountRef, (snapshot) => {
+    //     data = snapshot.val()
+    // })
+
+    // const dbRef = ref(getDatabase())
+    // let data: [] = []
+    // let newData: [] = []
+    // get(child(dbRef, `vacancy/`))
+    //     .then((snapshot) => {
+    //         if (snapshot.exists()) {
+    //             console.log(snapshot.val())
+    //             // let test: {} = snapshot.val()
+    //             // data.splice(0, 0, test)
+    //         } else {
+    //             console.log('No data available')
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         console.error(error)
+    //     })
+
+    // console.log(data)
 
     return (
         <div>
@@ -139,6 +204,50 @@ const Main = (props: Props) => {
                     </div>
                 </div>
             )}
+            <div className="add-project">
+                <p>Додати проект</p>
+                <input
+                    type="text"
+                    id="country"
+                    placeholder="Назва країни"
+                    /* @ts-ignore */
+                    onChange={handleChangeCountry}
+                />
+                <input
+                    type="text"
+                    id="salary"
+                    placeholder="Ставка"
+                    /* @ts-ignore */
+                    onChange={handleChangeSalary}
+                />
+                <input
+                    type="text"
+                    id="project"
+                    placeholder="назва проекту"
+                    /* @ts-ignore */
+                    onChange={handleChangeProject}
+                />
+                <button
+                    onClick={() =>
+                        writeProjectData(
+                            project.country,
+                            project.salary,
+                            project.projectName
+                        )
+                    }
+                >
+                    test
+                </button>
+            </div>
+            <div className="show-projects">
+                {/* {data.map((project: ProjectType, i: number) => (
+                    <div key={i}>
+                        <div>{project.country}</div>
+                        <div>{project.salary}</div>
+                        <div>{project.project}</div>
+                    </div>
+                ))} */}
+            </div>
         </div>
     )
 }
