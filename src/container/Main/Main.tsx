@@ -1,7 +1,6 @@
 import './Main.scss'
-import { initializeApp } from 'firebase/app'
 import { useState } from 'react'
-import { getDatabase, ref, set, onValue, child, get } from 'firebase/database'
+import { getDatabase, ref, set, onValue } from 'firebase/database'
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -22,34 +21,19 @@ type ProjectType = {
 }
 
 const Main = (props: Props) => {
-    const firebaseConfig = {
-        apiKey: 'AIzaSyC-vIsDGiJlEFKOIyPpUt2SG6HqfoPNW-8',
-        authDomain: 'test-server-f1713.firebaseapp.com',
-        databaseURL:
-            'https://test-server-f1713-default-rtdb.europe-west1.firebasedatabase.app',
-        projectId: 'test-server-f1713',
-        storageBucket: 'test-server-f1713.appspot.com',
-        messagingSenderId: '380347029454',
-        appId: '1:380347029454:web:6d08fd0318a57431563d9f',
-    }
-
-    const app = initializeApp(firebaseConfig)
-
     const [loginData, setLoginData] = useState<UserType>({
         email: '',
         password: '',
         hasAccount: false,
     })
 
-    const handleChangeLogin = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginData((prevState: UserType) => ({
             ...prevState,
             email: e.target.value,
         }))
     }
-    const handleChangePassword = (
-        e: React.ChangeEvent<HTMLTextAreaElement>
-    ) => {
+    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginData((prevState: UserType) => ({
             ...prevState,
             password: e.target.value,
@@ -76,20 +60,17 @@ const Main = (props: Props) => {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, loginData.email, loginData.password)
             .then((userCredential) => {
-                const user = userCredential.user
                 setLoginData((prevState: UserType) => ({
                     ...prevState,
                     hasAccount: true,
                 }))
             })
             .catch((error) => {
-                const errorCode = error.code
-                const errorMessage = error.message
                 alert('нет такого пользователя')
             })
     }
 
-    // write database
+    //------------------------------- write database -------------------------------
 
     const [project, setNewProject] = useState<ProjectType>({
         country: '',
@@ -97,19 +78,19 @@ const Main = (props: Props) => {
         projectName: '',
     })
 
-    const handleChangeCountry = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChangeCountry = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewProject((prevState: ProjectType) => ({
             ...prevState,
             country: e.target.value,
         }))
     }
-    const handleChangeSalary = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewProject((prevState: ProjectType) => ({
             ...prevState,
             salary: Number(e.target.value),
         }))
     }
-    const handleChangeProject = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChangeProject = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewProject((prevState: ProjectType) => ({
             ...prevState,
             projectName: e.target.value,
@@ -122,39 +103,45 @@ const Main = (props: Props) => {
         projectName: string
     ) {
         const db = getDatabase()
-        set(ref(db, `${projectName}/`), {
+        set(ref(db, `vacancy/${projectName}/`), {
             country: country,
             salary: salary + ' ' + 'zl',
         })
     }
 
-    // read database
+    const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        writeProjectData(project.country, project.salary, project.projectName)
+        setNewProject(() => ({
+            country: '',
+            salary: 0,
+            projectName: '',
+        }))
+    }
 
-    // const db = getDatabase()
-    // const starCountRef = ref(db, 'vacancy/')
-    // let data: [] = []
-    // onValue(starCountRef, (snapshot) => {
-    //     data = snapshot.val()
-    // })
+    // ------------------------------- read database -------------------------------
 
-    // const dbRef = ref(getDatabase())
-    // let data: [] = []
-    // let newData: [] = []
-    // get(child(dbRef, `vacancy/`))
-    //     .then((snapshot) => {
-    //         if (snapshot.exists()) {
-    //             console.log(snapshot.val())
-    //             // let test: {} = snapshot.val()
-    //             // data.splice(0, 0, test)
-    //         } else {
-    //             console.log('No data available')
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.error(error)
-    //     })
+    const db = getDatabase()
+    const starCountRef = ref(db, 'vacancy/')
 
-    // console.log(data)
+    let newDataArr
+    let newData = {}
+    onValue(starCountRef, (snapshot) => {
+        newData = snapshot.val()
+        newDataArr = newData
+    })
+
+    /* @ts-ignore */
+    let test
+    newDataArr !== undefined ? (test = Object.entries(newDataArr)) : (test = [])
+
+    const getDataFake = () => {
+        setNewProject(() => ({
+            country: '',
+            salary: 0,
+            projectName: '',
+        }))
+    }
 
     return (
         <div>
@@ -168,14 +155,11 @@ const Main = (props: Props) => {
                             <div>
                                 <input
                                     type="text"
-                                    id="email"
-                                    /* @ts-ignore */
                                     onChange={handleChangeLogin}
                                 />
                                 <input
                                     type="password"
                                     id="password"
-                                    /* @ts-ignore */
                                     onChange={handleChangePassword}
                                 />
                                 <input type="submit" onClick={createAccount} />
@@ -189,13 +173,11 @@ const Main = (props: Props) => {
                                 <input
                                     type="text"
                                     id="login-email"
-                                    /* @ts-ignore */
                                     onChange={handleChangeLogin}
                                 />
                                 <input
                                     type="password"
                                     id="login-password"
-                                    /* @ts-ignore */
                                     onChange={handleChangePassword}
                                 />
                                 <input type="submit" onClick={login} />
@@ -206,47 +188,45 @@ const Main = (props: Props) => {
             )}
             <div className="add-project">
                 <p>Додати проект</p>
-                <input
-                    type="text"
-                    id="country"
-                    placeholder="Назва країни"
-                    /* @ts-ignore */
-                    onChange={handleChangeCountry}
-                />
-                <input
-                    type="text"
-                    id="salary"
-                    placeholder="Ставка"
-                    /* @ts-ignore */
-                    onChange={handleChangeSalary}
-                />
-                <input
-                    type="text"
-                    id="project"
-                    placeholder="назва проекту"
-                    /* @ts-ignore */
-                    onChange={handleChangeProject}
-                />
-                <button
-                    onClick={() =>
-                        writeProjectData(
-                            project.country,
-                            project.salary,
-                            project.projectName
-                        )
-                    }
-                >
-                    test
-                </button>
+                <form onSubmit={onSendClick}>
+                    <input
+                        type="text"
+                        id="country"
+                        placeholder="Назва країни"
+                        value={project.country}
+                        onChange={handleChangeCountry}
+                    />
+                    <input
+                        type="text"
+                        id="salary"
+                        placeholder="Ставка"
+                        value={project.salary}
+                        onChange={handleChangeSalary}
+                    />
+                    <input
+                        type="text"
+                        id="project"
+                        placeholder="назва проекту"
+                        value={project.projectName}
+                        onChange={handleChangeProject}
+                    />
+                    <button type="submit">Додати проект</button>
+                </form>
             </div>
             <div className="show-projects">
-                {/* {data.map((project: ProjectType, i: number) => (
-                    <div key={i}>
-                        <div>{project.country}</div>
-                        <div>{project.salary}</div>
-                        <div>{project.project}</div>
-                    </div>
-                ))} */}
+                <button onClick={getDataFake}>отримати дані</button>
+                <div>
+                    {
+                        /* @ts-ignore */
+                        test.map((element, i) => (
+                            <div key={i}>
+                                <div>{element[0]}</div>
+                                <div>{element[1].country}</div>
+                                <div>{element[1].salary}</div>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     )
