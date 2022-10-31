@@ -13,6 +13,7 @@ type UserType = {
     email: string
     password: string
     hasAccount: boolean
+    isAdmin: boolean
 }
 type ProjectType = {
     country: string
@@ -25,6 +26,7 @@ const Main = (props: Props) => {
         email: '',
         password: '',
         hasAccount: false,
+        isAdmin: false,
     })
 
     const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +49,11 @@ const Main = (props: Props) => {
             loginData.email,
             loginData.password
         )
+        createUserWithEmailAndPassword(
+            auth,
+            loginData.email,
+            loginData.password
+        )
             .then(() => {})
             .catch(() => {
                 alert('помилка створення аккаунту')
@@ -57,13 +64,24 @@ const Main = (props: Props) => {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, loginData.email, loginData.password)
             .then(() => {
-                setLoginData((prevState: UserType) => ({
-                    ...prevState,
-                    hasAccount: true,
-                }))
+                if (loginData.email === 'mazaxaka.tyt@gmail.com') {
+                    setLoginData((prevState: UserType) => ({
+                        ...prevState,
+                        hasAccount: true,
+                        isAdmin: true,
+                    }))
+                } else {
+                    setLoginData((prevState: UserType) => ({
+                        ...prevState,
+                        hasAccount: true,
+                        isAdmin: false,
+                    }))
+                }
             })
             .catch(() => {
-                alert('помилка логування')
+                alert(
+                    'Такого користувача не існує, або неправильно вписані дані'
+                )
             })
     }
 
@@ -87,7 +105,9 @@ const Main = (props: Props) => {
             salary: e.target.value,
         }))
     }
-    const handleChangeProject = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeProjectName = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         setNewProject((prevState: ProjectType) => ({
             ...prevState,
             projectName: e.target.value,
@@ -108,12 +128,24 @@ const Main = (props: Props) => {
 
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        writeProjectData(project.country, project.salary, project.projectName)
-        setNewProject(() => ({
-            country: '',
-            salary: '',
-            projectName: '',
-        }))
+        if (
+            project.country === '' ||
+            project.salary === '' ||
+            project.projectName === ''
+        ) {
+            alert("всі поля обов'язкові")
+        } else {
+            writeProjectData(
+                project.country,
+                project.salary,
+                project.projectName
+            )
+            setNewProject(() => ({
+                country: '',
+                salary: '',
+                projectName: '',
+            }))
+        }
     }
 
     // ------------------------------- read database -------------------------------
@@ -136,8 +168,65 @@ const Main = (props: Props) => {
 
     return (
         <div>
-            {loginData.hasAccount ? (
-                <div>Hello!</div>
+            {loginData.isAdmin ? (
+                <div>
+                    <div className="add-project">
+                        <p>Додати проект</p>
+                        <form onSubmit={onSendClick}>
+                            <input
+                                type="text"
+                                id="country"
+                                placeholder="Назва країни"
+                                value={project.country}
+                                onChange={handleChangeCountry}
+                            />
+                            <input
+                                type="text"
+                                id="salary"
+                                placeholder="Ставка"
+                                value={project.salary}
+                                onChange={handleChangeSalary}
+                            />
+                            <input
+                                type="text"
+                                id="project"
+                                placeholder="назва проекту"
+                                value={project.projectName}
+                                onChange={handleChangeProjectName}
+                            />
+                            <button type="submit">Додати проект</button>
+                        </form>
+                    </div>
+                    <div className="show-projects">
+                        <div>
+                            {
+                                /* @ts-ignore */
+                                projectsArr.map((element, i) => (
+                                    <div key={i}>
+                                        <div>{element[0]}</div>
+                                        <div>{element[1].country}</div>
+                                        <div>{element[1].salary}</div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            ) : loginData.hasAccount ? (
+                <div className="show-projects">
+                    <div>
+                        {
+                            /* @ts-ignore */
+                            projectsArr.map((element, i) => (
+                                <div key={i}>
+                                    <div>{element[0]}</div>
+                                    <div>{element[1].country}</div>
+                                    <div>{element[1].salary}</div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
             ) : (
                 <div>
                     <div className="registration">
@@ -177,47 +266,6 @@ const Main = (props: Props) => {
                     </div>
                 </div>
             )}
-            <div className="add-project">
-                <p>Додати проект</p>
-                <form onSubmit={onSendClick}>
-                    <input
-                        type="text"
-                        id="country"
-                        placeholder="Назва країни"
-                        value={project.country}
-                        onChange={handleChangeCountry}
-                    />
-                    <input
-                        type="text"
-                        id="salary"
-                        placeholder="Ставка"
-                        value={project.salary}
-                        onChange={handleChangeSalary}
-                    />
-                    <input
-                        type="text"
-                        id="project"
-                        placeholder="назва проекту"
-                        value={project.projectName}
-                        onChange={handleChangeProject}
-                    />
-                    <button type="submit">Додати проект</button>
-                </form>
-            </div>
-            <div className="show-projects">
-                <div>
-                    {
-                        /* @ts-ignore */
-                        projectsArr.map((element, i) => (
-                            <div key={i}>
-                                <div>{element[0]}</div>
-                                <div>{element[1].country}</div>
-                                <div>{element[1].salary}</div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
         </div>
     )
 }
