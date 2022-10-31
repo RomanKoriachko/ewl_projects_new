@@ -16,7 +16,7 @@ type UserType = {
 }
 type ProjectType = {
     country: string
-    salary: number
+    salary: string
     projectName: string
 }
 
@@ -47,26 +47,23 @@ const Main = (props: Props) => {
             loginData.email,
             loginData.password
         )
-            .then((userCredential) => {
-                const user = userCredential.user
-            })
-            .catch((error) => {
-                const errorCode = error.code
-                const errorMessage = error.message
+            .then(() => {})
+            .catch(() => {
+                alert('помилка створення аккаунту')
             })
     }
 
     const login = () => {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, loginData.email, loginData.password)
-            .then((userCredential) => {
+            .then(() => {
                 setLoginData((prevState: UserType) => ({
                     ...prevState,
                     hasAccount: true,
                 }))
             })
-            .catch((error) => {
-                alert('нет такого пользователя')
+            .catch(() => {
+                alert('помилка логування')
             })
     }
 
@@ -74,7 +71,7 @@ const Main = (props: Props) => {
 
     const [project, setNewProject] = useState<ProjectType>({
         country: '',
-        salary: 0,
+        salary: '',
         projectName: '',
     })
 
@@ -87,7 +84,7 @@ const Main = (props: Props) => {
     const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewProject((prevState: ProjectType) => ({
             ...prevState,
-            salary: Number(e.target.value),
+            salary: e.target.value,
         }))
     }
     const handleChangeProject = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,13 +96,13 @@ const Main = (props: Props) => {
 
     function writeProjectData(
         country: string,
-        salary: number,
+        salary: string,
         projectName: string
     ) {
         const db = getDatabase()
         set(ref(db, `vacancy/${projectName}/`), {
             country: country,
-            salary: salary + ' ' + 'zl',
+            salary: salary,
         })
     }
 
@@ -114,7 +111,7 @@ const Main = (props: Props) => {
         writeProjectData(project.country, project.salary, project.projectName)
         setNewProject(() => ({
             country: '',
-            salary: 0,
+            salary: '',
             projectName: '',
         }))
     }
@@ -132,16 +129,10 @@ const Main = (props: Props) => {
     })
 
     /* @ts-ignore */
-    let test
-    newDataArr !== undefined ? (test = Object.entries(newDataArr)) : (test = [])
-
-    const getDataFake = () => {
-        setNewProject(() => ({
-            country: '',
-            salary: 0,
-            projectName: '',
-        }))
-    }
+    let projectsArr
+    newDataArr !== undefined
+        ? (projectsArr = Object.entries(newDataArr))
+        : (projectsArr = [])
 
     return (
         <div>
@@ -214,11 +205,10 @@ const Main = (props: Props) => {
                 </form>
             </div>
             <div className="show-projects">
-                <button onClick={getDataFake}>отримати дані</button>
                 <div>
                     {
                         /* @ts-ignore */
-                        test.map((element, i) => (
+                        projectsArr.map((element, i) => (
                             <div key={i}>
                                 <div>{element[0]}</div>
                                 <div>{element[1].country}</div>
