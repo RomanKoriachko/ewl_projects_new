@@ -63,7 +63,6 @@ const Main = (props: Props) => {
 
     const db = getDatabase()
     const starCountRef = ref(db, `vacancy/`)
-    const dbRef = ref(getDatabase())
 
     function writeProjectData(
         country: string,
@@ -127,73 +126,93 @@ const Main = (props: Props) => {
 
     return (
         <div>
-            {loginData.isAdmin ? (
-                <div>
-                    <div className="add-project">
-                        <p>Додати проект</p>
-                        <form onSubmit={onSendClick}>
-                            <input
-                                type="text"
-                                id="country"
-                                placeholder="Назва країни"
-                                value={project.country}
-                                onChange={handleChangeCountry}
-                            />
-                            <input
-                                type="text"
-                                id="salary"
-                                placeholder="Ставка"
-                                value={project.salary}
-                                onChange={handleChangeSalary}
-                            />
-                            <input
-                                type="text"
-                                id="project"
-                                placeholder="назва проекту"
-                                value={project.projectName}
-                                onChange={handleChangeProjectName}
-                            />
-                            <button type="submit">Додати проект</button>
-                        </form>
+            <div className="container">
+                {loginData.isAdmin ? (
+                    <div>
+                        <div className="add-project">
+                            <p>Додати проект</p>
+                            <form onSubmit={onSendClick}>
+                                <input
+                                    type="text"
+                                    id="country"
+                                    placeholder="Назва країни"
+                                    value={project.country}
+                                    onChange={handleChangeCountry}
+                                />
+                                <input
+                                    type="text"
+                                    id="salary"
+                                    placeholder="Ставка"
+                                    value={project.salary}
+                                    onChange={handleChangeSalary}
+                                />
+                                <input
+                                    type="text"
+                                    id="project"
+                                    placeholder="назва проекту"
+                                    value={project.projectName}
+                                    onChange={handleChangeProjectName}
+                                />
+                                <button type="submit">Додати проект</button>
+                            </form>
+                        </div>
+                        <div className="show-projects">
+                            <div className="projects">
+                                {
+                                    /* @ts-ignore */
+                                    projectsArr.map((element, i) => (
+                                        <div key={i} className="project-item">
+                                            <div className="project-item-header">
+                                                <p>Назва проекту</p>
+                                                <div>{element[0]}</div>
+                                            </div>
+                                            <div className="project-item-country">
+                                                <p>Країна</p>
+                                                <div>{element[1].country}</div>
+                                            </div>
+                                            <div className="project-item-salary">
+                                                <p>Cтавка в злотих</p>
+                                                <div>{element[1].salary}</div>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
                     </div>
+                ) : loginData.hasAccount ? (
                     <div className="show-projects">
-                        <div>
+                        <div className="projects">
                             {
                                 /* @ts-ignore */
                                 projectsArr.map((element, i) => (
-                                    <div key={i}>
-                                        <div>{element[0]}</div>
-                                        <div>{element[1].country}</div>
-                                        <div>{element[1].salary}</div>
+                                    <div key={i} className="project-item">
+                                        <div className="project-item-header">
+                                            <p>Назва проекту</p>
+                                            {element[0]}
+                                        </div>
+                                        <div className="project-item-country">
+                                            <p>Країна</p>
+                                            {element[1].country}
+                                        </div>
+                                        <div className="project-item-salary">
+                                            <p>Cтавка в злотих</p>
+                                            {element[1].salary}
+                                        </div>
                                     </div>
                                 ))
                             }
                         </div>
                     </div>
-                </div>
-            ) : loginData.hasAccount ? (
-                <div className="show-projects">
-                    <div>
-                        {
-                            /* @ts-ignore */
-                            projectsArr.map((element, i) => (
-                                <div key={i}>
-                                    <div>{element[0]}</div>
-                                    <div>{element[1].country}</div>
-                                    <div>{element[1].salary}</div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-            ) : (
-                <RegistrationAndLogin
-                    loginData={loginData}
-                    registrationData={registrationData}
-                    setLoginData={setLoginData}
-                    setRegistrationData={setRegistrationData}
-                />
-            )}
+                ) : (
+                    <RegistrationAndLogin
+                        loginData={loginData}
+                        registrationData={registrationData}
+                        setLoginData={setLoginData}
+                        setRegistrationData={setRegistrationData}
+                    />
+                )}
+            </div>
         </div>
     )
 }

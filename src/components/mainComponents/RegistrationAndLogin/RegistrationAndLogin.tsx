@@ -3,6 +3,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from 'firebase/auth'
+import './RegistrationAndLogin.scss'
 
 type Props = {
     loginData: UserType
@@ -107,43 +108,57 @@ const RegistrationAndLogin = ({
     }
 
     return (
-        <div>
+        <div className="registration-and-login">
             <div className="registration">
-                <div>Registration</div>
+                <div className="registration-header">Registration</div>
                 <div>
-                    <div>
+                    <div className="grid-wrapper">
                         <input
+                            className="login"
                             type="text"
                             onChange={handleChangeRegistrationLogin}
                             value={registrationData.email}
                         />
                         <input
+                            className="password"
                             type="password"
                             id="password"
                             onChange={handleChangeRegistrationPassword}
                             value={registrationData.password}
                         />
-                        <input type="submit" onClick={createAccount} />
+                        <input
+                            className="submit"
+                            type="submit"
+                            onClick={createAccount}
+                        />
                     </div>
                 </div>
             </div>
             <div className="login">
-                <div>LogIn</div>
+                <div className="registration-header">Login</div>
                 <div>
                     <div className="login">
-                        <input
-                            type="text"
-                            id="login-email"
-                            onChange={handleChangeLogin}
-                            value={loginData.email}
-                        />
-                        <input
-                            type="password"
-                            id="login-password"
-                            onChange={handleChangePassword}
-                            value={loginData.password}
-                        />
-                        <input type="submit" onClick={login} />
+                        <div className="grid-wrapper">
+                            <input
+                                className="login"
+                                type="text"
+                                id="login-email"
+                                onChange={handleChangeLogin}
+                                value={loginData.email}
+                            />
+                            <input
+                                className="password"
+                                type="password"
+                                id="login-password"
+                                onChange={handleChangePassword}
+                                value={loginData.password}
+                            />
+                            <input
+                                className="submit"
+                                type="submit"
+                                onClick={login}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
