@@ -2,6 +2,7 @@ import './Main.scss'
 import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState } from 'react'
 import RegistrationAndLogin from 'components/mainComponents/RegistrationAndLogin/RegistrationAndLogin'
+import Projects from 'components/mainComponents/Projects/Projects'
 
 type Props = {}
 
@@ -82,6 +83,7 @@ const Main = (props: Props) => {
                 set(ref(db, `vacancy/${projectName}/`), {
                     country: country,
                     salary: salary,
+                    projectName: projectName,
                 })
             }
         })
@@ -108,21 +110,6 @@ const Main = (props: Props) => {
             }))
         }
     }
-
-    // ----------------------------- read data -----------------------------
-
-    let newDataArr
-    let newData = {}
-    onValue(starCountRef, (snapshot) => {
-        newData = snapshot.val()
-        newDataArr = newData
-    })
-
-    /* @ts-ignore */
-    let projectsArr
-    newDataArr !== undefined
-        ? (projectsArr = Object.entries(newDataArr))
-        : (projectsArr = [])
 
     return (
         <div>
@@ -157,52 +144,12 @@ const Main = (props: Props) => {
                             </form>
                         </div>
                         <div className="show-projects">
-                            <div className="projects">
-                                {
-                                    /* @ts-ignore */
-                                    projectsArr.map((element, i) => (
-                                        <div key={i} className="project-item">
-                                            <div className="project-item-header">
-                                                <p>Назва проекту</p>
-                                                <div>{element[0]}</div>
-                                            </div>
-                                            <div className="project-item-country">
-                                                <p>Країна</p>
-                                                <div>{element[1].country}</div>
-                                            </div>
-                                            <div className="project-item-salary">
-                                                <p>Cтавка в злотих</p>
-                                                <div>{element[1].salary}</div>
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
+                            <Projects />
                         </div>
                     </div>
                 ) : loginData.hasAccount ? (
                     <div className="show-projects">
-                        <div className="projects">
-                            {
-                                /* @ts-ignore */
-                                projectsArr.map((element, i) => (
-                                    <div key={i} className="project-item">
-                                        <div className="project-item-header">
-                                            <p>Назва проекту</p>
-                                            {element[0]}
-                                        </div>
-                                        <div className="project-item-country">
-                                            <p>Країна</p>
-                                            {element[1].country}
-                                        </div>
-                                        <div className="project-item-salary">
-                                            <p>Cтавка в злотих</p>
-                                            {element[1].salary}
-                                        </div>
-                                    </div>
-                                ))
-                            }
-                        </div>
+                        <Projects />
                     </div>
                 ) : (
                     <RegistrationAndLogin
