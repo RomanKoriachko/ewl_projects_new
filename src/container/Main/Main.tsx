@@ -33,8 +33,6 @@ const Main = (props: Props) => {
         isAdmin: false,
     })
 
-    // ----------------------------- write data --------------------------------
-
     const [project, setNewProject] = useState<ProjectType>({
         country: '',
         salary: '',
@@ -50,10 +48,10 @@ const Main = (props: Props) => {
                             project={project}
                             setNewProject={setNewProject}
                         />
-                        <Projects />
+                        <Projects loginData={loginData} />
                     </div>
                 ) : loginData.hasAccount ? (
-                    <Projects />
+                    <Projects loginData={loginData} />
                 ) : (
                     <RegistrationAndLogin
                         loginData={loginData}
