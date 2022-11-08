@@ -1,0 +1,28 @@
+.project-edit-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    padding: 40px;
+    width: 30%;
+    background: white;
+    z-index: 10;
+    p{
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    form{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        input{
+            height: 40px;
+            padding: 0px 20px;
+        }
+        button {
+            width: 200px;
+            height: 40px;
+        }
+    }
+}

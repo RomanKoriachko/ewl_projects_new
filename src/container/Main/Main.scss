@@ -13,6 +13,7 @@
         border: 1px solid black;
         text-align: center;
         padding: 20px;
+        position: relative;
         .project-item-header {
             font-size: 36px;
             >div{
@@ -35,4 +36,11 @@
             font-size: 32px;
         }
     }
+}
+
+.hide {
+    display: none;
+}
+.show{
+    display: block;
 }

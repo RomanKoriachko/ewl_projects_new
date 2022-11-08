@@ -1,13 +1,18 @@
 import { ProjectType } from 'container/Main/Main'
 import { update, ref, getDatabase, get, child } from 'firebase/database'
-import React from 'react'
+import './EditProject.scss'
 
 type Props = {
     editProject: ProjectType
     setEditProject: (prevState: ProjectType) => void
+    setEditFormState: (prevState: boolean) => void
 }
 
-const EditProject = ({ editProject, setEditProject }: Props) => {
+const EditProject = ({
+    editProject,
+    setEditProject,
+    setEditFormState,
+}: Props) => {
     const handleChangeCountry = (e: React.ChangeEvent<HTMLInputElement>) => {
         /* @ts-ignore */
         setEditProject((prevState: ProjectType) => ({
@@ -86,11 +91,12 @@ const EditProject = ({ editProject, setEditProject }: Props) => {
                 editProject.salary,
                 editProject.projectName
             )
+            setEditFormState(false)
         }
     }
 
     return (
-        <div className="project-form">
+        <div className="project-edit-form">
             <p>Редагувати проект</p>
             <form onSubmit={onSendClick}>
                 <input

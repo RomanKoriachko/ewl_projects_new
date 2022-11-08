@@ -3,7 +3,6 @@ import { useState } from 'react'
 import RegistrationAndLogin from 'components/mainComponents/RegistrationAndLogin/RegistrationAndLogin'
 import Projects from 'components/mainComponents/Projects/Projects'
 import AddNewProject from 'components/mainComponents/AddNewProject/AddNewProject'
-import EditProject from 'components/mainComponents/EditProject/EditProject'
 
 type Props = {}
 
@@ -56,15 +55,19 @@ const Main = (props: Props) => {
                                 project={project}
                                 setNewProject={setNewProject}
                             />
-                            <EditProject
-                                editProject={editProject}
-                                setEditProject={setEditProject}
-                            />
                         </div>
-                        <Projects loginData={loginData} />
+                        <Projects
+                            loginData={loginData}
+                            setEditProject={setEditProject}
+                            editProject={editProject}
+                        />
                     </div>
                 ) : loginData.hasAccount ? (
-                    <Projects loginData={loginData} />
+                    <Projects
+                        loginData={loginData}
+                        setEditProject={setEditProject}
+                        editProject={editProject}
+                    />
                 ) : (
                     <RegistrationAndLogin
                         loginData={loginData}
