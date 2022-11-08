@@ -1,5 +1,5 @@
 import { ProjectType } from 'container/Main/Main'
-import { update, ref, getDatabase } from 'firebase/database'
+import { update, ref, getDatabase, get, child } from 'firebase/database'
 import React from 'react'
 
 type Props = {
@@ -37,16 +37,33 @@ const EditProject = ({ editProject, setEditProject }: Props) => {
         salary: string,
         projectName: string
     ) => {
-        const db = getDatabase()
-        const projectData = {
-            country: country,
-            salary: salary,
-            projectName: projectName,
-        }
-        const updates = {}
-        /* @ts-ignore*/
-        updates[`vacancy/${projectName}`] = projectData
-        return update(ref(db), updates)
+        const dbRef = ref(getDatabase())
+        get(child(dbRef, `vacancy/`))
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    if (
+                        snapshot.val().hasOwnProperty(editProject.projectName)
+                    ) {
+                        const db = getDatabase()
+                        const projectData = {
+                            country: country,
+                            salary: salary,
+                            projectName: projectName,
+                        }
+                        const updates = {}
+                        /* @ts-ignore*/
+                        updates[`vacancy/${projectName}`] = projectData
+                        return update(ref(db), updates)
+                    } else {
+                        alert('такого проекту не існує')
+                    }
+                } else {
+                    console.log('No data available')
+                }
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     }
 
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,12 +80,6 @@ const EditProject = ({ editProject, setEditProject }: Props) => {
                 editProject.salary,
                 editProject.projectName
             )
-            /* @ts-ignore */
-            setEditProject(() => ({
-                country: '',
-                salary: '',
-                projectName: '',
-            }))
         }
     }
 
