@@ -1,5 +1,5 @@
 import { UserType } from 'container/Main/Main'
-import { getDatabase, ref, onValue } from 'firebase/database'
+import { getDatabase, ref, onValue, remove } from 'firebase/database'
 import { useState, useEffect } from 'react'
 
 type Props = {
@@ -15,20 +15,32 @@ type ProjectType = {
 const Projects = ({ loginData }: Props) => {
     const [projectsArr, setProjectsArr] = useState<[]>([])
 
-    let dataArr: [] = []
     useEffect(() => {
-        const db = getDatabase()
-        const starCountRef = ref(db, `vacancy/`)
-        onValue(starCountRef, (snapshot) => {
+        const dbEffect = getDatabase()
+        const starCountRefEffect = ref(dbEffect, `vacancy/`)
+        onValue(starCountRefEffect, (snapshot) => {
             let data = snapshot.val()
-            let dataItem = Object.entries(data)
-            for (let i = 0; i < dataItem.length; i++) {
-                /* @ts-ignore*/
-                dataArr.unshift(dataItem[i][1])
-                setProjectsArr(dataArr)
-            }
+            /* @ts-ignore */
+            setProjectsArr(Object.values(data))
+            console.log('useEffect')
         })
-    }, [])
+    }, [projectsArr.length])
+
+    const db = getDatabase()
+
+    const deliteProject = (project: string) => {
+        const starCountRef = ref(db, `vacancy/${project}`)
+        remove(starCountRef)
+            .then(() => {
+                console.log(projectsArr)
+                console.log('deliting')
+            })
+            .catch(() => {
+                alert('miss data')
+            })
+    }
+
+    console.log(projectsArr)
 
     return (
         <div className="projects">
@@ -48,7 +60,14 @@ const Projects = ({ loginData }: Props) => {
                               <div>{element.salary}</div>
                           </div>
                           <div>
-                              <button>Видалити</button>
+                              <button
+                                  onClick={() =>
+                                      deliteProject(element.projectName)
+                                  }
+                                  disabled={projectsArr.length <= 1}
+                              >
+                                  Видалити
+                              </button>
                               <button>Редагувати</button>
                           </div>
                       </div>

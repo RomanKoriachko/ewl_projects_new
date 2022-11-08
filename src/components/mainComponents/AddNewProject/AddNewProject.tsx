@@ -65,7 +65,6 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
     ) {
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val()
-            console.log(data)
             if (data.hasOwnProperty(project.projectName)) {
                 /* @ts-ignore */
                 setNewProject(() => ({

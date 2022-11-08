@@ -1,0 +1,38 @@
+.registration-and-login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.registration-and-login .registration-header {
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.registration-and-login .grid-wrapper {
+  display: grid;
+  grid-template-areas: "a b" "c c";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  justify-items: center;
+}
+.registration-and-login .grid-wrapper .login {
+  grid-area: a;
+  height: 40px;
+  width: 300px;
+  padding: 0px 10px;
+}
+.registration-and-login .grid-wrapper .password {
+  grid-area: b;
+  height: 40px;
+  width: 300px;
+  padding: 0px 10px;
+}
+.registration-and-login .grid-wrapper .submit {
+  grid-area: c;
+  width: 200px;
+}
+.registration-and-login .registration {
+  margin-bottom: 50px;
+}/*# sourceMappingURL=RegistrationAndLogin.css.map */
