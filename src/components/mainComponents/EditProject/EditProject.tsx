@@ -53,6 +53,12 @@ const EditProject = ({ editProject, setEditProject }: Props) => {
                         const updates = {}
                         /* @ts-ignore*/
                         updates[`vacancy/${projectName}`] = projectData
+                        /* @ts-ignore*/
+                        setEditProject(() => ({
+                            country: '',
+                            salary: '',
+                            projectName: '',
+                        }))
                         return update(ref(db), updates)
                     } else {
                         alert('такого проекту не існує')

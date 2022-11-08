@@ -1,5 +1,5 @@
 import { UserType } from 'container/Main/Main'
-import { getDatabase, ref, onValue, remove } from 'firebase/database'
+import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
 
 type Props = {
@@ -22,19 +22,17 @@ const Projects = ({ loginData }: Props) => {
             let data = snapshot.val()
             /* @ts-ignore */
             setProjectsArr(Object.values(data))
-            // console.log('useEffect')
         })
     }, [projectsArr.length])
 
     const db = getDatabase()
 
     const deliteProject = (project: string) => {
-        const starCountRef = ref(db, `vacancy/${project}`)
-        remove(starCountRef)
-            .then(() => {})
-            .catch(() => {
-                alert('miss data')
-            })
+        set(ref(db, `vacancy/${project}/`), {
+            country: null,
+            salary: null,
+            projectName: null,
+        })
     }
 
     return (
@@ -63,7 +61,6 @@ const Projects = ({ loginData }: Props) => {
                               >
                                   Видалити
                               </button>
-                              <button>Редагувати</button>
                           </div>
                       </div>
                   ))
