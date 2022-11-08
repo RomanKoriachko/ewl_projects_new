@@ -1,5 +1,5 @@
 import { ProjectType } from 'container/Main/Main'
-import { getDatabase, ref, onValue, set } from 'firebase/database'
+import { getDatabase, ref, set, get, child } from 'firebase/database'
 import './AddNewProject.scss'
 
 type Props = {
@@ -32,6 +32,41 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
         }))
     }
 
+    const db = getDatabase()
+
+    function writeProjectData(
+        country: string,
+        salary: string,
+        projectName: string
+    ) {
+        const dbRef = ref(getDatabase())
+        get(child(dbRef, `vacancy/`))
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    if (snapshot.val().hasOwnProperty(project.projectName)) {
+                        alert('Проект вже існує')
+                        /* @ts-ignore */
+                        setNewProject(() => ({
+                            country: '',
+                            salary: '',
+                            projectName: '',
+                        }))
+                    } else {
+                        set(ref(db, `vacancy/${projectName}/`), {
+                            country: country,
+                            salary: salary,
+                            projectName: projectName,
+                        })
+                    }
+                } else {
+                    console.log('No data available')
+                }
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
+
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (
@@ -55,35 +90,8 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
         }
     }
 
-    const db = getDatabase()
-    const starCountRef = ref(db, `vacancy/`)
-
-    function writeProjectData(
-        country: string,
-        salary: string,
-        projectName: string
-    ) {
-        onValue(starCountRef, (snapshot) => {
-            const data = snapshot.val()
-            if (data.hasOwnProperty(project.projectName)) {
-                /* @ts-ignore */
-                setNewProject(() => ({
-                    country: '',
-                    salary: '',
-                    projectName: '',
-                }))
-            } else {
-                set(ref(db, `vacancy/${projectName}/`), {
-                    country: country,
-                    salary: salary,
-                    projectName: projectName,
-                })
-            }
-        })
-    }
-
     return (
-        <div className="add-project">
+        <div className="project-form">
             <p>Додати проект</p>
             <form onSubmit={onSendClick}>
                 <input

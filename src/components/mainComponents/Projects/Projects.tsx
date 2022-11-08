@@ -22,7 +22,7 @@ const Projects = ({ loginData }: Props) => {
             let data = snapshot.val()
             /* @ts-ignore */
             setProjectsArr(Object.values(data))
-            console.log('useEffect')
+            // console.log('useEffect')
         })
     }, [projectsArr.length])
 
@@ -31,16 +31,11 @@ const Projects = ({ loginData }: Props) => {
     const deliteProject = (project: string) => {
         const starCountRef = ref(db, `vacancy/${project}`)
         remove(starCountRef)
-            .then(() => {
-                console.log(projectsArr)
-                console.log('deliting')
-            })
+            .then(() => {})
             .catch(() => {
                 alert('miss data')
             })
     }
-
-    console.log(projectsArr)
 
     return (
         <div className="projects">
