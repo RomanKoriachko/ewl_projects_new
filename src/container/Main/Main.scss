@@ -4,39 +4,6 @@
 .admin-panel {
     justify-content: space-between
 }
-.projects {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px 20px;
-    margin-top: 100px;
-    .project-item {
-        border: 1px solid black;
-        text-align: center;
-        padding: 20px;
-        position: relative;
-        .project-item-header {
-            font-size: 36px;
-            >div{
-                color: rgb(2, 35, 219);
-            }
-        }
-        .project-item-country {
-            font-size: 36px;
-            >div{
-                color: rgb(111, 23, 252);
-            }
-        }
-        .project-item-salary {
-            font-size: 36px;
-            >div{
-                color: rgb(3, 214, 66);
-            }
-        }
-        p{
-            font-size: 32px;
-        }
-    }
-}
 
 .hide {
     display: none;

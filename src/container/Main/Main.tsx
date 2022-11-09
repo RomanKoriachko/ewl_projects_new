@@ -3,6 +3,7 @@ import { useState } from 'react'
 import RegistrationAndLogin from 'components/mainComponents/RegistrationAndLogin/RegistrationAndLogin'
 import Projects from 'components/mainComponents/Projects/Projects'
 import AddNewProject from 'components/mainComponents/AddNewProject/AddNewProject'
+import SearchAndFilter from 'components/mainComponents/SearchAndFilter/SearchAndFilter'
 
 type Props = {}
 
@@ -32,18 +33,17 @@ const Main = (props: Props) => {
         hasAccount: false,
         isAdmin: false,
     })
-
     const [project, setNewProject] = useState<ProjectType>({
         country: '',
         salary: '',
         projectName: '',
     })
-
     const [editProject, setEditProject] = useState<ProjectType>({
         country: '',
         salary: '',
         projectName: '',
     })
+    const [searchContent, setSearchContent] = useState<string>('')
 
     return (
         <div>
@@ -56,18 +56,30 @@ const Main = (props: Props) => {
                                 setNewProject={setNewProject}
                             />
                         </div>
+                        <SearchAndFilter
+                            searchContent={searchContent}
+                            setSearchContent={setSearchContent}
+                        />
                         <Projects
                             loginData={loginData}
                             setEditProject={setEditProject}
                             editProject={editProject}
+                            searchContent={searchContent}
                         />
                     </div>
                 ) : loginData.hasAccount ? (
-                    <Projects
-                        loginData={loginData}
-                        setEditProject={setEditProject}
-                        editProject={editProject}
-                    />
+                    <div>
+                        <SearchAndFilter
+                            searchContent={searchContent}
+                            setSearchContent={setSearchContent}
+                        />
+                        <Projects
+                            loginData={loginData}
+                            setEditProject={setEditProject}
+                            editProject={editProject}
+                            searchContent={searchContent}
+                        />
+                    </div>
                 ) : (
                     <RegistrationAndLogin
                         loginData={loginData}

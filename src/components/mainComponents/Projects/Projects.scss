@@ -7,3 +7,25 @@
     height: 100%;
     z-index: 5;
 }
+.projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px 20px;
+    .project-item {
+        border: 1px solid black;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        .project-item-section {
+            font-size: 36px;
+            margin-bottom: 20px;
+            >div{
+                color: #f18a01;
+            }
+        }
+    }
+}
+.no-search-results {
+    font-size: 42px;
+    text-align: center;
+}
