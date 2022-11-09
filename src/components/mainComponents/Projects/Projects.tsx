@@ -2,6 +2,7 @@ import { UserType } from 'container/Main/Main'
 import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
+import './Projects.scss'
 
 type Props = {
     loginData: UserType
@@ -53,6 +54,10 @@ const Projects = ({ loginData, editProject, setEditProject }: Props) => {
     return (
         <div>
             <div className={`${editFormState ? 'show' : 'hide'}`}>
+                <div
+                    className="project-edit-bg"
+                    onClick={() => setEditFormState(false)}
+                ></div>
                 <EditProject
                     editProject={editProject}
                     setEditProject={setEditProject}

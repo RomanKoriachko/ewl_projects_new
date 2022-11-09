@@ -37,6 +37,10 @@ const EditProject = ({
         }))
     }
 
+    const closeEditForm = () => {
+        setEditFormState(false)
+    }
+
     const onEditClick = (
         country: string,
         salary: string,
@@ -97,7 +101,10 @@ const EditProject = ({
 
     return (
         <div className="project-edit-form">
-            <p>Редагувати проект</p>
+            <div className="project-edit-header">
+                <p>Редагувати проект</p>
+                <button onClick={closeEditForm}>X</button>
+            </div>
             <form onSubmit={onSendClick}>
                 <input
                     type="text"

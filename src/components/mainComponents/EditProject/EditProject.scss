@@ -8,9 +8,19 @@
     width: 30%;
     background: white;
     z-index: 10;
-    p{
-        font-size: 32px;
+    .project-edit-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 20px;
+        p{
+            font-size: 32px;
+            
+        }
+        button{
+            width: 30px;
+            height: 30px;
+        }
     }
     form{
         display: grid;
