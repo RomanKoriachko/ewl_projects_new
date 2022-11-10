@@ -20,6 +20,12 @@ export type ProjectType = {
     projectName: string
 }
 
+export type CountryCheckboxType = {
+    checkboxPoland: boolean
+    checkboxGermany: boolean
+    checkboxSlovakia: boolean
+}
+
 const Main = (props: Props) => {
     const [registrationData, setRegistrationData] = useState<UserType>({
         email: '',
@@ -44,6 +50,12 @@ const Main = (props: Props) => {
         projectName: '',
     })
     const [searchContent, setSearchContent] = useState<string>('')
+    const [countryCheckboxState, setCountryCheckboxState] =
+        useState<CountryCheckboxType>({
+            checkboxPoland: false,
+            checkboxGermany: false,
+            checkboxSlovakia: false,
+        })
 
     return (
         <div>
@@ -57,27 +69,31 @@ const Main = (props: Props) => {
                             />
                         </div>
                         <SearchAndFilter
-                            searchContent={searchContent}
                             setSearchContent={setSearchContent}
+                            setCountryCheckboxState={setCountryCheckboxState}
+                            countryCheckboxState={countryCheckboxState}
                         />
                         <Projects
                             loginData={loginData}
                             setEditProject={setEditProject}
                             editProject={editProject}
                             searchContent={searchContent}
+                            countryCheckboxState={countryCheckboxState}
                         />
                     </div>
                 ) : loginData.hasAccount ? (
                     <div>
                         <SearchAndFilter
-                            searchContent={searchContent}
                             setSearchContent={setSearchContent}
+                            setCountryCheckboxState={setCountryCheckboxState}
+                            countryCheckboxState={countryCheckboxState}
                         />
                         <Projects
                             loginData={loginData}
                             setEditProject={setEditProject}
                             editProject={editProject}
                             searchContent={searchContent}
+                            countryCheckboxState={countryCheckboxState}
                         />
                     </div>
                 ) : (

@@ -1,4 +1,4 @@
-import { UserType } from 'container/Main/Main'
+import { CountryCheckboxType, UserType } from 'container/Main/Main'
 import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
@@ -8,6 +8,7 @@ type Props = {
     loginData: UserType
     editProject: ProjectType
     searchContent: string
+    countryCheckboxState: CountryCheckboxType
     setEditProject: (prevState: ProjectType) => void
 }
 
@@ -21,6 +22,7 @@ const Projects = ({
     loginData,
     editProject,
     searchContent,
+    countryCheckboxState,
     setEditProject,
 }: Props) => {
     const [projectsArr, setProjectsArr] = useState<[]>([])
@@ -59,7 +61,7 @@ const Projects = ({
 
     // ---------------filter-------------------
 
-    const fltredArr = projectsArr.filter(
+    const tempArr = projectsArr.filter(
         (element: ProjectType) =>
             element.country
                 .toLowerCase()
@@ -71,6 +73,31 @@ const Projects = ({
                 .toLowerCase()
                 .includes(searchContent.toLowerCase())
     )
+
+    let filtredArr: [] = []
+    if (
+        countryCheckboxState.checkboxPoland === false &&
+        countryCheckboxState.checkboxGermany === false &&
+        countryCheckboxState.checkboxSlovakia === false
+    ) {
+        /* @ts-ignore */
+        filtredArr = tempArr
+    } else if (countryCheckboxState.checkboxPoland) {
+        /* @ts-ignore */
+        filtredArr = tempArr.filter((el: ProjectType) =>
+            el.country.toLowerCase().includes('Poland'.toLowerCase())
+        )
+    } else if (countryCheckboxState.checkboxGermany) {
+        /* @ts-ignore */
+        filtredArr = tempArr.filter((el: ProjectType) =>
+            el.country.toLowerCase().includes('Germany'.toLowerCase())
+        )
+    } else if (countryCheckboxState.checkboxSlovakia) {
+        /* @ts-ignore */
+        filtredArr = tempArr.filter((el: ProjectType) =>
+            el.country.toLowerCase().includes('Slovakia'.toLowerCase())
+        )
+    }
 
     return (
         <div>
@@ -86,11 +113,11 @@ const Projects = ({
                 />
             </div>
             {loginData.email === 'mazaxaka.tyt@gmail.com' ? (
-                fltredArr.length === 0 ? (
+                filtredArr.length === 0 ? (
                     <div className="no-search-results">Співпадінь нема</div>
                 ) : (
                     <div className="projects">
-                        {fltredArr.map((element: ProjectType, i: number) => (
+                        {filtredArr.map((element: ProjectType, i: number) => (
                             <div key={i} className="project-item">
                                 <div className="project-item-section">
                                     <p>Назва проекту</p>
@@ -129,10 +156,10 @@ const Projects = ({
                         ))}
                     </div>
                 )
-            ) : fltredArr.length === 0 ? (
+            ) : filtredArr.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
-                fltredArr.map((element: ProjectType, i: number) => (
+                filtredArr.map((element: ProjectType, i: number) => (
                     <div key={i} className="project-item">
                         <div className="project-item-section">
                             <p>Назва проекту</p>
