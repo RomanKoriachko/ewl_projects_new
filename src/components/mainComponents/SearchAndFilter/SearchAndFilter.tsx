@@ -101,34 +101,26 @@ const SearchAndFilter = ({
                     </div>
                 </div>
                 <div className="filter-item">
-                    <div>Регіон</div>
-                    <div>
-                        <input type="checkbox" id="region-1" name="region-1" />
-                        <label htmlFor="region-1">регіон 1</label>
-                        <input type="checkbox" id="region-2" name="region-2" />
-                        <label htmlFor="region-2">регіон 2</label>
-                        <input type="checkbox" id="region-3" name="region-3" />
-                        <label htmlFor="region-3">регіон 3</label>
-                    </div>
-                </div>
-                <div className="filter-item">
                     <div>Стать</div>
                     <div>
                         <input type="checkbox" id="male" name="male" />
                         <label htmlFor="male">Чоловік</label>
                         <input type="checkbox" id="feemale" name="feemale" />
                         <label htmlFor="feemale">Жінка</label>
+                        <input type="checkbox" id="couples" name="couples" />
+                        <label htmlFor="feemale">Пари</label>
                     </div>
                 </div>
                 <div className="filter-item">
-                    <div>Вік</div>
                     <div>
-                        <input type="checkbox" id="age18" name="age18" />
-                        <label htmlFor="age18">від 18</label>
-                        <input type="checkbox" id="age35" name="age35" />
-                        <label htmlFor="age35">18 - 35</label>
-                        <input type="checkbox" id="age60" name="age60" />
-                        <label htmlFor="age60">35 - 60</label>
+                        <input type="checkbox" id="underage" name="underage" />
+                        <label htmlFor="underage">Беруть неповнолітніх</label>
+                    </div>
+                </div>
+                <div className="filter-item">
+                    <div>
+                        <input type="text" id="age18" name="age18" />
+                        <label htmlFor="age18">Вік "До"</label>
                     </div>
                 </div>
             </div>

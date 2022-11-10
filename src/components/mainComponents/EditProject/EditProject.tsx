@@ -13,14 +13,18 @@ const EditProject = ({
     setEditProject,
     setEditFormState,
 }: Props) => {
-    const handleChangeCountry = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeProjectCountry = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         /* @ts-ignore */
         setEditProject((prevState: ProjectType) => ({
             ...prevState,
             country: e.target.value,
         }))
     }
-    const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeProjectSalary = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         /* @ts-ignore */
         setEditProject((prevState: ProjectType) => ({
             ...prevState,
@@ -36,6 +40,65 @@ const EditProject = ({
             projectName: e.target.value,
         }))
     }
+    const handleChangeProjectLocation = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setEditProject((prevState: ProjectType) => ({
+            ...prevState,
+            location: e.target.value,
+        }))
+    }
+    const handleChangeProjectSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+        /* @ts-ignore */
+        setEditProject((prevState: ProjectType) => ({
+            ...prevState,
+            sex: e.target.value,
+        }))
+    }
+    const handleChangeProjectAge = (e: React.ChangeEvent<HTMLInputElement>) => {
+        /* @ts-ignore */
+        setEditProject((prevState: ProjectType) => ({
+            ...prevState,
+            age: e.target.value,
+        }))
+    }
+    const handleChangeProjectNationalaty = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setEditProject((prevState: ProjectType) => ({
+            ...prevState,
+            nationalaty: e.target.value,
+        }))
+    }
+    const handleChangeProjectAdditionalInfo = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setEditProject((prevState: ProjectType) => ({
+            ...prevState,
+            additionalInfo: e.target.value,
+        }))
+    }
+    const handleChangeProjectHousing = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setEditProject((prevState: ProjectType) => ({
+            ...prevState,
+            housing: e.target.value,
+        }))
+    }
+    const handleChangeProjectProjectInfo = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setEditProject((prevState: ProjectType) => ({
+            ...prevState,
+            projectInfo: e.target.value,
+        }))
+    }
 
     const closeEditForm = () => {
         setEditFormState(false)
@@ -44,7 +107,14 @@ const EditProject = ({
     const onEditClick = (
         country: string,
         salary: string,
-        projectName: string
+        projectName: string,
+        location: string,
+        sex: string,
+        age: string,
+        nationalaty: string,
+        additionalInfo: string,
+        housing: string,
+        projectInfo: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -58,6 +128,13 @@ const EditProject = ({
                             country: country,
                             salary: salary,
                             projectName: projectName,
+                            location: location,
+                            sex: sex,
+                            age: age,
+                            nationalaty: nationalaty,
+                            additionalInfo: additionalInfo,
+                            housing: housing,
+                            projectInfo: projectInfo,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -67,6 +144,13 @@ const EditProject = ({
                             country: '',
                             salary: '',
                             projectName: '',
+                            location: '',
+                            sex: '',
+                            age: '',
+                            nationalaty: '',
+                            additionalInfo: '',
+                            housing: '',
+                            projectInfo: '',
                         }))
                         return update(ref(db), updates)
                     } else {
@@ -86,14 +170,28 @@ const EditProject = ({
         if (
             editProject.country === '' ||
             editProject.salary === '' ||
-            editProject.projectName === ''
+            editProject.projectName === '' ||
+            editProject.location === '' ||
+            editProject.sex === '' ||
+            editProject.age === '' ||
+            editProject.nationalaty === '' ||
+            editProject.additionalInfo === '' ||
+            editProject.housing === '' ||
+            editProject.projectInfo === ''
         ) {
             alert("всі поля обов'язкові")
         } else {
             onEditClick(
                 editProject.country,
                 editProject.salary,
-                editProject.projectName
+                editProject.projectName,
+                editProject.location,
+                editProject.sex,
+                editProject.age,
+                editProject.nationalaty,
+                editProject.additionalInfo,
+                editProject.housing,
+                editProject.projectInfo
             )
             setEditFormState(false)
         }
@@ -111,14 +209,14 @@ const EditProject = ({
                     id="country"
                     placeholder="Назва країни"
                     value={editProject.country}
-                    onChange={handleChangeCountry}
+                    onChange={handleChangeProjectCountry}
                 />
                 <input
                     type="text"
                     id="salary"
                     placeholder="Ставка"
                     value={editProject.salary}
-                    onChange={handleChangeSalary}
+                    onChange={handleChangeProjectSalary}
                 />
                 <input
                     type="text"
@@ -126,6 +224,55 @@ const EditProject = ({
                     placeholder="назва проекту"
                     value={editProject.projectName}
                     onChange={handleChangeProjectName}
+                />
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Локалізація"
+                    value={editProject.location}
+                    onChange={handleChangeProjectLocation}
+                />
+                <input
+                    type="text"
+                    id="sex"
+                    placeholder="Стать"
+                    value={editProject.sex}
+                    onChange={handleChangeProjectSex}
+                />
+                <input
+                    type="text"
+                    id="age"
+                    placeholder="Вік"
+                    value={editProject.age}
+                    onChange={handleChangeProjectAge}
+                />
+                <input
+                    type="text"
+                    id="nationalaty"
+                    placeholder="Національність"
+                    value={editProject.nationalaty}
+                    onChange={handleChangeProjectNationalaty}
+                />
+                <input
+                    type="text"
+                    id="additionalInfo"
+                    placeholder="Додаткова інформація"
+                    value={editProject.additionalInfo}
+                    onChange={handleChangeProjectAdditionalInfo}
+                />
+                <input
+                    type="text"
+                    id="housing"
+                    placeholder="Приклади житла"
+                    value={editProject.housing}
+                    onChange={handleChangeProjectHousing}
+                />
+                <input
+                    type="text"
+                    id="projectInfo"
+                    placeholder="Опис проекту"
+                    value={editProject.projectInfo}
+                    onChange={handleChangeProjectProjectInfo}
                 />
                 <button type="submit">Редагувати проект</button>
             </form>

@@ -1,4 +1,4 @@
-import { CountryCheckboxType, UserType } from 'container/Main/Main'
+import { CountryCheckboxType, ProjectType, UserType } from 'container/Main/Main'
 import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
@@ -10,12 +10,6 @@ type Props = {
     searchContent: string
     countryCheckboxState: CountryCheckboxType
     setEditProject: (prevState: ProjectType) => void
-}
-
-type ProjectType = {
-    projectName: string
-    country: string
-    salary: string
 }
 
 const Projects = ({
@@ -44,22 +38,47 @@ const Projects = ({
             country: null,
             salary: null,
             projectName: null,
+            location: null,
+            sex: null,
+            age: null,
+            nationalaty: null,
+            additionalInfo: null,
+            housing: null,
+            projectInfo: null,
         })
     }
 
     const [editFormState, setEditFormState] = useState<boolean>(false)
 
-    const edit = (project: string, country: string, salary: string) => {
+    const edit = (
+        project: string,
+        country: string,
+        salary: string,
+        location: string,
+        sex: string,
+        age: string,
+        nationalaty: string,
+        additionalInfo: string,
+        housing: string,
+        projectInfo: string
+    ) => {
         /* @ts-ignore */
         setEditProject(() => ({
             projectName: project,
             country: country,
             salary: salary,
+            location: location,
+            sex: sex,
+            age: age,
+            nationalaty: nationalaty,
+            additionalInfo: additionalInfo,
+            housing: housing,
+            projectInfo: projectInfo,
         }))
         editFormState ? setEditFormState(false) : setEditFormState(true)
     }
 
-    // ---------------filter-------------------
+    // ----------------------filter----------------------
 
     const tempArr = projectsArr.filter(
         (element: ProjectType) =>
@@ -74,7 +93,7 @@ const Projects = ({
                 .includes(searchContent.toLowerCase())
     )
 
-    // ----------------country----------------------
+    // ----------------------country----------------------
 
     let filtredArr: [] = []
     let temporaryCountryArr1: [] = []
@@ -152,6 +171,34 @@ const Projects = ({
                                     <p>Cтавка в злотих</p>
                                     <div>{element.salary}</div>
                                 </div>
+                                <div className="project-item-section">
+                                    <p>Локалізація</p>
+                                    <div>{element.location}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Стать</p>
+                                    <div>{element.sex}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Вік</p>
+                                    <div>{element.age}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Національність</p>
+                                    <div>{element.nationalaty}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Додаткова інформація</p>
+                                    <div>{element.additionalInfo}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Приклади житла</p>
+                                    <div>{element.housing}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Опис вакансії</p>
+                                    <div>{element.projectInfo}</div>
+                                </div>
                                 <div>
                                     <button
                                         onClick={() =>
@@ -166,7 +213,14 @@ const Projects = ({
                                             edit(
                                                 element.projectName,
                                                 element.country,
-                                                element.salary
+                                                element.salary,
+                                                element.location,
+                                                element.sex,
+                                                element.age,
+                                                element.nationalaty,
+                                                element.additionalInfo,
+                                                element.housing,
+                                                element.projectInfo
                                             )
                                         }
                                     >
@@ -193,6 +247,34 @@ const Projects = ({
                         <div className="project-item-section">
                             <p>Cтавка в злотих</p>
                             <div>{element.salary}</div>
+                        </div>
+                        <div className="project-item-section">
+                            <p>Локалізація</p>
+                            <div>{element.location}</div>
+                        </div>
+                        <div className="project-item-section">
+                            <p>Стать</p>
+                            <div>{element.sex}</div>
+                        </div>
+                        <div className="project-item-section">
+                            <p>Вік</p>
+                            <div>{element.age}</div>
+                        </div>
+                        <div className="project-item-section">
+                            <p>Національність</p>
+                            <div>{element.nationalaty}</div>
+                        </div>
+                        <div className="project-item-section">
+                            <p>Додаткова інформація</p>
+                            <div>{element.additionalInfo}</div>
+                        </div>
+                        <div className="project-item-section">
+                            <p>Приклади житла</p>
+                            <div>{element.housing}</div>
+                        </div>
+                        <div className="project-item-section">
+                            <p>Опис вакансії</p>
+                            <div>{element.projectInfo}</div>
                         </div>
                     </div>
                 ))

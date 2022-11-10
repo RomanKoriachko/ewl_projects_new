@@ -18,6 +18,13 @@ export type ProjectType = {
     country: string
     salary: string
     projectName: string
+    location: string
+    sex: string
+    age: string
+    nationalaty: string
+    additionalInfo: string
+    housing: string
+    projectInfo: string
 }
 
 export type CountryCheckboxType = {
@@ -27,6 +34,8 @@ export type CountryCheckboxType = {
 }
 
 const Main = (props: Props) => {
+    //------------------------ Login Data ------------------------
+
     const [registrationData, setRegistrationData] = useState<UserType>({
         email: '',
         password: '',
@@ -39,15 +48,32 @@ const Main = (props: Props) => {
         hasAccount: false,
         isAdmin: false,
     })
+
+    // ------------------------ Project ------------------------
+
     const [project, setNewProject] = useState<ProjectType>({
         country: '',
         salary: '',
         projectName: '',
+        location: '',
+        sex: '',
+        age: '',
+        nationalaty: '',
+        additionalInfo: '',
+        housing: '',
+        projectInfo: '',
     })
     const [editProject, setEditProject] = useState<ProjectType>({
         country: '',
         salary: '',
         projectName: '',
+        location: '',
+        sex: '',
+        age: '',
+        nationalaty: '',
+        additionalInfo: '',
+        housing: '',
+        projectInfo: '',
     })
     const [searchContent, setSearchContent] = useState<string>('')
     const [countryCheckboxState, setCountryCheckboxState] =

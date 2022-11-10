@@ -31,13 +31,79 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             projectName: e.target.value,
         }))
     }
+    const handleChangeProjectLocation = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            location: e.target.value,
+        }))
+    }
+    const handleChangeProjectSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+        /* @ts-ignore */
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            sex: e.target.value,
+        }))
+    }
+    const handleChangeProjectAge = (e: React.ChangeEvent<HTMLInputElement>) => {
+        /* @ts-ignore */
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            age: e.target.value,
+        }))
+    }
+    const handleChangeProjectNationalaty = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            nationalaty: e.target.value,
+        }))
+    }
+    const handleChangeProjectAdditionalInfo = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            additionalInfo: e.target.value,
+        }))
+    }
+    const handleChangeProjectHousing = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            housing: e.target.value,
+        }))
+    }
+    const handleChangeProjectProjectInfo = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            projectInfo: e.target.value,
+        }))
+    }
 
     const db = getDatabase()
 
     function writeProjectData(
         country: string,
         salary: string,
-        projectName: string
+        projectName: string,
+        location: string,
+        sex: string,
+        age: string,
+        nationalaty: string,
+        additionalInfo: string,
+        housing: string,
+        projectInfo: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -50,12 +116,26 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                             country: '',
                             salary: '',
                             projectName: '',
+                            location: '',
+                            sex: '',
+                            age: '',
+                            nationalaty: '',
+                            additionalInfo: '',
+                            housing: '',
+                            projectInfo: '',
                         }))
                     } else {
                         set(ref(db, `vacancy/${projectName}/`), {
                             country: country,
                             salary: salary,
                             projectName: projectName,
+                            location: location,
+                            sex: sex,
+                            age: age,
+                            nationalaty: nationalaty,
+                            additionalInfo: additionalInfo,
+                            housing: housing,
+                            projectInfo: projectInfo,
                         })
                     }
                 } else {
@@ -72,20 +152,41 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
         if (
             project.country === '' ||
             project.salary === '' ||
-            project.projectName === ''
+            project.projectName === '' ||
+            project.location === '' ||
+            project.sex === '' ||
+            project.age === '' ||
+            project.nationalaty === '' ||
+            project.additionalInfo === '' ||
+            project.housing === '' ||
+            project.projectInfo === ''
         ) {
             alert("всі поля обов'язкові")
         } else {
             writeProjectData(
                 project.country,
                 project.salary,
-                project.projectName
+                project.projectName,
+                project.location,
+                project.sex,
+                project.age,
+                project.nationalaty,
+                project.additionalInfo,
+                project.housing,
+                project.projectInfo
             )
             /* @ts-ignore */
             setNewProject(() => ({
                 country: '',
                 salary: '',
                 projectName: '',
+                location: '',
+                sex: '',
+                age: '',
+                nationalaty: '',
+                additionalInfo: '',
+                housing: '',
+                projectInfo: '',
             }))
         }
     }
@@ -114,6 +215,55 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     placeholder="назва проекту"
                     value={project.projectName}
                     onChange={handleChangeProjectName}
+                />
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Локалізація"
+                    value={project.location}
+                    onChange={handleChangeProjectLocation}
+                />
+                <input
+                    type="text"
+                    id="sex"
+                    placeholder="Стать"
+                    value={project.sex}
+                    onChange={handleChangeProjectSex}
+                />
+                <input
+                    type="text"
+                    id="age"
+                    placeholder="Вік"
+                    value={project.age}
+                    onChange={handleChangeProjectAge}
+                />
+                <input
+                    type="text"
+                    id="nationalaty"
+                    placeholder="Національність"
+                    value={project.nationalaty}
+                    onChange={handleChangeProjectNationalaty}
+                />
+                <input
+                    type="text"
+                    id="additionalInfo"
+                    placeholder="Додаткова інформація"
+                    value={project.additionalInfo}
+                    onChange={handleChangeProjectAdditionalInfo}
+                />
+                <input
+                    type="text"
+                    id="housing"
+                    placeholder="Приклади житла"
+                    value={project.housing}
+                    onChange={handleChangeProjectHousing}
+                />
+                <input
+                    type="text"
+                    id="projectInfo"
+                    placeholder="Опис проекту"
+                    value={project.projectInfo}
+                    onChange={handleChangeProjectProjectInfo}
                 />
                 <button type="submit">Додати проект</button>
             </form>
