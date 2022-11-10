@@ -21,9 +21,9 @@ export type ProjectType = {
 }
 
 export type CountryCheckboxType = {
-    checkboxPoland: boolean
-    checkboxGermany: boolean
-    checkboxSlovakia: boolean
+    checkboxPoland: string
+    checkboxGermany: string
+    checkboxSlovakia: string
 }
 
 const Main = (props: Props) => {
@@ -52,9 +52,9 @@ const Main = (props: Props) => {
     const [searchContent, setSearchContent] = useState<string>('')
     const [countryCheckboxState, setCountryCheckboxState] =
         useState<CountryCheckboxType>({
-            checkboxPoland: false,
-            checkboxGermany: false,
-            checkboxSlovakia: false,
+            checkboxPoland: '',
+            checkboxGermany: '',
+            checkboxSlovakia: '',
         })
 
     return (
@@ -71,7 +71,6 @@ const Main = (props: Props) => {
                         <SearchAndFilter
                             setSearchContent={setSearchContent}
                             setCountryCheckboxState={setCountryCheckboxState}
-                            countryCheckboxState={countryCheckboxState}
                         />
                         <Projects
                             loginData={loginData}
@@ -86,7 +85,6 @@ const Main = (props: Props) => {
                         <SearchAndFilter
                             setSearchContent={setSearchContent}
                             setCountryCheckboxState={setCountryCheckboxState}
-                            countryCheckboxState={countryCheckboxState}
                         />
                         <Projects
                             loginData={loginData}

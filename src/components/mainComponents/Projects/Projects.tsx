@@ -74,29 +74,50 @@ const Projects = ({
                 .includes(searchContent.toLowerCase())
     )
 
+    // ----------------country----------------------
+
     let filtredArr: [] = []
+    let temporaryCountryArr1: [] = []
+    let temporaryCountryArr2: [] = []
+    let temporaryCountryArr3: [] = []
+
+    if (countryCheckboxState.checkboxPoland) {
+        /* @ts-ignore */
+        temporaryCountryArr1 = tempArr.filter((el: ProjectType) =>
+            el.country
+                .toLowerCase()
+                .includes(countryCheckboxState.checkboxPoland.toLowerCase())
+        )
+    }
+    if (countryCheckboxState.checkboxGermany) {
+        /* @ts-ignore */
+        temporaryCountryArr2 = tempArr.filter((el: ProjectType) =>
+            el.country
+                .toLowerCase()
+                .includes(countryCheckboxState.checkboxGermany.toLowerCase())
+        )
+    }
+    if (countryCheckboxState.checkboxSlovakia) {
+        /* @ts-ignore */
+        temporaryCountryArr3 = tempArr.filter((el: ProjectType) =>
+            el.country
+                .toLowerCase()
+                .includes(countryCheckboxState.checkboxSlovakia.toLowerCase())
+        )
+    }
     if (
-        countryCheckboxState.checkboxPoland === false &&
-        countryCheckboxState.checkboxGermany === false &&
-        countryCheckboxState.checkboxSlovakia === false
+        countryCheckboxState.checkboxPoland === '' &&
+        countryCheckboxState.checkboxGermany === '' &&
+        countryCheckboxState.checkboxSlovakia === ''
     ) {
         /* @ts-ignore */
         filtredArr = tempArr
-    } else if (countryCheckboxState.checkboxPoland) {
-        /* @ts-ignore */
-        filtredArr = tempArr.filter((el: ProjectType) =>
-            el.country.toLowerCase().includes('Poland'.toLowerCase())
-        )
-    } else if (countryCheckboxState.checkboxGermany) {
-        /* @ts-ignore */
-        filtredArr = tempArr.filter((el: ProjectType) =>
-            el.country.toLowerCase().includes('Germany'.toLowerCase())
-        )
-    } else if (countryCheckboxState.checkboxSlovakia) {
-        /* @ts-ignore */
-        filtredArr = tempArr.filter((el: ProjectType) =>
-            el.country.toLowerCase().includes('Slovakia'.toLowerCase())
-        )
+    } else {
+        filtredArr = [
+            ...temporaryCountryArr1,
+            ...temporaryCountryArr2,
+            ...temporaryCountryArr3,
+        ]
     }
 
     return (

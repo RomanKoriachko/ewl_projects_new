@@ -2,13 +2,11 @@ import { CountryCheckboxType } from 'container/Main/Main'
 import './SearchAndFilter.scss'
 
 type Props = {
-    countryCheckboxState: CountryCheckboxType
     setSearchContent: (prevState: string) => void
     setCountryCheckboxState: (prevState: CountryCheckboxType) => void
 }
 
 const SearchAndFilter = ({
-    countryCheckboxState,
     setSearchContent,
     setCountryCheckboxState,
 }: Props) => {
@@ -16,33 +14,52 @@ const SearchAndFilter = ({
         setSearchContent(e.target.value)
     }
 
-    // країна, стать, вік, регіон
-
     const PolandCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
-        /* @ts-ignore */
-        setCountryCheckboxState((prevState: CountryCheckboxType) => ({
-            checkboxPoland: e.target.checked,
-            checkboxGermany: prevState.checkboxGermany,
-            checkboxSlovakia: prevState.checkboxSlovakia,
-        }))
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: 'poland',
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: '',
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+              }))
     }
     const GermanyCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
-        /* @ts-ignore */
-        setCountryCheckboxState((prevState: CountryCheckboxType) => ({
-            checkboxPoland: prevState.checkboxPoland,
-            checkboxGermany: e.target.checked,
-            checkboxSlovakia: prevState.checkboxSlovakia,
-        }))
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxGermany: 'germany',
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxGermany: '',
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+              }))
     }
     const SlovakiaCheckboxCheking = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setCountryCheckboxState((prevState: CountryCheckboxType) => ({
-            checkboxPoland: prevState.checkboxPoland,
-            checkboxGermany: prevState.checkboxGermany,
-            checkboxSlovakia: e.target.checked,
-        }))
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxSlovakia: 'slovakia',
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxSlovakia: '',
+              }))
     }
 
     return (
@@ -53,34 +70,66 @@ const SearchAndFilter = ({
                 className="search"
                 onChange={ChangeSeacrchContent}
             />
-            <button className="filters-btn">Filters</button>
             <div className="filter">
-                <div>Країна</div>
-                <div>
-                    <input
-                        type="checkbox"
-                        id="poland"
-                        name="poland"
-                        className="poland-checkbox"
-                        onChange={PolandCheckboxCheking}
-                    />
-                    <label htmlFor="poland">Poland</label>
-                    <input
-                        type="checkbox"
-                        id="germany"
-                        name="germany"
-                        className="germany-checkbox"
-                        onChange={GermanyCheckboxCheking}
-                    />
-                    <label htmlFor="germany">Germany</label>
-                    <input
-                        type="checkbox"
-                        id="slovakia"
-                        name="slovakia"
-                        className="slovakia-checkbox"
-                        onChange={SlovakiaCheckboxCheking}
-                    />
-                    <label htmlFor="slovakia">Slovakia</label>
+                <div className="filter-item">
+                    <div>Країна</div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="poland"
+                            name="poland"
+                            className="poland-checkbox"
+                            onChange={PolandCheckboxCheking}
+                        />
+                        <label htmlFor="poland">Poland</label>
+                        <input
+                            type="checkbox"
+                            id="germany"
+                            name="germany"
+                            className="germany-checkbox"
+                            onChange={GermanyCheckboxCheking}
+                        />
+                        <label htmlFor="germany">Germany</label>
+                        <input
+                            type="checkbox"
+                            id="slovakia"
+                            name="slovakia"
+                            className="slovakia-checkbox"
+                            onChange={SlovakiaCheckboxCheking}
+                        />
+                        <label htmlFor="slovakia">Slovakia</label>
+                    </div>
+                </div>
+                <div className="filter-item">
+                    <div>Регіон</div>
+                    <div>
+                        <input type="checkbox" id="region-1" name="region-1" />
+                        <label htmlFor="region-1">регіон 1</label>
+                        <input type="checkbox" id="region-2" name="region-2" />
+                        <label htmlFor="region-2">регіон 2</label>
+                        <input type="checkbox" id="region-3" name="region-3" />
+                        <label htmlFor="region-3">регіон 3</label>
+                    </div>
+                </div>
+                <div className="filter-item">
+                    <div>Стать</div>
+                    <div>
+                        <input type="checkbox" id="male" name="male" />
+                        <label htmlFor="male">Чоловік</label>
+                        <input type="checkbox" id="feemale" name="feemale" />
+                        <label htmlFor="feemale">Жінка</label>
+                    </div>
+                </div>
+                <div className="filter-item">
+                    <div>Вік</div>
+                    <div>
+                        <input type="checkbox" id="age18" name="age18" />
+                        <label htmlFor="age18">від 18</label>
+                        <input type="checkbox" id="age35" name="age35" />
+                        <label htmlFor="age35">18 - 35</label>
+                        <input type="checkbox" id="age60" name="age60" />
+                        <label htmlFor="age60">35 - 60</label>
+                    </div>
                 </div>
             </div>
         </div>
