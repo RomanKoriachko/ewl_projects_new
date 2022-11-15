@@ -331,7 +331,7 @@ const SearchAndFilter = ({
         e.target.checked
             ? /* @ts-ignore */
               setSexCheckboxState((prevState: SexCheckboxType) => ({
-                  male: 'Только мужчины',
+                  male: 'Мужчины',
                   female: prevState.female,
                   couples: prevState.couples,
               }))
@@ -347,7 +347,7 @@ const SearchAndFilter = ({
             ? /* @ts-ignore */
               setSexCheckboxState((prevState: SexCheckboxType) => ({
                   male: prevState.male,
-                  female: 'Только женщины',
+                  female: 'Женщины',
                   couples: prevState.couples,
               }))
             : /* @ts-ignore */
@@ -640,7 +640,7 @@ const SearchAndFilter = ({
                                 onChange={ageToValue}
                                 value={ageToState ? ageToState : ''}
                             />
-                            <label htmlFor="age18">Возраст "До"</label>
+                            <label htmlFor="age18">Возраст кандидата</label>
                         </div>
                     </div>
                 </div>

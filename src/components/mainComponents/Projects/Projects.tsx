@@ -290,7 +290,9 @@ const Projects = ({
     if (ageToState) {
         /* @ts-ignore */
         filtredArr = temporaryIsMinorArr.filter(
-            (el: ProjectType) => ageToState >= parseInt(el.ageTo)
+            (el: ProjectType) =>
+                ageToState >= parseInt(el.ageFrom) &&
+                ageToState <= parseInt(el.ageTo)
         )
     } else {
         filtredArr = temporaryIsMinorArr
@@ -309,7 +311,8 @@ const Projects = ({
                     setEditFormState={setEditFormState}
                 />
             </div>
-            {loginData.email === 'mazaxaka.tyt@gmail.com' ? (
+            {loginData.email === 'mazaxaka.tyt@gmail.com' ||
+            loginData.email === 'juliiaderevianko@gmail.com' ? (
                 filtredArr.length === 0 ? (
                     <div className="no-search-results">Совпадений нет</div>
                 ) : (
@@ -347,7 +350,7 @@ const Projects = ({
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <p>Национальность </p>
+                                    <p>Национальность</p>
                                     <div>{element.nationalaty}</div>
                                 </div>
                                 <div className="project-item-section">

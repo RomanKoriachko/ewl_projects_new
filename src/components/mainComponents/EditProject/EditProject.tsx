@@ -255,8 +255,8 @@ const EditProject = ({
                     value={editProject.sex}
                     onChange={handleChangeProjectSex}
                 >
-                    <option value="Только мужчины">Только Мужчины</option>
-                    <option value="Только женщины">Только Женщины</option>
+                    <option value="Мужчины">Мужчины</option>
+                    <option value="Женщины">Женщины</option>
                     <option value="Пары">Пары</option>
                 </select>
                 <input

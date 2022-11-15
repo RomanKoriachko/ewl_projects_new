@@ -246,8 +246,8 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     onChange={handleChangeProjectSex}
                 >
                     <option value="empty"></option>
-                    <option value="Только мужчины">Только мужчины</option>
-                    <option value="Только женщины">Только женщины</option>
+                    <option value="Мужчины">Мужчины</option>
+                    <option value="Женщины">Женщины</option>
                     <option value="Пары">Пары</option>
                 </select>
                 <input
