@@ -61,11 +61,22 @@ const EditProject = ({
             sex: e.target.value,
         }))
     }
-    const handleChangeProjectAge = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeProjectAgeFrom = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         /* @ts-ignore */
         setEditProject((prevState: ProjectType) => ({
             ...prevState,
-            age: e.target.value,
+            ageFrom: e.target.value,
+        }))
+    }
+    const handleChangeProjectAgeTo = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setEditProject((prevState: ProjectType) => ({
+            ...prevState,
+            ageTo: e.target.value,
         }))
     }
     const handleChangeProjectNationalaty = (
@@ -115,7 +126,8 @@ const EditProject = ({
         projectName: string,
         location: string,
         sex: string,
-        age: string,
+        ageFrom: string,
+        ageTo: string,
         nationalaty: string,
         additionalInfo: string,
         housing: string,
@@ -135,7 +147,8 @@ const EditProject = ({
                             projectName: projectName,
                             location: location,
                             sex: sex,
-                            age: age,
+                            ageFrom: ageFrom,
+                            ageTo: ageTo,
                             nationalaty: nationalaty,
                             additionalInfo: additionalInfo,
                             housing: housing,
@@ -151,7 +164,8 @@ const EditProject = ({
                             projectName: '',
                             location: '',
                             sex: '',
-                            age: '',
+                            ageFrom: '',
+                            ageTo: '',
                             nationalaty: '',
                             additionalInfo: '',
                             housing: '',
@@ -178,7 +192,8 @@ const EditProject = ({
             editProject.projectName === '' ||
             editProject.location === '' ||
             editProject.sex === '' ||
-            editProject.age === '' ||
+            editProject.ageFrom === '' ||
+            editProject.ageTo === '' ||
             editProject.nationalaty === '' ||
             editProject.additionalInfo === '' ||
             editProject.housing === '' ||
@@ -194,7 +209,8 @@ const EditProject = ({
                 editProject.projectName,
                 editProject.location,
                 editProject.sex,
-                editProject.age,
+                editProject.ageFrom,
+                editProject.ageTo,
                 editProject.nationalaty,
                 editProject.additionalInfo,
                 editProject.housing,
@@ -207,11 +223,11 @@ const EditProject = ({
     return (
         <div className="project-edit-form">
             <div className="project-edit-header">
-                <p>Редагувати проект</p>
+                <p>Редактировать проект</p>
                 <button onClick={closeEditForm}>X</button>
             </div>
             <form onSubmit={onSendClick}>
-                <label htmlFor="country">Вибір країни</label>
+                <label htmlFor="country">Выбор страны</label>
                 <select
                     name="country"
                     id="country"
@@ -223,27 +239,6 @@ const EditProject = ({
                     <option value="Германия">Германия</option>
                     <option value="Словакия">Словакия</option>
                 </select>
-                <input
-                    type="text"
-                    id="salary"
-                    placeholder="Ставка"
-                    value={editProject.salary}
-                    onChange={handleChangeProjectSalary}
-                />
-                <input
-                    type="text"
-                    id="project"
-                    placeholder="назва проекту"
-                    value={editProject.projectName}
-                    onChange={handleChangeProjectName}
-                />
-                <input
-                    type="text"
-                    id="location"
-                    placeholder="Локалізація"
-                    value={editProject.location}
-                    onChange={handleChangeProjectLocation}
-                />
                 <label htmlFor="sex">Выбор пола</label>
                 <select
                     name="sex"
@@ -258,40 +253,71 @@ const EditProject = ({
                 </select>
                 <input
                     type="text"
-                    id="age"
-                    placeholder="Вік"
-                    value={editProject.age}
-                    onChange={handleChangeProjectAge}
+                    id="salary"
+                    placeholder="Ставка"
+                    value={editProject.salary}
+                    onChange={handleChangeProjectSalary}
                 />
                 <input
                     type="text"
+                    id="project"
+                    placeholder="Название проекта"
+                    value={editProject.projectName}
+                    onChange={handleChangeProjectName}
+                />
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Локализация"
+                    value={editProject.location}
+                    onChange={handleChangeProjectLocation}
+                />
+                <div>
+                    <input
+                        type="text"
+                        id="age-from"
+                        placeholder="Возраст От"
+                        value={editProject.ageFrom}
+                        onChange={handleChangeProjectAgeFrom}
+                    />
+                    <input
+                        type="text"
+                        id="age-to"
+                        placeholder="Возраст До"
+                        value={editProject.ageTo}
+                        onChange={handleChangeProjectAgeTo}
+                    />
+                </div>
+
+                <input
+                    type="text"
                     id="nationalaty"
-                    placeholder="Національність"
+                    placeholder="Национальность"
                     value={editProject.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
                 <input
                     type="text"
                     id="additionalInfo"
-                    placeholder="Додаткова інформація"
+                    placeholder="Дополнительная информация"
                     value={editProject.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <input
                     type="text"
                     id="housing"
-                    placeholder="Приклади житла"
+                    placeholder="Примеры жилья"
                     value={editProject.housing}
                     onChange={handleChangeProjectHousing}
                 />
                 <input
                     type="text"
                     id="projectInfo"
-                    placeholder="Опис проекту"
+                    placeholder="описание проекта"
                     value={editProject.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
                 />
-                <button type="submit">Редагувати проект</button>
+                <button type="submit">Редактировать проект</button>
             </form>
         </div>
     )

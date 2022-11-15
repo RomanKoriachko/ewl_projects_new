@@ -20,7 +20,8 @@ export type ProjectType = {
     projectName: string
     location: string
     sex: string
-    age: string
+    ageFrom: string
+    ageTo: string
     nationalaty: string
     additionalInfo: string
     housing: string
@@ -62,7 +63,8 @@ const Main = (props: Props) => {
         projectName: '',
         location: '',
         sex: '',
-        age: '',
+        ageFrom: '',
+        ageTo: '',
         nationalaty: '',
         additionalInfo: '',
         housing: '',
@@ -74,7 +76,8 @@ const Main = (props: Props) => {
         projectName: '',
         location: '',
         sex: '',
-        age: '',
+        ageFrom: '',
+        ageTo: '',
         nationalaty: '',
         additionalInfo: '',
         housing: '',

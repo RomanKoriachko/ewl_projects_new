@@ -52,11 +52,22 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             sex: e.target.value,
         }))
     }
-    const handleChangeProjectAge = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeProjectAgeFrom = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         /* @ts-ignore */
         setNewProject((prevState: ProjectType) => ({
             ...prevState,
-            age: e.target.value,
+            ageFrom: e.target.value,
+        }))
+    }
+    const handleChangeProjectAgeTo = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        /* @ts-ignore */
+        setNewProject((prevState: ProjectType) => ({
+            ...prevState,
+            ageTo: e.target.value,
         }))
     }
     const handleChangeProjectNationalaty = (
@@ -104,7 +115,8 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
         projectName: string,
         location: string,
         sex: string,
-        age: string,
+        ageFrom: string,
+        ageTo: string,
         nationalaty: string,
         additionalInfo: string,
         housing: string,
@@ -115,7 +127,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     if (snapshot.val().hasOwnProperty(project.projectName)) {
-                        alert('Проект вже існує')
+                        alert('Проект уже существует')
                         /* @ts-ignore */
                         setNewProject(() => ({
                             country: '',
@@ -123,7 +135,8 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                             projectName: '',
                             location: '',
                             sex: '',
-                            age: '',
+                            ageFrom: '',
+                            ageTo: '',
                             nationalaty: '',
                             additionalInfo: '',
                             housing: '',
@@ -136,7 +149,8 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                             projectName: projectName,
                             location: location,
                             sex: sex,
-                            age: age,
+                            ageFrom: ageFrom,
+                            ageTo: ageTo,
                             nationalaty: nationalaty,
                             additionalInfo: additionalInfo,
                             housing: housing,
@@ -160,13 +174,14 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             project.projectName === '' ||
             project.location === '' ||
             project.sex === '' ||
-            project.age === '' ||
+            project.ageFrom === '' ||
+            project.ageTo === '' ||
             project.nationalaty === '' ||
             project.additionalInfo === '' ||
             project.housing === '' ||
             project.projectInfo === ''
         ) {
-            alert("всі поля обов'язкові")
+            alert('Все поля обязательны для заполнения')
         } else {
             writeProjectData(
                 project.country,
@@ -174,7 +189,8 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                 project.projectName,
                 project.location,
                 project.sex,
-                project.age,
+                project.ageFrom,
+                project.ageTo,
                 project.nationalaty,
                 project.additionalInfo,
                 project.housing,
@@ -187,7 +203,8 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                 projectName: '',
                 location: '',
                 sex: '',
-                age: '',
+                ageFrom: '',
+                ageTo: '',
                 nationalaty: '',
                 additionalInfo: '',
                 housing: '',
@@ -198,7 +215,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
 
     return (
         <div className="project-form">
-            <p>Додати проект</p>
+            <p>Добавить проект</p>
             <form onSubmit={onSendClick} id="add-project">
                 <label htmlFor="country">Выбор страны</label>
                 <select
@@ -209,31 +226,10 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     onChange={handleChangeCountry}
                 >
                     <option value="empty"></option>
-                    <option value="Польша">Польща</option>
+                    <option value="Польша">Польша</option>
                     <option value="Германия">Германия</option>
                     <option value="Словакия">Словакия</option>
                 </select>
-                <input
-                    type="text"
-                    id="salary"
-                    placeholder="Ставка"
-                    value={project.salary}
-                    onChange={handleChangeSalary}
-                />
-                <input
-                    type="text"
-                    id="project"
-                    placeholder="назва проекту"
-                    value={project.projectName}
-                    onChange={handleChangeProjectName}
-                />
-                <input
-                    type="text"
-                    id="location"
-                    placeholder="Локалізація"
-                    value={project.location}
-                    onChange={handleChangeProjectLocation}
-                />
                 <label htmlFor="sex">Выбор пола</label>
                 <select
                     name="sex"
@@ -249,40 +245,70 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                 </select>
                 <input
                     type="text"
-                    id="age"
-                    placeholder="Вік"
-                    value={project.age}
-                    onChange={handleChangeProjectAge}
+                    id="salary"
+                    placeholder="Ставка"
+                    value={project.salary}
+                    onChange={handleChangeSalary}
                 />
                 <input
                     type="text"
+                    id="project"
+                    placeholder="Название проекта"
+                    value={project.projectName}
+                    onChange={handleChangeProjectName}
+                />
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Локализация"
+                    value={project.location}
+                    onChange={handleChangeProjectLocation}
+                />
+                <div>
+                    <input
+                        type="text"
+                        id="age-from"
+                        placeholder="Возраст От"
+                        value={project.ageFrom}
+                        onChange={handleChangeProjectAgeFrom}
+                    />
+                    <input
+                        type="text"
+                        id="age-to"
+                        placeholder="Возраст До"
+                        value={project.ageTo}
+                        onChange={handleChangeProjectAgeTo}
+                    />
+                </div>
+                <input
+                    type="text"
                     id="nationalaty"
-                    placeholder="Національність"
+                    placeholder="Национальность"
                     value={project.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
                 <input
                     type="text"
                     id="additionalInfo"
-                    placeholder="Додаткова інформація"
+                    placeholder="Дополнительная информация"
                     value={project.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <input
                     type="text"
                     id="housing"
-                    placeholder="Приклади житла"
+                    placeholder="Примеры жилья"
                     value={project.housing}
                     onChange={handleChangeProjectHousing}
                 />
                 <input
                     type="text"
                     id="projectInfo"
-                    placeholder="Опис проекту"
+                    placeholder="Описание проекта"
                     value={project.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
                 />
-                <button type="submit">Додати проект</button>
+                <button type="submit">Добавить проект</button>
             </form>
         </div>
     )

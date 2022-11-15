@@ -47,7 +47,8 @@ const Projects = ({
             projectName: null,
             location: null,
             sex: null,
-            age: null,
+            ageFrom: null,
+            ageTo: null,
             nationalaty: null,
             additionalInfo: null,
             housing: null,
@@ -63,7 +64,8 @@ const Projects = ({
         salary: string,
         location: string,
         sex: string,
-        age: string,
+        ageFrom: string,
+        ageTo: string,
         nationalaty: string,
         additionalInfo: string,
         housing: string,
@@ -76,7 +78,8 @@ const Projects = ({
             salary: salary,
             location: location,
             sex: sex,
-            age: age,
+            ageFrom: ageFrom,
+            ageTo: ageTo,
             nationalaty: nationalaty,
             additionalInfo: additionalInfo,
             housing: housing,
@@ -102,7 +105,10 @@ const Projects = ({
                 .toLowerCase()
                 .includes(searchContent.toLowerCase()) ||
             element.sex.toLowerCase().includes(searchContent.toLowerCase()) ||
-            element.age.toLowerCase().includes(searchContent.toLowerCase()) ||
+            element.ageFrom
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.ageTo.toLowerCase().includes(searchContent.toLowerCase()) ||
             element.nationalaty
                 .toLowerCase()
                 .includes(searchContent.toLowerCase()) ||
@@ -214,50 +220,56 @@ const Projects = ({
             </div>
             {loginData.email === 'mazaxaka.tyt@gmail.com' ? (
                 filtredSexArr.length === 0 ? (
-                    <div className="no-search-results">Співпадінь нема</div>
+                    <div className="no-search-results">Совпадений нет</div>
                 ) : (
                     <div className="projects">
                         {filtredSexArr.map(
                             (element: ProjectType, i: number) => (
                                 <div key={i} className="project-item">
                                     <div className="project-item-section">
-                                        <p>Назва проекту</p>
+                                        <p>Название проекта</p>
                                         <div>{element.projectName}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Країна</p>
+                                        <p>Страна</p>
                                         <div>{element.country}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Cтавка в злотих</p>
+                                        <p>Cтавка в злотых</p>
                                         <div>{element.salary}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Локалізація</p>
+                                        <p>Локализация</p>
                                         <div>{element.location}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Стать</p>
+                                        <p>Пол</p>
                                         <div>{element.sex}</div>
                                     </div>
-                                    <div className="project-item-section">
-                                        <p>Вік</p>
-                                        <div>{element.age}</div>
+                                    <div className="row">
+                                        <div className="project-item-section">
+                                            <p>Возраст от</p>
+                                            <div>{element.ageFrom}</div>
+                                        </div>
+                                        <div className="project-item-section">
+                                            <p>Возраст до</p>
+                                            <div>{element.ageTo}</div>
+                                        </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Національність</p>
+                                        <p>Национальность </p>
                                         <div>{element.nationalaty}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Додаткова інформація</p>
+                                        <p>Дополнительная информация</p>
                                         <div>{element.additionalInfo}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Приклади житла</p>
+                                        <p>Примеры жилья</p>
                                         <div>{element.housing}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Опис вакансії</p>
+                                        <p>Описание вакансии</p>
                                         <div>{element.projectInfo}</div>
                                     </div>
                                     <div>
@@ -269,7 +281,7 @@ const Projects = ({
                                             }
                                             disabled={projectsArr.length <= 1}
                                         >
-                                            Видалити
+                                            Удалить
                                         </button>
                                         <button
                                             onClick={() =>
@@ -279,7 +291,8 @@ const Projects = ({
                                                     element.salary,
                                                     element.location,
                                                     element.sex,
-                                                    element.age,
+                                                    element.ageFrom,
+                                                    element.ageTo,
                                                     element.nationalaty,
                                                     element.additionalInfo,
                                                     element.housing,
@@ -287,7 +300,7 @@ const Projects = ({
                                                 )
                                             }
                                         >
-                                            редагувати
+                                            Редактировать
                                         </button>
                                     </div>
                                 </div>
@@ -320,9 +333,15 @@ const Projects = ({
                             <p>Стать</p>
                             <div>{element.sex}</div>
                         </div>
-                        <div className="project-item-section">
-                            <p>Вік</p>
-                            <div>{element.age}</div>
+                        <div className="row">
+                            <div className="project-item-section">
+                                <p>Возраст от</p>
+                                <div>{element.ageFrom}</div>
+                            </div>
+                            <div className="project-item-section">
+                                <p>Возраст до</p>
+                                <div>{element.ageTo}</div>
+                            </div>
                         </div>
                         <div className="project-item-section">
                             <p>Національність</p>
