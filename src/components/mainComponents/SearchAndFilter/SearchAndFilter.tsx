@@ -126,7 +126,7 @@ const SearchAndFilter = ({
         <div className="search-and-filter">
             <input
                 type="text"
-                placeholder="Пошук"
+                placeholder="Поиск"
                 className="search"
                 onChange={ChangeSeacrchContent}
             />
@@ -143,7 +143,7 @@ const SearchAndFilter = ({
                                 className="poland-checkbox"
                                 onChange={PolandCheckboxCheking}
                             />
-                            <label htmlFor="poland">Poland</label>
+                            <label htmlFor="poland">Польша</label>
                         </div>
                         <div>
                             <input
@@ -153,7 +153,7 @@ const SearchAndFilter = ({
                                 className="germany-checkbox"
                                 onChange={GermanyCheckboxCheking}
                             />
-                            <label htmlFor="germany">Germany</label>
+                            <label htmlFor="germany">Германия</label>
                         </div>
                         <div>
                             <input
@@ -163,7 +163,7 @@ const SearchAndFilter = ({
                                 className="slovakia-checkbox"
                                 onChange={SlovakiaCheckboxCheking}
                             />
-                            <label htmlFor="slovakia">Slovakia</label>
+                            <label htmlFor="slovakia">Словакия</label>
                         </div>
                     </div>
                 </div>

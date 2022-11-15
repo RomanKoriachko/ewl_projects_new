@@ -167,7 +167,7 @@ const Projects = ({
         ]
     }
 
-    // ---------------------- sex filter----------------------
+    // ---------------------- sex filter ----------------------
 
     let filtredSexArr: [] = []
     let temporarySexArr1: [] = []
@@ -207,6 +207,19 @@ const Projects = ({
         ]
     }
 
+    // ---------------------- is miner filter ----------------------
+
+    let temporaryIsMinorArr: [] = []
+
+    if (isMinorState) {
+        /* @ts-ignore */
+        temporaryIsMinorArr = filtredSexArr.filter(
+            (el: ProjectType) => parseInt(el.ageFrom) < 18
+        )
+    } else {
+        temporaryIsMinorArr = filtredSexArr
+    }
+
     return (
         <div>
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -221,11 +234,11 @@ const Projects = ({
                 />
             </div>
             {loginData.email === 'mazaxaka.tyt@gmail.com' ? (
-                filtredSexArr.length === 0 ? (
+                temporaryIsMinorArr.length === 0 ? (
                     <div className="no-search-results">Совпадений нет</div>
                 ) : (
                     <div className="projects">
-                        {filtredSexArr.map(
+                        {temporaryIsMinorArr.map(
                             (element: ProjectType, i: number) => (
                                 <div key={i} className="project-item">
                                     <div className="project-item-section">
@@ -310,10 +323,10 @@ const Projects = ({
                         )}
                     </div>
                 )
-            ) : filtredSexArr.length === 0 ? (
+            ) : temporaryIsMinorArr.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
-                filtredSexArr.map((element: ProjectType, i: number) => (
+                temporaryIsMinorArr.map((element: ProjectType, i: number) => (
                     <div key={i} className="project-item">
                         <div className="project-item-section">
                             <p>Назва проекту</p>
