@@ -30,8 +30,15 @@ export type ProjectType = {
 
 export type CountryCheckboxType = {
     checkboxPoland: string
-    checkboxGermany: string
+    checkboxCzech: string
+    checkboxRomania: string
     checkboxSlovakia: string
+    checkboxLithuania: string
+    checkboxHolland: string
+    checkboxGermany: string
+    checkboxGreece: string
+    checkboxSpain: string
+    checkboxCyprus: string
 }
 export type SexCheckboxType = {
     male: string
@@ -90,8 +97,15 @@ const Main = (props: Props) => {
     const [countryCheckboxState, setCountryCheckboxState] =
         useState<CountryCheckboxType>({
             checkboxPoland: '',
-            checkboxGermany: '',
+            checkboxCzech: '',
+            checkboxRomania: '',
             checkboxSlovakia: '',
+            checkboxLithuania: '',
+            checkboxHolland: '',
+            checkboxGermany: '',
+            checkboxGreece: '',
+            checkboxSpain: '',
+            checkboxCyprus: '',
         })
     const [sexCheckboxState, setSexCheckboxState] = useState<SexCheckboxType>({
         male: '',

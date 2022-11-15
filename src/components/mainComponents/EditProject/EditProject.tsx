@@ -235,9 +235,17 @@ const EditProject = ({
                     value={editProject.country}
                     onChange={handleChangeProjectCountry}
                 >
+                    <option value="empty"></option>
                     <option value="Польша">Польша</option>
-                    <option value="Германия">Германия</option>
+                    <option value="Чехия">Чехия</option>
+                    <option value="Румыния">Румыния</option>
                     <option value="Словакия">Словакия</option>
+                    <option value="Литва">Литва</option>
+                    <option value="Голландия">Голландия</option>
+                    <option value="Германия">Германия</option>
+                    <option value="Греция">Греция</option>
+                    <option value="Испания">Испания</option>
+                    <option value="Кипр">Кипр</option>
                 </select>
                 <label htmlFor="sex">Выбор пола</label>
                 <select

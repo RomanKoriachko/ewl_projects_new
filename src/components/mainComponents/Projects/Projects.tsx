@@ -133,6 +133,13 @@ const Projects = ({
     let temporaryCountryArr1: [] = []
     let temporaryCountryArr2: [] = []
     let temporaryCountryArr3: [] = []
+    let temporaryCountryArr4: [] = []
+    let temporaryCountryArr5: [] = []
+    let temporaryCountryArr6: [] = []
+    let temporaryCountryArr7: [] = []
+    let temporaryCountryArr8: [] = []
+    let temporaryCountryArr9: [] = []
+    let temporaryCountryArr10: [] = []
 
     if (countryCheckboxState.checkboxPoland) {
         /* @ts-ignore */
@@ -140,22 +147,71 @@ const Projects = ({
             el.country.includes(countryCheckboxState.checkboxPoland)
         )
     }
-    if (countryCheckboxState.checkboxGermany) {
+    if (countryCheckboxState.checkboxCzech) {
         /* @ts-ignore */
         temporaryCountryArr2 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxGermany)
+            el.country.includes(countryCheckboxState.checkboxCzech)
+        )
+    }
+    if (countryCheckboxState.checkboxRomania) {
+        /* @ts-ignore */
+        temporaryCountryArr3 = tempArr.filter((el: ProjectType) =>
+            el.country.includes(countryCheckboxState.checkboxRomania)
         )
     }
     if (countryCheckboxState.checkboxSlovakia) {
         /* @ts-ignore */
-        temporaryCountryArr3 = tempArr.filter((el: ProjectType) =>
+        temporaryCountryArr4 = tempArr.filter((el: ProjectType) =>
             el.country.includes(countryCheckboxState.checkboxSlovakia)
+        )
+    }
+    if (countryCheckboxState.checkboxLithuania) {
+        /* @ts-ignore */
+        temporaryCountryArr5 = tempArr.filter((el: ProjectType) =>
+            el.country.includes(countryCheckboxState.checkboxLithuania)
+        )
+    }
+    if (countryCheckboxState.checkboxHolland) {
+        /* @ts-ignore */
+        temporaryCountryArr6 = tempArr.filter((el: ProjectType) =>
+            el.country.includes(countryCheckboxState.checkboxHolland)
+        )
+    }
+    if (countryCheckboxState.checkboxGermany) {
+        /* @ts-ignore */
+        temporaryCountryArr7 = tempArr.filter((el: ProjectType) =>
+            el.country.includes(countryCheckboxState.checkboxGermany)
+        )
+    }
+    if (countryCheckboxState.checkboxGreece) {
+        /* @ts-ignore */
+        temporaryCountryArr8 = tempArr.filter((el: ProjectType) =>
+            el.country.includes(countryCheckboxState.checkboxGreece)
+        )
+    }
+    if (countryCheckboxState.checkboxSpain) {
+        /* @ts-ignore */
+        temporaryCountryArr9 = tempArr.filter((el: ProjectType) =>
+            el.country.includes(countryCheckboxState.checkboxSpain)
+        )
+    }
+    if (countryCheckboxState.checkboxCyprus) {
+        /* @ts-ignore */
+        temporaryCountryArr10 = tempArr.filter((el: ProjectType) =>
+            el.country.includes(countryCheckboxState.checkboxCyprus)
         )
     }
     if (
         countryCheckboxState.checkboxPoland === '' &&
+        countryCheckboxState.checkboxCzech === '' &&
+        countryCheckboxState.checkboxRomania === '' &&
+        countryCheckboxState.checkboxSlovakia === '' &&
+        countryCheckboxState.checkboxLithuania === '' &&
+        countryCheckboxState.checkboxHolland === '' &&
         countryCheckboxState.checkboxGermany === '' &&
-        countryCheckboxState.checkboxSlovakia === ''
+        countryCheckboxState.checkboxGreece === '' &&
+        countryCheckboxState.checkboxSpain === '' &&
+        countryCheckboxState.checkboxCyprus === ''
     ) {
         /* @ts-ignore */
         filtredCountryArr = tempArr
@@ -164,6 +220,13 @@ const Projects = ({
             ...temporaryCountryArr1,
             ...temporaryCountryArr2,
             ...temporaryCountryArr3,
+            ...temporaryCountryArr4,
+            ...temporaryCountryArr5,
+            ...temporaryCountryArr6,
+            ...temporaryCountryArr7,
+            ...temporaryCountryArr8,
+            ...temporaryCountryArr9,
+            ...temporaryCountryArr10,
         ]
     }
 
@@ -335,56 +398,58 @@ const Projects = ({
             ) : filtredArr.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
-                filtredArr.map((element: ProjectType, i: number) => (
-                    <div key={i} className="project-item">
-                        <div className="project-item-section">
-                            <p>Назва проекту</p>
-                            <div>{element.projectName}</div>
-                        </div>
-                        <div className="project-item-section">
-                            <p>Країна</p>
-                            <div>{element.country}</div>
-                        </div>
-                        <div className="project-item-section">
-                            <p>Cтавка в злотих</p>
-                            <div>{element.salary}</div>
-                        </div>
-                        <div className="project-item-section">
-                            <p>Локалізація</p>
-                            <div>{element.location}</div>
-                        </div>
-                        <div className="project-item-section">
-                            <p>Стать</p>
-                            <div>{element.sex}</div>
-                        </div>
-                        <div className="row">
+                <div className="projects">
+                    {filtredArr.map((element: ProjectType, i: number) => (
+                        <div key={i} className="project-item">
                             <div className="project-item-section">
-                                <p>Возраст от</p>
-                                <div>{element.ageFrom}</div>
+                                <p>Назва проекту</p>
+                                <div>{element.projectName}</div>
                             </div>
                             <div className="project-item-section">
-                                <p>Возраст до</p>
-                                <div>{element.ageTo}</div>
+                                <p>Країна</p>
+                                <div>{element.country}</div>
+                            </div>
+                            <div className="project-item-section">
+                                <p>Cтавка в злотих</p>
+                                <div>{element.salary}</div>
+                            </div>
+                            <div className="project-item-section">
+                                <p>Локалізація</p>
+                                <div>{element.location}</div>
+                            </div>
+                            <div className="project-item-section">
+                                <p>Стать</p>
+                                <div>{element.sex}</div>
+                            </div>
+                            <div className="row">
+                                <div className="project-item-section">
+                                    <p>Возраст от</p>
+                                    <div>{element.ageFrom}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Возраст до</p>
+                                    <div>{element.ageTo}</div>
+                                </div>
+                            </div>
+                            <div className="project-item-section">
+                                <p>Національність</p>
+                                <div>{element.nationalaty}</div>
+                            </div>
+                            <div className="project-item-section">
+                                <p>Додаткова інформація</p>
+                                <div>{element.additionalInfo}</div>
+                            </div>
+                            <div className="project-item-section">
+                                <p>Приклади житла</p>
+                                <div>{element.housing}</div>
+                            </div>
+                            <div className="project-item-section">
+                                <p>Опис вакансії</p>
+                                <div>{element.projectInfo}</div>
                             </div>
                         </div>
-                        <div className="project-item-section">
-                            <p>Національність</p>
-                            <div>{element.nationalaty}</div>
-                        </div>
-                        <div className="project-item-section">
-                            <p>Додаткова інформація</p>
-                            <div>{element.additionalInfo}</div>
-                        </div>
-                        <div className="project-item-section">
-                            <p>Приклади житла</p>
-                            <div>{element.housing}</div>
-                        </div>
-                        <div className="project-item-section">
-                            <p>Опис вакансії</p>
-                            <div>{element.projectInfo}</div>
-                        </div>
-                    </div>
-                ))
+                    ))}
+                </div>
             )}
         </div>
     )

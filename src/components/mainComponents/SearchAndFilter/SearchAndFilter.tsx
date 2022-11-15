@@ -35,29 +35,86 @@ const SearchAndFilter = ({
             ? /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: 'Польша',
-                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
                   checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
               }))
             : /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: '',
-                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
                   checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
               }))
     }
-    const germanyCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const czechCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: prevState.checkboxPoland,
-                  checkboxGermany: 'Германия',
+                  checkboxCzech: 'Чехия',
+                  checkboxRomania: prevState.checkboxRomania,
                   checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
               }))
             : /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: prevState.checkboxPoland,
-                  checkboxGermany: '',
+                  checkboxCzech: '',
+                  checkboxRomania: prevState.checkboxRomania,
                   checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+    }
+    const romaniaCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: 'Румыния',
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: '',
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
               }))
     }
     const slovakiaCheckboxCheking = (
@@ -67,14 +124,204 @@ const SearchAndFilter = ({
             ? /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: prevState.checkboxPoland,
-                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
                   checkboxSlovakia: 'Словакия',
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
               }))
             : /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: prevState.checkboxPoland,
-                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
                   checkboxSlovakia: '',
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+    }
+    const lithuaniaCheckboxCheking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: 'Литва',
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: '',
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+    }
+    const hollandCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: 'Голландия',
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: '',
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+    }
+    const germanyCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: 'Германия',
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: '',
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+    }
+    const greeceCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: 'Греция',
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: '',
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+    }
+    const spainCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: 'Испания',
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: '',
+                  checkboxCyprus: prevState.checkboxCyprus,
+              }))
+    }
+    const cyprusCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: 'Кипр',
+              }))
+            : /* @ts-ignore */
+              setCountryCheckboxState((prevState: CountryCheckboxType) => ({
+                  checkboxPoland: prevState.checkboxPoland,
+                  checkboxCzech: prevState.checkboxCzech,
+                  checkboxRomania: prevState.checkboxRomania,
+                  checkboxSlovakia: prevState.checkboxSlovakia,
+                  checkboxLithuania: prevState.checkboxLithuania,
+                  checkboxHolland: prevState.checkboxHolland,
+                  checkboxGermany: prevState.checkboxGermany,
+                  checkboxGreece: prevState.checkboxGreece,
+                  checkboxSpain: prevState.checkboxSpain,
+                  checkboxCyprus: '',
               }))
     }
 
@@ -143,8 +390,15 @@ const SearchAndFilter = ({
     const resetFilter = () => {
         setCountryCheckboxState({
             checkboxPoland: '',
-            checkboxGermany: '',
+            checkboxCzech: '',
+            checkboxRomania: '',
             checkboxSlovakia: '',
+            checkboxLithuania: '',
+            checkboxHolland: '',
+            checkboxGermany: '',
+            checkboxGreece: '',
+            checkboxSpain: '',
+            checkboxCyprus: '',
         })
         setSexCheckboxState({
             male: '',
@@ -186,17 +440,32 @@ const SearchAndFilter = ({
                         <div>
                             <input
                                 type="checkbox"
-                                id="germany"
-                                name="germany"
-                                className="germany-checkbox"
-                                onChange={germanyCheckboxCheking}
+                                id="czech"
+                                name="czech"
+                                className="czech-checkbox"
+                                onChange={czechCheckboxCheking}
                                 checked={
-                                    countryCheckboxState.checkboxGermany
+                                    countryCheckboxState.checkboxCzech
                                         ? true
                                         : false
                                 }
                             />
-                            <label htmlFor="germany">Германия</label>
+                            <label htmlFor="czech">Чехия</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="romania"
+                                name="romania"
+                                className="romania-checkbox"
+                                onChange={romaniaCheckboxCheking}
+                                checked={
+                                    countryCheckboxState.checkboxRomania
+                                        ? true
+                                        : false
+                                }
+                            />
+                            <label htmlFor="romania">Румыния</label>
                         </div>
                         <div>
                             <input
@@ -212,6 +481,96 @@ const SearchAndFilter = ({
                                 }
                             />
                             <label htmlFor="slovakia">Словакия</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="lithuania"
+                                name="lithuania"
+                                className="lithuania-checkbox"
+                                onChange={lithuaniaCheckboxCheking}
+                                checked={
+                                    countryCheckboxState.checkboxLithuania
+                                        ? true
+                                        : false
+                                }
+                            />
+                            <label htmlFor="lithuania">Литва</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="holland"
+                                name="holland"
+                                className="holland-checkbox"
+                                onChange={hollandCheckboxCheking}
+                                checked={
+                                    countryCheckboxState.checkboxHolland
+                                        ? true
+                                        : false
+                                }
+                            />
+                            <label htmlFor="holland">Голландия</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="germany"
+                                name="germany"
+                                className="germany-checkbox"
+                                onChange={germanyCheckboxCheking}
+                                checked={
+                                    countryCheckboxState.checkboxGermany
+                                        ? true
+                                        : false
+                                }
+                            />
+                            <label htmlFor="germany">Германия</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="greece"
+                                name="greece"
+                                className="greece-checkbox"
+                                onChange={greeceCheckboxCheking}
+                                checked={
+                                    countryCheckboxState.checkboxGreece
+                                        ? true
+                                        : false
+                                }
+                            />
+                            <label htmlFor="greece">Греция</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="spain"
+                                name="spain"
+                                className="spain-checkbox"
+                                onChange={spainCheckboxCheking}
+                                checked={
+                                    countryCheckboxState.checkboxSpain
+                                        ? true
+                                        : false
+                                }
+                            />
+                            <label htmlFor="spain">Испания</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="cyprus"
+                                name="cyprus"
+                                className="cyprus-checkbox"
+                                onChange={cyprusCheckboxCheking}
+                                checked={
+                                    countryCheckboxState.checkboxCyprus
+                                        ? true
+                                        : false
+                                }
+                            />
+                            <label htmlFor="cyprus">Кипр</label>
                         </div>
                     </div>
                 </div>
