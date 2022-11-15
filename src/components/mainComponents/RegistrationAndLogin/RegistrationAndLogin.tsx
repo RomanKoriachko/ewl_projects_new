@@ -84,7 +84,10 @@ const RegistrationAndLogin = ({
         const auth = getAuth()
         signInWithEmailAndPassword(auth, loginData.email, loginData.password)
             .then(() => {
-                if (loginData.email === 'mazaxaka.tyt@gmail.com') {
+                if (
+                    loginData.email === 'mazaxaka.tyt@gmail.com' &&
+                    'juliiaderevianko@gmail.com'
+                ) {
                     /* @ts-ignore */
                     setLoginData((prevState: UserType) => ({
                         ...prevState,
