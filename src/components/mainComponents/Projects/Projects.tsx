@@ -15,6 +15,7 @@ type Props = {
     searchContent: string
     countryCheckboxState: CountryCheckboxType
     sexCheckboxState: SexCheckboxType
+    isMinorState: boolean
     setEditProject: (prevState: ProjectType) => void
 }
 
@@ -24,6 +25,7 @@ const Projects = ({
     searchContent,
     countryCheckboxState,
     sexCheckboxState,
+    isMinorState,
     setEditProject,
 }: Props) => {
     const [projectsArr, setProjectsArr] = useState<[]>([])

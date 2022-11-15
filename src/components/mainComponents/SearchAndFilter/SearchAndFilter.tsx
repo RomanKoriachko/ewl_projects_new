@@ -5,12 +5,14 @@ type Props = {
     setSearchContent: (prevState: string) => void
     setCountryCheckboxState: (prevState: CountryCheckboxType) => void
     setSexCheckboxState: (prevState: SexCheckboxType) => void
+    setIsMinorState: (prevState: boolean) => void
 }
 
 const SearchAndFilter = ({
     setSearchContent,
     setCountryCheckboxState,
     setSexCheckboxState,
+    setIsMinorState,
 }: Props) => {
     const ChangeSeacrchContent = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchContent(e.target.value)
@@ -114,6 +116,12 @@ const SearchAndFilter = ({
               }))
     }
 
+    // --------------------- Age from filter ---------------------
+
+    const isMinorChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked ? setIsMinorState(true) : setIsMinorState(false)
+    }
+
     return (
         <div className="search-and-filter">
             <input
@@ -196,10 +204,11 @@ const SearchAndFilter = ({
                         <div>
                             <input
                                 type="checkbox"
-                                id="underage"
-                                name="underage"
+                                id="is-minor"
+                                name="is-minor"
+                                onChange={isMinorChecking}
                             />
-                            <label htmlFor="underage">
+                            <label htmlFor="is-minor">
                                 Берут несовершеннолетних
                             </label>
                         </div>

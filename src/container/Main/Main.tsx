@@ -83,6 +83,9 @@ const Main = (props: Props) => {
         housing: '',
         projectInfo: '',
     })
+
+    // ------------------------ filter data ------------------------
+
     const [searchContent, setSearchContent] = useState<string>('')
     const [countryCheckboxState, setCountryCheckboxState] =
         useState<CountryCheckboxType>({
@@ -95,6 +98,7 @@ const Main = (props: Props) => {
         female: '',
         couples: '',
     })
+    const [isMinorState, setIsMinorState] = useState<boolean>(false)
 
     return (
         <div>
@@ -111,6 +115,7 @@ const Main = (props: Props) => {
                             setSearchContent={setSearchContent}
                             setCountryCheckboxState={setCountryCheckboxState}
                             setSexCheckboxState={setSexCheckboxState}
+                            setIsMinorState={setIsMinorState}
                         />
                         <Projects
                             loginData={loginData}
@@ -119,6 +124,7 @@ const Main = (props: Props) => {
                             searchContent={searchContent}
                             countryCheckboxState={countryCheckboxState}
                             sexCheckboxState={sexCheckboxState}
+                            isMinorState={isMinorState}
                         />
                     </div>
                 ) : loginData.hasAccount ? (
@@ -127,6 +133,7 @@ const Main = (props: Props) => {
                             setSearchContent={setSearchContent}
                             setCountryCheckboxState={setCountryCheckboxState}
                             setSexCheckboxState={setSexCheckboxState}
+                            setIsMinorState={setIsMinorState}
                         />
                         <Projects
                             loginData={loginData}
@@ -135,6 +142,7 @@ const Main = (props: Props) => {
                             searchContent={searchContent}
                             countryCheckboxState={countryCheckboxState}
                             sexCheckboxState={sexCheckboxState}
+                            isMinorState={isMinorState}
                         />
                     </div>
                 ) : (
