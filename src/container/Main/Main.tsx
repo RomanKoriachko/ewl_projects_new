@@ -83,6 +83,8 @@ const Main = (props: Props) => {
             checkboxSlovakia: '',
         })
 
+    console.log(project)
+
     return (
         <div>
             <div className="container">

@@ -14,7 +14,7 @@ const EditProject = ({
     setEditFormState,
 }: Props) => {
     const handleChangeProjectCountry = (
-        e: React.ChangeEvent<HTMLInputElement>
+        e: React.ChangeEvent<HTMLSelectElement>
     ) => {
         /* @ts-ignore */
         setEditProject((prevState: ProjectType) => ({
@@ -204,13 +204,18 @@ const EditProject = ({
                 <button onClick={closeEditForm}>X</button>
             </div>
             <form onSubmit={onSendClick}>
-                <input
-                    type="text"
+                <label htmlFor="country">Вибір країни</label>
+                <select
+                    name="country"
                     id="country"
-                    placeholder="Назва країни"
+                    form="add-project"
                     value={editProject.country}
                     onChange={handleChangeProjectCountry}
-                />
+                >
+                    <option value="Poland">Польща</option>
+                    <option value="German">Німеччина</option>
+                    <option value="Slovakia">Словаччина</option>
+                </select>
                 <input
                     type="text"
                     id="salary"

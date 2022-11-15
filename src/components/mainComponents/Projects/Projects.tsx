@@ -90,6 +90,23 @@ const Projects = ({
                 .includes(searchContent.toLowerCase()) ||
             element.projectName
                 .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.location
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.sex.toLowerCase().includes(searchContent.toLowerCase()) ||
+            element.age.toLowerCase().includes(searchContent.toLowerCase()) ||
+            element.nationalaty
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.additionalInfo
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.housing
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.projectInfo
+                .toLowerCase()
                 .includes(searchContent.toLowerCase())
     )
 

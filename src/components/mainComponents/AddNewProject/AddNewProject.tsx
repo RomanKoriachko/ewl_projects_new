@@ -8,7 +8,7 @@ type Props = {
 }
 
 const AddNewProject = ({ project, setNewProject }: Props) => {
-    const handleChangeCountry = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeCountry = (e: React.ChangeEvent<HTMLSelectElement>) => {
         /* @ts-ignore */
         setNewProject((prevState: ProjectType) => ({
             ...prevState,
@@ -194,14 +194,20 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
     return (
         <div className="project-form">
             <p>Додати проект</p>
-            <form onSubmit={onSendClick}>
-                <input
-                    type="text"
+            <form onSubmit={onSendClick} id="add-project">
+                <label htmlFor="country">Вибір країни</label>
+                <select
+                    name="country"
                     id="country"
-                    placeholder="Назва країни"
+                    form="add-project"
                     value={project.country}
                     onChange={handleChangeCountry}
-                />
+                >
+                    <option value="empty"></option>
+                    <option value="Poland">Польща</option>
+                    <option value="German">Німеччина</option>
+                    <option value="Slovakia">Словаччина</option>
+                </select>
                 <input
                     type="text"
                     id="salary"
