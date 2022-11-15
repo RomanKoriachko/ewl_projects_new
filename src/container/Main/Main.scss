@@ -4,6 +4,11 @@
 .admin-panel {
     justify-content: space-between
 }
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 0px 30px;
+}
 
 .hide {
     display: none;

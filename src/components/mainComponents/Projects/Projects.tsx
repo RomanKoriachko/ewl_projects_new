@@ -297,7 +297,7 @@ const Projects = ({
     }
 
     return (
-        <div>
+        <div className="main-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
                 <div
                     className="project-edit-bg"

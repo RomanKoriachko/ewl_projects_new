@@ -411,12 +411,14 @@ const SearchAndFilter = ({
 
     return (
         <div className="search-and-filter">
-            <input
-                type="text"
-                placeholder="Поиск"
-                className="search"
-                onChange={changeSeacrchContent}
-            />
+            <div className="search">
+                <input
+                    type="text"
+                    placeholder="Поиск"
+                    className="search-input"
+                    onChange={changeSeacrchContent}
+                />
+            </div>
             <div className="filter">
                 <p>Фильтр</p>
                 <div className="filter-country">

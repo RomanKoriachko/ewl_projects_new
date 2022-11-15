@@ -116,16 +116,16 @@ const Main = (props: Props) => {
     const [ageToState, setAgeToState] = useState<number>(NaN)
 
     return (
-        <div>
-            <div className="container">
-                {loginData.isAdmin ? (
-                    <div>
-                        <div className="row admin-panel">
-                            <AddNewProject
-                                project={project}
-                                setNewProject={setNewProject}
-                            />
-                        </div>
+        <div className="container">
+            {loginData.isAdmin ? (
+                <>
+                    <div className="admin-panel">
+                        <AddNewProject
+                            project={project}
+                            setNewProject={setNewProject}
+                        />
+                    </div>
+                    <div className="wrapper">
                         <SearchAndFilter
                             setSearchContent={setSearchContent}
                             setCountryCheckboxState={setCountryCheckboxState}
@@ -148,39 +148,39 @@ const Main = (props: Props) => {
                             ageToState={ageToState}
                         />
                     </div>
-                ) : loginData.hasAccount ? (
-                    <div>
-                        <SearchAndFilter
-                            setSearchContent={setSearchContent}
-                            setCountryCheckboxState={setCountryCheckboxState}
-                            setSexCheckboxState={setSexCheckboxState}
-                            setIsMinorState={setIsMinorState}
-                            setAgeToState={setAgeToState}
-                            countryCheckboxState={countryCheckboxState}
-                            sexCheckboxState={sexCheckboxState}
-                            isMinorState={isMinorState}
-                            ageToState={ageToState}
-                        />
-                        <Projects
-                            loginData={loginData}
-                            setEditProject={setEditProject}
-                            editProject={editProject}
-                            searchContent={searchContent}
-                            countryCheckboxState={countryCheckboxState}
-                            sexCheckboxState={sexCheckboxState}
-                            isMinorState={isMinorState}
-                            ageToState={ageToState}
-                        />
-                    </div>
-                ) : (
-                    <RegistrationAndLogin
-                        loginData={loginData}
-                        registrationData={registrationData}
-                        setLoginData={setLoginData}
-                        setRegistrationData={setRegistrationData}
+                </>
+            ) : loginData.hasAccount ? (
+                <div className="wrapper">
+                    <SearchAndFilter
+                        setSearchContent={setSearchContent}
+                        setCountryCheckboxState={setCountryCheckboxState}
+                        setSexCheckboxState={setSexCheckboxState}
+                        setIsMinorState={setIsMinorState}
+                        setAgeToState={setAgeToState}
+                        countryCheckboxState={countryCheckboxState}
+                        sexCheckboxState={sexCheckboxState}
+                        isMinorState={isMinorState}
+                        ageToState={ageToState}
                     />
-                )}
-            </div>
+                    <Projects
+                        loginData={loginData}
+                        setEditProject={setEditProject}
+                        editProject={editProject}
+                        searchContent={searchContent}
+                        countryCheckboxState={countryCheckboxState}
+                        sexCheckboxState={sexCheckboxState}
+                        isMinorState={isMinorState}
+                        ageToState={ageToState}
+                    />
+                </div>
+            ) : (
+                <RegistrationAndLogin
+                    loginData={loginData}
+                    registrationData={registrationData}
+                    setLoginData={setLoginData}
+                    setRegistrationData={setRegistrationData}
+                />
+            )}
         </div>
     )
 }
