@@ -123,71 +123,99 @@ const SearchAndFilter = ({
                 onChange={ChangeSeacrchContent}
             />
             <div className="filter">
-                <div className="filter-item">
-                    <div>Країна</div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            id="poland"
-                            name="poland"
-                            className="poland-checkbox"
-                            onChange={PolandCheckboxCheking}
-                        />
-                        <label htmlFor="poland">Poland</label>
-                        <input
-                            type="checkbox"
-                            id="germany"
-                            name="germany"
-                            className="germany-checkbox"
-                            onChange={GermanyCheckboxCheking}
-                        />
-                        <label htmlFor="germany">Germany</label>
-                        <input
-                            type="checkbox"
-                            id="slovakia"
-                            name="slovakia"
-                            className="slovakia-checkbox"
-                            onChange={SlovakiaCheckboxCheking}
-                        />
-                        <label htmlFor="slovakia">Slovakia</label>
+                <p>Фильтр</p>
+                <div className="filter-country">
+                    <div>Страна</div>
+                    <div className="filter-wrapper">
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="poland"
+                                name="poland"
+                                className="poland-checkbox"
+                                onChange={PolandCheckboxCheking}
+                            />
+                            <label htmlFor="poland">Poland</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="germany"
+                                name="germany"
+                                className="germany-checkbox"
+                                onChange={GermanyCheckboxCheking}
+                            />
+                            <label htmlFor="germany">Germany</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="slovakia"
+                                name="slovakia"
+                                className="slovakia-checkbox"
+                                onChange={SlovakiaCheckboxCheking}
+                            />
+                            <label htmlFor="slovakia">Slovakia</label>
+                        </div>
                     </div>
                 </div>
-                <div className="filter-item">
+                <div className="filter-sex">
                     <div>Пол</div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            id="male"
-                            name="male"
-                            onChange={MaleCheckboxCheking}
-                        />
-                        <label htmlFor="male">Чоловік</label>
-                        <input
-                            type="checkbox"
-                            id="feemale"
-                            name="feemale"
-                            onChange={FemaleCheckboxCheking}
-                        />
-                        <label htmlFor="feemale">Жінка</label>
-                        <input
-                            type="checkbox"
-                            id="couples"
-                            name="couples"
-                            onChange={CouplesCheckboxCheking}
-                        />
-                        <label htmlFor="couples">Пари</label>
+                    <div className="filter-wrapper">
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="male"
+                                name="male"
+                                onChange={MaleCheckboxCheking}
+                            />
+                            <label htmlFor="male">Только мужчины</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="feemale"
+                                name="feemale"
+                                onChange={FemaleCheckboxCheking}
+                            />
+                            <label htmlFor="feemale">Только женщины</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="couples"
+                                name="couples"
+                                onChange={CouplesCheckboxCheking}
+                            />
+                            <label htmlFor="couples">Пары</label>
+                        </div>
                     </div>
                 </div>
-                <div className="filter-item">
-                    <div>
-                        <input type="checkbox" id="underage" name="underage" />
-                        <label htmlFor="underage">Беруть неповнолітніх</label>
+                <div className="filter-adult">
+                    <div className="filter-wrapper">
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="underage"
+                                name="underage"
+                            />
+                            <label htmlFor="underage">
+                                Берут несовершеннолетних
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div className="filter-item">
-                    <div>
-                        <input type="text" id="age18" name="age18" />
-                        <label htmlFor="age18">Вік "До"</label>
+                <div className="filter-age">
+                    <div className="filter-wrapper">
+                        <div>
+                            <input
+                                type="text"
+                                id="age18"
+                                name="age18"
+                                maxLength={2}
+                            />
+                            <label htmlFor="age18">Возраст "До"</label>
+                        </div>
                     </div>
                 </div>
             </div>

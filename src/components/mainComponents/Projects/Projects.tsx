@@ -85,41 +85,39 @@ const Projects = ({
         editFormState ? setEditFormState(false) : setEditFormState(true)
     }
 
-    // ----------------------filter----------------------
+    // ---------------------- Search ----------------------
 
-    // const tempArr = projectsArr.filter(
-    //     (element: ProjectType) =>
-    //         element.country
-    //             .toLowerCase()
-    //             .includes(searchContent.toLowerCase()) ||
-    //         element.salary
-    //             .toLowerCase()
-    //             .includes(searchContent.toLowerCase()) ||
-    //         element.projectName
-    //             .toLowerCase()
-    //             .includes(searchContent.toLowerCase()) ||
-    //         element.location
-    //             .toLowerCase()
-    //             .includes(searchContent.toLowerCase()) ||
-    //         element.sex.toLowerCase().includes(searchContent.toLowerCase()) ||
-    //         element.age.toLowerCase().includes(searchContent.toLowerCase()) ||
-    //         element.nationalaty
-    //             .toLowerCase()
-    //             .includes(searchContent.toLowerCase()) ||
-    //         element.additionalInfo
-    //             .toLowerCase()
-    //             .includes(searchContent.toLowerCase()) ||
-    //         element.housing
-    //             .toLowerCase()
-    //             .includes(searchContent.toLowerCase()) ||
-    //         element.projectInfo
-    //             .toLowerCase()
-    //             .includes(searchContent.toLowerCase())
-    // )
+    const tempArr = projectsArr.filter(
+        (element: ProjectType) =>
+            element.country
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.salary
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.projectName
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.location
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.sex.toLowerCase().includes(searchContent.toLowerCase()) ||
+            element.age.toLowerCase().includes(searchContent.toLowerCase()) ||
+            element.nationalaty
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.additionalInfo
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.housing
+                .toLowerCase()
+                .includes(searchContent.toLowerCase()) ||
+            element.projectInfo
+                .toLowerCase()
+                .includes(searchContent.toLowerCase())
+    )
 
-    const tempArr = projectsArr
-
-    // ---------------------- country ----------------------
+    // ---------------------- country filter ----------------------
 
     let filtredArr: [] = []
 
@@ -161,7 +159,7 @@ const Projects = ({
         ]
     }
 
-    // ---------------------- sex ----------------------
+    // ---------------------- sex filter----------------------
 
     let filtredSexArr: [] = []
     let temporarySexArr1: [] = []
@@ -200,9 +198,6 @@ const Projects = ({
             ...temporarySexArr3,
         ]
     }
-
-    // console.log(filtredCountryArr)
-    // console.log(filtredSexArr)
 
     return (
         <div>
