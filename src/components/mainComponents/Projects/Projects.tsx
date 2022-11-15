@@ -1,4 +1,9 @@
-import { CountryCheckboxType, ProjectType, UserType } from 'container/Main/Main'
+import {
+    CountryCheckboxType,
+    ProjectType,
+    SexCheckboxType,
+    UserType,
+} from 'container/Main/Main'
 import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
@@ -9,6 +14,7 @@ type Props = {
     editProject: ProjectType
     searchContent: string
     countryCheckboxState: CountryCheckboxType
+    sexCheckboxState: SexCheckboxType
     setEditProject: (prevState: ProjectType) => void
 }
 
@@ -17,6 +23,7 @@ const Projects = ({
     editProject,
     searchContent,
     countryCheckboxState,
+    sexCheckboxState,
     setEditProject,
 }: Props) => {
     const [projectsArr, setProjectsArr] = useState<[]>([])
@@ -80,39 +87,43 @@ const Projects = ({
 
     // ----------------------filter----------------------
 
-    const tempArr = projectsArr.filter(
-        (element: ProjectType) =>
-            element.country
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.salary
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.projectName
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.location
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.sex.toLowerCase().includes(searchContent.toLowerCase()) ||
-            element.age.toLowerCase().includes(searchContent.toLowerCase()) ||
-            element.nationalaty
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.additionalInfo
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.housing
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.projectInfo
-                .toLowerCase()
-                .includes(searchContent.toLowerCase())
-    )
+    // const tempArr = projectsArr.filter(
+    //     (element: ProjectType) =>
+    //         element.country
+    //             .toLowerCase()
+    //             .includes(searchContent.toLowerCase()) ||
+    //         element.salary
+    //             .toLowerCase()
+    //             .includes(searchContent.toLowerCase()) ||
+    //         element.projectName
+    //             .toLowerCase()
+    //             .includes(searchContent.toLowerCase()) ||
+    //         element.location
+    //             .toLowerCase()
+    //             .includes(searchContent.toLowerCase()) ||
+    //         element.sex.toLowerCase().includes(searchContent.toLowerCase()) ||
+    //         element.age.toLowerCase().includes(searchContent.toLowerCase()) ||
+    //         element.nationalaty
+    //             .toLowerCase()
+    //             .includes(searchContent.toLowerCase()) ||
+    //         element.additionalInfo
+    //             .toLowerCase()
+    //             .includes(searchContent.toLowerCase()) ||
+    //         element.housing
+    //             .toLowerCase()
+    //             .includes(searchContent.toLowerCase()) ||
+    //         element.projectInfo
+    //             .toLowerCase()
+    //             .includes(searchContent.toLowerCase())
+    // )
 
-    // ----------------------country----------------------
+    const tempArr = projectsArr
+
+    // ---------------------- country ----------------------
 
     let filtredArr: [] = []
+
+    let filtredCountryArr: [] = []
     let temporaryCountryArr1: [] = []
     let temporaryCountryArr2: [] = []
     let temporaryCountryArr3: [] = []
@@ -120,25 +131,19 @@ const Projects = ({
     if (countryCheckboxState.checkboxPoland) {
         /* @ts-ignore */
         temporaryCountryArr1 = tempArr.filter((el: ProjectType) =>
-            el.country
-                .toLowerCase()
-                .includes(countryCheckboxState.checkboxPoland.toLowerCase())
+            el.country.includes(countryCheckboxState.checkboxPoland)
         )
     }
     if (countryCheckboxState.checkboxGermany) {
         /* @ts-ignore */
         temporaryCountryArr2 = tempArr.filter((el: ProjectType) =>
-            el.country
-                .toLowerCase()
-                .includes(countryCheckboxState.checkboxGermany.toLowerCase())
+            el.country.includes(countryCheckboxState.checkboxGermany)
         )
     }
     if (countryCheckboxState.checkboxSlovakia) {
         /* @ts-ignore */
         temporaryCountryArr3 = tempArr.filter((el: ProjectType) =>
-            el.country
-                .toLowerCase()
-                .includes(countryCheckboxState.checkboxSlovakia.toLowerCase())
+            el.country.includes(countryCheckboxState.checkboxSlovakia)
         )
     }
     if (
@@ -147,14 +152,57 @@ const Projects = ({
         countryCheckboxState.checkboxSlovakia === ''
     ) {
         /* @ts-ignore */
-        filtredArr = tempArr
+        filtredCountryArr = tempArr
     } else {
-        filtredArr = [
+        filtredCountryArr = [
             ...temporaryCountryArr1,
             ...temporaryCountryArr2,
             ...temporaryCountryArr3,
         ]
     }
+
+    // ---------------------- sex ----------------------
+
+    let filtredSexArr: [] = []
+    let temporarySexArr1: [] = []
+    let temporarySexArr2: [] = []
+    let temporarySexArr3: [] = []
+
+    if (sexCheckboxState.male) {
+        /* @ts-ignore */
+        temporarySexArr1 = filtredCountryArr.filter((el: ProjectType) =>
+            el.sex.includes(sexCheckboxState.male)
+        )
+    }
+    if (sexCheckboxState.female) {
+        /* @ts-ignore */
+        temporarySexArr2 = filtredCountryArr.filter((el: ProjectType) =>
+            el.sex.includes(sexCheckboxState.female)
+        )
+    }
+    if (sexCheckboxState.couples) {
+        /* @ts-ignore */
+        temporarySexArr3 = filtredCountryArr.filter((el: ProjectType) =>
+            el.sex.includes(sexCheckboxState.couples)
+        )
+    }
+    if (
+        sexCheckboxState.male === '' &&
+        sexCheckboxState.female === '' &&
+        sexCheckboxState.couples === ''
+    ) {
+        /* @ts-ignore */
+        filtredSexArr = filtredCountryArr
+    } else {
+        filtredSexArr = [
+            ...temporarySexArr1,
+            ...temporarySexArr2,
+            ...temporarySexArr3,
+        ]
+    }
+
+    // console.log(filtredCountryArr)
+    // console.log(filtredSexArr)
 
     return (
         <div>
@@ -170,88 +218,92 @@ const Projects = ({
                 />
             </div>
             {loginData.email === 'mazaxaka.tyt@gmail.com' ? (
-                filtredArr.length === 0 ? (
+                filtredSexArr.length === 0 ? (
                     <div className="no-search-results">Співпадінь нема</div>
                 ) : (
                     <div className="projects">
-                        {filtredArr.map((element: ProjectType, i: number) => (
-                            <div key={i} className="project-item">
-                                <div className="project-item-section">
-                                    <p>Назва проекту</p>
-                                    <div>{element.projectName}</div>
+                        {filtredSexArr.map(
+                            (element: ProjectType, i: number) => (
+                                <div key={i} className="project-item">
+                                    <div className="project-item-section">
+                                        <p>Назва проекту</p>
+                                        <div>{element.projectName}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Країна</p>
+                                        <div>{element.country}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Cтавка в злотих</p>
+                                        <div>{element.salary}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Локалізація</p>
+                                        <div>{element.location}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Стать</p>
+                                        <div>{element.sex}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Вік</p>
+                                        <div>{element.age}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Національність</p>
+                                        <div>{element.nationalaty}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Додаткова інформація</p>
+                                        <div>{element.additionalInfo}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Приклади житла</p>
+                                        <div>{element.housing}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <p>Опис вакансії</p>
+                                        <div>{element.projectInfo}</div>
+                                    </div>
+                                    <div>
+                                        <button
+                                            onClick={() =>
+                                                deliteProject(
+                                                    element.projectName
+                                                )
+                                            }
+                                            disabled={projectsArr.length <= 1}
+                                        >
+                                            Видалити
+                                        </button>
+                                        <button
+                                            onClick={() =>
+                                                edit(
+                                                    element.projectName,
+                                                    element.country,
+                                                    element.salary,
+                                                    element.location,
+                                                    element.sex,
+                                                    element.age,
+                                                    element.nationalaty,
+                                                    element.additionalInfo,
+                                                    element.housing,
+                                                    element.projectInfo
+                                                )
+                                            }
+                                        >
+                                            редагувати
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="project-item-section">
-                                    <p>Країна</p>
-                                    <div>{element.country}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <p>Cтавка в злотих</p>
-                                    <div>{element.salary}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <p>Локалізація</p>
-                                    <div>{element.location}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <p>Стать</p>
-                                    <div>{element.sex}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <p>Вік</p>
-                                    <div>{element.age}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <p>Національність</p>
-                                    <div>{element.nationalaty}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <p>Додаткова інформація</p>
-                                    <div>{element.additionalInfo}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <p>Приклади житла</p>
-                                    <div>{element.housing}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <p>Опис вакансії</p>
-                                    <div>{element.projectInfo}</div>
-                                </div>
-                                <div>
-                                    <button
-                                        onClick={() =>
-                                            deliteProject(element.projectName)
-                                        }
-                                        disabled={projectsArr.length <= 1}
-                                    >
-                                        Видалити
-                                    </button>
-                                    <button
-                                        onClick={() =>
-                                            edit(
-                                                element.projectName,
-                                                element.country,
-                                                element.salary,
-                                                element.location,
-                                                element.sex,
-                                                element.age,
-                                                element.nationalaty,
-                                                element.additionalInfo,
-                                                element.housing,
-                                                element.projectInfo
-                                            )
-                                        }
-                                    >
-                                        редагувати
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+                            )
+                        )}
                     </div>
                 )
-            ) : filtredArr.length === 0 ? (
+            ) : filtredSexArr.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
-                filtredArr.map((element: ProjectType, i: number) => (
+                filtredSexArr.map((element: ProjectType, i: number) => (
                     <div key={i} className="project-item">
                         <div className="project-item-section">
                             <p>Назва проекту</p>

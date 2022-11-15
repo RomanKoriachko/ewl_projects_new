@@ -21,6 +21,9 @@ const EditProject = ({
             ...prevState,
             country: e.target.value,
         }))
+        if (e.target.value === 'empty') {
+            alert('необходимо выбрать страну')
+        }
     }
     const handleChangeProjectSalary = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -49,7 +52,9 @@ const EditProject = ({
             location: e.target.value,
         }))
     }
-    const handleChangeProjectSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeProjectSex = (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
         /* @ts-ignore */
         setEditProject((prevState: ProjectType) => ({
             ...prevState,
@@ -177,7 +182,9 @@ const EditProject = ({
             editProject.nationalaty === '' ||
             editProject.additionalInfo === '' ||
             editProject.housing === '' ||
-            editProject.projectInfo === ''
+            editProject.projectInfo === '' ||
+            editProject.country === 'empty' ||
+            editProject.sex === 'empty'
         ) {
             alert("всі поля обов'язкові")
         } else {
@@ -212,9 +219,9 @@ const EditProject = ({
                     value={editProject.country}
                     onChange={handleChangeProjectCountry}
                 >
-                    <option value="Poland">Польща</option>
-                    <option value="German">Німеччина</option>
-                    <option value="Slovakia">Словаччина</option>
+                    <option value="Польша">Польша</option>
+                    <option value="Германия">Германия</option>
+                    <option value="Словакия">Словакия</option>
                 </select>
                 <input
                     type="text"
@@ -237,13 +244,18 @@ const EditProject = ({
                     value={editProject.location}
                     onChange={handleChangeProjectLocation}
                 />
-                <input
-                    type="text"
+                <label htmlFor="sex">Выбор пола</label>
+                <select
+                    name="sex"
                     id="sex"
-                    placeholder="Стать"
+                    form="add-project"
                     value={editProject.sex}
                     onChange={handleChangeProjectSex}
-                />
+                >
+                    <option value="Только мужчины">Только Мужчины</option>
+                    <option value="Только женщины">Только Женщины</option>
+                    <option value="Пары">Пары</option>
+                </select>
                 <input
                     type="text"
                     id="age"

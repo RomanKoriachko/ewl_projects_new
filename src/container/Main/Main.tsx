@@ -32,6 +32,11 @@ export type CountryCheckboxType = {
     checkboxGermany: string
     checkboxSlovakia: string
 }
+export type SexCheckboxType = {
+    male: string
+    female: string
+    couples: string
+}
 
 const Main = (props: Props) => {
     //------------------------ Login Data ------------------------
@@ -82,8 +87,11 @@ const Main = (props: Props) => {
             checkboxGermany: '',
             checkboxSlovakia: '',
         })
-
-    console.log(project)
+    const [sexCheckboxState, setSexCheckboxState] = useState<SexCheckboxType>({
+        male: '',
+        female: '',
+        couples: '',
+    })
 
     return (
         <div>
@@ -99,6 +107,7 @@ const Main = (props: Props) => {
                         <SearchAndFilter
                             setSearchContent={setSearchContent}
                             setCountryCheckboxState={setCountryCheckboxState}
+                            setSexCheckboxState={setSexCheckboxState}
                         />
                         <Projects
                             loginData={loginData}
@@ -106,6 +115,7 @@ const Main = (props: Props) => {
                             editProject={editProject}
                             searchContent={searchContent}
                             countryCheckboxState={countryCheckboxState}
+                            sexCheckboxState={sexCheckboxState}
                         />
                     </div>
                 ) : loginData.hasAccount ? (
@@ -113,6 +123,7 @@ const Main = (props: Props) => {
                         <SearchAndFilter
                             setSearchContent={setSearchContent}
                             setCountryCheckboxState={setCountryCheckboxState}
+                            setSexCheckboxState={setSexCheckboxState}
                         />
                         <Projects
                             loginData={loginData}
@@ -120,6 +131,7 @@ const Main = (props: Props) => {
                             editProject={editProject}
                             searchContent={searchContent}
                             countryCheckboxState={countryCheckboxState}
+                            sexCheckboxState={sexCheckboxState}
                         />
                     </div>
                 ) : (

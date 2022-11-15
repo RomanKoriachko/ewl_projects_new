@@ -14,6 +14,9 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             ...prevState,
             country: e.target.value,
         }))
+        if (e.target.value === 'empty') {
+            alert('необходимо выбрать страну')
+        }
     }
     const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
         /* @ts-ignore */
@@ -40,7 +43,9 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             location: e.target.value,
         }))
     }
-    const handleChangeProjectSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeProjectSex = (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
         /* @ts-ignore */
         setNewProject((prevState: ProjectType) => ({
             ...prevState,
@@ -195,7 +200,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
         <div className="project-form">
             <p>Додати проект</p>
             <form onSubmit={onSendClick} id="add-project">
-                <label htmlFor="country">Вибір країни</label>
+                <label htmlFor="country">Выбор страны</label>
                 <select
                     name="country"
                     id="country"
@@ -204,9 +209,9 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     onChange={handleChangeCountry}
                 >
                     <option value="empty"></option>
-                    <option value="Poland">Польща</option>
-                    <option value="German">Німеччина</option>
-                    <option value="Slovakia">Словаччина</option>
+                    <option value="Польша">Польща</option>
+                    <option value="Германия">Германия</option>
+                    <option value="Словакия">Словакия</option>
                 </select>
                 <input
                     type="text"
@@ -229,13 +234,19 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     value={project.location}
                     onChange={handleChangeProjectLocation}
                 />
-                <input
-                    type="text"
+                <label htmlFor="sex">Выбор пола</label>
+                <select
+                    name="sex"
                     id="sex"
-                    placeholder="Стать"
+                    form="add-project"
                     value={project.sex}
                     onChange={handleChangeProjectSex}
-                />
+                >
+                    <option value="empty"></option>
+                    <option value="Только мужчины">Только мужчины</option>
+                    <option value="Только женщины">Только женщины</option>
+                    <option value="Пары">Пары</option>
+                </select>
                 <input
                     type="text"
                     id="age"

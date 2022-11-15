@@ -1,24 +1,28 @@
-import { CountryCheckboxType } from 'container/Main/Main'
+import { CountryCheckboxType, SexCheckboxType } from 'container/Main/Main'
 import './SearchAndFilter.scss'
 
 type Props = {
     setSearchContent: (prevState: string) => void
     setCountryCheckboxState: (prevState: CountryCheckboxType) => void
+    setSexCheckboxState: (prevState: SexCheckboxType) => void
 }
 
 const SearchAndFilter = ({
     setSearchContent,
     setCountryCheckboxState,
+    setSexCheckboxState,
 }: Props) => {
     const ChangeSeacrchContent = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchContent(e.target.value)
     }
 
+    // --------------------- Countries Filter ---------------------
+
     const PolandCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
-                  checkboxPoland: 'poland',
+                  checkboxPoland: 'Польша',
                   checkboxGermany: prevState.checkboxGermany,
                   checkboxSlovakia: prevState.checkboxSlovakia,
               }))
@@ -34,7 +38,7 @@ const SearchAndFilter = ({
             ? /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: prevState.checkboxPoland,
-                  checkboxGermany: 'germany',
+                  checkboxGermany: 'Германия',
                   checkboxSlovakia: prevState.checkboxSlovakia,
               }))
             : /* @ts-ignore */
@@ -52,13 +56,61 @@ const SearchAndFilter = ({
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: prevState.checkboxPoland,
                   checkboxGermany: prevState.checkboxGermany,
-                  checkboxSlovakia: 'slovakia',
+                  checkboxSlovakia: 'Словакия',
               }))
             : /* @ts-ignore */
               setCountryCheckboxState((prevState: CountryCheckboxType) => ({
                   checkboxPoland: prevState.checkboxPoland,
                   checkboxGermany: prevState.checkboxGermany,
                   checkboxSlovakia: '',
+              }))
+    }
+
+    // --------------------- Sex Filter ---------------------
+
+    const MaleCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setSexCheckboxState((prevState: SexCheckboxType) => ({
+                  male: 'Только мужчины',
+                  female: prevState.female,
+                  couples: prevState.couples,
+              }))
+            : /* @ts-ignore */
+              setSexCheckboxState((prevState: SexCheckboxType) => ({
+                  male: '',
+                  female: prevState.female,
+                  couples: prevState.couples,
+              }))
+    }
+    const FemaleCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setSexCheckboxState((prevState: SexCheckboxType) => ({
+                  male: prevState.male,
+                  female: 'Только женщины',
+                  couples: prevState.couples,
+              }))
+            : /* @ts-ignore */
+              setSexCheckboxState((prevState: SexCheckboxType) => ({
+                  male: prevState.male,
+                  female: '',
+                  couples: prevState.couples,
+              }))
+    }
+    const CouplesCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? /* @ts-ignore */
+              setSexCheckboxState((prevState: SexCheckboxType) => ({
+                  male: prevState.male,
+                  female: prevState.female,
+                  couples: 'Пары',
+              }))
+            : /* @ts-ignore */
+              setSexCheckboxState((prevState: SexCheckboxType) => ({
+                  male: prevState.male,
+                  female: prevState.female,
+                  couples: '',
               }))
     }
 
@@ -101,14 +153,29 @@ const SearchAndFilter = ({
                     </div>
                 </div>
                 <div className="filter-item">
-                    <div>Стать</div>
+                    <div>Пол</div>
                     <div>
-                        <input type="checkbox" id="male" name="male" />
+                        <input
+                            type="checkbox"
+                            id="male"
+                            name="male"
+                            onChange={MaleCheckboxCheking}
+                        />
                         <label htmlFor="male">Чоловік</label>
-                        <input type="checkbox" id="feemale" name="feemale" />
+                        <input
+                            type="checkbox"
+                            id="feemale"
+                            name="feemale"
+                            onChange={FemaleCheckboxCheking}
+                        />
                         <label htmlFor="feemale">Жінка</label>
-                        <input type="checkbox" id="couples" name="couples" />
-                        <label htmlFor="feemale">Пари</label>
+                        <input
+                            type="checkbox"
+                            id="couples"
+                            name="couples"
+                            onChange={CouplesCheckboxCheking}
+                        />
+                        <label htmlFor="couples">Пари</label>
                     </div>
                 </div>
                 <div className="filter-item">
