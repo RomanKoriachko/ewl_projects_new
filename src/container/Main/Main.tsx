@@ -99,6 +99,7 @@ const Main = (props: Props) => {
         couples: '',
     })
     const [isMinorState, setIsMinorState] = useState<boolean>(false)
+    const [ageToState, setAgeToState] = useState<number>(NaN)
 
     return (
         <div>
@@ -116,6 +117,11 @@ const Main = (props: Props) => {
                             setCountryCheckboxState={setCountryCheckboxState}
                             setSexCheckboxState={setSexCheckboxState}
                             setIsMinorState={setIsMinorState}
+                            setAgeToState={setAgeToState}
+                            countryCheckboxState={countryCheckboxState}
+                            sexCheckboxState={sexCheckboxState}
+                            isMinorState={isMinorState}
+                            ageToState={ageToState}
                         />
                         <Projects
                             loginData={loginData}
@@ -125,6 +131,7 @@ const Main = (props: Props) => {
                             countryCheckboxState={countryCheckboxState}
                             sexCheckboxState={sexCheckboxState}
                             isMinorState={isMinorState}
+                            ageToState={ageToState}
                         />
                     </div>
                 ) : loginData.hasAccount ? (
@@ -134,6 +141,11 @@ const Main = (props: Props) => {
                             setCountryCheckboxState={setCountryCheckboxState}
                             setSexCheckboxState={setSexCheckboxState}
                             setIsMinorState={setIsMinorState}
+                            setAgeToState={setAgeToState}
+                            countryCheckboxState={countryCheckboxState}
+                            sexCheckboxState={sexCheckboxState}
+                            isMinorState={isMinorState}
+                            ageToState={ageToState}
                         />
                         <Projects
                             loginData={loginData}
@@ -143,6 +155,7 @@ const Main = (props: Props) => {
                             countryCheckboxState={countryCheckboxState}
                             sexCheckboxState={sexCheckboxState}
                             isMinorState={isMinorState}
+                            ageToState={ageToState}
                         />
                     </div>
                 ) : (

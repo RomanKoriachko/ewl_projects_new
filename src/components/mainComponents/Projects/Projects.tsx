@@ -16,6 +16,7 @@ type Props = {
     countryCheckboxState: CountryCheckboxType
     sexCheckboxState: SexCheckboxType
     isMinorState: boolean
+    ageToState: number
     setEditProject: (prevState: ProjectType) => void
 }
 
@@ -26,6 +27,7 @@ const Projects = ({
     countryCheckboxState,
     sexCheckboxState,
     isMinorState,
+    ageToState,
     setEditProject,
 }: Props) => {
     const [projectsArr, setProjectsArr] = useState<[]>([])
@@ -127,8 +129,6 @@ const Projects = ({
 
     // ---------------------- country filter ----------------------
 
-    let filtredArr: [] = []
-
     let filtredCountryArr: [] = []
     let temporaryCountryArr1: [] = []
     let temporaryCountryArr2: [] = []
@@ -220,6 +220,19 @@ const Projects = ({
         temporaryIsMinorArr = filtredSexArr
     }
 
+    // ---------------------- Age to filter ----------------------
+
+    let filtredArr: [] = []
+
+    if (ageToState) {
+        /* @ts-ignore */
+        filtredArr = temporaryIsMinorArr.filter(
+            (el: ProjectType) => ageToState >= parseInt(el.ageTo)
+        )
+    } else {
+        filtredArr = temporaryIsMinorArr
+    }
+
     return (
         <div>
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -234,99 +247,95 @@ const Projects = ({
                 />
             </div>
             {loginData.email === 'mazaxaka.tyt@gmail.com' ? (
-                temporaryIsMinorArr.length === 0 ? (
+                filtredArr.length === 0 ? (
                     <div className="no-search-results">Совпадений нет</div>
                 ) : (
                     <div className="projects">
-                        {temporaryIsMinorArr.map(
-                            (element: ProjectType, i: number) => (
-                                <div key={i} className="project-item">
+                        {filtredArr.map((element: ProjectType, i: number) => (
+                            <div key={i} className="project-item">
+                                <div className="project-item-section">
+                                    <p>Название проекта</p>
+                                    <div>{element.projectName}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Страна</p>
+                                    <div>{element.country}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Cтавка в злотых</p>
+                                    <div>{element.salary}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Локализация</p>
+                                    <div>{element.location}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Пол</p>
+                                    <div>{element.sex}</div>
+                                </div>
+                                <div className="row">
                                     <div className="project-item-section">
-                                        <p>Название проекта</p>
-                                        <div>{element.projectName}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <p>Страна</p>
-                                        <div>{element.country}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <p>Cтавка в злотых</p>
-                                        <div>{element.salary}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <p>Локализация</p>
-                                        <div>{element.location}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <p>Пол</p>
-                                        <div>{element.sex}</div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="project-item-section">
-                                            <p>Возраст от</p>
-                                            <div>{element.ageFrom}</div>
-                                        </div>
-                                        <div className="project-item-section">
-                                            <p>Возраст до</p>
-                                            <div>{element.ageTo}</div>
-                                        </div>
+                                        <p>Возраст от</p>
+                                        <div>{element.ageFrom}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <p>Национальность </p>
-                                        <div>{element.nationalaty}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <p>Дополнительная информация</p>
-                                        <div>{element.additionalInfo}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <p>Примеры жилья</p>
-                                        <div>{element.housing}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <p>Описание вакансии</p>
-                                        <div>{element.projectInfo}</div>
-                                    </div>
-                                    <div>
-                                        <button
-                                            onClick={() =>
-                                                deliteProject(
-                                                    element.projectName
-                                                )
-                                            }
-                                            disabled={projectsArr.length <= 1}
-                                        >
-                                            Удалить
-                                        </button>
-                                        <button
-                                            onClick={() =>
-                                                edit(
-                                                    element.projectName,
-                                                    element.country,
-                                                    element.salary,
-                                                    element.location,
-                                                    element.sex,
-                                                    element.ageFrom,
-                                                    element.ageTo,
-                                                    element.nationalaty,
-                                                    element.additionalInfo,
-                                                    element.housing,
-                                                    element.projectInfo
-                                                )
-                                            }
-                                        >
-                                            Редактировать
-                                        </button>
+                                        <p>Возраст до</p>
+                                        <div>{element.ageTo}</div>
                                     </div>
                                 </div>
-                            )
-                        )}
+                                <div className="project-item-section">
+                                    <p>Национальность </p>
+                                    <div>{element.nationalaty}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Дополнительная информация</p>
+                                    <div>{element.additionalInfo}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Примеры жилья</p>
+                                    <div>{element.housing}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <p>Описание вакансии</p>
+                                    <div>{element.projectInfo}</div>
+                                </div>
+                                <div>
+                                    <button
+                                        onClick={() =>
+                                            deliteProject(element.projectName)
+                                        }
+                                        disabled={projectsArr.length <= 1}
+                                    >
+                                        Удалить
+                                    </button>
+                                    <button
+                                        onClick={() =>
+                                            edit(
+                                                element.projectName,
+                                                element.country,
+                                                element.salary,
+                                                element.location,
+                                                element.sex,
+                                                element.ageFrom,
+                                                element.ageTo,
+                                                element.nationalaty,
+                                                element.additionalInfo,
+                                                element.housing,
+                                                element.projectInfo
+                                            )
+                                        }
+                                    >
+                                        Редактировать
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 )
-            ) : temporaryIsMinorArr.length === 0 ? (
+            ) : filtredArr.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
-                temporaryIsMinorArr.map((element: ProjectType, i: number) => (
+                filtredArr.map((element: ProjectType, i: number) => (
                     <div key={i} className="project-item">
                         <div className="project-item-section">
                             <p>Назва проекту</p>
