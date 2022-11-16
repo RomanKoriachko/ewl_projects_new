@@ -58,7 +58,8 @@ const RegistrationAndLogin = ({
         }))
     }
 
-    const createAccount = () => {
+    const createAccount = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         const auth = getAuth()
         createUserWithEmailAndPassword(
             auth,
@@ -80,7 +81,8 @@ const RegistrationAndLogin = ({
         }))
     }
 
-    const login = () => {
+    const login = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         const auth = getAuth()
         signInWithEmailAndPassword(auth, loginData.email, loginData.password)
             .then(() => {
@@ -113,8 +115,8 @@ const RegistrationAndLogin = ({
     return (
         <div className="registration-and-login">
             <div className="registration">
-                <div className="registration-header">Registration</div>
-                <div>
+                <div className="registration-header">Зарегистрироваться</div>
+                <form id="registration-form" onSubmit={createAccount}>
                     <div className="grid-wrapper">
                         <input
                             className="login"
@@ -129,17 +131,15 @@ const RegistrationAndLogin = ({
                             onChange={handleChangeRegistrationPassword}
                             value={registrationData.password}
                         />
-                        <input
-                            className="submit"
-                            type="submit"
-                            onClick={createAccount}
-                        />
+                        <button type="submit" className="submit">
+                            Зарегистрироваться
+                        </button>
                     </div>
-                </div>
+                </form>
             </div>
             <div className="login">
-                <div className="registration-header">Login</div>
-                <div>
+                <div className="registration-header">Войти</div>
+                <form id="login-form" onSubmit={login}>
                     <div className="login">
                         <div className="grid-wrapper">
                             <input
@@ -156,14 +156,12 @@ const RegistrationAndLogin = ({
                                 onChange={handleChangePassword}
                                 value={loginData.password}
                             />
-                            <input
-                                className="submit"
-                                type="submit"
-                                onClick={login}
-                            />
+                            <button type="submit" className="submit">
+                                Войти
+                            </button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     )
