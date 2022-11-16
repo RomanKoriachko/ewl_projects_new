@@ -298,6 +298,8 @@ const Projects = ({
         filtredArr = temporaryIsMinorArr
     }
 
+    console.log(filtredArr)
+
     return (
         <div className="main-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -363,7 +365,9 @@ const Projects = ({
                                 </div>
                                 <div className="project-item-section">
                                     <p>Описание вакансии</p>
-                                    <div>{element.projectInfo}</div>
+                                    <div className="project-info">
+                                        {element.projectInfo}
+                                    </div>
                                 </div>
                                 <div>
                                     <button
@@ -448,7 +452,9 @@ const Projects = ({
                             </div>
                             <div className="project-item-section">
                                 <p>Опис вакансії</p>
-                                <div>{element.projectInfo}</div>
+                                <div className="project-info">
+                                    {element.projectInfo}
+                                </div>
                             </div>
                         </div>
                     ))}

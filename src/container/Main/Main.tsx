@@ -75,7 +75,7 @@ const Main = (props: Props) => {
         nationalaty: '',
         additionalInfo: '',
         housing: '',
-        projectInfo: '',
+        projectInfo: ``,
     })
     const [editProject, setEditProject] = useState<ProjectType>({
         country: '',
@@ -88,7 +88,7 @@ const Main = (props: Props) => {
         nationalaty: '',
         additionalInfo: '',
         housing: '',
-        projectInfo: '',
+        projectInfo: ``,
     })
 
     // ------------------------ filter data ------------------------

@@ -21,9 +21,6 @@ const EditProject = ({
             ...prevState,
             country: e.target.value,
         }))
-        if (e.target.value === 'empty') {
-            alert('необходимо выбрать страну')
-        }
     }
     const handleChangeProjectSalary = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -107,7 +104,7 @@ const EditProject = ({
         }))
     }
     const handleChangeProjectProjectInfo = (
-        e: React.ChangeEvent<HTMLInputElement>
+        e: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
         /* @ts-ignore */
         setEditProject((prevState: ProjectType) => ({
@@ -286,6 +283,7 @@ const EditProject = ({
                         id="age-from"
                         placeholder="Возраст От"
                         value={editProject.ageFrom}
+                        maxLength={2}
                         onChange={handleChangeProjectAgeFrom}
                     />
                     <input
@@ -293,10 +291,10 @@ const EditProject = ({
                         id="age-to"
                         placeholder="Возраст До"
                         value={editProject.ageTo}
+                        maxLength={2}
                         onChange={handleChangeProjectAgeTo}
                     />
                 </div>
-
                 <input
                     type="text"
                     id="nationalaty"
@@ -318,13 +316,15 @@ const EditProject = ({
                     value={editProject.housing}
                     onChange={handleChangeProjectHousing}
                 />
-                <input
-                    type="text"
+                <textarea
+                    name="projectInfo"
                     id="projectInfo"
-                    placeholder="описание проекта"
+                    placeholder="Описание проекта"
+                    cols={30}
+                    rows={10}
                     value={editProject.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
-                />
+                ></textarea>
                 <button type="submit">Редактировать проект</button>
             </form>
         </div>

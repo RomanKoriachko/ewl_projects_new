@@ -14,9 +14,6 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             ...prevState,
             country: e.target.value,
         }))
-        if (e.target.value === 'empty') {
-            alert('необходимо выбрать страну')
-        }
     }
     const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
         /* @ts-ignore */
@@ -98,7 +95,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
         }))
     }
     const handleChangeProjectProjectInfo = (
-        e: React.ChangeEvent<HTMLInputElement>
+        e: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
         /* @ts-ignore */
         setNewProject((prevState: ProjectType) => ({
@@ -277,6 +274,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                         id="age-from"
                         placeholder="Возраст От"
                         value={project.ageFrom}
+                        maxLength={2}
                         onChange={handleChangeProjectAgeFrom}
                     />
                     <input
@@ -284,6 +282,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                         id="age-to"
                         placeholder="Возраст До"
                         value={project.ageTo}
+                        maxLength={2}
                         onChange={handleChangeProjectAgeTo}
                     />
                 </div>
@@ -308,13 +307,15 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     value={project.housing}
                     onChange={handleChangeProjectHousing}
                 />
-                <input
-                    type="text"
+                <textarea
+                    name="projectInfo"
                     id="projectInfo"
                     placeholder="Описание проекта"
+                    cols={30}
+                    rows={10}
                     value={project.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
-                />
+                ></textarea>
                 <button type="submit">Добавить проект</button>
             </form>
         </div>

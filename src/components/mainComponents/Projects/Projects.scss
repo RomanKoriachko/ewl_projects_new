@@ -27,6 +27,11 @@
             >div{
                 color: #f18a01;
             }
+            .project-info {
+                white-space: pre-wrap;
+                // word-wrap: break-word;
+                word-break: normal;
+            }
         }
     }
 }
