@@ -8,6 +8,7 @@ import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
 import './Projects.scss'
+import CopyButton from '@yozora/react-common-copy-button'
 
 type Props = {
     loginData: UserType
@@ -395,6 +396,10 @@ const Projects = ({
                                     >
                                         Редактировать
                                     </button>
+                                    <CopyButton
+                                        className="copy-btn"
+                                        value={`Название проекта\n${element.projectName}\n\nСтрана\n${element.country}\n\nCтавка в злотых\n${element.salary}\n\nЛокализация\n${element.location}\n\nПол\n${element.sex}\n\nВозраст от\n${element.ageFrom}\n\nВозраст до\n${element.ageTo}\n\nНациональность\n${element.nationalaty}\n\nДополнительная информация\n${element.additionalInfo}\n\nПримеры жилья\n${element.housing}\n\nОписание вакансии\n${element.projectInfo}`}
+                                    />
                                 </div>
                             </div>
                         ))}
