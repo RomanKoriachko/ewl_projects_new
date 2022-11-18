@@ -298,8 +298,6 @@ const Projects = ({
         filtredArr = temporaryIsMinorArr
     }
 
-    console.log(filtredArr)
-
     return (
         <div className="main-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>

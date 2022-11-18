@@ -4,6 +4,7 @@ import RegistrationAndLogin from 'components/mainComponents/RegistrationAndLogin
 import Projects from 'components/mainComponents/Projects/Projects'
 import AddNewProject from 'components/mainComponents/AddNewProject/AddNewProject'
 import SearchAndFilter from 'components/mainComponents/SearchAndFilter/SearchAndFilter'
+import Header from 'container/Header/Header'
 
 type Props = {}
 
@@ -116,15 +117,44 @@ const Main = (props: Props) => {
     const [ageToState, setAgeToState] = useState<number>(NaN)
 
     return (
-        <div className="container">
-            {loginData.isAdmin ? (
-                <>
-                    <div className="admin-panel">
-                        <AddNewProject
-                            project={project}
-                            setNewProject={setNewProject}
-                        />
-                    </div>
+        <div className="main">
+            <Header />
+            <div className="container">
+                {loginData.isAdmin ? (
+                    <>
+                        <div className="admin-panel">
+                            <AddNewProject
+                                project={project}
+                                setNewProject={setNewProject}
+                            />
+                        </div>
+                        <div className="wrapper">
+                            <SearchAndFilter
+                                setSearchContent={setSearchContent}
+                                setCountryCheckboxState={
+                                    setCountryCheckboxState
+                                }
+                                setSexCheckboxState={setSexCheckboxState}
+                                setIsMinorState={setIsMinorState}
+                                setAgeToState={setAgeToState}
+                                countryCheckboxState={countryCheckboxState}
+                                sexCheckboxState={sexCheckboxState}
+                                isMinorState={isMinorState}
+                                ageToState={ageToState}
+                            />
+                            <Projects
+                                loginData={loginData}
+                                setEditProject={setEditProject}
+                                editProject={editProject}
+                                searchContent={searchContent}
+                                countryCheckboxState={countryCheckboxState}
+                                sexCheckboxState={sexCheckboxState}
+                                isMinorState={isMinorState}
+                                ageToState={ageToState}
+                            />
+                        </div>
+                    </>
+                ) : loginData.hasAccount ? (
                     <div className="wrapper">
                         <SearchAndFilter
                             setSearchContent={setSearchContent}
@@ -148,39 +178,15 @@ const Main = (props: Props) => {
                             ageToState={ageToState}
                         />
                     </div>
-                </>
-            ) : loginData.hasAccount ? (
-                <div className="wrapper">
-                    <SearchAndFilter
-                        setSearchContent={setSearchContent}
-                        setCountryCheckboxState={setCountryCheckboxState}
-                        setSexCheckboxState={setSexCheckboxState}
-                        setIsMinorState={setIsMinorState}
-                        setAgeToState={setAgeToState}
-                        countryCheckboxState={countryCheckboxState}
-                        sexCheckboxState={sexCheckboxState}
-                        isMinorState={isMinorState}
-                        ageToState={ageToState}
-                    />
-                    <Projects
+                ) : (
+                    <RegistrationAndLogin
                         loginData={loginData}
-                        setEditProject={setEditProject}
-                        editProject={editProject}
-                        searchContent={searchContent}
-                        countryCheckboxState={countryCheckboxState}
-                        sexCheckboxState={sexCheckboxState}
-                        isMinorState={isMinorState}
-                        ageToState={ageToState}
+                        registrationData={registrationData}
+                        setLoginData={setLoginData}
+                        setRegistrationData={setRegistrationData}
                     />
-                </div>
-            ) : (
-                <RegistrationAndLogin
-                    loginData={loginData}
-                    registrationData={registrationData}
-                    setLoginData={setLoginData}
-                    setRegistrationData={setRegistrationData}
-                />
-            )}
+                )}
+            </div>
         </div>
     )
 }
