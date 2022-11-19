@@ -1,23 +1,42 @@
 import './Header.scss'
 import { getAuth } from 'firebase/auth'
+import { UserType } from 'container/Main/Main'
 
-type Props = {}
+type Props = {
+    loginData: UserType
+}
 
-const Header = (props: Props) => {
+const Header = ({ loginData }: Props) => {
     const auth = getAuth()
     const user = auth.currentUser
     let userEmail: string | null = ''
     let headerClass = 'hide'
+    let isLogged: boolean = false
 
-    if (user !== null) {
+    console.log(loginData.hasAccount)
+
+    if (loginData.hasAccount === true && user !== null) {
         userEmail = user.email
         headerClass = 'show'
+        isLogged = true
     }
 
     return (
-        <div className={`header ${headerClass}`}>
-            <div className={`user ${headerClass}`}>User: {userEmail}</div>
-        </div>
+        <>
+            {isLogged ? (
+                <div className={`header ${headerClass}`}>
+                    <div className={`user ${headerClass}`}>
+                        User: {userEmail}
+                    </div>
+                </div>
+            ) : (
+                <div className="header">
+                    <div className="user">
+                        Чтобы войти введите логин и пароль
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
 

@@ -119,7 +119,7 @@ const Main = (props: Props) => {
 
     return (
         <div className="main">
-            <Header />
+            <Header loginData={loginData} />
             <div className="container">
                 {loginData.isAdmin ? (
                     <>
