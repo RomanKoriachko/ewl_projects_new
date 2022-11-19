@@ -1,5 +1,5 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import './RegistrationAndLogin.scss'
+import './Login.scss'
 
 type Props = {
     loginData: UserType
@@ -60,33 +60,31 @@ const Login = ({ loginData, setLoginData }: Props) => {
     }
 
     return (
-        <div className="registration-and-login">
-            <div className="login">
-                <div className="registration-header">Войти</div>
-                <form id="login-form" onSubmit={login}>
-                    <div className="login">
-                        <div className="grid-wrapper">
-                            <input
-                                className="login"
-                                type="text"
-                                id="login-email"
-                                onChange={handleChangeLogin}
-                                value={loginData.email}
-                            />
-                            <input
-                                className="password"
-                                type="password"
-                                id="login-password"
-                                onChange={handleChangePassword}
-                                value={loginData.password}
-                            />
-                            <button type="submit" className="submit">
-                                Войти
-                            </button>
-                        </div>
+        <div className="login">
+            <div className="login-header">Войти</div>
+            <form id="login-form" onSubmit={login}>
+                <div>
+                    <div className="grid-wrapper">
+                        <input
+                            className="login-input"
+                            type="text"
+                            id="login-email"
+                            onChange={handleChangeLogin}
+                            value={loginData.email}
+                        />
+                        <input
+                            className="password-input"
+                            type="password"
+                            id="login-password"
+                            onChange={handleChangePassword}
+                            value={loginData.password}
+                        />
+                        <button type="submit" className="submit-button">
+                            Войти
+                        </button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     )
 }

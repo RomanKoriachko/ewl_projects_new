@@ -51,23 +51,26 @@ const Registration = ({ registrationData, setRegistrationData }: Props) => {
 
     return (
         <div className="registration">
-            <div className="registration-header">Зарегистрироваться</div>
+            <div className="login-header registration-header">
+                Зарегистрировать пользователя
+            </div>
             <form id="registration-form" onSubmit={createAccount}>
-                <div className="grid-wrapper">
+                <div className="grid-wrapper registration-wrapper">
                     <input
-                        className="login"
+                        className="login-input"
                         type="text"
+                        id="registration-login"
                         onChange={handleChangeRegistrationLogin}
                         value={registrationData.email}
                     />
                     <input
-                        className="password"
+                        className="password-input"
                         type="password"
-                        id="password"
+                        id="registration-password"
                         onChange={handleChangeRegistrationPassword}
                         value={registrationData.password}
                     />
-                    <button type="submit" className="submit">
+                    <button type="submit" className="submit-button">
                         Зарегистрироваться
                     </button>
                 </div>

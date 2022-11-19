@@ -13,8 +13,6 @@ const Header = ({ loginData }: Props) => {
     let headerClass = 'hide'
     let isLogged: boolean = false
 
-    console.log(loginData.hasAccount)
-
     if (loginData.hasAccount === true && user !== null) {
         userEmail = user.email
         headerClass = 'show'
