@@ -5,6 +5,7 @@ import Projects from 'components/mainComponents/Projects/Projects'
 import AddNewProject from 'components/mainComponents/AddNewProject/AddNewProject'
 import SearchAndFilter from 'components/mainComponents/SearchAndFilter/SearchAndFilter'
 import Header from 'container/Header/Header'
+import Registration from 'components/mainComponents/RegistrationAndLogin/Registration'
 
 type Props = {}
 
@@ -127,6 +128,10 @@ const Main = (props: Props) => {
                                 project={project}
                                 setNewProject={setNewProject}
                             />
+                            <Registration
+                                registrationData={registrationData}
+                                setRegistrationData={setRegistrationData}
+                            />
                         </div>
                         <div className="wrapper">
                             <SearchAndFilter
@@ -181,9 +186,7 @@ const Main = (props: Props) => {
                 ) : (
                     <RegistrationAndLogin
                         loginData={loginData}
-                        registrationData={registrationData}
                         setLoginData={setLoginData}
-                        setRegistrationData={setRegistrationData}
                     />
                 )}
             </div>
