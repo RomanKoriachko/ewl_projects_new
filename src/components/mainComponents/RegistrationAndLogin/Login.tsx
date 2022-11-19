@@ -13,7 +13,7 @@ type UserType = {
     isAdmin: boolean
 }
 
-const RegistrationAndLogin = ({ loginData, setLoginData }: Props) => {
+const Login = ({ loginData, setLoginData }: Props) => {
     const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         /* @ts-ignore */
         setLoginData((prevState: UserType) => ({
@@ -91,4 +91,4 @@ const RegistrationAndLogin = ({ loginData, setLoginData }: Props) => {
     )
 }
 
-export default RegistrationAndLogin
+export default Login

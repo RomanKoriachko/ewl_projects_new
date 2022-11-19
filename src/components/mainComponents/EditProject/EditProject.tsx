@@ -227,7 +227,7 @@ const EditProject = ({
                 <label htmlFor="country">Выбор страны</label>
                 <select
                     name="country"
-                    id="country"
+                    id="edit-country"
                     form="add-project"
                     value={editProject.country}
                     onChange={handleChangeProjectCountry}
@@ -247,7 +247,7 @@ const EditProject = ({
                 <label htmlFor="sex">Выбор пола</label>
                 <select
                     name="sex"
-                    id="sex"
+                    id="edit-sex"
                     form="add-project"
                     value={editProject.sex}
                     onChange={handleChangeProjectSex}
@@ -258,21 +258,21 @@ const EditProject = ({
                 </select>
                 <input
                     type="text"
-                    id="salary"
+                    id="edit-salary"
                     placeholder="Ставка"
                     value={editProject.salary}
                     onChange={handleChangeProjectSalary}
                 />
                 <input
                     type="text"
-                    id="project"
+                    id="edit-project"
                     placeholder="Название проекта"
                     value={editProject.projectName}
                     onChange={handleChangeProjectName}
                 />
                 <input
                     type="text"
-                    id="location"
+                    id="edit-location"
                     placeholder="Локализация"
                     value={editProject.location}
                     onChange={handleChangeProjectLocation}
@@ -280,7 +280,7 @@ const EditProject = ({
                 <div>
                     <input
                         type="text"
-                        id="age-from"
+                        id="edit-age-from"
                         placeholder="Возраст От"
                         value={editProject.ageFrom}
                         maxLength={2}
@@ -288,7 +288,7 @@ const EditProject = ({
                     />
                     <input
                         type="text"
-                        id="age-to"
+                        id="edit-age-to"
                         placeholder="Возраст До"
                         value={editProject.ageTo}
                         maxLength={2}
@@ -297,28 +297,28 @@ const EditProject = ({
                 </div>
                 <input
                     type="text"
-                    id="nationalaty"
+                    id="edit-nationalaty"
                     placeholder="Национальность"
                     value={editProject.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
                 <input
                     type="text"
-                    id="additionalInfo"
+                    id="edit-additionalInfo"
                     placeholder="Дополнительная информация"
                     value={editProject.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <input
                     type="text"
-                    id="housing"
+                    id="edit-housing"
                     placeholder="Примеры жилья"
                     value={editProject.housing}
                     onChange={handleChangeProjectHousing}
                 />
                 <textarea
                     name="projectInfo"
-                    id="projectInfo"
+                    id="edit-projectInfo"
                     placeholder="Описание проекта"
                     cols={30}
                     rows={10}

@@ -1,11 +1,11 @@
 import './Main.scss'
 import { useState } from 'react'
-import RegistrationAndLogin from 'components/mainComponents/RegistrationAndLogin/RegistrationAndLogin'
 import Projects from 'components/mainComponents/Projects/Projects'
 import AddNewProject from 'components/mainComponents/AddNewProject/AddNewProject'
 import SearchAndFilter from 'components/mainComponents/SearchAndFilter/SearchAndFilter'
 import Header from 'container/Header/Header'
 import Registration from 'components/mainComponents/RegistrationAndLogin/Registration'
+import Login from 'components/mainComponents/RegistrationAndLogin/Login'
 
 type Props = {}
 
@@ -184,10 +184,7 @@ const Main = (props: Props) => {
                         />
                     </div>
                 ) : (
-                    <RegistrationAndLogin
-                        loginData={loginData}
-                        setLoginData={setLoginData}
-                    />
+                    <Login loginData={loginData} setLoginData={setLoginData} />
                 )}
             </div>
         </div>
