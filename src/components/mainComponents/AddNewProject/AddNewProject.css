@@ -1,0 +1,31 @@
+.project-form {
+  border: 1px solid black;
+  padding: 40px;
+  margin-top: 20px;
+  width: 45%;
+}
+.project-form p {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.project-form form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.project-form form select {
+  padding: 0px 20px;
+  height: 40px;
+}
+.project-form form input {
+  height: 40px;
+  padding: 0px 20px;
+}
+.project-form form textarea {
+  padding: 20px;
+  resize: none;
+}
+.project-form form button {
+  width: 200px;
+  height: 40px;
+}

@@ -1,0 +1,44 @@
+.project-edit-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  padding: 40px;
+  width: 50%;
+  background: white;
+  z-index: 10;
+}
+.project-edit-form .project-edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.project-edit-form .project-edit-header p {
+  font-size: 32px;
+}
+.project-edit-form .project-edit-header button {
+  width: 30px;
+  height: 30px;
+}
+.project-edit-form form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.project-edit-form form select {
+  padding: 0px 20px;
+  height: 40px;
+}
+.project-edit-form form input {
+  height: 40px;
+  padding: 0px 20px;
+}
+.project-edit-form form textarea {
+  padding: 20px;
+}
+.project-edit-form form button {
+  width: 200px;
+  height: 40px;
+}

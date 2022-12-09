@@ -1,0 +1,43 @@
+.main-content {
+  margin-top: 60px;
+}
+
+.project-edit-bg {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px 20px;
+}
+.projects .project-item {
+  border: 1px solid black;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+.projects .project-item .project-item-section {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: left;
+  margin-right: 30px;
+}
+.projects .project-item .project-item-section > div {
+  color: #f18a01;
+}
+.projects .project-item .project-item-section .project-info {
+  white-space: pre-wrap;
+  word-break: normal;
+}
+
+.no-search-results {
+  font-size: 42px;
+  text-align: center;
+}

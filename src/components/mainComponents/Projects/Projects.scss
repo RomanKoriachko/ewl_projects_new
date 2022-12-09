@@ -12,7 +12,7 @@
 }
 .projects {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 30px 20px;
     .project-item {
         border: 1px solid black;

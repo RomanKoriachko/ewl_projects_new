@@ -1,0 +1,34 @@
+.search-and-filter {
+  margin: 60px 0px;
+}
+.search-and-filter .search {
+  border: 1px solid black;
+  padding: 28px;
+  margin-bottom: 5px;
+}
+.search-and-filter .search .search-input {
+  width: 200px;
+  height: 30px;
+  padding: 0px 10px;
+}
+.search-and-filter .filter {
+  border: 1px solid black;
+  padding: 20px;
+}
+.search-and-filter .filter > p {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.search-and-filter .filter .filter-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 20px;
+}
+.search-and-filter .filter .filter-age input {
+  width: 50px;
+  height: 30px;
+  margin-right: 20px;
+  padding: 0px 10px;
+  font-size: 24px;
+}
