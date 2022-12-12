@@ -3,7 +3,7 @@
     padding: 40px;
     margin-top: 20px;
     width: 45%;
-    p{
+    >p{
         font-size: 32px;
         margin-bottom: 20px;
     }
@@ -11,6 +11,17 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
+        .sex-select {
+            >p{
+                margin-bottom: 10px;
+            }
+            input{
+                height: 15px;
+            }
+            label{
+                margin-right: 10px;
+            }
+        }
         select {
             padding: 0px 20px;
             height: 40px;

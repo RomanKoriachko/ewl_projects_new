@@ -40,15 +40,125 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             location: e.target.value,
         }))
     }
-    const handleChangeProjectSex = (
-        e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            sex: e.target.value,
-        }))
+    // const handleChangeProjectSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     /* @ts-ignore */
+    //     setNewProject((prevState: ProjectType) => ({
+    //         ...prevState,
+    //         sex: e.target.value,
+    //     }))
+    // }
+
+    // let sexState: string = ''
+    // let maleState: string = ''
+    // let femaleState: string = ''
+    // let couplesState: string = ''
+    // let tempArr: string[] | null = []
+
+    // const [newTempArr, setNewTempArr] = useState<[]>([])
+
+    // const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.checked && e.target.value === 'Мужчины') {
+    //         maleState = 'Мужчины'
+    //         sexState = maleState + femaleState + couplesState
+    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
+    //         /* @ts-ignore */
+    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
+    //         console.log(newTempArr)
+    //         // /* @ts-ignore */
+    //         // setNewProject((prevState: ProjectType) => ({
+    //         //     ...prevState,
+    //         //     sex: tempArr?.join(', '),
+    //         // }))
+    //     } else if (!e.target.checked && e.target.value === 'Мужчины') {
+    //         maleState = ''
+    //         sexState = femaleState + couplesState
+    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
+    //         /* @ts-ignore */
+    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
+    //         console.log(newTempArr)
+    //         /* @ts-ignore */
+    //         // setNewProject((prevState: ProjectType) => ({
+    //         //     ...prevState,
+    //         //     sex: tempArr?.join(', '),
+    //         // }))
+    //     } else if (e.target.checked && e.target.value === 'Женщины') {
+    //         femaleState = 'Женщины'
+    //         sexState = maleState + femaleState + couplesState
+    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
+    //         /* @ts-ignore */
+    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
+    //         console.log(newTempArr)
+    //         // /* @ts-ignore */
+    //         // setNewProject((prevState: ProjectType) => ({
+    //         //     ...prevState,
+    //         //     sex: tempArr?.join(', '),
+    //         // }))
+    //     } else if (!e.target.checked && e.target.value === 'Женщины') {
+    //         femaleState = ''
+    //         sexState = maleState + couplesState
+    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
+    //         /* @ts-ignore */
+    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
+    //         console.log(newTempArr)
+    //         // /* @ts-ignore */
+    //         // setNewProject((prevState: ProjectType) => ({
+    //         //     ...prevState,
+    //         //     sex: tempArr?.join(', '),
+    //         // }))
+    //     } else if (e.target.checked && e.target.value === 'Пары') {
+    //         couplesState = 'Пары'
+    //         sexState = maleState + femaleState + couplesState
+    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
+    //         /* @ts-ignore */
+    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
+    //         console.log(newTempArr)
+    //         // /* @ts-ignore */
+    //         // setNewProject((prevState: ProjectType) => ({
+    //         //     ...prevState,
+    //         //     sex: tempArr?.join(', '),
+    //         // }))
+    //     } else if (!e.target.checked && e.target.value === 'Пары') {
+    //         couplesState = ''
+    //         sexState = maleState + femaleState
+    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
+    //         /* @ts-ignore */
+    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
+    //         console.log(newTempArr)
+    //         // /* @ts-ignore */
+    //         // setNewProject((prevState: ProjectType) => ({
+    //         //     ...prevState,
+    //         //     sex: tempArr?.join(', '),
+    //         // }))
+    //     }
+    // }
+
+    const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.checked) {
+            /* @ts-ignore */
+            setNewProject((prevState: ProjectType) => ({
+                ...prevState,
+                sex: prevState.sex + ' ' + e.target.value,
+            }))
+        } else if (project.sex.includes(e.target.value)) {
+            let tempStr = project.sex
+            let newStr = tempStr.replace(e.target.value, '')
+            /* @ts-ignore */
+            setNewProject((prevState: ProjectType) => ({
+                ...prevState,
+                sex: newStr,
+            }))
+        }
     }
+
+    let checkbox = document.querySelectorAll('.chechbox')
+
+    const resetSex = () => {
+        for (let i = 0; i < checkbox.length; i++) {
+            /* @ts-ignore */
+            checkbox[i].checked = false
+        }
+    }
+
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -207,6 +317,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                 housing: '',
                 projectInfo: '',
             }))
+            resetSex()
         }
     }
 
@@ -234,19 +345,36 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     <option value="Испания">Испания</option>
                     <option value="Кипр">Кипр</option>
                 </select>
-                <label htmlFor="sex">Выбор пола</label>
-                <select
-                    name="sex"
-                    id="sex"
-                    form="add-project"
-                    value={project.sex}
-                    onChange={handleChangeProjectSex}
-                >
-                    <option value="empty"></option>
-                    <option value="Мужчины">Мужчины</option>
-                    <option value="Женщины">Женщины</option>
-                    <option value="Пары">Пары</option>
-                </select>
+                <div className="sex-select">
+                    <p>Выбор пола</p>
+                    <input
+                        type="checkbox"
+                        id="male"
+                        name="sex"
+                        value="Мужчины"
+                        className="chechbox"
+                        onChange={handleChangeSex}
+                    />
+                    <label htmlFor="male">Мужчины</label>
+                    <input
+                        type="checkbox"
+                        id="female"
+                        name="sex"
+                        value="Женщины"
+                        className="chechbox"
+                        onChange={handleChangeSex}
+                    />
+                    <label htmlFor="female">Женщины</label>
+                    <input
+                        type="checkbox"
+                        id="couples"
+                        name="sex"
+                        value="Пары"
+                        className="chechbox"
+                        onChange={handleChangeSex}
+                    />
+                    <label htmlFor="couples">Пары</label>
+                </div>
                 <input
                     type="text"
                     id="salary"

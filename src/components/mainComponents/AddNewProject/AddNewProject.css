@@ -4,7 +4,7 @@
   margin-top: 20px;
   width: 45%;
 }
-.project-form p {
+.project-form > p {
   font-size: 32px;
   margin-bottom: 20px;
 }
@@ -12,6 +12,15 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+}
+.project-form form .sex-select > p {
+  margin-bottom: 10px;
+}
+.project-form form .sex-select input {
+  height: 15px;
+}
+.project-form form .sex-select label {
+  margin-right: 10px;
 }
 .project-form form select {
   padding: 0px 20px;
