@@ -27,6 +27,15 @@
   grid-template-columns: 1fr;
   gap: 10px;
 }
+.project-edit-form form .sex-select-edit > p {
+  margin-bottom: 10px;
+}
+.project-edit-form form .sex-select-edit input {
+  height: 15px;
+}
+.project-edit-form form .sex-select-edit label {
+  margin-right: 10px;
+}
 .project-edit-form form select {
   padding: 0px 20px;
   height: 40px;

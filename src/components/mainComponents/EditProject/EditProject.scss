@@ -26,6 +26,17 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
+        .sex-select-edit {
+            >p{
+                margin-bottom: 10px;
+            }
+            input{
+                height: 15px;
+            }
+            label{
+                margin-right: 10px;
+            }
+        }
         select {
             padding: 0px 20px;
             height: 40px;

@@ -49,15 +49,52 @@ const EditProject = ({
             location: e.target.value,
         }))
     }
-    const handleChangeProjectSex = (
-        e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
+
+    let checkboxMale = document.querySelector('.chechbox-male-edit')
+    let checkboxFemale = document.querySelector('.chechbox-female-edit')
+    let checkboxCouples = document.querySelector('.chechbox-couples-edit')
+
+    if (editProject.sex.includes('Мужчины')) {
         /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            sex: e.target.value,
-        }))
+        checkboxMale.checked = true
+    } else if (checkboxMale !== null) {
+        /* @ts-ignore */
+        checkboxMale.checked = false
     }
+    if (editProject.sex.includes('Женщины')) {
+        /* @ts-ignore */
+        checkboxFemale.checked = true
+    } else if (checkboxFemale !== null) {
+        /* @ts-ignore */
+        checkboxFemale.checked = false
+    }
+    if (editProject.sex.includes('Пары')) {
+        /* @ts-ignore */
+        checkboxCouples.checked = true
+    } else if (checkboxCouples !== null) {
+        /* @ts-ignore */
+        checkboxCouples.checked = false
+    }
+
+    const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.checked) {
+            /* @ts-ignore */
+            setEditProject((prevState: ProjectType) => ({
+                ...prevState,
+                sex: (prevState.sex + ' ' + e.target.value).trim(),
+            }))
+        } else if (editProject.sex.includes(e.target.value)) {
+            let tempStr = editProject.sex
+            let newStr = tempStr.replace(e.target.value, '')
+            newStr.trim()
+            /* @ts-ignore */
+            setEditProject((prevState: ProjectType) => ({
+                ...prevState,
+                sex: newStr,
+            }))
+        }
+    }
+
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -189,6 +226,9 @@ const EditProject = ({
             editProject.projectName === '' ||
             editProject.location === '' ||
             editProject.sex === '' ||
+            editProject.sex === ' ' ||
+            editProject.sex === '  ' ||
+            editProject.sex === '   ' ||
             editProject.ageFrom === '' ||
             editProject.ageTo === '' ||
             editProject.nationalaty === '' ||
@@ -244,18 +284,36 @@ const EditProject = ({
                     <option value="Испания">Испания</option>
                     <option value="Кипр">Кипр</option>
                 </select>
-                <label htmlFor="sex">Выбор пола</label>
-                <select
-                    name="sex"
-                    id="edit-sex"
-                    form="add-project"
-                    value={editProject.sex}
-                    onChange={handleChangeProjectSex}
-                >
-                    <option value="Мужчины">Мужчины</option>
-                    <option value="Женщины">Женщины</option>
-                    <option value="Пары">Пары</option>
-                </select>
+                <div className="sex-select-edit">
+                    <p>Выбор пола</p>
+                    <input
+                        type="checkbox"
+                        id="male-edit"
+                        name="sex-edit"
+                        value="Мужчины"
+                        className="chechbox-male-edit"
+                        onChange={handleChangeSex}
+                    />
+                    <label htmlFor="male-edit">Мужчины</label>
+                    <input
+                        type="checkbox"
+                        id="female-edit"
+                        name="sex-edit"
+                        value="Женщины"
+                        className="chechbox-female-edit"
+                        onChange={handleChangeSex}
+                    />
+                    <label htmlFor="female-edit">Женщины</label>
+                    <input
+                        type="checkbox"
+                        id="couples-edit"
+                        name="sex-edit"
+                        value="Пары"
+                        className="chechbox-couples-edit"
+                        onChange={handleChangeSex}
+                    />
+                    <label htmlFor="couples-edit">Пары</label>
+                </div>
                 <input
                     type="text"
                     id="edit-salary"

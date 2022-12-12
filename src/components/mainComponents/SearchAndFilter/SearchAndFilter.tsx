@@ -587,7 +587,7 @@ const SearchAndFilter = ({
                                 onChange={maleCheckboxCheking}
                                 checked={sexCheckboxState.male ? true : false}
                             />
-                            <label htmlFor="male">Только мужчины</label>
+                            <label htmlFor="male">Мужчины</label>
                         </div>
                         <div>
                             <input
@@ -597,7 +597,7 @@ const SearchAndFilter = ({
                                 onChange={femaleCheckboxCheking}
                                 checked={sexCheckboxState.female ? true : false}
                             />
-                            <label htmlFor="feemale">Только женщины</label>
+                            <label htmlFor="feemale">Женщины</label>
                         </div>
                         <div>
                             <input

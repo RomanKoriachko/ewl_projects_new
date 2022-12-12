@@ -40,97 +40,6 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
             location: e.target.value,
         }))
     }
-    // const handleChangeProjectSex = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     /* @ts-ignore */
-    //     setNewProject((prevState: ProjectType) => ({
-    //         ...prevState,
-    //         sex: e.target.value,
-    //     }))
-    // }
-
-    // let sexState: string = ''
-    // let maleState: string = ''
-    // let femaleState: string = ''
-    // let couplesState: string = ''
-    // let tempArr: string[] | null = []
-
-    // const [newTempArr, setNewTempArr] = useState<[]>([])
-
-    // const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     if (e.target.checked && e.target.value === 'Мужчины') {
-    //         maleState = 'Мужчины'
-    //         sexState = maleState + femaleState + couplesState
-    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
-    //         /* @ts-ignore */
-    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
-    //         console.log(newTempArr)
-    //         // /* @ts-ignore */
-    //         // setNewProject((prevState: ProjectType) => ({
-    //         //     ...prevState,
-    //         //     sex: tempArr?.join(', '),
-    //         // }))
-    //     } else if (!e.target.checked && e.target.value === 'Мужчины') {
-    //         maleState = ''
-    //         sexState = femaleState + couplesState
-    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
-    //         /* @ts-ignore */
-    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
-    //         console.log(newTempArr)
-    //         /* @ts-ignore */
-    //         // setNewProject((prevState: ProjectType) => ({
-    //         //     ...prevState,
-    //         //     sex: tempArr?.join(', '),
-    //         // }))
-    //     } else if (e.target.checked && e.target.value === 'Женщины') {
-    //         femaleState = 'Женщины'
-    //         sexState = maleState + femaleState + couplesState
-    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
-    //         /* @ts-ignore */
-    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
-    //         console.log(newTempArr)
-    //         // /* @ts-ignore */
-    //         // setNewProject((prevState: ProjectType) => ({
-    //         //     ...prevState,
-    //         //     sex: tempArr?.join(', '),
-    //         // }))
-    //     } else if (!e.target.checked && e.target.value === 'Женщины') {
-    //         femaleState = ''
-    //         sexState = maleState + couplesState
-    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
-    //         /* @ts-ignore */
-    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
-    //         console.log(newTempArr)
-    //         // /* @ts-ignore */
-    //         // setNewProject((prevState: ProjectType) => ({
-    //         //     ...prevState,
-    //         //     sex: tempArr?.join(', '),
-    //         // }))
-    //     } else if (e.target.checked && e.target.value === 'Пары') {
-    //         couplesState = 'Пары'
-    //         sexState = maleState + femaleState + couplesState
-    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
-    //         /* @ts-ignore */
-    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
-    //         console.log(newTempArr)
-    //         // /* @ts-ignore */
-    //         // setNewProject((prevState: ProjectType) => ({
-    //         //     ...prevState,
-    //         //     sex: tempArr?.join(', '),
-    //         // }))
-    //     } else if (!e.target.checked && e.target.value === 'Пары') {
-    //         couplesState = ''
-    //         sexState = maleState + femaleState
-    //         tempArr = sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g)
-    //         /* @ts-ignore */
-    //         setNewTempArr(sexState.match(/[А-ЯЁA-Z][а-яёa-z]+/g))
-    //         console.log(newTempArr)
-    //         // /* @ts-ignore */
-    //         // setNewProject((prevState: ProjectType) => ({
-    //         //     ...prevState,
-    //         //     sex: tempArr?.join(', '),
-    //         // }))
-    //     }
-    // }
 
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
@@ -142,6 +51,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
         } else if (project.sex.includes(e.target.value)) {
             let tempStr = project.sex
             let newStr = tempStr.replace(e.target.value, '')
+            newStr.trim()
             /* @ts-ignore */
             setNewProject((prevState: ProjectType) => ({
                 ...prevState,
@@ -349,31 +259,31 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     <p>Выбор пола</p>
                     <input
                         type="checkbox"
-                        id="male"
+                        id="project-male"
                         name="sex"
                         value="Мужчины"
                         className="chechbox"
                         onChange={handleChangeSex}
                     />
-                    <label htmlFor="male">Мужчины</label>
+                    <label htmlFor="project-male">Мужчины</label>
                     <input
                         type="checkbox"
-                        id="female"
+                        id="project-female"
                         name="sex"
                         value="Женщины"
                         className="chechbox"
                         onChange={handleChangeSex}
                     />
-                    <label htmlFor="female">Женщины</label>
+                    <label htmlFor="project-female">Женщины</label>
                     <input
                         type="checkbox"
-                        id="couples"
+                        id="project-couples"
                         name="sex"
                         value="Пары"
                         className="chechbox"
                         onChange={handleChangeSex}
                     />
-                    <label htmlFor="couples">Пары</label>
+                    <label htmlFor="project-couples">Пары</label>
                 </div>
                 <input
                     type="text"
