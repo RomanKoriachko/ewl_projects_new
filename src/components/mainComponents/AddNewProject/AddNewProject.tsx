@@ -1,62 +1,57 @@
 import { ProjectType } from 'container/Main/Main'
 import { getDatabase, ref, set, get, child } from 'firebase/database'
+import {
+    addNewSex,
+    changeCountry,
+    changeProjectAdditionalInfo,
+    changeProjectAgeFrom,
+    changeProjectAgeTo,
+    changeProjectHousing,
+    changeProjectInfo,
+    changeProjectLocation,
+    changeProjectName,
+    changeProjectNationality,
+    changeSalary,
+    changeSex,
+    deliteProjectData,
+} from 'redux/addNewProjectReduser'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import './AddNewProject.scss'
 
-type Props = {
-    project: ProjectType
-    setNewProject: (prevState: ProjectType) => void
-}
+type Props = {}
 
-const AddNewProject = ({ project, setNewProject }: Props) => {
+const AddNewProject = (props: Props) => {
+    const ProjectState = useAppSelector((state) => state.newProjectState)
+    const dispatch = useAppDispatch()
+
     const handleChangeCountry = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            country: e.target.value,
-        }))
+        dispatch(changeCountry(e.target.value))
     }
+
+    console.log(ProjectState)
+
     const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            salary: e.target.value,
-        }))
+        dispatch(changeSalary(e.target.value))
     }
     const handleChangeProjectName = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            projectName: e.target.value,
-        }))
+        dispatch(changeProjectName(e.target.value))
     }
     const handleChangeProjectLocation = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            location: e.target.value,
-        }))
+        dispatch(changeProjectLocation(e.target.value))
     }
 
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
-            /* @ts-ignore */
-            setNewProject((prevState: ProjectType) => ({
-                ...prevState,
-                sex: prevState.sex + ' ' + e.target.value,
-            }))
-        } else if (project.sex.includes(e.target.value)) {
-            let tempStr = project.sex
+            dispatch(changeSex(e.target.value))
+        } else if (ProjectState.sex.includes(e.target.value)) {
+            let tempStr = ProjectState.sex
             let newStr = tempStr.replace(e.target.value, '')
             newStr.trim()
-            /* @ts-ignore */
-            setNewProject((prevState: ProjectType) => ({
-                ...prevState,
-                sex: newStr,
-            }))
+            dispatch(addNewSex(newStr))
         }
     }
 
@@ -72,56 +67,32 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            ageFrom: e.target.value,
-        }))
+        dispatch(changeProjectAgeFrom(e.target.value))
     }
     const handleChangeProjectAgeTo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            ageTo: e.target.value,
-        }))
+        dispatch(changeProjectAgeTo(e.target.value))
     }
     const handleChangeProjectNationalaty = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            nationalaty: e.target.value,
-        }))
+        dispatch(changeProjectNationality(e.target.value))
     }
     const handleChangeProjectAdditionalInfo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            additionalInfo: e.target.value,
-        }))
+        dispatch(changeProjectAdditionalInfo(e.target.value))
     }
     const handleChangeProjectHousing = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            housing: e.target.value,
-        }))
+        dispatch(changeProjectHousing(e.target.value))
     }
     const handleChangeProjectProjectInfo = (
         e: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
-        /* @ts-ignore */
-        setNewProject((prevState: ProjectType) => ({
-            ...prevState,
-            projectInfo: e.target.value,
-        }))
+        dispatch(changeProjectInfo(e.target.value))
     }
 
     const db = getDatabase()
@@ -143,22 +114,11 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
         get(child(dbRef, `vacancy/`))
             .then((snapshot) => {
                 if (snapshot.exists()) {
-                    if (snapshot.val().hasOwnProperty(project.projectName)) {
+                    if (
+                        snapshot.val().hasOwnProperty(ProjectState.projectName)
+                    ) {
                         alert('Проект уже существует')
-                        /* @ts-ignore */
-                        setNewProject(() => ({
-                            country: '',
-                            salary: '',
-                            projectName: '',
-                            location: '',
-                            sex: '',
-                            ageFrom: '',
-                            ageTo: '',
-                            nationalaty: '',
-                            additionalInfo: '',
-                            housing: '',
-                            projectInfo: '',
-                        }))
+                        dispatch(deliteProjectData(''))
                     } else {
                         set(ref(db, `vacancy/${projectName}/`), {
                             country: country,
@@ -186,47 +146,34 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (
-            project.country === '' ||
-            project.salary === '' ||
-            project.projectName === '' ||
-            project.location === '' ||
-            project.sex === '' ||
-            project.ageFrom === '' ||
-            project.ageTo === '' ||
-            project.nationalaty === '' ||
-            project.additionalInfo === '' ||
-            project.housing === '' ||
-            project.projectInfo === ''
+            ProjectState.country === '' ||
+            ProjectState.salary === '' ||
+            ProjectState.projectName === '' ||
+            ProjectState.location === '' ||
+            ProjectState.sex === '' ||
+            ProjectState.ageFrom === '' ||
+            ProjectState.ageTo === '' ||
+            ProjectState.nationalaty === '' ||
+            ProjectState.additionalInfo === '' ||
+            ProjectState.housing === '' ||
+            ProjectState.projectInfo === ''
         ) {
             alert('Все поля обязательны для заполнения')
         } else {
             writeProjectData(
-                project.country,
-                project.salary,
-                project.projectName,
-                project.location,
-                project.sex,
-                project.ageFrom,
-                project.ageTo,
-                project.nationalaty,
-                project.additionalInfo,
-                project.housing,
-                project.projectInfo
+                ProjectState.country,
+                ProjectState.salary,
+                ProjectState.projectName,
+                ProjectState.location,
+                ProjectState.sex,
+                ProjectState.ageFrom,
+                ProjectState.ageTo,
+                ProjectState.nationalaty,
+                ProjectState.additionalInfo,
+                ProjectState.housing,
+                ProjectState.projectInfo
             )
-            /* @ts-ignore */
-            setNewProject(() => ({
-                country: '',
-                salary: '',
-                projectName: '',
-                location: '',
-                sex: '',
-                ageFrom: '',
-                ageTo: '',
-                nationalaty: '',
-                additionalInfo: '',
-                housing: '',
-                projectInfo: '',
-            }))
+            dispatch(deliteProjectData(''))
             resetSex()
         }
     }
@@ -240,7 +187,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     name="country"
                     id="country"
                     form="add-project"
-                    value={project.country}
+                    value={ProjectState.country}
                     onChange={handleChangeCountry}
                 >
                     <option value="empty"></option>
@@ -289,21 +236,21 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     type="text"
                     id="salary"
                     placeholder="Ставка"
-                    value={project.salary}
+                    value={ProjectState.salary}
                     onChange={handleChangeSalary}
                 />
                 <input
                     type="text"
                     id="project"
                     placeholder="Название проекта"
-                    value={project.projectName}
+                    value={ProjectState.projectName}
                     onChange={handleChangeProjectName}
                 />
                 <input
                     type="text"
                     id="location"
                     placeholder="Локализация"
-                    value={project.location}
+                    value={ProjectState.location}
                     onChange={handleChangeProjectLocation}
                 />
                 <div>
@@ -311,7 +258,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                         type="text"
                         id="age-from"
                         placeholder="Возраст От"
-                        value={project.ageFrom}
+                        value={ProjectState.ageFrom}
                         maxLength={2}
                         onChange={handleChangeProjectAgeFrom}
                     />
@@ -319,7 +266,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                         type="text"
                         id="age-to"
                         placeholder="Возраст До"
-                        value={project.ageTo}
+                        value={ProjectState.ageTo}
                         maxLength={2}
                         onChange={handleChangeProjectAgeTo}
                     />
@@ -328,21 +275,21 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     type="text"
                     id="nationalaty"
                     placeholder="Национальность"
-                    value={project.nationalaty}
+                    value={ProjectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
                 <input
                     type="text"
                     id="additionalInfo"
                     placeholder="Дополнительная информация"
-                    value={project.additionalInfo}
+                    value={ProjectState.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <input
                     type="text"
                     id="housing"
                     placeholder="Примеры жилья"
-                    value={project.housing}
+                    value={ProjectState.housing}
                     onChange={handleChangeProjectHousing}
                 />
                 <textarea
@@ -351,7 +298,7 @@ const AddNewProject = ({ project, setNewProject }: Props) => {
                     placeholder="Описание проекта"
                     cols={30}
                     rows={10}
-                    value={project.projectInfo}
+                    value={ProjectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
                 ></textarea>
                 <button type="submit">Добавить проект</button>

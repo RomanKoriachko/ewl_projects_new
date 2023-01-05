@@ -66,19 +66,20 @@ const Main = (props: Props) => {
 
     // ------------------------ Project ------------------------
 
-    const [project, setNewProject] = useState<ProjectType>({
-        country: '',
-        salary: '',
-        projectName: '',
-        location: '',
-        sex: '',
-        ageFrom: '',
-        ageTo: '',
-        nationalaty: '',
-        additionalInfo: '',
-        housing: '',
-        projectInfo: ``,
-    })
+    // const [project, setNewProject] = useState<ProjectType>({
+    //     country: '',
+    //     salary: '',
+    //     projectName: '',
+    //     location: '',
+    //     sex: '',
+    //     ageFrom: '',
+    //     ageTo: '',
+    //     nationalaty: '',
+    //     additionalInfo: '',
+    //     housing: '',
+    //     projectInfo: ``,
+    // })
+
     const [editProject, setEditProject] = useState<ProjectType>({
         country: '',
         salary: '',
@@ -124,10 +125,7 @@ const Main = (props: Props) => {
                 {loginData.isAdmin ? (
                     <>
                         <div className="admin-panel">
-                            <AddNewProject
-                                project={project}
-                                setNewProject={setNewProject}
-                            />
+                            <AddNewProject />
                             <Registration
                                 registrationData={registrationData}
                                 setRegistrationData={setRegistrationData}
