@@ -1,74 +1,71 @@
-import { ProjectType } from 'container/Main/Main'
 import { update, ref, getDatabase, get, child } from 'firebase/database'
+import {
+    addNewEditedSex,
+    deliteEditedProjectData,
+    editCountry,
+    editProjectAdditionalInfo,
+    editProjectAgeFrom,
+    editProjectAgeTo,
+    editProjectHousing,
+    editProjectInfo,
+    editProjectLocation,
+    editProjectName,
+    editProjectNationality,
+    editSalary,
+    editSex,
+} from 'redux/editProjectReduser'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import './EditProject.scss'
 
 type Props = {
-    editProject: ProjectType
-    setEditProject: (prevState: ProjectType) => void
     setEditFormState: (prevState: boolean) => void
 }
 
-const EditProject = ({
-    editProject,
-    setEditProject,
-    setEditFormState,
-}: Props) => {
+//
+const EditProject = ({ setEditFormState }: Props) => {
+    const editProjectState = useAppSelector((state) => state.editProjectState)
+    const dispatch = useAppDispatch()
+
     const handleChangeProjectCountry = (
         e: React.ChangeEvent<HTMLSelectElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            country: e.target.value,
-        }))
+        dispatch(editCountry(e.target.value))
     }
     const handleChangeProjectSalary = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            salary: e.target.value,
-        }))
+        dispatch(editSalary(e.target.value))
     }
     const handleChangeProjectName = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            projectName: e.target.value,
-        }))
+        dispatch(editProjectName(e.target.value))
     }
     const handleChangeProjectLocation = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            location: e.target.value,
-        }))
+        dispatch(editProjectLocation(e.target.value))
     }
 
     let checkboxMale = document.querySelector('.chechbox-male-edit')
     let checkboxFemale = document.querySelector('.chechbox-female-edit')
     let checkboxCouples = document.querySelector('.chechbox-couples-edit')
 
-    if (editProject.sex.includes('Мужчины')) {
+    if (editProjectState.sex.includes('Мужчины')) {
         /* @ts-ignore */
         checkboxMale.checked = true
     } else if (checkboxMale !== null) {
         /* @ts-ignore */
         checkboxMale.checked = false
     }
-    if (editProject.sex.includes('Женщины')) {
+    if (editProjectState.sex.includes('Женщины')) {
         /* @ts-ignore */
         checkboxFemale.checked = true
     } else if (checkboxFemale !== null) {
         /* @ts-ignore */
         checkboxFemale.checked = false
     }
-    if (editProject.sex.includes('Пары')) {
+    if (editProjectState.sex.includes('Пары')) {
         /* @ts-ignore */
         checkboxCouples.checked = true
     } else if (checkboxCouples !== null) {
@@ -78,77 +75,47 @@ const EditProject = ({
 
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
-            /* @ts-ignore */
-            setEditProject((prevState: ProjectType) => ({
-                ...prevState,
-                sex: (prevState.sex + ' ' + e.target.value).trim(),
-            }))
-        } else if (editProject.sex.includes(e.target.value)) {
-            let tempStr = editProject.sex
+            dispatch(editSex(e.target.value))
+        } else if (editProjectState.sex.includes(e.target.value)) {
+            let tempStr = editProjectState.sex
             let newStr = tempStr.replace(e.target.value, '')
             newStr.trim()
-            /* @ts-ignore */
-            setEditProject((prevState: ProjectType) => ({
-                ...prevState,
-                sex: newStr,
-            }))
+            dispatch(addNewEditedSex(newStr))
         }
     }
 
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            ageFrom: e.target.value,
-        }))
+        dispatch(editProjectAgeFrom(e.target.value))
     }
     const handleChangeProjectAgeTo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            ageTo: e.target.value,
-        }))
+        dispatch(editProjectAgeTo(e.target.value))
     }
     const handleChangeProjectNationalaty = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            nationalaty: e.target.value,
-        }))
+        dispatch(editProjectNationality(e.target.value))
     }
     const handleChangeProjectAdditionalInfo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            additionalInfo: e.target.value,
-        }))
+        dispatch(editProjectAdditionalInfo(e.target.value))
     }
     const handleChangeProjectHousing = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            housing: e.target.value,
-        }))
+        dispatch(editProjectHousing(e.target.value))
     }
     const handleChangeProjectProjectInfo = (
         e: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
-        /* @ts-ignore */
-        setEditProject((prevState: ProjectType) => ({
-            ...prevState,
-            projectInfo: e.target.value,
-        }))
+        dispatch(editProjectInfo(e.target.value))
     }
+
+    console.log(editProjectState)
 
     const closeEditForm = () => {
         setEditFormState(false)
@@ -172,7 +139,9 @@ const EditProject = ({
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     if (
-                        snapshot.val().hasOwnProperty(editProject.projectName)
+                        snapshot
+                            .val()
+                            .hasOwnProperty(editProjectState.projectName)
                     ) {
                         const db = getDatabase()
                         const projectData = {
@@ -191,20 +160,7 @@ const EditProject = ({
                         const updates = {}
                         /* @ts-ignore*/
                         updates[`vacancy/${projectName}`] = projectData
-                        /* @ts-ignore*/
-                        setEditProject(() => ({
-                            country: '',
-                            salary: '',
-                            projectName: '',
-                            location: '',
-                            sex: '',
-                            ageFrom: '',
-                            ageTo: '',
-                            nationalaty: '',
-                            additionalInfo: '',
-                            housing: '',
-                            projectInfo: '',
-                        }))
+                        dispatch(deliteEditedProjectData(''))
                         return update(ref(db), updates)
                     } else {
                         alert('такого проекту не існує')
@@ -221,37 +177,36 @@ const EditProject = ({
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (
-            editProject.country === '' ||
-            editProject.salary === '' ||
-            editProject.projectName === '' ||
-            editProject.location === '' ||
-            editProject.sex === '' ||
-            editProject.sex === ' ' ||
-            editProject.sex === '  ' ||
-            editProject.sex === '   ' ||
-            editProject.ageFrom === '' ||
-            editProject.ageTo === '' ||
-            editProject.nationalaty === '' ||
-            editProject.additionalInfo === '' ||
-            editProject.housing === '' ||
-            editProject.projectInfo === '' ||
-            editProject.country === 'empty' ||
-            editProject.sex === 'empty'
+            editProjectState.country === '' ||
+            editProjectState.salary === '' ||
+            editProjectState.projectName === '' ||
+            editProjectState.location === '' ||
+            editProjectState.ageFrom === '' ||
+            editProjectState.ageTo === '' ||
+            editProjectState.nationalaty === '' ||
+            editProjectState.additionalInfo === '' ||
+            editProjectState.housing === '' ||
+            editProjectState.projectInfo === '' ||
+            editProjectState.country === 'empty' ||
+            editProjectState.sex === 'empty' ||
+            (!editProjectState.sex.includes('Мужчины') &&
+                !editProjectState.sex.includes('Женщины') &&
+                !editProjectState.sex.includes('Пары'))
         ) {
             alert("всі поля обов'язкові")
         } else {
             onEditClick(
-                editProject.country,
-                editProject.salary,
-                editProject.projectName,
-                editProject.location,
-                editProject.sex,
-                editProject.ageFrom,
-                editProject.ageTo,
-                editProject.nationalaty,
-                editProject.additionalInfo,
-                editProject.housing,
-                editProject.projectInfo
+                editProjectState.country,
+                editProjectState.salary,
+                editProjectState.projectName,
+                editProjectState.location,
+                editProjectState.sex,
+                editProjectState.ageFrom,
+                editProjectState.ageTo,
+                editProjectState.nationalaty,
+                editProjectState.additionalInfo,
+                editProjectState.housing,
+                editProjectState.projectInfo
             )
             setEditFormState(false)
         }
@@ -269,7 +224,7 @@ const EditProject = ({
                     name="country"
                     id="edit-country"
                     form="add-project"
-                    value={editProject.country}
+                    value={editProjectState.country}
                     onChange={handleChangeProjectCountry}
                 >
                     <option value="empty"></option>
@@ -318,21 +273,21 @@ const EditProject = ({
                     type="text"
                     id="edit-salary"
                     placeholder="Ставка"
-                    value={editProject.salary}
+                    value={editProjectState.salary}
                     onChange={handleChangeProjectSalary}
                 />
                 <input
                     type="text"
                     id="edit-project"
                     placeholder="Название проекта"
-                    value={editProject.projectName}
+                    value={editProjectState.projectName}
                     onChange={handleChangeProjectName}
                 />
                 <input
                     type="text"
                     id="edit-location"
                     placeholder="Локализация"
-                    value={editProject.location}
+                    value={editProjectState.location}
                     onChange={handleChangeProjectLocation}
                 />
                 <div>
@@ -340,7 +295,7 @@ const EditProject = ({
                         type="text"
                         id="edit-age-from"
                         placeholder="Возраст От"
-                        value={editProject.ageFrom}
+                        value={editProjectState.ageFrom}
                         maxLength={2}
                         onChange={handleChangeProjectAgeFrom}
                     />
@@ -348,7 +303,7 @@ const EditProject = ({
                         type="text"
                         id="edit-age-to"
                         placeholder="Возраст До"
-                        value={editProject.ageTo}
+                        value={editProjectState.ageTo}
                         maxLength={2}
                         onChange={handleChangeProjectAgeTo}
                     />
@@ -357,21 +312,21 @@ const EditProject = ({
                     type="text"
                     id="edit-nationalaty"
                     placeholder="Национальность"
-                    value={editProject.nationalaty}
+                    value={editProjectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
                 <input
                     type="text"
                     id="edit-additionalInfo"
                     placeholder="Дополнительная информация"
-                    value={editProject.additionalInfo}
+                    value={editProjectState.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <input
                     type="text"
                     id="edit-housing"
                     placeholder="Примеры жилья"
-                    value={editProject.housing}
+                    value={editProjectState.housing}
                     onChange={handleChangeProjectHousing}
                 />
                 <textarea
@@ -380,7 +335,7 @@ const EditProject = ({
                     placeholder="Описание проекта"
                     cols={30}
                     rows={10}
-                    value={editProject.projectInfo}
+                    value={editProjectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
                 ></textarea>
                 <button type="submit">Редактировать проект</button>

@@ -9,28 +9,28 @@ import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
 import './Projects.scss'
 import CopyButton from '@yozora/react-common-copy-button'
+import { useAppDispatch } from 'redux/hooks'
+import { getProjectData } from 'redux/editProjectReduser'
 
 type Props = {
     loginData: UserType
-    editProject: ProjectType
     searchContent: string
     countryCheckboxState: CountryCheckboxType
     sexCheckboxState: SexCheckboxType
     isMinorState: boolean
     ageToState: number
-    setEditProject: (prevState: ProjectType) => void
 }
 
 const Projects = ({
     loginData,
-    editProject,
     searchContent,
     countryCheckboxState,
     sexCheckboxState,
     isMinorState,
     ageToState,
-    setEditProject,
 }: Props) => {
+    const dispatch = useAppDispatch()
+
     const [projectsArr, setProjectsArr] = useState<[]>([])
 
     useEffect(() => {
@@ -76,20 +76,22 @@ const Projects = ({
         housing: string,
         projectInfo: string
     ) => {
-        /* @ts-ignore */
-        setEditProject(() => ({
-            projectName: project,
-            country: country,
-            salary: salary,
-            location: location,
-            sex: sex,
-            ageFrom: ageFrom,
-            ageTo: ageTo,
-            nationalaty: nationalaty,
-            additionalInfo: additionalInfo,
-            housing: housing,
-            projectInfo: projectInfo,
-        }))
+        dispatch(
+            getProjectData({
+                projectName: project,
+                country: country,
+                project: project,
+                salary: salary,
+                location: location,
+                sex: sex,
+                ageFrom: ageFrom,
+                ageTo: ageTo,
+                nationalaty: nationalaty,
+                additionalInfo: additionalInfo,
+                housing: housing,
+                projectInfo: projectInfo,
+            })
+        )
         editFormState ? setEditFormState(false) : setEditFormState(true)
     }
 
@@ -306,11 +308,7 @@ const Projects = ({
                     className="project-edit-bg"
                     onClick={() => setEditFormState(false)}
                 ></div>
-                <EditProject
-                    editProject={editProject}
-                    setEditProject={setEditProject}
-                    setEditFormState={setEditFormState}
-                />
+                <EditProject setEditFormState={setEditFormState} />
             </div>
             {loginData.email === 'mazaxaka.tyt@gmail.com' ||
             loginData.email === 'juliiaderevianko@gmail.com' ? (

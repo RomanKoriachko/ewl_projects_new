@@ -1,4 +1,3 @@
-import { ProjectType } from 'container/Main/Main'
 import { getDatabase, ref, set, get, child } from 'firebase/database'
 import {
     addNewSex,
@@ -14,7 +13,7 @@ import {
     changeSalary,
     changeSex,
     deliteProjectData,
-} from 'redux/addNewProjectReduser'
+} from 'redux/newProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import './AddNewProject.scss'
 
@@ -27,8 +26,6 @@ const AddNewProject = (props: Props) => {
     const handleChangeCountry = (e: React.ChangeEvent<HTMLSelectElement>) => {
         dispatch(changeCountry(e.target.value))
     }
-
-    console.log(ProjectState)
 
     const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(changeSalary(e.target.value))

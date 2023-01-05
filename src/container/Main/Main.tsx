@@ -64,36 +64,6 @@ const Main = (props: Props) => {
         isAdmin: false,
     })
 
-    // ------------------------ Project ------------------------
-
-    // const [project, setNewProject] = useState<ProjectType>({
-    //     country: '',
-    //     salary: '',
-    //     projectName: '',
-    //     location: '',
-    //     sex: '',
-    //     ageFrom: '',
-    //     ageTo: '',
-    //     nationalaty: '',
-    //     additionalInfo: '',
-    //     housing: '',
-    //     projectInfo: ``,
-    // })
-
-    const [editProject, setEditProject] = useState<ProjectType>({
-        country: '',
-        salary: '',
-        projectName: '',
-        location: '',
-        sex: '',
-        ageFrom: '',
-        ageTo: '',
-        nationalaty: '',
-        additionalInfo: '',
-        housing: '',
-        projectInfo: ``,
-    })
-
     // ------------------------ filter data ------------------------
 
     const [searchContent, setSearchContent] = useState<string>('')
@@ -147,8 +117,6 @@ const Main = (props: Props) => {
                             />
                             <Projects
                                 loginData={loginData}
-                                setEditProject={setEditProject}
-                                editProject={editProject}
                                 searchContent={searchContent}
                                 countryCheckboxState={countryCheckboxState}
                                 sexCheckboxState={sexCheckboxState}
@@ -172,8 +140,6 @@ const Main = (props: Props) => {
                         />
                         <Projects
                             loginData={loginData}
-                            setEditProject={setEditProject}
-                            editProject={editProject}
                             searchContent={searchContent}
                             countryCheckboxState={countryCheckboxState}
                             sexCheckboxState={sexCheckboxState}

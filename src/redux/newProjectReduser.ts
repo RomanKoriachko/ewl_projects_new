@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit"
-import { ActionCodeOperation } from "firebase/auth"
 
 type ProjectType = {
     country: string

@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import addNewProjectReduser, { newProjectSlice } from "./addNewProjectReduser";
+import editProjectReduser from "./editProjectReduser";
+import newProjectReduser from "./newProjectReduser";
 
 
 export const store = configureStore({
     reducer: {
-        newProjectState: addNewProjectReduser,
+        newProjectState: newProjectReduser,
+        editProjectState: editProjectReduser,
     }
 })
 
