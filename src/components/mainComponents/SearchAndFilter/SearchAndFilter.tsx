@@ -1,3 +1,4 @@
+import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
 import {
     clearAllCountrysCheckboxes,
     cyprusChecked,
@@ -12,6 +13,7 @@ import {
     spainChecked,
 } from 'redux/countryCheckboxReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { setIsMinor } from 'redux/isMinorReducer'
 import { getSearchInput } from 'redux/searchContentReducer'
 import {
     clearAllSexCheckboxes,
@@ -21,24 +23,16 @@ import {
 } from 'redux/sexCheckboxReducer'
 import './SearchAndFilter.scss'
 
-type Props = {
-    setIsMinorState: (prevState: boolean) => void
-    setAgeToState: (prevState: number) => void
-    isMinorState: boolean
-    ageToState: number
-}
+type Props = {}
 
-const SearchAndFilter = ({
-    setIsMinorState,
-    setAgeToState,
-    isMinorState,
-    ageToState,
-}: Props) => {
+const SearchAndFilter = (props: Props) => {
     const dispatch = useAppDispatch()
     const countryCheckboxState = useAppSelector(
         (state) => state.countryCheckboxState
     )
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
+    const isMinorState = useAppSelector((state) => state.isMinorState)
+    const ageSearchState = useAppSelector((state) => state.ageSearchState)
 
     const changeSeacrchContent = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(getSearchInput(e.target.value))
@@ -122,13 +116,15 @@ const SearchAndFilter = ({
     // --------------------- is minor filter ---------------------
 
     const isMinorChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.target.checked ? setIsMinorState(true) : setIsMinorState(false)
+        e.target.checked
+            ? dispatch(setIsMinor(true))
+            : dispatch(setIsMinor(false))
     }
 
     // --------------------- Age to filter ---------------------
 
     const ageToValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAgeToState(parseInt(e.target.value))
+        dispatch(getAgeFromInput(e.target.value))
     }
 
     // --------------------- Reser Filter ---------------------
@@ -136,8 +132,8 @@ const SearchAndFilter = ({
     const resetFilter = () => {
         dispatch(clearAllCountrysCheckboxes())
         dispatch(clearAllSexCheckboxes())
-        setIsMinorState(false)
-        setAgeToState(NaN)
+        dispatch(setIsMinor(true))
+        dispatch(clearAgeState())
     }
 
     return (
@@ -369,7 +365,7 @@ const SearchAndFilter = ({
                                 name="age18"
                                 maxLength={2}
                                 onChange={ageToValue}
-                                value={ageToState ? ageToState : ''}
+                                value={ageSearchState ? ageSearchState : ''}
                             />
                             <label htmlFor="age18">Возраст кандидата</label>
                         </div>

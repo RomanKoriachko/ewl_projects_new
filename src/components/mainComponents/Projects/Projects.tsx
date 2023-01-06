@@ -1,9 +1,4 @@
-import {
-    CountryCheckboxType,
-    ProjectType,
-    SexCheckboxType,
-    UserType,
-} from 'container/Main/Main'
+import { ProjectType } from 'container/Main/Main'
 import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
@@ -12,18 +7,17 @@ import CopyButton from '@yozora/react-common-copy-button'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 
-type Props = {
-    isMinorState: boolean
-    ageToState: number
-}
+type Props = {}
 
-const Projects = ({ isMinorState, ageToState }: Props) => {
+const Projects = (props: Props) => {
     const loginDataState = useAppSelector((state) => state.loginDataState)
     const searchState = useAppSelector((state) => state.searchState)
     const countryCheckboxState = useAppSelector(
         (state) => state.countryCheckboxState
     )
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
+    const isMinorState = useAppSelector((state) => state.isMinorState)
+    const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const dispatch = useAppDispatch()
 
     const [projectsArr, setProjectsArr] = useState<[]>([])
@@ -277,12 +271,12 @@ const Projects = ({ isMinorState, ageToState }: Props) => {
 
     let filtredArr: [] = []
 
-    if (ageToState) {
+    if (ageSearchState) {
         /* @ts-ignore */
         filtredArr = temporaryIsMinorArr.filter(
             (el: ProjectType) =>
-                ageToState >= parseInt(el.ageFrom) &&
-                ageToState <= parseInt(el.ageTo)
+                ageSearchState >= parseInt(el.ageFrom) &&
+                ageSearchState <= parseInt(el.ageTo)
         )
     } else {
         filtredArr = temporaryIsMinorArr

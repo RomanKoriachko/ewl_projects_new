@@ -1,4 +1,3 @@
-import { UserType } from 'container/Main/Main'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import {

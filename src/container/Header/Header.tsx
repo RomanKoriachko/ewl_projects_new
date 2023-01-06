@@ -1,24 +1,11 @@
 import './Header.scss'
 import { getAuth } from 'firebase/auth'
-import { UserType } from 'container/Main/Main'
 import { useAppSelector } from 'redux/hooks'
 
 type Props = {}
 
 const Header = (props: Props) => {
     const loginDataState = useAppSelector((state) => state.loginDataState)
-
-    // const raw = localStorage.getItem('loginData')
-    // let localLoginData: UserType = {
-    //     email: '',
-    //     password: '',
-    //     hasAccount: false,
-    //     isAdmin: false,
-    // }
-    // if (raw) {
-    //     localLoginData = JSON.parse(raw)
-    // }
-    // console.log(localLoginData)
 
     const auth = getAuth()
     const user = auth.currentUser
