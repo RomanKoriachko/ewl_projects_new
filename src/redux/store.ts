@@ -5,6 +5,7 @@ import loginDataReducer from "./loginDataReducer";
 import newProjectReduser from "./newProjectReduser";
 import registrationDataReducer from "./registrationDataReducer";
 import searchContentReducer from "./searchContentReducer";
+import sexCheckboxReducer from "./sexCheckboxReducer";
 
 
 export const store = configureStore({
@@ -15,6 +16,7 @@ export const store = configureStore({
         registrationDataState: registrationDataReducer,
         searchState: searchContentReducer,
         countryCheckboxState: countryCheckboxReducer,
+        sexCheckboxState: sexCheckboxReducer,
     }
 })
 

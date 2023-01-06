@@ -70,7 +70,7 @@ export const countryCheckboxReducer = createSlice({
             ...state,
             checkboxCyprus: action.payload,
         }),
-        clearAllcheckboxes: (state) =>( {
+        clearAllCountrysCheckboxes: (state) =>( {
             checkboxPoland: '',
             checkboxCzech: '',
             checkboxRomania: '',
@@ -85,5 +85,5 @@ export const countryCheckboxReducer = createSlice({
     }
 })
 
-export const {polandChecked, czechChecked, romaniaChecked, slovakiaChecked, lithuaniaChecked, hollandChecked, germanyChecked, greeceChecked, spainChecked, cyprusChecked, clearAllcheckboxes} = countryCheckboxReducer.actions
+export const {polandChecked, czechChecked, romaniaChecked, slovakiaChecked, lithuaniaChecked, hollandChecked, germanyChecked, greeceChecked, spainChecked, cyprusChecked, clearAllCountrysCheckboxes} = countryCheckboxReducer.actions
 export default countryCheckboxReducer.reducer

@@ -1,6 +1,5 @@
-import { SexCheckboxType } from 'container/Main/Main'
 import {
-    clearAllcheckboxes,
+    clearAllCountrysCheckboxes,
     cyprusChecked,
     czechChecked,
     germanyChecked,
@@ -14,22 +13,24 @@ import {
 } from 'redux/countryCheckboxReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getSearchInput } from 'redux/searchContentReducer'
+import {
+    clearAllSexCheckboxes,
+    setCouplesCheckbox,
+    setFemaleCheckbox,
+    setMaleCheckbox,
+} from 'redux/sexCheckboxReducer'
 import './SearchAndFilter.scss'
 
 type Props = {
-    setSexCheckboxState: (prevState: SexCheckboxType) => void
     setIsMinorState: (prevState: boolean) => void
     setAgeToState: (prevState: number) => void
-    sexCheckboxState: SexCheckboxType
     isMinorState: boolean
     ageToState: number
 }
 
 const SearchAndFilter = ({
-    setSexCheckboxState,
     setIsMinorState,
     setAgeToState,
-    sexCheckboxState,
     isMinorState,
     ageToState,
 }: Props) => {
@@ -37,7 +38,7 @@ const SearchAndFilter = ({
     const countryCheckboxState = useAppSelector(
         (state) => state.countryCheckboxState
     )
-    console.log(countryCheckboxState)
+    const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
 
     const changeSeacrchContent = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(getSearchInput(e.target.value))
@@ -104,48 +105,18 @@ const SearchAndFilter = ({
 
     const maleCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
-            ? /* @ts-ignore */
-              setSexCheckboxState((prevState: SexCheckboxType) => ({
-                  male: 'Мужчины',
-                  female: prevState.female,
-                  couples: prevState.couples,
-              }))
-            : /* @ts-ignore */
-              setSexCheckboxState((prevState: SexCheckboxType) => ({
-                  male: '',
-                  female: prevState.female,
-                  couples: prevState.couples,
-              }))
+            ? dispatch(setMaleCheckbox('Мужчины'))
+            : dispatch(setMaleCheckbox(''))
     }
     const femaleCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
-            ? /* @ts-ignore */
-              setSexCheckboxState((prevState: SexCheckboxType) => ({
-                  male: prevState.male,
-                  female: 'Женщины',
-                  couples: prevState.couples,
-              }))
-            : /* @ts-ignore */
-              setSexCheckboxState((prevState: SexCheckboxType) => ({
-                  male: prevState.male,
-                  female: '',
-                  couples: prevState.couples,
-              }))
+            ? dispatch(setFemaleCheckbox('Женщины'))
+            : dispatch(setFemaleCheckbox(''))
     }
     const couplesCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
-            ? /* @ts-ignore */
-              setSexCheckboxState((prevState: SexCheckboxType) => ({
-                  male: prevState.male,
-                  female: prevState.female,
-                  couples: 'Пары',
-              }))
-            : /* @ts-ignore */
-              setSexCheckboxState((prevState: SexCheckboxType) => ({
-                  male: prevState.male,
-                  female: prevState.female,
-                  couples: '',
-              }))
+            ? dispatch(setCouplesCheckbox('Пары'))
+            : dispatch(setCouplesCheckbox(''))
     }
 
     // --------------------- is minor filter ---------------------
@@ -163,12 +134,8 @@ const SearchAndFilter = ({
     // --------------------- Reser Filter ---------------------
 
     const resetFilter = () => {
-        dispatch(clearAllcheckboxes())
-        setSexCheckboxState({
-            male: '',
-            female: '',
-            couples: '',
-        })
+        dispatch(clearAllCountrysCheckboxes())
+        dispatch(clearAllSexCheckboxes())
         setIsMinorState(false)
         setAgeToState(NaN)
     }

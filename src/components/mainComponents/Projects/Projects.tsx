@@ -13,17 +13,17 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 
 type Props = {
-    sexCheckboxState: SexCheckboxType
     isMinorState: boolean
     ageToState: number
 }
 
-const Projects = ({ sexCheckboxState, isMinorState, ageToState }: Props) => {
+const Projects = ({ isMinorState, ageToState }: Props) => {
     const loginDataState = useAppSelector((state) => state.loginDataState)
     const searchState = useAppSelector((state) => state.searchState)
     const countryCheckboxState = useAppSelector(
         (state) => state.countryCheckboxState
     )
+    const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const dispatch = useAppDispatch()
 
     const [projectsArr, setProjectsArr] = useState<[]>([])

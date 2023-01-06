@@ -74,15 +74,12 @@ const Main = (props: Props) => {
                         </div>
                         <div className="wrapper">
                             <SearchAndFilter
-                                setSexCheckboxState={setSexCheckboxState}
                                 setIsMinorState={setIsMinorState}
                                 setAgeToState={setAgeToState}
-                                sexCheckboxState={sexCheckboxState}
                                 isMinorState={isMinorState}
                                 ageToState={ageToState}
                             />
                             <Projects
-                                sexCheckboxState={sexCheckboxState}
                                 isMinorState={isMinorState}
                                 ageToState={ageToState}
                             />
@@ -91,15 +88,12 @@ const Main = (props: Props) => {
                 ) : loginDataState.hasAccount ? (
                     <div className="wrapper">
                         <SearchAndFilter
-                            setSexCheckboxState={setSexCheckboxState}
                             setIsMinorState={setIsMinorState}
                             setAgeToState={setAgeToState}
-                            sexCheckboxState={sexCheckboxState}
                             isMinorState={isMinorState}
                             ageToState={ageToState}
                         />
                         <Projects
-                            sexCheckboxState={sexCheckboxState}
                             isMinorState={isMinorState}
                             ageToState={ageToState}
                         />
