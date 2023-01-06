@@ -54,20 +54,6 @@ const Main = (props: Props) => {
 
     // ------------------------ filter data ------------------------
 
-    const [searchContent, setSearchContent] = useState<string>('')
-    const [countryCheckboxState, setCountryCheckboxState] =
-        useState<CountryCheckboxType>({
-            checkboxPoland: '',
-            checkboxCzech: '',
-            checkboxRomania: '',
-            checkboxSlovakia: '',
-            checkboxLithuania: '',
-            checkboxHolland: '',
-            checkboxGermany: '',
-            checkboxGreece: '',
-            checkboxSpain: '',
-            checkboxCyprus: '',
-        })
     const [sexCheckboxState, setSexCheckboxState] = useState<SexCheckboxType>({
         male: '',
         female: '',
@@ -75,17 +61,6 @@ const Main = (props: Props) => {
     })
     const [isMinorState, setIsMinorState] = useState<boolean>(false)
     const [ageToState, setAgeToState] = useState<number>(NaN)
-
-    // const raw = localStorage.getItem('loginData')
-    // let localLoginData: UserType = {
-    //     email: '',
-    //     password: '',
-    //     hasAccount: false,
-    //     isAdmin: false,
-    // }
-    // if (raw) {
-    //     localLoginData = JSON.parse(raw)
-    // }
 
     return (
         <div className="main">
@@ -99,21 +74,14 @@ const Main = (props: Props) => {
                         </div>
                         <div className="wrapper">
                             <SearchAndFilter
-                                setSearchContent={setSearchContent}
-                                setCountryCheckboxState={
-                                    setCountryCheckboxState
-                                }
                                 setSexCheckboxState={setSexCheckboxState}
                                 setIsMinorState={setIsMinorState}
                                 setAgeToState={setAgeToState}
-                                countryCheckboxState={countryCheckboxState}
                                 sexCheckboxState={sexCheckboxState}
                                 isMinorState={isMinorState}
                                 ageToState={ageToState}
                             />
                             <Projects
-                                searchContent={searchContent}
-                                countryCheckboxState={countryCheckboxState}
                                 sexCheckboxState={sexCheckboxState}
                                 isMinorState={isMinorState}
                                 ageToState={ageToState}
@@ -123,19 +91,14 @@ const Main = (props: Props) => {
                 ) : loginDataState.hasAccount ? (
                     <div className="wrapper">
                         <SearchAndFilter
-                            setSearchContent={setSearchContent}
-                            setCountryCheckboxState={setCountryCheckboxState}
                             setSexCheckboxState={setSexCheckboxState}
                             setIsMinorState={setIsMinorState}
                             setAgeToState={setAgeToState}
-                            countryCheckboxState={countryCheckboxState}
                             sexCheckboxState={sexCheckboxState}
                             isMinorState={isMinorState}
                             ageToState={ageToState}
                         />
                         <Projects
-                            searchContent={searchContent}
-                            countryCheckboxState={countryCheckboxState}
                             sexCheckboxState={sexCheckboxState}
                             isMinorState={isMinorState}
                             ageToState={ageToState}

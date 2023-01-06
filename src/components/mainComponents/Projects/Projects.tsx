@@ -13,21 +13,17 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 
 type Props = {
-    searchContent: string
-    countryCheckboxState: CountryCheckboxType
     sexCheckboxState: SexCheckboxType
     isMinorState: boolean
     ageToState: number
 }
 
-const Projects = ({
-    searchContent,
-    countryCheckboxState,
-    sexCheckboxState,
-    isMinorState,
-    ageToState,
-}: Props) => {
+const Projects = ({ sexCheckboxState, isMinorState, ageToState }: Props) => {
     const loginDataState = useAppSelector((state) => state.loginDataState)
+    const searchState = useAppSelector((state) => state.searchState)
+    const countryCheckboxState = useAppSelector(
+        (state) => state.countryCheckboxState
+    )
     const dispatch = useAppDispatch()
 
     const [projectsArr, setProjectsArr] = useState<[]>([])
@@ -98,35 +94,27 @@ const Projects = ({
 
     const tempArr = projectsArr.filter(
         (element: ProjectType) =>
-            element.country
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.salary
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
+            element.country.toLowerCase().includes(searchState.toLowerCase()) ||
+            element.salary.toLowerCase().includes(searchState.toLowerCase()) ||
             element.projectName
                 .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
+                .includes(searchState.toLowerCase()) ||
             element.location
                 .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.sex.toLowerCase().includes(searchContent.toLowerCase()) ||
-            element.ageFrom
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.ageTo.toLowerCase().includes(searchContent.toLowerCase()) ||
+                .includes(searchState.toLowerCase()) ||
+            element.sex.toLowerCase().includes(searchState.toLowerCase()) ||
+            element.ageFrom.toLowerCase().includes(searchState.toLowerCase()) ||
+            element.ageTo.toLowerCase().includes(searchState.toLowerCase()) ||
             element.nationalaty
                 .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
+                .includes(searchState.toLowerCase()) ||
             element.additionalInfo
                 .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
-            element.housing
-                .toLowerCase()
-                .includes(searchContent.toLowerCase()) ||
+                .includes(searchState.toLowerCase()) ||
+            element.housing.toLowerCase().includes(searchState.toLowerCase()) ||
             element.projectInfo
                 .toLowerCase()
-                .includes(searchContent.toLowerCase())
+                .includes(searchState.toLowerCase())
     )
 
     // ---------------------- country filter ----------------------

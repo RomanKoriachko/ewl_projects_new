@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import countryCheckboxReducer from "./countryCheckboxReducer";
 import editProjectReduser from "./editProjectReduser";
 import loginDataReducer from "./loginDataReducer";
 import newProjectReduser from "./newProjectReduser";
 import registrationDataReducer from "./registrationDataReducer";
+import searchContentReducer from "./searchContentReducer";
 
 
 export const store = configureStore({
@@ -11,6 +13,8 @@ export const store = configureStore({
         editProjectState: editProjectReduser,
         loginDataState: loginDataReducer,
         registrationDataState: registrationDataReducer,
+        searchState: searchContentReducer,
+        countryCheckboxState: countryCheckboxReducer,
     }
 })
 
