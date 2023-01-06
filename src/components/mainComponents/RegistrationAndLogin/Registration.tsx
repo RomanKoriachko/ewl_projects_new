@@ -1,29 +1,29 @@
 import { UserType } from 'container/Main/Main'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import {
+    cleanRegistrationInput,
+    setRegistrationLogin,
+    setRegistrationPassword,
+} from 'redux/registrationDataReducer'
 
-type Props = {
-    registrationData: UserType
-    setRegistrationData: (prevState: UserType) => void
-}
+type Props = {}
 
-const Registration = ({ registrationData, setRegistrationData }: Props) => {
+const Registration = (props: Props) => {
+    const RedistrationState = useAppSelector(
+        (state) => state.registrationDataState
+    )
+    const dispatch = useAppDispatch()
+
     const handleChangeRegistrationLogin = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setRegistrationData((prevState: UserType) => ({
-            ...prevState,
-            email: e.target.value,
-        }))
+        dispatch(setRegistrationLogin(e.target.value))
     }
     const handleChangeRegistrationPassword = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        /* @ts-ignore */
-        setRegistrationData((prevState: UserType) => ({
-            ...prevState,
-            password: e.target.value,
-        }))
+        dispatch(setRegistrationPassword(e.target.value))
     }
 
     const createAccount = (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,22 +31,16 @@ const Registration = ({ registrationData, setRegistrationData }: Props) => {
         const auth = getAuth()
         createUserWithEmailAndPassword(
             auth,
-            registrationData.email,
-            registrationData.password
+            RedistrationState.email,
+            RedistrationState.password
         )
             .then(() => {
-                alert('Реєстрація успішна!')
+                alert('Пользователь зарегистрирован')
             })
             .catch(() => {
-                alert('Помилка створення аккаунту')
+                alert('Ошибка создания аккаунта')
             })
-        /* @ts-ignore */
-        setRegistrationData(() => ({
-            email: '',
-            password: '',
-            hasAccount: false,
-            isAdmin: false,
-        }))
+        dispatch(cleanRegistrationInput())
     }
 
     return (
@@ -61,14 +55,14 @@ const Registration = ({ registrationData, setRegistrationData }: Props) => {
                         type="text"
                         id="registration-login"
                         onChange={handleChangeRegistrationLogin}
-                        value={registrationData.email}
+                        value={RedistrationState.email}
                     />
                     <input
                         className="password-input"
                         type="password"
                         id="registration-password"
                         onChange={handleChangeRegistrationPassword}
-                        value={registrationData.password}
+                        value={RedistrationState.password}
                     />
                     <button type="submit" className="submit-button">
                         Зарегистрироваться

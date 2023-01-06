@@ -1,55 +1,45 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import {
+    loginAdmin,
+    loginUser,
+    setLogin,
+    setPassword,
+} from 'redux/loginDataReducer'
 import './Login.scss'
 
-type Props = {
-    loginData: UserType
-    setLoginData: (prevState: UserType) => void
-}
+type Props = {}
 
-type UserType = {
-    email: string
-    password: string
-    hasAccount: boolean
-    isAdmin: boolean
-}
+const Login = (props: Props) => {
+    const loginState = useAppSelector((state) => state.loginDataState)
+    const dispatch = useAppDispatch()
 
-const Login = ({ loginData, setLoginData }: Props) => {
     const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
-        /* @ts-ignore */
-        setLoginData((prevState: UserType) => ({
-            ...prevState,
-            email: e.target.value,
-        }))
+        dispatch(setLogin(e.target.value))
     }
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        /* @ts-ignore */
-        setLoginData((prevState: UserType) => ({
-            ...prevState,
-            password: e.target.value,
-        }))
+        dispatch(setPassword(e.target.value))
     }
     const login = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const auth = getAuth()
-        signInWithEmailAndPassword(auth, loginData.email, loginData.password)
+        signInWithEmailAndPassword(auth, loginState.email, loginState.password)
             .then(() => {
                 if (
-                    loginData.email === 'mazaxaka.tyt@gmail.com' &&
+                    loginState.email === 'mazaxaka.tyt@gmail.com' &&
                     'juliiaderevianko@gmail.com'
                 ) {
-                    /* @ts-ignore */
-                    setLoginData((prevState: UserType) => ({
-                        ...prevState,
-                        hasAccount: true,
-                        isAdmin: true,
-                    }))
+                    dispatch(loginAdmin())
+                    localStorage.setItem(
+                        'loginData',
+                        JSON.stringify(loginState)
+                    )
                 } else {
-                    /* @ts-ignore */
-                    setLoginData((prevState: UserType) => ({
-                        ...prevState,
-                        hasAccount: true,
-                        isAdmin: false,
-                    }))
+                    dispatch(loginUser())
+                    localStorage.setItem(
+                        'loginData',
+                        JSON.stringify(loginState)
+                    )
                 }
             })
             .catch(() => {
@@ -70,14 +60,14 @@ const Login = ({ loginData, setLoginData }: Props) => {
                             type="text"
                             id="login-email"
                             onChange={handleChangeLogin}
-                            value={loginData.email}
+                            value={loginState.email}
                         />
                         <input
                             className="password-input"
                             type="password"
                             id="login-password"
                             onChange={handleChangePassword}
-                            value={loginData.password}
+                            value={loginState.password}
                         />
                         <button type="submit" className="submit-button">
                             Войти

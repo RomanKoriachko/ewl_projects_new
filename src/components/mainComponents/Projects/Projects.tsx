@@ -9,11 +9,10 @@ import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
 import './Projects.scss'
 import CopyButton from '@yozora/react-common-copy-button'
-import { useAppDispatch } from 'redux/hooks'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 
 type Props = {
-    loginData: UserType
     searchContent: string
     countryCheckboxState: CountryCheckboxType
     sexCheckboxState: SexCheckboxType
@@ -22,13 +21,13 @@ type Props = {
 }
 
 const Projects = ({
-    loginData,
     searchContent,
     countryCheckboxState,
     sexCheckboxState,
     isMinorState,
     ageToState,
 }: Props) => {
+    const loginDataState = useAppSelector((state) => state.loginDataState)
     const dispatch = useAppDispatch()
 
     const [projectsArr, setProjectsArr] = useState<[]>([])
@@ -310,8 +309,8 @@ const Projects = ({
                 ></div>
                 <EditProject setEditFormState={setEditFormState} />
             </div>
-            {loginData.email === 'mazaxaka.tyt@gmail.com' ||
-            loginData.email === 'juliiaderevianko@gmail.com' ? (
+            {loginDataState.email === 'mazaxaka.tyt@gmail.com' ||
+            loginDataState.email === 'juliiaderevianko@gmail.com' ? (
                 filtredArr.length === 0 ? (
                     <div className="no-search-results">Совпадений нет</div>
                 ) : (
@@ -457,6 +456,10 @@ const Projects = ({
                                     {element.projectInfo}
                                 </div>
                             </div>
+                            <CopyButton
+                                className="copy-btn"
+                                value={`Название проекта\n${element.projectName}\n\nСтрана\n${element.country}\n\nCтавка в злотых\n${element.salary}\n\nЛокализация\n${element.location}\n\nПол\n${element.sex}\n\nВозраст от\n${element.ageFrom}\n\nВозраст до\n${element.ageTo}\n\nНациональность\n${element.nationalaty}\n\nДополнительная информация\n${element.additionalInfo}\n\nПримеры жилья\n${element.housing}\n\nОписание вакансии\n${element.projectInfo}`}
+                            />
                         </div>
                     ))}
                 </div>

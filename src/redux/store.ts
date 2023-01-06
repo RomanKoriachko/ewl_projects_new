@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import editProjectReduser from "./editProjectReduser";
+import loginDataReducer from "./loginDataReducer";
 import newProjectReduser from "./newProjectReduser";
+import registrationDataReducer from "./registrationDataReducer";
 
 
 export const store = configureStore({
     reducer: {
         newProjectState: newProjectReduser,
         editProjectState: editProjectReduser,
+        loginDataState: loginDataReducer,
+        registrationDataState: registrationDataReducer,
     }
 })
 

@@ -115,8 +115,6 @@ const EditProject = ({ setEditFormState }: Props) => {
         dispatch(editProjectInfo(e.target.value))
     }
 
-    console.log(editProjectState)
-
     const closeEditForm = () => {
         setEditFormState(false)
     }

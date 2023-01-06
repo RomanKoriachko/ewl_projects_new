@@ -6,6 +6,7 @@ import SearchAndFilter from 'components/mainComponents/SearchAndFilter/SearchAnd
 import Header from 'container/Header/Header'
 import Registration from 'components/mainComponents/RegistrationAndLogin/Registration'
 import Login from 'components/mainComponents/RegistrationAndLogin/Login'
+import { useAppSelector } from 'redux/hooks'
 
 type Props = {}
 
@@ -49,20 +50,7 @@ export type SexCheckboxType = {
 }
 
 const Main = (props: Props) => {
-    //------------------------ Login Data ------------------------
-
-    const [registrationData, setRegistrationData] = useState<UserType>({
-        email: '',
-        password: '',
-        hasAccount: false,
-        isAdmin: false,
-    })
-    const [loginData, setLoginData] = useState<UserType>({
-        email: '',
-        password: '',
-        hasAccount: false,
-        isAdmin: false,
-    })
+    const loginDataState = useAppSelector((state) => state.loginDataState)
 
     // ------------------------ filter data ------------------------
 
@@ -88,18 +76,26 @@ const Main = (props: Props) => {
     const [isMinorState, setIsMinorState] = useState<boolean>(false)
     const [ageToState, setAgeToState] = useState<number>(NaN)
 
+    // const raw = localStorage.getItem('loginData')
+    // let localLoginData: UserType = {
+    //     email: '',
+    //     password: '',
+    //     hasAccount: false,
+    //     isAdmin: false,
+    // }
+    // if (raw) {
+    //     localLoginData = JSON.parse(raw)
+    // }
+
     return (
         <div className="main">
-            <Header loginData={loginData} />
+            <Header />
             <div className="container">
-                {loginData.isAdmin ? (
+                {loginDataState.isAdmin ? (
                     <>
                         <div className="admin-panel">
                             <AddNewProject />
-                            <Registration
-                                registrationData={registrationData}
-                                setRegistrationData={setRegistrationData}
-                            />
+                            <Registration />
                         </div>
                         <div className="wrapper">
                             <SearchAndFilter
@@ -116,7 +112,6 @@ const Main = (props: Props) => {
                                 ageToState={ageToState}
                             />
                             <Projects
-                                loginData={loginData}
                                 searchContent={searchContent}
                                 countryCheckboxState={countryCheckboxState}
                                 sexCheckboxState={sexCheckboxState}
@@ -125,7 +120,7 @@ const Main = (props: Props) => {
                             />
                         </div>
                     </>
-                ) : loginData.hasAccount ? (
+                ) : loginDataState.hasAccount ? (
                     <div className="wrapper">
                         <SearchAndFilter
                             setSearchContent={setSearchContent}
@@ -139,7 +134,6 @@ const Main = (props: Props) => {
                             ageToState={ageToState}
                         />
                         <Projects
-                            loginData={loginData}
                             searchContent={searchContent}
                             countryCheckboxState={countryCheckboxState}
                             sexCheckboxState={sexCheckboxState}
@@ -148,7 +142,7 @@ const Main = (props: Props) => {
                         />
                     </div>
                 ) : (
-                    <Login loginData={loginData} setLoginData={setLoginData} />
+                    <Login />
                 )}
             </div>
         </div>
