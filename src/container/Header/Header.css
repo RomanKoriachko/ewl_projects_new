@@ -1,9 +1,11 @@
 .header {
-  height: 100px;
   border-bottom: 1px solid black;
+  height: 100px;
 }
-.header .user {
-  text-align: center;
-  position: relative;
-  top: 40%;
+
+.header-content {
+  text-align: right;
+}
+.header-content .header-user {
+  padding-top: 20px;
 }

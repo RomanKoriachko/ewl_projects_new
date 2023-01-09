@@ -3,14 +3,14 @@ import {createSlice} from "@reduxjs/toolkit"
 type UserType = {
     email: string
     password: string
-    hasAccount: boolean
+    isLogged: boolean
     isAdmin: boolean
 }
 
 const initialState: UserType = {
     email: '',
     password: '',
-    hasAccount: false,
+    isLogged: false,
     isAdmin: false,
 }
 
@@ -26,14 +26,16 @@ export const loginDataSlice = createSlice({
             ...state,
             password: action.payload
         }),
-        loginAdmin: (state) => ({
+        loginAdmin: (state) => (
+            {
             ...state,
-            hasAccount: true,
+            isLogged: true,
             isAdmin: true,
         }),
-        loginUser: (state) => ({
+        loginUser: (state) => (
+            {
             ...state,
-            hasAccount: true,
+            isLogged: true,
             isAdmin: false,
         })
     }

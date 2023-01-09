@@ -1,4 +1,3 @@
-import { ProjectType } from 'container/Main/Main'
 import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import EditProject from '../EditProject/EditProject'
@@ -8,6 +7,20 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 
 type Props = {}
+
+type ProjectType = {
+    country: string
+    salary: string
+    projectName: string
+    location: string
+    sex: string
+    ageFrom: string
+    ageTo: string
+    nationalaty: string
+    additionalInfo: string
+    housing: string
+    projectInfo: string
+}
 
 const Projects = (props: Props) => {
     const loginDataState = useAppSelector((state) => state.loginDataState)

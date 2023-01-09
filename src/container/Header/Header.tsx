@@ -1,50 +1,71 @@
 import './Header.scss'
-import { getAuth } from 'firebase/auth'
 import { useAppSelector } from 'redux/hooks'
 
 type Props = {}
 
+type UserType = {
+    email: string
+    password: string
+    isLogged: boolean
+    isAdmin: boolean
+}
+
 const Header = (props: Props) => {
     const loginDataState = useAppSelector((state) => state.loginDataState)
 
-    const auth = getAuth()
-    const user = auth.currentUser
-    let userEmail: string | null = ''
-    let headerClass = 'hide'
-    let isLogged: boolean = false
+    let raw = localStorage.getItem('loginData')
+    let localLoginData
+    if (raw) {
+        localLoginData = JSON.parse(raw)
+    }
 
-    if (loginDataState.hasAccount === true && user !== null) {
-        userEmail = user.email
-        headerClass = 'show'
-        isLogged = true
+    let currentData: UserType = localLoginData
+
+    if (loginDataState.isLogged) {
+        currentData.isLogged = true
+    }
+    if (loginDataState.isAdmin) {
+        currentData.isAdmin = true
     }
 
     const logout = () => {
-        localStorage.clear()
+        let logoutData = {
+            email: '',
+            password: '',
+            isLogged: false,
+            isAdmin: false,
+        }
+        localStorage.setItem('loginData', JSON.stringify(logoutData))
     }
 
     return (
-        <>
-            {isLogged ? (
-                <div className={`header ${headerClass}`}>
-                    <div className={`user ${headerClass}`}>
-                        User: {userEmail}
+        <header className="header">
+            <div className="container">
+                {currentData.isLogged ? (
+                    <div className="header-content">
+                        <div className="header-user">
+                            Пользователь: {localLoginData.email}
+                        </div>
+                        <div>
+                            <a href="">
+                                <button onClick={() => logout()}>Выйти</button>
+                            </a>
+                        </div>
                     </div>
-                    <a href="">
-                        <button onClick={() => logout()}>Выйти</button>
-                    </a>
-                </div>
-            ) : (
-                <div className="header">
-                    <div className="user">
-                        Чтобы войти введите логин и пароль
+                ) : (
+                    <div className="header">
+                        <div className="user">
+                            Чтобы войти введите логин и пароль
+                        </div>
+                        <div>
+                            <a href="">
+                                <button onClick={() => logout()}>Выйти</button>
+                            </a>
+                        </div>
                     </div>
-                    <a href="">
-                        <button onClick={() => logout()}>Выйти</button>
-                    </a>
-                </div>
-            )}
-        </>
+                )}
+            </div>
+        </header>
     )
 }
 
