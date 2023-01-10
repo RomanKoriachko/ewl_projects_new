@@ -44,11 +44,13 @@ const AddNewProject = (props: Props) => {
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
             dispatch(changeSex(e.target.value))
+            console.log(ProjectState.sex)
         } else if (ProjectState.sex.includes(e.target.value)) {
             let tempStr = ProjectState.sex
             let newStr = tempStr.replace(e.target.value, '')
             newStr.trim()
-            dispatch(addNewSex(newStr))
+            dispatch(addNewSex(newStr.trim()))
+            console.log(ProjectState.sex)
         }
     }
 

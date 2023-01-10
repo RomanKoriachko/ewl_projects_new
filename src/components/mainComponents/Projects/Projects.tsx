@@ -23,7 +23,6 @@ type ProjectType = {
 }
 
 const Projects = (props: Props) => {
-    const loginDataState = useAppSelector((state) => state.loginDataState)
     const searchState = useAppSelector((state) => state.searchState)
     const countryCheckboxState = useAppSelector(
         (state) => state.countryCheckboxState
@@ -295,6 +294,14 @@ const Projects = (props: Props) => {
         filtredArr = temporaryIsMinorArr
     }
 
+    console.log(filtredArr)
+
+    let raw = localStorage.getItem('loginData')
+    let localLoginData
+    if (raw) {
+        localLoginData = JSON.parse(raw)
+    }
+
     return (
         <div className="main-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -304,8 +311,8 @@ const Projects = (props: Props) => {
                 ></div>
                 <EditProject setEditFormState={setEditFormState} />
             </div>
-            {loginDataState.email === 'mazaxaka.tyt@gmail.com' ||
-            loginDataState.email === 'juliiaderevianko@gmail.com' ? (
+            {localLoginData.email === 'mazaxaka.tyt@gmail.com' ||
+            localLoginData.email === 'juliiaderevianko@gmail.com' ? (
                 filtredArr.length === 0 ? (
                     <div className="no-search-results">Совпадений нет</div>
                 ) : (
@@ -390,7 +397,27 @@ const Projects = (props: Props) => {
                                     </button>
                                     <CopyButton
                                         className="copy-btn"
-                                        value={`Название проекта\n${element.projectName}\n\nСтрана\n${element.country}\n\nCтавка в злотых\n${element.salary}\n\nЛокализация\n${element.location}\n\nПол\n${element.sex}\n\nВозраст от\n${element.ageFrom}\n\nВозраст до\n${element.ageTo}\n\nНациональность\n${element.nationalaty}\n\nДополнительная информация\n${element.additionalInfo}\n\nПримеры жилья\n${element.housing}\n\nОписание вакансии\n${element.projectInfo}`}
+                                        value={`Название проекта\n${
+                                            element.projectName
+                                        }\n\nСтрана\n${
+                                            element.country
+                                        }\n\nCтавка в злотых\n${
+                                            element.salary
+                                        }\n\nЛокализация\n${
+                                            element.location
+                                        }\n\nПол\n${element.sex.trim()}\n\nВозраст от\n${
+                                            element.ageFrom
+                                        }\n\nВозраст до\n${
+                                            element.ageTo
+                                        }\n\nНациональность\n${
+                                            element.nationalaty
+                                        }\n\nДополнительная информация\n${
+                                            element.additionalInfo
+                                        }\n\nПримеры жилья\n${
+                                            element.housing
+                                        }\n\nОписание вакансии\n${
+                                            element.projectInfo
+                                        }`}
                                     />
                                 </div>
                             </div>

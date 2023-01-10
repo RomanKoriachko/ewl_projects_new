@@ -80,7 +80,7 @@ const EditProject = ({ setEditFormState }: Props) => {
             let tempStr = editProjectState.sex
             let newStr = tempStr.replace(e.target.value, '')
             newStr.trim()
-            dispatch(addNewEditedSex(newStr))
+            dispatch(addNewEditedSex(newStr.trim()))
         }
     }
 
