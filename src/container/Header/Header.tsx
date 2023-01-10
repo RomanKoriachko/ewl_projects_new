@@ -40,28 +40,30 @@ const Header = (props: Props) => {
 
     return (
         <header className="header">
+            <div className="upper-line"></div>
             <div className="container">
                 {currentData.isLogged ? (
-                    <div className="header-content">
-                        <div className="header-user">
-                            Пользователь: {localLoginData.email}
-                        </div>
-                        <div>
-                            <a href="">
-                                <button onClick={() => logout()}>Выйти</button>
-                            </a>
+                    <div className="header-content row">
+                        <div className="header-logo"></div>
+                        <div className="row user-name-and-btn">
+                            <div className="header-user">
+                                Пользователь: {localLoginData.email}
+                            </div>
+                            <div>
+                                <a href="">
+                                    <button
+                                        className="logout-btn"
+                                        onClick={() => logout()}
+                                    >
+                                        Выйти
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 ) : (
-                    <div className="header">
-                        <div className="user">
-                            Чтобы войти введите логин и пароль
-                        </div>
-                        <div>
-                            <a href="">
-                                <button onClick={() => logout()}>Выйти</button>
-                            </a>
-                        </div>
+                    <div className="header-content logout-header-content row">
+                        <div className="header-logo"></div>
                     </div>
                 )}
             </div>

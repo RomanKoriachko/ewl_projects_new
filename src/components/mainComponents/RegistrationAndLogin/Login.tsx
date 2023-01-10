@@ -51,19 +51,19 @@ const Login = (props: Props) => {
 
     return (
         <div className="login">
-            <div className="login-header">Войти</div>
+            <div className="login-header">Введите логин и пароль</div>
             <form id="login-form" onSubmit={login}>
                 <div>
                     <div className="grid-wrapper">
                         <input
-                            className="login-input"
+                            className="login-input login-form-input"
                             type="text"
                             id="login-email"
                             onChange={handleChangeLogin}
                             value={loginState.email}
                         />
                         <input
-                            className="password-input"
+                            className="password-input login-form-input"
                             type="password"
                             id="login-password"
                             onChange={handleChangePassword}

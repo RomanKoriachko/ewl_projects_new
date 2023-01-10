@@ -1,0 +1,33 @@
+@mixin sans300() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+@mixin sans400() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+@mixin sans700() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+@mixin raleway100() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+@mixin raleway100() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+@mixin raleway400() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+@mixin raleway600() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+@mixin raleway700() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}

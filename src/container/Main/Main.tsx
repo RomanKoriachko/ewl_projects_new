@@ -5,6 +5,7 @@ import SearchAndFilter from 'components/mainComponents/SearchAndFilter/SearchAnd
 import Registration from 'components/mainComponents/RegistrationAndLogin/Registration'
 import Login from 'components/mainComponents/RegistrationAndLogin/Login'
 import { useAppSelector } from 'redux/hooks'
+import SliderComponent from 'components/mainComponents/SliderComponent/SliderComponent'
 
 type Props = {}
 
@@ -40,14 +41,13 @@ const Main = (props: Props) => {
         localStorage.setItem('loginData', JSON.stringify(loginDataState))
     }
 
-    // localStorage.clear()
-
     return (
         <main className="main">
-            <div className="container">
-                {currentData.isLogged ? (
-                    currentData.isAdmin ? (
-                        <>
+            {currentData.isLogged ? (
+                currentData.isAdmin ? (
+                    <>
+                        <SliderComponent />
+                        <div className="container">
                             <div className="admin-panel">
                                 <AddNewProject />
                                 <Registration />
@@ -56,17 +56,22 @@ const Main = (props: Props) => {
                                 <SearchAndFilter />
                                 <Projects />
                             </div>
-                        </>
-                    ) : (
-                        <div className="wrapper">
-                            <SearchAndFilter />
-                            <Projects />
                         </div>
-                    )
+                    </>
                 ) : (
-                    <Login />
-                )}
-            </div>
+                    <>
+                        <SliderComponent />
+                        <div className="container">
+                            <div className="wrapper">
+                                <SearchAndFilter />
+                                <Projects />
+                            </div>
+                        </div>
+                    </>
+                )
+            ) : (
+                <Login />
+            )}
         </main>
     )
 }

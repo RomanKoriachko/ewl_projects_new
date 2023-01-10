@@ -1,11 +1,45 @@
 .header {
   border-bottom: 1px solid black;
-  height: 100px;
+  min-height: 100px;
 }
-
-.header-content {
-  text-align: right;
+.header .upper-line {
+  height: 30px;
+  background-color: #EB6A09;
 }
-.header-content .header-user {
-  padding-top: 20px;
+.header .header-content {
+  min-height: 70px;
+  align-items: center;
+  justify-content: space-between;
+}
+.header .header-content .header-logo {
+  background-image: url(../../assets/header-logo.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 50px;
+}
+.header .header-content .user-name-and-btn {
+  gap: 20px;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+}
+.header .header-content .user-name-and-btn .logout-btn {
+  border: 1px solid black;
+  background: transparent;
+  padding: 7px 15px;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  transition: 0.3s all;
+}
+.header .header-content .user-name-and-btn .logout-btn:hover {
+  border: 1px solid #EB6A09;
+  color: #EB6A09;
+}
+.header .logout-header-content {
+  display: grid;
+  justify-content: center;
+  padding: 10px 0px;
 }

@@ -1,3 +1,5 @@
+@use 'fonts';
+
 .login {
     position: absolute;
     top: 50%;
@@ -7,8 +9,9 @@
 
 .login-header {
     font-size: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: center;
+    @include fonts.raleway700();
 }
 
 .grid-wrapper {
@@ -20,21 +23,39 @@
     grid-template-rows: 1fr 1fr;
     gap: 10px;
     justify-items: center;
-    .login-input {
-        grid-area: a;
-        height: 40px;
+    .login-form-input {
+        height: 50px;
         width: 300px;
         padding: 0px 10px;
+        @include fonts.sans400();
+        font-size: 18px;
+        transition: .3s all;
+        &:focus {
+            outline-color: #EB6A09;
+        }
+        &:focus-within {
+            color: #EB6A09;
+        }
+    }
+    .login-input {
+        grid-area: a;
     }
     .password-input {
         grid-area: b;
-        height: 40px;
-        width: 300px;
-        padding: 0px 10px;
     }
     .submit-button {
         grid-area: c;
+        @include fonts.raleway700();
+        font-size: 21px;
         width: 200px;
+        background: transparent;
+        border: 1px solid black;
+        transition: .3s all;
+        cursor: pointer;
+        &:hover {
+            border: 1px solid #EB6A09;
+            color: #EB6A09;
+        }
     }
 }
 
