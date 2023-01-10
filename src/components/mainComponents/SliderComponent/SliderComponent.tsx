@@ -2,6 +2,7 @@ import Slider from 'react-slick'
 import './SliderComponent.scss'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { Background, Parallax } from 'react-parallax'
 
 type Props = {}
 
@@ -12,43 +13,71 @@ const SliderComponent = (props: Props) => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
+        // autoplay: true,
+        // autoplaySpeed: 5000,
     }
 
     return (
         <div className="slider">
             <Slider {...settings}>
-                <div className="slider-item">
-                    <img src="images/slider-img-1.jpg" alt="" />
-                    <div className="slider-content">
-                        <p className="slider-text">Slide 1</p>
+                <Parallax
+                    strength={200}
+                    blur={{ min: -15, max: 15 }}
+                    bgImage="images/slider-img-1.jpg"
+                    style={{
+                        backgroundSize: 'contain',
+                    }}
+                >
+                    <div className="slider-item">
+                        <div className="slider-content">
+                            <p className="slider-text">Slide 1</p>
+                        </div>
                     </div>
-                </div>
-                <div className="slider-item">
-                    <img src="images/slider-img-2.jpg" alt="" />
-                    <div className="slider-content">
-                        <p className="slider-text">Slide 2</p>
+                </Parallax>
+                <Parallax
+                    strength={200}
+                    blur={{ min: -15, max: 15 }}
+                    bgImage="images/slider-img-2.jpg"
+                >
+                    <div className="slider-item">
+                        <div className="slider-content">
+                            <p className="slider-text">Slide 2</p>
+                        </div>
                     </div>
-                </div>
-                <div className="slider-item">
-                    <img src="images/slider-img-3.jpg" alt="" />
-                    <div className="slider-content">
-                        <p className="slider-text">Slide 3</p>
+                </Parallax>
+                <Parallax
+                    strength={200}
+                    blur={{ min: -15, max: 15 }}
+                    bgImage="images/slider-img-3.jpg"
+                >
+                    <div className="slider-item">
+                        <div className="slider-content">
+                            <p className="slider-text">Slide 3</p>
+                        </div>
                     </div>
-                </div>
-                <div className="slider-item">
-                    <img src="images/slider-img-4.jpg" alt="" />
-                    <div className="slider-content">
-                        <p className="slider-text">Slide 4</p>
+                </Parallax>
+                <Parallax
+                    strength={200}
+                    blur={{ min: -15, max: 15 }}
+                    bgImage="images/slider-img-4.jpg"
+                >
+                    <div className="slider-item">
+                        <div className="slider-content">
+                            <p className="slider-text">Slide 4</p>
+                        </div>
                     </div>
-                </div>
-                <div className="slider-item">
-                    <img src="images/slider-img-5.jpg" alt="" />
-                    <div className="slider-content">
-                        <p className="slider-text">Slide 5</p>
+                </Parallax>
+                <Parallax
+                    strength={200}
+                    blur={{ min: -15, max: 15 }}
+                    bgImage="images/slider-img-5.jpg"
+                >
+                    <div className="slider-item">
+                        <div className="slider-content">
+                            <p className="slider-text">Slide 5</p>
+                        </div>
                     </div>
-                </div>
+                </Parallax>
             </Slider>
         </div>
     )
