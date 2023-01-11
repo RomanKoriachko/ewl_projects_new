@@ -1,9 +1,12 @@
+@use 'fonts';
+
 .project-form {
     border: 1px solid black;
     padding: 40px;
-    margin-top: 20px;
-    width: 45%;
+    width: 50%;
+    @include fonts.sans400();
     >p{
+        @include fonts.raleway700();
         font-size: 32px;
         margin-bottom: 20px;
     }
@@ -27,6 +30,7 @@
             height: 40px;
         }
         input{
+            @include fonts.sans400();
             height: 40px;
             padding: 0px 20px;
         }
@@ -36,7 +40,55 @@
         }
         button {
             width: 200px;
-            height: 40px;
+            @include fonts.mainButton(16px);
+        }
+        .age-row {
+            justify-content: space-between;
+        }
+    }
+}
+
+// Laptop
+@media(max-width: 1200px) {
+    .project-form {
+        width: 100%;
+    }
+}
+
+// Tablet
+@media(max-width: 992px) {
+    .project-form{
+        .add-project-header {
+            font-size: 26px;
+        }
+        form{
+            .age-row {
+                gap: 10px;
+                >input{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}  
+
+// Mobile
+@media(max-width: 576px) {
+    .project-form {
+        padding: 20px;
+        .add-project-header {
+            font-size: 21px;
+        }
+        form{
+            .sex-select{
+                .sex-select-wrapper {
+                    flex-direction: column;
+                }
+            }
+            button{
+                width: 100%;
+                font-size: 16px;
+            }
         }
     }
 }

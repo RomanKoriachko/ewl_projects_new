@@ -45,23 +45,21 @@
     }
     .submit-button {
         grid-area: c;
-        @include fonts.raleway700();
-        font-size: 21px;
-        width: 200px;
-        background: transparent;
-        border: 1px solid black;
-        transition: .3s all;
-        cursor: pointer;
-        &:hover {
-            border: 1px solid #EB6A09;
-            color: #EB6A09;
-        }
+        @include fonts.mainButton(21px);
     }
 }
 
-.registration-wrapper {
-    width: 500px;
-}
-.registration-header {
-    width: 500px;
+
+// Mobile
+@media(max-width: 576px) {
+    .grid-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "a"
+        "b"
+        "c";
+        .submit-button{
+            width: 100%;
+        }
+    }
 }

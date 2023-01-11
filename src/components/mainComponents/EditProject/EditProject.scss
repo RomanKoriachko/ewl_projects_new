@@ -1,3 +1,5 @@
+@use 'fonts';
+
 .project-edit-form {
     position: fixed;
     top: 50%;
@@ -47,6 +49,7 @@
         }
         textarea {
             padding: 20px;
+            resize: none;
         }
         button {
             width: 200px;

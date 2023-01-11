@@ -1,7 +1,10 @@
 .admin-panel {
-    justify-content: space-between
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+    gap: 20px;
 }
-.wrapper {
+.main-wrapper {
     display: grid;
     grid-template-columns: 1fr 4fr;
     gap: 0px 30px;
@@ -13,3 +16,13 @@
 .show{
     display: block;
 }
+
+// Tablet
+@media(max-width: 992px) {
+    .admin-panel {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+
+

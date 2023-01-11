@@ -43,3 +43,36 @@
         padding: 10px 0px;
     }
 }
+
+// Tablet
+@media(max-width: 992px) {
+    .header{
+        .header-content {
+            .user-name-and-btn {
+                .header-user{
+                    font-size: 14px;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+// Mobile
+@media(max-width: 576px) {
+    .header{
+        // min-height: 110px;
+        .header-content {
+            .header-logo {
+                width: 100px;
+                height: 30px;
+            }
+            .user-name-and-btn {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 7px;
+                padding: 5px 0px;
+            }
+        }
+    }
+}

@@ -31,3 +31,18 @@
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
 }
+
+@mixin mainButton($fz) {
+    padding: 10px;
+    border: 1px solid black;
+    background: transparent;
+    font-size: $fz;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s all;
+    &:hover {
+        border: 1px solid #EB6A09;
+        color: #EB6A09;
+    }
+}

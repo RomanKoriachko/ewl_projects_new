@@ -1,0 +1,68 @@
+@use 'fonts';
+
+.registration {
+    border: 1px solid black;
+    padding: 20px;
+    .registration-header{
+        @include fonts.raleway700();
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .registration-input {
+        height: 50px;
+        width: 300px;
+        padding: 0px 10px;
+        @include fonts.sans400();
+        font-size: 18px;
+        transition: .3s all;
+        &:focus {
+            outline-color: #EB6A09;
+        }
+        &:focus-within {
+            color: #EB6A09;
+        }
+    }
+    .submit-button {
+        padding: 12px;
+        width: auto;
+    }
+}
+
+@media(max-width: 1500px) {
+    .registration {
+        .registration-input {
+            width: 250px;
+        }
+    }
+}
+
+// Laptop
+@media(max-width: 1200px) {
+    .registration {
+        width: 100%;
+        .registration-header {
+            font-size: 26px;
+        }
+        .registration-input {
+            width: 100%;
+            font-size: 14px;
+        }
+        .submit-button {
+            font-size: 20px;
+        }
+    }
+}
+
+// Mobile
+@media(max-width: 576px) {
+    .registration {
+        .registration-header {
+            font-size: 21px;
+        }
+        .submit-button{
+            width: 100%;
+            font-size: 16px;
+        }
+    }
+}

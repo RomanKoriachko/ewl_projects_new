@@ -294,8 +294,6 @@ const Projects = (props: Props) => {
         filtredArr = temporaryIsMinorArr
     }
 
-    console.log(filtredArr)
-
     let raw = localStorage.getItem('loginData')
     let localLoginData
     if (raw) {

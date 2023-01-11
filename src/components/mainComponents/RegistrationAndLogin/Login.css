@@ -44,24 +44,26 @@
 }
 .grid-wrapper .submit-button {
   grid-area: c;
+  padding: 10px;
+  border: 1px solid black;
+  background: transparent;
+  font-size: 21px;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
-  font-size: 21px;
-  width: 200px;
-  background: transparent;
-  border: 1px solid black;
-  transition: 0.3s all;
   cursor: pointer;
+  transition: 0.3s all;
 }
 .grid-wrapper .submit-button:hover {
   border: 1px solid #EB6A09;
   color: #EB6A09;
 }
 
-.registration-wrapper {
-  width: 500px;
-}
-
-.registration-header {
-  width: 500px;
+@media (max-width: 576px) {
+  .grid-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas: "a" "b" "c";
+  }
+  .grid-wrapper .submit-button {
+    width: 100%;
+  }
 }

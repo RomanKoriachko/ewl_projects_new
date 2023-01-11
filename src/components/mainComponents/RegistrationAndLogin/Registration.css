@@ -1,0 +1,60 @@
+.registration {
+  border: 1px solid black;
+  padding: 20px;
+}
+.registration .registration-header {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.registration .registration-input {
+  height: 50px;
+  width: 300px;
+  padding: 0px 10px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  transition: 0.3s all;
+}
+.registration .registration-input:focus {
+  outline-color: #EB6A09;
+}
+.registration .registration-input:focus-within {
+  color: #EB6A09;
+}
+.registration .submit-button {
+  padding: 12px;
+  width: auto;
+}
+
+@media (max-width: 1500px) {
+  .registration .registration-input {
+    width: 250px;
+  }
+}
+@media (max-width: 1200px) {
+  .registration {
+    width: 100%;
+  }
+  .registration .registration-header {
+    font-size: 26px;
+  }
+  .registration .registration-input {
+    width: 100%;
+    font-size: 14px;
+  }
+  .registration .submit-button {
+    font-size: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .registration .registration-header {
+    font-size: 21px;
+  }
+  .registration .submit-button {
+    width: 100%;
+    font-size: 16px;
+  }
+}

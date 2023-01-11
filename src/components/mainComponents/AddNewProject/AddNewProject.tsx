@@ -116,8 +116,7 @@ const AddNewProject = (props: Props) => {
                     if (
                         snapshot.val().hasOwnProperty(ProjectState.projectName)
                     ) {
-                        alert('Проект уже существует')
-                        dispatch(deliteProjectData(''))
+                        alert('Проект с таким названием уже добавлен')
                     } else {
                         set(ref(db, `vacancy/${projectName}/`), {
                             country: country,
@@ -144,6 +143,9 @@ const AddNewProject = (props: Props) => {
 
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if (ProjectState.ageFrom > ProjectState.ageTo) {
+            alert('Возраст От не может быть больше возраста До')
+        }
         if (
             ProjectState.country === '' ||
             ProjectState.salary === '' ||
@@ -179,7 +181,7 @@ const AddNewProject = (props: Props) => {
 
     return (
         <div className="project-form">
-            <p>Добавить проект</p>
+            <p className="add-project-header">Добавить проект</p>
             <form onSubmit={onSendClick} id="add-project">
                 <label htmlFor="country">Выбор страны</label>
                 <select
@@ -203,41 +205,42 @@ const AddNewProject = (props: Props) => {
                 </select>
                 <div className="sex-select">
                     <p>Выбор пола</p>
-                    <input
-                        type="checkbox"
-                        id="project-male"
-                        name="sex"
-                        value="Мужчины"
-                        className="chechbox"
-                        onChange={handleChangeSex}
-                    />
-                    <label htmlFor="project-male">Мужчины</label>
-                    <input
-                        type="checkbox"
-                        id="project-female"
-                        name="sex"
-                        value="Женщины"
-                        className="chechbox"
-                        onChange={handleChangeSex}
-                    />
-                    <label htmlFor="project-female">Женщины</label>
-                    <input
-                        type="checkbox"
-                        id="project-couples"
-                        name="sex"
-                        value="Пары"
-                        className="chechbox"
-                        onChange={handleChangeSex}
-                    />
-                    <label htmlFor="project-couples">Пары</label>
+                    <div className="row sex-select-wrapper">
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="project-male"
+                                name="sex"
+                                value="Мужчины"
+                                className="chechbox"
+                                onChange={handleChangeSex}
+                            />
+                            <label htmlFor="project-male">Мужчины</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="project-female"
+                                name="sex"
+                                value="Женщины"
+                                className="chechbox"
+                                onChange={handleChangeSex}
+                            />
+                            <label htmlFor="project-female">Женщины</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="project-couples"
+                                name="sex"
+                                value="Пары"
+                                className="chechbox"
+                                onChange={handleChangeSex}
+                            />
+                            <label htmlFor="project-couples">Пары</label>
+                        </div>
+                    </div>
                 </div>
-                <input
-                    type="text"
-                    id="salary"
-                    placeholder="Ставка"
-                    value={ProjectState.salary}
-                    onChange={handleChangeSalary}
-                />
                 <input
                     type="text"
                     id="project"
@@ -247,12 +250,19 @@ const AddNewProject = (props: Props) => {
                 />
                 <input
                     type="text"
+                    id="salary"
+                    placeholder="Ставка"
+                    value={ProjectState.salary}
+                    onChange={handleChangeSalary}
+                />
+                <input
+                    type="text"
                     id="location"
                     placeholder="Локализация"
                     value={ProjectState.location}
                     onChange={handleChangeProjectLocation}
                 />
-                <div>
+                <div className="row age-row">
                     <input
                         type="text"
                         id="age-from"

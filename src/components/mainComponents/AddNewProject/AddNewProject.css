@@ -1,10 +1,13 @@
 .project-form {
   border: 1px solid black;
   padding: 40px;
-  margin-top: 20px;
-  width: 45%;
+  width: 50%;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
 }
 .project-form > p {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
   font-size: 32px;
   margin-bottom: 20px;
 }
@@ -27,6 +30,8 @@
   height: 40px;
 }
 .project-form form input {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
   height: 40px;
   padding: 0px 20px;
 }
@@ -36,5 +41,51 @@
 }
 .project-form form button {
   width: 200px;
-  height: 40px;
+  padding: 10px;
+  border: 1px solid black;
+  background: transparent;
+  font-size: 16px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.project-form form button:hover {
+  border: 1px solid #EB6A09;
+  color: #EB6A09;
+}
+.project-form form .age-row {
+  justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+  .project-form {
+    width: 100%;
+  }
+}
+@media (max-width: 992px) {
+  .project-form .add-project-header {
+    font-size: 26px;
+  }
+  .project-form form .age-row {
+    gap: 10px;
+  }
+  .project-form form .age-row > input {
+    width: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .project-form {
+    padding: 20px;
+  }
+  .project-form .add-project-header {
+    font-size: 21px;
+  }
+  .project-form form .sex-select .sex-select-wrapper {
+    flex-direction: column;
+  }
+  .project-form form button {
+    width: 100%;
+    font-size: 16px;
+  }
 }

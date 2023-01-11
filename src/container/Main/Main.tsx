@@ -48,11 +48,11 @@ const Main = (props: Props) => {
                     <>
                         <SliderComponent />
                         <div className="container">
-                            <div className="admin-panel">
+                            <div className="admin-panel row">
                                 <AddNewProject />
                                 <Registration />
                             </div>
-                            <div className="wrapper">
+                            <div className="main-wrapper">
                                 <SearchAndFilter />
                                 <Projects />
                             </div>
@@ -62,7 +62,7 @@ const Main = (props: Props) => {
                     <>
                         <SliderComponent />
                         <div className="container">
-                            <div className="wrapper">
+                            <div className="main-wrapper">
                                 <SearchAndFilter />
                                 <Projects />
                             </div>

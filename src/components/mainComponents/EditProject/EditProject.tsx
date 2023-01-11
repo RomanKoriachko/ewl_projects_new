@@ -161,7 +161,7 @@ const EditProject = ({ setEditFormState }: Props) => {
                         dispatch(deliteEditedProjectData(''))
                         return update(ref(db), updates)
                     } else {
-                        alert('такого проекту не існує')
+                        alert('Такого проекта не существует')
                     }
                 } else {
                     console.log('No data available')
@@ -191,7 +191,7 @@ const EditProject = ({ setEditFormState }: Props) => {
                 !editProjectState.sex.includes('Женщины') &&
                 !editProjectState.sex.includes('Пары'))
         ) {
-            alert("всі поля обов'язкові")
+            alert('все поля обязательні для заполнения')
         } else {
             onEditClick(
                 editProjectState.country,
@@ -213,7 +213,7 @@ const EditProject = ({ setEditFormState }: Props) => {
     return (
         <div className="project-edit-form">
             <div className="project-edit-header">
-                <p>Редактировать проект</p>
+                <p className="tablet-header">Редактировать проект</p>
                 <button onClick={closeEditForm}>X</button>
             </div>
             <form onSubmit={onSendClick}>
@@ -239,6 +239,7 @@ const EditProject = ({ setEditFormState }: Props) => {
                 </select>
                 <div className="sex-select-edit">
                     <p>Выбор пола</p>
+                    <div className="row"></div>
                     <input
                         type="checkbox"
                         id="male-edit"
@@ -269,17 +270,17 @@ const EditProject = ({ setEditFormState }: Props) => {
                 </div>
                 <input
                     type="text"
-                    id="edit-salary"
-                    placeholder="Ставка"
-                    value={editProjectState.salary}
-                    onChange={handleChangeProjectSalary}
-                />
-                <input
-                    type="text"
                     id="edit-project"
                     placeholder="Название проекта"
                     value={editProjectState.projectName}
                     onChange={handleChangeProjectName}
+                />
+                <input
+                    type="text"
+                    id="edit-salary"
+                    placeholder="Ставка"
+                    value={editProjectState.salary}
+                    onChange={handleChangeProjectSalary}
                 />
                 <input
                     type="text"

@@ -46,6 +46,7 @@
 }
 .project-edit-form form textarea {
   padding: 20px;
+  resize: none;
 }
 .project-edit-form form button {
   width: 200px;

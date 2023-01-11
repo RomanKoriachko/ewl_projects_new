@@ -50,11 +50,28 @@
 }
 
 
-
-
-
+// Laptop
 @media(max-width: 1200px) {
     .slider-item {
         height: 550px;
+    }
+}
+
+// Tablet
+@media(max-width: 992px) {
+    .slider-item {
+        height: 400px;
+    }
+}
+
+// Mobile
+@media(max-width: 576px) {
+    .slider-item {
+        height: 300px;
+        .slider-content {
+            .slider-text {
+                font-size: 32px;
+            }
+        }
     }
 }

@@ -44,27 +44,29 @@ const Registration = (props: Props) => {
 
     return (
         <div className="registration">
-            <div className="login-header registration-header">
-                Зарегистрировать пользователя
+            <div className="registration-header">
+                Зарегистрировать нового пользователя
             </div>
             <form id="registration-form" onSubmit={createAccount}>
                 <div className="grid-wrapper registration-wrapper">
                     <input
-                        className="login-input"
+                        className="login-input registration-input"
+                        placeholder="Почта"
                         type="text"
                         id="registration-login"
                         onChange={handleChangeRegistrationLogin}
                         value={RedistrationState.email}
                     />
                     <input
-                        className="password-input"
+                        className="password-input registration-input"
+                        placeholder="Пароль"
                         type="password"
                         id="registration-password"
                         onChange={handleChangeRegistrationPassword}
                         value={RedistrationState.password}
                     />
                     <button type="submit" className="submit-button">
-                        Зарегистрироваться
+                        Зарегистрировать
                     </button>
                 </div>
             </form>

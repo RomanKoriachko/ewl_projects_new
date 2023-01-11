@@ -7,6 +7,7 @@ import {
     setPassword,
 } from 'redux/loginDataReducer'
 import './Login.scss'
+import './Registration.scss'
 
 type Props = {}
 
