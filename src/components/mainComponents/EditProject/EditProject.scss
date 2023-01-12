@@ -95,6 +95,7 @@
     .project-edit-form {
         width: 90%;
         padding: 20px;
+        overflow-y: scroll;
         .project-edit-header{
             >p {
                 font-size: 18px;
