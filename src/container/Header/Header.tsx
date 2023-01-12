@@ -28,6 +28,10 @@ const Header = (props: Props) => {
         currentData.isAdmin = true
     }
 
+    if (currentData === undefined) {
+        currentData = loginDataState
+    }
+
     const logout = () => {
         let logoutData = {
             email: '',
