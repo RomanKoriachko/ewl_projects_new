@@ -12,6 +12,7 @@ import {
     slovakiaChecked,
     spainChecked,
 } from 'redux/countryCheckboxReducer'
+import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { setIsMinor } from 'redux/isMinorReducer'
 import { getSearchInput } from 'redux/searchContentReducer'
@@ -40,56 +41,62 @@ const SearchAndFilter = (props: Props) => {
 
     // --------------------- Countries Filter ---------------------
 
-    const polandCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const polandCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? dispatch(polandChecked('Польша'))
             : dispatch(polandChecked(''))
     }
-    const czechCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const czechCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? dispatch(czechChecked('Чехия'))
             : dispatch(czechChecked(''))
     }
-    const romaniaCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const romaniaCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         e.target.checked
             ? dispatch(romaniaChecked('Румыния'))
             : dispatch(romaniaChecked(''))
     }
-    const slovakiaCheckboxCheking = (
+    const slovakiaCheckboxChecking = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         e.target.checked
             ? dispatch(slovakiaChecked('Словакия'))
             : dispatch(slovakiaChecked(''))
     }
-    const lithuaniaCheckboxCheking = (
+    const lithuaniaCheckboxChecking = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         e.target.checked
             ? dispatch(lithuaniaChecked('Литва'))
             : dispatch(lithuaniaChecked(''))
     }
-    const hollandCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const hollandCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         e.target.checked
             ? dispatch(hollandChecked('Голландия'))
             : dispatch(hollandChecked(''))
     }
-    const germanyCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const germanyCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         e.target.checked
             ? dispatch(germanyChecked('Германия'))
             : dispatch(germanyChecked(''))
     }
-    const greeceCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const greeceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? dispatch(greeceChecked('Греция'))
             : dispatch(greeceChecked(''))
     }
-    const spainCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const spainCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? dispatch(spainChecked('Испания'))
             : dispatch(spainChecked(''))
     }
-    const cyprusCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const cyprusCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? dispatch(cyprusChecked('Кипр'))
             : dispatch(cyprusChecked(''))
@@ -97,17 +104,19 @@ const SearchAndFilter = (props: Props) => {
 
     // --------------------- Sex Filter ---------------------
 
-    const maleCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const maleCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? dispatch(setMaleCheckbox('Мужчины'))
             : dispatch(setMaleCheckbox(''))
     }
-    const femaleCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const femaleCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
             ? dispatch(setFemaleCheckbox('Женщины'))
             : dispatch(setFemaleCheckbox(''))
     }
-    const couplesCheckboxCheking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const couplesCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         e.target.checked
             ? dispatch(setCouplesCheckbox('Пары'))
             : dispatch(setCouplesCheckbox(''))
@@ -132,8 +141,9 @@ const SearchAndFilter = (props: Props) => {
     const resetFilter = () => {
         dispatch(clearAllCountrysCheckboxes())
         dispatch(clearAllSexCheckboxes())
-        dispatch(setIsMinor(true))
+        dispatch(setIsMinor(false))
         dispatch(clearAgeState())
+        dispatch(clearFilters())
     }
 
     return (
@@ -157,7 +167,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="poland"
                                 name="poland"
                                 className="poland-checkbox"
-                                onChange={polandCheckboxCheking}
+                                onChange={polandCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxPoland
                                         ? true
@@ -172,7 +182,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="czech"
                                 name="czech"
                                 className="czech-checkbox"
-                                onChange={czechCheckboxCheking}
+                                onChange={czechCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxCzech
                                         ? true
@@ -187,7 +197,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="romania"
                                 name="romania"
                                 className="romania-checkbox"
-                                onChange={romaniaCheckboxCheking}
+                                onChange={romaniaCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxRomania
                                         ? true
@@ -202,7 +212,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="slovakia"
                                 name="slovakia"
                                 className="slovakia-checkbox"
-                                onChange={slovakiaCheckboxCheking}
+                                onChange={slovakiaCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxSlovakia
                                         ? true
@@ -217,7 +227,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="lithuania"
                                 name="lithuania"
                                 className="lithuania-checkbox"
-                                onChange={lithuaniaCheckboxCheking}
+                                onChange={lithuaniaCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxLithuania
                                         ? true
@@ -232,7 +242,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="holland"
                                 name="holland"
                                 className="holland-checkbox"
-                                onChange={hollandCheckboxCheking}
+                                onChange={hollandCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxHolland
                                         ? true
@@ -247,7 +257,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="germany"
                                 name="germany"
                                 className="germany-checkbox"
-                                onChange={germanyCheckboxCheking}
+                                onChange={germanyCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxGermany
                                         ? true
@@ -262,7 +272,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="greece"
                                 name="greece"
                                 className="greece-checkbox"
-                                onChange={greeceCheckboxCheking}
+                                onChange={greeceCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxGreece
                                         ? true
@@ -277,7 +287,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="spain"
                                 name="spain"
                                 className="spain-checkbox"
-                                onChange={spainCheckboxCheking}
+                                onChange={spainCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxSpain
                                         ? true
@@ -292,7 +302,7 @@ const SearchAndFilter = (props: Props) => {
                                 id="cyprus"
                                 name="cyprus"
                                 className="cyprus-checkbox"
-                                onChange={cyprusCheckboxCheking}
+                                onChange={cyprusCheckboxChecking}
                                 checked={
                                     countryCheckboxState.checkboxCyprus
                                         ? true
@@ -311,7 +321,7 @@ const SearchAndFilter = (props: Props) => {
                                 type="checkbox"
                                 id="male"
                                 name="male"
-                                onChange={maleCheckboxCheking}
+                                onChange={maleCheckboxChecking}
                                 checked={sexCheckboxState.male ? true : false}
                             />
                             <label htmlFor="male">Мужчины</label>
@@ -321,7 +331,7 @@ const SearchAndFilter = (props: Props) => {
                                 type="checkbox"
                                 id="feemale"
                                 name="feemale"
-                                onChange={femaleCheckboxCheking}
+                                onChange={femaleCheckboxChecking}
                                 checked={sexCheckboxState.female ? true : false}
                             />
                             <label htmlFor="feemale">Женщины</label>
@@ -331,7 +341,7 @@ const SearchAndFilter = (props: Props) => {
                                 type="checkbox"
                                 id="couples"
                                 name="couples"
-                                onChange={couplesCheckboxCheking}
+                                onChange={couplesCheckboxChecking}
                                 checked={
                                     sexCheckboxState.couples ? true : false
                                 }
@@ -372,6 +382,9 @@ const SearchAndFilter = (props: Props) => {
                     </div>
                 </div>
                 <button onClick={() => resetFilter()}>сбросить фильтр</button>
+                <button onClick={() => dispatch(addFilters())}>
+                    применить фильтр
+                </button>
             </div>
         </div>
     )

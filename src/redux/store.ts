@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import ageSearchReducer from "./ageSearchReducer";
 import countryCheckboxReducer from "./countryCheckboxReducer";
 import editProjectReduser from "./editProjectReduser";
+import filterReducer from "./filterReducer";
 import isMinorReducer from "./isMinorReducer";
 import loginDataReducer from "./loginDataReducer";
 import newProjectReduser from "./newProjectReduser";
@@ -21,6 +22,7 @@ export const store = configureStore({
         sexCheckboxState: sexCheckboxReducer,
         isMinorState: isMinorReducer,
         ageSearchState: ageSearchReducer,
+        filterState: filterReducer,
     }
 })
 

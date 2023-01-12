@@ -30,9 +30,10 @@ const Projects = (props: Props) => {
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const isMinorState = useAppSelector((state) => state.isMinorState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
+    const filterState = useAppSelector((state) => state.filterState)
     const dispatch = useAppDispatch()
 
-    const [projectsArr, setProjectsArr] = useState<[]>([])
+    const [projectsArr, setProjectsArr] = useState<ProjectType[]>([])
 
     useEffect(() => {
         const dbEffect = getDatabase()
@@ -98,7 +99,7 @@ const Projects = (props: Props) => {
 
     // ---------------------- Search ----------------------
 
-    const tempArr = projectsArr.filter(
+    const tempArr: ProjectType[] = projectsArr.filter(
         (element: ProjectType) =>
             element.country.toLowerCase().includes(searchState.toLowerCase()) ||
             element.salary.toLowerCase().includes(searchState.toLowerCase()) ||
@@ -125,171 +126,171 @@ const Projects = (props: Props) => {
 
     // ---------------------- country filter ----------------------
 
-    let filtredCountryArr: [] = []
-    let temporaryCountryArr1: [] = []
-    let temporaryCountryArr2: [] = []
-    let temporaryCountryArr3: [] = []
-    let temporaryCountryArr4: [] = []
-    let temporaryCountryArr5: [] = []
-    let temporaryCountryArr6: [] = []
-    let temporaryCountryArr7: [] = []
-    let temporaryCountryArr8: [] = []
-    let temporaryCountryArr9: [] = []
-    let temporaryCountryArr10: [] = []
+    let filtredCountryArr: ProjectType[] = []
+    let temporaryCountryArr1: ProjectType[] = []
+    let temporaryCountryArr2: ProjectType[] = []
+    let temporaryCountryArr3: ProjectType[] = []
+    let temporaryCountryArr4: ProjectType[] = []
+    let temporaryCountryArr5: ProjectType[] = []
+    let temporaryCountryArr6: ProjectType[] = []
+    let temporaryCountryArr7: ProjectType[] = []
+    let temporaryCountryArr8: ProjectType[] = []
+    let temporaryCountryArr9: ProjectType[] = []
+    let temporaryCountryArr10: ProjectType[] = []
 
-    if (countryCheckboxState.checkboxPoland) {
-        /* @ts-ignore */
-        temporaryCountryArr1 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxPoland)
-        )
-    }
-    if (countryCheckboxState.checkboxCzech) {
-        /* @ts-ignore */
-        temporaryCountryArr2 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxCzech)
-        )
-    }
-    if (countryCheckboxState.checkboxRomania) {
-        /* @ts-ignore */
-        temporaryCountryArr3 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxRomania)
-        )
-    }
-    if (countryCheckboxState.checkboxSlovakia) {
-        /* @ts-ignore */
-        temporaryCountryArr4 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxSlovakia)
-        )
-    }
-    if (countryCheckboxState.checkboxLithuania) {
-        /* @ts-ignore */
-        temporaryCountryArr5 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxLithuania)
-        )
-    }
-    if (countryCheckboxState.checkboxHolland) {
-        /* @ts-ignore */
-        temporaryCountryArr6 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxHolland)
-        )
-    }
-    if (countryCheckboxState.checkboxGermany) {
-        /* @ts-ignore */
-        temporaryCountryArr7 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxGermany)
-        )
-    }
-    if (countryCheckboxState.checkboxGreece) {
-        /* @ts-ignore */
-        temporaryCountryArr8 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxGreece)
-        )
-    }
-    if (countryCheckboxState.checkboxSpain) {
-        /* @ts-ignore */
-        temporaryCountryArr9 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxSpain)
-        )
-    }
-    if (countryCheckboxState.checkboxCyprus) {
-        /* @ts-ignore */
-        temporaryCountryArr10 = tempArr.filter((el: ProjectType) =>
-            el.country.includes(countryCheckboxState.checkboxCyprus)
-        )
-    }
-    if (
-        countryCheckboxState.checkboxPoland === '' &&
-        countryCheckboxState.checkboxCzech === '' &&
-        countryCheckboxState.checkboxRomania === '' &&
-        countryCheckboxState.checkboxSlovakia === '' &&
-        countryCheckboxState.checkboxLithuania === '' &&
-        countryCheckboxState.checkboxHolland === '' &&
-        countryCheckboxState.checkboxGermany === '' &&
-        countryCheckboxState.checkboxGreece === '' &&
-        countryCheckboxState.checkboxSpain === '' &&
-        countryCheckboxState.checkboxCyprus === ''
-    ) {
-        /* @ts-ignore */
-        filtredCountryArr = tempArr
+    if (filterState) {
+        if (countryCheckboxState.checkboxPoland) {
+            temporaryCountryArr1 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxPoland)
+            )
+        }
+        if (countryCheckboxState.checkboxCzech) {
+            temporaryCountryArr2 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxCzech)
+            )
+        }
+        if (countryCheckboxState.checkboxRomania) {
+            temporaryCountryArr3 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxRomania)
+            )
+        }
+        if (countryCheckboxState.checkboxSlovakia) {
+            temporaryCountryArr4 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxSlovakia)
+            )
+        }
+        if (countryCheckboxState.checkboxLithuania) {
+            temporaryCountryArr5 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxLithuania)
+            )
+        }
+        if (countryCheckboxState.checkboxHolland) {
+            temporaryCountryArr6 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxHolland)
+            )
+        }
+        if (countryCheckboxState.checkboxGermany) {
+            temporaryCountryArr7 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxGermany)
+            )
+        }
+        if (countryCheckboxState.checkboxGreece) {
+            temporaryCountryArr8 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxGreece)
+            )
+        }
+        if (countryCheckboxState.checkboxSpain) {
+            temporaryCountryArr9 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxSpain)
+            )
+        }
+        if (countryCheckboxState.checkboxCyprus) {
+            temporaryCountryArr10 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxCyprus)
+            )
+        }
+        if (
+            countryCheckboxState.checkboxPoland === '' &&
+            countryCheckboxState.checkboxCzech === '' &&
+            countryCheckboxState.checkboxRomania === '' &&
+            countryCheckboxState.checkboxSlovakia === '' &&
+            countryCheckboxState.checkboxLithuania === '' &&
+            countryCheckboxState.checkboxHolland === '' &&
+            countryCheckboxState.checkboxGermany === '' &&
+            countryCheckboxState.checkboxGreece === '' &&
+            countryCheckboxState.checkboxSpain === '' &&
+            countryCheckboxState.checkboxCyprus === ''
+        ) {
+            filtredCountryArr = tempArr
+        } else {
+            filtredCountryArr = [
+                ...temporaryCountryArr1,
+                ...temporaryCountryArr2,
+                ...temporaryCountryArr3,
+                ...temporaryCountryArr4,
+                ...temporaryCountryArr5,
+                ...temporaryCountryArr6,
+                ...temporaryCountryArr7,
+                ...temporaryCountryArr8,
+                ...temporaryCountryArr9,
+                ...temporaryCountryArr10,
+            ]
+        }
     } else {
-        filtredCountryArr = [
-            ...temporaryCountryArr1,
-            ...temporaryCountryArr2,
-            ...temporaryCountryArr3,
-            ...temporaryCountryArr4,
-            ...temporaryCountryArr5,
-            ...temporaryCountryArr6,
-            ...temporaryCountryArr7,
-            ...temporaryCountryArr8,
-            ...temporaryCountryArr9,
-            ...temporaryCountryArr10,
-        ]
+        filtredCountryArr = tempArr
     }
 
     // ---------------------- sex filter ----------------------
 
-    let filtredSexArr: [] = []
-    let temporarySexArr1: [] = []
-    let temporarySexArr2: [] = []
-    let temporarySexArr3: [] = []
+    let filtredSexArr: ProjectType[] = []
+    let temporarySexArr1: ProjectType[] = []
+    let temporarySexArr2: ProjectType[] = []
+    let temporarySexArr3: ProjectType[] = []
 
-    if (sexCheckboxState.male) {
-        /* @ts-ignore */
-        temporarySexArr1 = filtredCountryArr.filter((el: ProjectType) =>
-            el.sex.includes(sexCheckboxState.male)
-        )
-    }
-    if (sexCheckboxState.female) {
-        /* @ts-ignore */
-        temporarySexArr2 = filtredCountryArr.filter((el: ProjectType) =>
-            el.sex.includes(sexCheckboxState.female)
-        )
-    }
-    if (sexCheckboxState.couples) {
-        /* @ts-ignore */
-        temporarySexArr3 = filtredCountryArr.filter((el: ProjectType) =>
-            el.sex.includes(sexCheckboxState.couples)
-        )
-    }
-    if (
-        sexCheckboxState.male === '' &&
-        sexCheckboxState.female === '' &&
-        sexCheckboxState.couples === ''
-    ) {
-        /* @ts-ignore */
-        filtredSexArr = filtredCountryArr
+    if (filterState) {
+        if (sexCheckboxState.male && filterState) {
+            temporarySexArr1 = filtredCountryArr.filter((el: ProjectType) =>
+                el.sex.includes(sexCheckboxState.male)
+            )
+        }
+        if (sexCheckboxState.female && filterState) {
+            temporarySexArr2 = filtredCountryArr.filter((el: ProjectType) =>
+                el.sex.includes(sexCheckboxState.female)
+            )
+        }
+        if (sexCheckboxState.couples && filterState) {
+            temporarySexArr3 = filtredCountryArr.filter((el: ProjectType) =>
+                el.sex.includes(sexCheckboxState.couples)
+            )
+        }
+        if (
+            sexCheckboxState.male === '' &&
+            sexCheckboxState.female === '' &&
+            sexCheckboxState.couples === ''
+        ) {
+            filtredSexArr = filtredCountryArr
+        } else {
+            filtredSexArr = [
+                ...temporarySexArr1,
+                ...temporarySexArr2,
+                ...temporarySexArr3,
+            ]
+        }
     } else {
-        filtredSexArr = [
-            ...temporarySexArr1,
-            ...temporarySexArr2,
-            ...temporarySexArr3,
-        ]
+        filtredSexArr = filtredCountryArr
     }
 
     // ---------------------- is miner filter ----------------------
 
-    let temporaryIsMinorArr: [] = []
+    let temporaryIsMinorArr: ProjectType[] = []
 
-    if (isMinorState) {
-        /* @ts-ignore */
-        temporaryIsMinorArr = filtredSexArr.filter(
-            (el: ProjectType) => parseInt(el.ageFrom) < 18
-        )
+    if (filterState) {
+        if (isMinorState) {
+            temporaryIsMinorArr = filtredSexArr.filter(
+                (el: ProjectType) => parseInt(el.ageFrom) < 18
+            )
+        } else {
+            temporaryIsMinorArr = filtredSexArr
+        }
     } else {
         temporaryIsMinorArr = filtredSexArr
     }
 
     // ---------------------- Age to filter ----------------------
 
-    let filtredArr: [] = []
+    let filtredArr: ProjectType[] = []
 
-    if (ageSearchState) {
-        /* @ts-ignore */
-        filtredArr = temporaryIsMinorArr.filter(
-            (el: ProjectType) =>
-                ageSearchState >= parseInt(el.ageFrom) &&
-                ageSearchState <= parseInt(el.ageTo)
-        )
+    if (filterState) {
+        if (ageSearchState) {
+            /* @ts-ignore */
+            filtredArr = temporaryIsMinorArr.filter(
+                (el: ProjectType) =>
+                    ageSearchState >= parseInt(el.ageFrom) &&
+                    ageSearchState <= parseInt(el.ageTo)
+            )
+        } else {
+            filtredArr = temporaryIsMinorArr
+        }
     } else {
         filtredArr = temporaryIsMinorArr
     }
@@ -300,8 +301,10 @@ const Projects = (props: Props) => {
         localLoginData = JSON.parse(raw)
     }
 
+    console.log(filterState)
+
     return (
-        <div className="main-content">
+        <div className="projects-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
                 <div
                     className="project-edit-bg"

@@ -53,8 +53,8 @@ const Main = (props: Props) => {
                                 <AddNewProject />
                                 <Registration />
                             </div>
-                            <div className="sidebar">
-                                <StickyBox offsetTop={-30} offsetBottom={0}>
+                            <div className="main-content">
+                                <StickyBox offsetTop={20} offsetBottom={20}>
                                     <SearchAndFilter />
                                 </StickyBox>
                                 <Projects />
@@ -65,8 +65,8 @@ const Main = (props: Props) => {
                     <>
                         <SliderComponent />
                         <div className="container">
-                            <div className="sidebar">
-                                <StickyBox offsetTop={-30} offsetBottom={0}>
+                            <div className="main-content">
+                                <StickyBox offsetTop={20} offsetBottom={20}>
                                     <SearchAndFilter />
                                 </StickyBox>
                                 <Projects />
