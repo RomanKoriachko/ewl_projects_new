@@ -40,7 +40,6 @@ const Projects = (props: Props) => {
         const starCountRefEffect = ref(dbEffect, `vacancy/`)
         onValue(starCountRefEffect, (snapshot) => {
             let data = snapshot.val()
-            /* @ts-ignore */
             setProjectsArr(Object.values(data))
         })
     }, [projectsArr.length])
@@ -282,7 +281,6 @@ const Projects = (props: Props) => {
 
     if (filterState) {
         if (ageSearchState) {
-            /* @ts-ignore */
             filtredArr = temporaryIsMinorArr.filter(
                 (el: ProjectType) =>
                     ageSearchState >= parseInt(el.ageFrom) &&
@@ -300,8 +298,6 @@ const Projects = (props: Props) => {
     if (raw) {
         localLoginData = JSON.parse(raw)
     }
-
-    console.log(filterState)
 
     return (
         <div className="projects-content">
