@@ -18,13 +18,14 @@
         margin-bottom: 20px;
         p{
             font-size: 32px;
-            
         }
         button{
             width: 30px;
             height: 30px;
             border: none;
             background-image: url(../../../assets/close-img-black.png);
+            background-position: center;
+            background-repeat: no-repeat;
             background-size: contain;
             background-color: transparent;
             cursor: pointer;
@@ -80,6 +81,12 @@
 @media(max-width: 992px) {
     .project-edit-form {
         width: 80%;
+        height: 90vh;
+        form{
+            textarea{
+                height: 100px;
+            }
+        }
     }
 }
 
@@ -87,12 +94,34 @@
 @media(max-width: 576px) {
     .project-edit-form {
         width: 90%;
+        padding: 20px;
+        .project-edit-header{
+            >p {
+                font-size: 18px;
+            }
+            >button{
+                width: 25px;
+                height: 25px;
+            }
+        }
         .sex-select-row {
             flex-direction: column;
         }
         form{
+            input{
+                height: 35px;
+            }
             button{
                 width: 100%;
+            }
+            .sex-select-row {
+                input{
+                    margin-right: 10px;
+                }
+                font-size: 20px;
+                >div{
+                    margin-bottom: 10px;
+                }
             }
         }
     }
