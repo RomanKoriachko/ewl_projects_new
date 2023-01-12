@@ -5,10 +5,10 @@
   gap: 20px;
 }
 
-.main-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  gap: 0px 30px;
+.sidebar {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .hide {

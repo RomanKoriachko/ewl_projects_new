@@ -44,13 +44,11 @@ const AddNewProject = (props: Props) => {
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
             dispatch(changeSex(e.target.value))
-            console.log(ProjectState.sex)
         } else if (ProjectState.sex.includes(e.target.value)) {
             let tempStr = ProjectState.sex
             let newStr = tempStr.replace(e.target.value, '')
             newStr.trim()
             dispatch(addNewSex(newStr.trim()))
-            console.log(ProjectState.sex)
         }
     }
 
@@ -66,12 +64,14 @@ const AddNewProject = (props: Props) => {
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        dispatch(changeProjectAgeFrom(e.target.value))
+        const onlyNumbers = e.target.value.replace(/\D/g, '')
+        dispatch(changeProjectAgeFrom(onlyNumbers))
     }
     const handleChangeProjectAgeTo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        dispatch(changeProjectAgeTo(e.target.value))
+        const onlyNumbers = e.target.value.replace(/\D/g, '')
+        dispatch(changeProjectAgeTo(onlyNumbers))
     }
     const handleChangeProjectNationalaty = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -102,8 +102,8 @@ const AddNewProject = (props: Props) => {
         projectName: string,
         location: string,
         sex: string,
-        ageFrom: string,
-        ageTo: string,
+        ageFrom: number,
+        ageTo: number,
         nationalaty: string,
         additionalInfo: string,
         housing: string,
@@ -131,6 +131,8 @@ const AddNewProject = (props: Props) => {
                             housing: housing,
                             projectInfo: projectInfo,
                         })
+                        dispatch(deliteProjectData(''))
+                        resetSex()
                     }
                 } else {
                     console.log('No data available')
@@ -149,8 +151,8 @@ const AddNewProject = (props: Props) => {
             ProjectState.projectName === '' ||
             ProjectState.location === '' ||
             ProjectState.sex === '' ||
-            ProjectState.ageFrom === '' ||
-            ProjectState.ageTo === '' ||
+            ProjectState.ageFrom === undefined ||
+            ProjectState.ageTo === undefined ||
             ProjectState.nationalaty === '' ||
             ProjectState.additionalInfo === '' ||
             ProjectState.housing === '' ||
@@ -173,8 +175,6 @@ const AddNewProject = (props: Props) => {
                 ProjectState.housing,
                 ProjectState.projectInfo
             )
-            dispatch(deliteProjectData(''))
-            resetSex()
         }
     }
 

@@ -87,12 +87,14 @@ const EditProject = ({ setEditFormState }: Props) => {
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        dispatch(editProjectAgeFrom(e.target.value))
+        const onlyNumbers = e.target.value.replace(/\D/g, '')
+        dispatch(editProjectAgeFrom(onlyNumbers))
     }
     const handleChangeProjectAgeTo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        dispatch(editProjectAgeTo(e.target.value))
+        const onlyNumbers = e.target.value.replace(/\D/g, '')
+        dispatch(editProjectAgeTo(onlyNumbers))
     }
     const handleChangeProjectNationalaty = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -125,8 +127,8 @@ const EditProject = ({ setEditFormState }: Props) => {
         projectName: string,
         location: string,
         sex: string,
-        ageFrom: string,
-        ageTo: string,
+        ageFrom: number,
+        ageTo: number,
         nationalaty: string,
         additionalInfo: string,
         housing: string,
@@ -179,8 +181,8 @@ const EditProject = ({ setEditFormState }: Props) => {
             editProjectState.salary === '' ||
             editProjectState.projectName === '' ||
             editProjectState.location === '' ||
-            editProjectState.ageFrom === '' ||
-            editProjectState.ageTo === '' ||
+            editProjectState.ageFrom === undefined ||
+            editProjectState.ageTo === undefined ||
             editProjectState.nationalaty === '' ||
             editProjectState.additionalInfo === '' ||
             editProjectState.housing === '' ||

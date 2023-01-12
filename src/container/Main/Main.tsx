@@ -6,6 +6,7 @@ import Registration from 'components/mainComponents/RegistrationAndLogin/Registr
 import Login from 'components/mainComponents/RegistrationAndLogin/Login'
 import { useAppSelector } from 'redux/hooks'
 import SliderComponent from 'components/mainComponents/SliderComponent/SliderComponent'
+import StickyBox from 'react-sticky-box'
 
 type Props = {}
 
@@ -52,8 +53,10 @@ const Main = (props: Props) => {
                                 <AddNewProject />
                                 <Registration />
                             </div>
-                            <div className="main-wrapper">
-                                <SearchAndFilter />
+                            <div className="sidebar">
+                                <StickyBox offsetTop={-30} offsetBottom={0}>
+                                    <SearchAndFilter />
+                                </StickyBox>
                                 <Projects />
                             </div>
                         </div>
@@ -62,8 +65,10 @@ const Main = (props: Props) => {
                     <>
                         <SliderComponent />
                         <div className="container">
-                            <div className="main-wrapper">
-                                <SearchAndFilter />
+                            <div className="sidebar">
+                                <StickyBox offsetTop={-30} offsetBottom={0}>
+                                    <SearchAndFilter />
+                                </StickyBox>
                                 <Projects />
                             </div>
                         </div>

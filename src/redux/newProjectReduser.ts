@@ -6,8 +6,8 @@ type ProjectType = {
     projectName: string
     location: string
     sex: string
-    ageFrom: string
-    ageTo: string
+    ageFrom: number | undefined
+    ageTo: number | undefined
     nationalaty: string
     additionalInfo: string
     housing: string
@@ -20,8 +20,8 @@ const initialState: ProjectType = {
     projectName: '',
     location: '',
     sex: '',
-    ageFrom: '',
-    ageTo: '',
+    ageFrom: undefined,
+    ageTo: undefined,
     nationalaty: '',
     additionalInfo: '',
     housing: '',
