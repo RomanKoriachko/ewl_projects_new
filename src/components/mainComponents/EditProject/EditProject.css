@@ -8,6 +8,8 @@
   width: 50%;
   background: white;
   z-index: 10;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
 }
 .project-edit-form .project-edit-header {
   display: flex;
@@ -21,6 +23,15 @@
 .project-edit-form .project-edit-header button {
   width: 30px;
   height: 30px;
+  border: none;
+  background-image: url(../../../assets/close-img-black.png);
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.project-edit-form .project-edit-header button:hover {
+  background-image: url(../../../assets/close-img-orange.png);
 }
 .project-edit-form form {
   display: grid;
@@ -36,6 +47,13 @@
 .project-edit-form form .sex-select-edit label {
   margin-right: 10px;
 }
+.project-edit-form form .age-wrapper {
+  justify-content: space-between;
+  gap: 10px;
+}
+.project-edit-form form .age-wrapper > input {
+  width: 100%;
+}
 .project-edit-form form select {
   padding: 0px 20px;
   height: 40px;
@@ -49,6 +67,37 @@
   resize: none;
 }
 .project-edit-form form button {
-  width: 200px;
+  width: 250px;
   height: 40px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  padding: 10px;
+  border: 1px solid black;
+  background: transparent;
+  font-size: 16px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.project-edit-form form button:hover {
+  border: 1px solid #EB6A09;
+  color: #EB6A09;
+}
+
+@media (max-width: 992px) {
+  .project-edit-form {
+    width: 80%;
+  }
+}
+@media (max-width: 576px) {
+  .project-edit-form {
+    width: 90%;
+  }
+  .project-edit-form .sex-select-row {
+    flex-direction: column;
+  }
+  .project-edit-form form button {
+    width: 100%;
+  }
 }

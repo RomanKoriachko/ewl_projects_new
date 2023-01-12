@@ -143,9 +143,6 @@ const AddNewProject = (props: Props) => {
 
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (ProjectState.ageFrom > ProjectState.ageTo) {
-            alert('Возраст От не может быть больше возраста До')
-        }
         if (
             ProjectState.country === '' ||
             ProjectState.salary === '' ||
@@ -160,6 +157,8 @@ const AddNewProject = (props: Props) => {
             ProjectState.projectInfo === ''
         ) {
             alert('Все поля обязательны для заполнения')
+        } else if (ProjectState.ageFrom > ProjectState.ageTo) {
+            alert('Возраст От не может быть больше возраста До')
         } else {
             writeProjectData(
                 ProjectState.country,

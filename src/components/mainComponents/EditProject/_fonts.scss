@@ -33,6 +33,7 @@
 }
 
 @mixin mainButton($fz) {
+    @include raleway600();
     padding: 10px;
     border: 1px solid black;
     background: transparent;

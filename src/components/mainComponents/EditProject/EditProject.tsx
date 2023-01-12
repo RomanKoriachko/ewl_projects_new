@@ -192,6 +192,8 @@ const EditProject = ({ setEditFormState }: Props) => {
                 !editProjectState.sex.includes('Пары'))
         ) {
             alert('все поля обязательні для заполнения')
+        } else if (editProjectState.ageFrom > editProjectState.ageTo) {
+            alert('Возраст От не может быть больше возраста До')
         } else {
             onEditClick(
                 editProjectState.country,
@@ -214,7 +216,7 @@ const EditProject = ({ setEditFormState }: Props) => {
         <div className="project-edit-form">
             <div className="project-edit-header">
                 <p className="tablet-header">Редактировать проект</p>
-                <button onClick={closeEditForm}>X</button>
+                <button onClick={closeEditForm}></button>
             </div>
             <form onSubmit={onSendClick}>
                 <label htmlFor="country">Выбор страны</label>
@@ -239,34 +241,41 @@ const EditProject = ({ setEditFormState }: Props) => {
                 </select>
                 <div className="sex-select-edit">
                     <p>Выбор пола</p>
-                    <div className="row"></div>
-                    <input
-                        type="checkbox"
-                        id="male-edit"
-                        name="sex-edit"
-                        value="Мужчины"
-                        className="chechbox-male-edit"
-                        onChange={handleChangeSex}
-                    />
-                    <label htmlFor="male-edit">Мужчины</label>
-                    <input
-                        type="checkbox"
-                        id="female-edit"
-                        name="sex-edit"
-                        value="Женщины"
-                        className="chechbox-female-edit"
-                        onChange={handleChangeSex}
-                    />
-                    <label htmlFor="female-edit">Женщины</label>
-                    <input
-                        type="checkbox"
-                        id="couples-edit"
-                        name="sex-edit"
-                        value="Пары"
-                        className="chechbox-couples-edit"
-                        onChange={handleChangeSex}
-                    />
-                    <label htmlFor="couples-edit">Пары</label>
+                    <div className="row sex-select-row">
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="male-edit"
+                                name="sex-edit"
+                                value="Мужчины"
+                                className="chechbox-male-edit"
+                                onChange={handleChangeSex}
+                            />
+                            <label htmlFor="male-edit">Мужчины</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="female-edit"
+                                name="sex-edit"
+                                value="Женщины"
+                                className="chechbox-female-edit"
+                                onChange={handleChangeSex}
+                            />
+                            <label htmlFor="female-edit">Женщины</label>
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="couples-edit"
+                                name="sex-edit"
+                                value="Пары"
+                                className="chechbox-couples-edit"
+                                onChange={handleChangeSex}
+                            />
+                            <label htmlFor="couples-edit">Пары</label>
+                        </div>
+                    </div>
                 </div>
                 <input
                     type="text"
@@ -289,7 +298,7 @@ const EditProject = ({ setEditFormState }: Props) => {
                     value={editProjectState.location}
                     onChange={handleChangeProjectLocation}
                 />
-                <div>
+                <div className="row age-wrapper">
                     <input
                         type="text"
                         id="edit-age-from"

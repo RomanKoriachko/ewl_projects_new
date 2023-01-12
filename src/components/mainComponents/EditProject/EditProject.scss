@@ -10,6 +10,7 @@
     width: 50%;
     background: white;
     z-index: 10;
+    @include fonts.sans400();
     .project-edit-header {
         display: flex;
         justify-content: space-between;
@@ -22,6 +23,15 @@
         button{
             width: 30px;
             height: 30px;
+            border: none;
+            background-image: url(../../../assets/close-img-black.png);
+            background-size: contain;
+            background-color: transparent;
+            cursor: pointer;
+            transition: .3s all;
+            &:hover {
+                background-image: url(../../../assets/close-img-orange.png);
+            }
         }
     }
     form{
@@ -39,6 +49,13 @@
                 margin-right: 10px;
             }
         }
+        .age-wrapper {
+            justify-content: space-between;
+            gap: 10px;
+            >input{
+                width: 100%;
+            }
+        }
         select {
             padding: 0px 20px;
             height: 40px;
@@ -52,8 +69,31 @@
             resize: none;
         }
         button {
-            width: 200px;
+            width: 250px;
             height: 40px;
+            @include fonts.mainButton(16px);
+        }
+    }
+}
+
+// Tablet
+@media(max-width: 992px) {
+    .project-edit-form {
+        width: 80%;
+    }
+}
+
+// Mobile
+@media(max-width: 576px) {
+    .project-edit-form {
+        width: 90%;
+        .sex-select-row {
+            flex-direction: column;
+        }
+        form{
+            button{
+                width: 100%;
+            }
         }
     }
 }
