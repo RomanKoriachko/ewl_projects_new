@@ -8,9 +8,12 @@ export const searchContentReducer = createSlice({
     reducers:{
         getSearchInput: (state, action) => {
             return action.payload
+        },
+        cleanSearchInput: (state) => {
+            return ""
         }
     }
 })
 
-export const {getSearchInput} = searchContentReducer.actions
+export const {getSearchInput, cleanSearchInput} = searchContentReducer.actions
 export default searchContentReducer.reducer

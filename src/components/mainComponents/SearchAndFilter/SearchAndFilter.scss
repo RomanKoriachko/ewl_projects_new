@@ -1,17 +1,53 @@
+@use 'fonts';
+
 .search-and-filter {
     .search {
         border: 1px solid black;
         padding: 28px;
         margin-bottom: 5px;
-        .search-input {
-            width: 200px;
-            height: 30px;
-            padding: 0px 10px;
+        .search-and-btn {
+            border: 1px solid black;
+            .search-input {
+                @include fonts.sans400();
+                font-size: 16px;
+                width: 200px;
+                height: 30px;
+                padding: 0px 10px;
+                border: none;
+                outline: none;
+            }
+            >button{
+                width: 30px;
+                height: 30px;
+                background-image: url(../../../assets/close-img-black.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 60%;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                transition: .3s all;
+                &:hover {
+                    background-image: url(../../../assets/close-img-orange.png);
+                }
+            }
         }
+
     }
     .filter {
         border: 1px solid black;
         padding: 20px;
+        .filter-header{
+            @include fonts.raleway700();
+        }
+        .filter-section-header {
+            @include fonts.raleway600();
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .filter-item {
+            margin-bottom: 5px;
+        }
         >p{
             text-align: center;
             font-size: 36px;
@@ -27,8 +63,26 @@
                 width:  50px;
                 height: 30px;
                 margin-right: 20px;
-                padding: 0px 10px;
-                font-size: 24px;
+                padding: 0px 13px;
+                font-size: 18px;
+            }
+        }
+        input{
+            margin-right: 10px;
+        }
+        label{
+            @include fonts.sans400();
+            cursor: pointer;
+            user-select: none;
+            transition: .3s all;
+            &:hover{
+                color: #f18a01;
+            }
+        }
+        .filter-buttons {
+            gap: 20px;
+            >button{
+                @include fonts.mainButton(16px);
             }
         }
     }

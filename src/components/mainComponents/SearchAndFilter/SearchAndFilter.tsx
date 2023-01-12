@@ -15,7 +15,7 @@ import {
 import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { setIsMinor } from 'redux/isMinorReducer'
-import { getSearchInput } from 'redux/searchContentReducer'
+import { cleanSearchInput, getSearchInput } from 'redux/searchContentReducer'
 import {
     clearAllSexCheckboxes,
     setCouplesCheckbox,
@@ -34,6 +34,8 @@ const SearchAndFilter = (props: Props) => {
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const isMinorState = useAppSelector((state) => state.isMinorState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
+    const searchState = useAppSelector((state) => state.searchState)
+    const filterState = useAppSelector((state) => state.filterState)
 
     const changeSeacrchContent = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(getSearchInput(e.target.value))
@@ -146,22 +148,33 @@ const SearchAndFilter = (props: Props) => {
         dispatch(clearFilters())
     }
 
+    let isFilterAdded = {
+        color: '#f18a01',
+        borderColor: '#f18a01',
+    }
+
     return (
         <div className="search-and-filter">
             <div className="search">
-                <input
-                    type="text"
-                    placeholder="Поиск"
-                    className="search-input"
-                    onChange={changeSeacrchContent}
-                />
+                <div className="row search-and-btn">
+                    <input
+                        type="text"
+                        placeholder="Поиск"
+                        className="search-input"
+                        onChange={changeSeacrchContent}
+                        value={searchState}
+                    />
+                    <button
+                        onClick={() => dispatch(cleanSearchInput())}
+                    ></button>
+                </div>
             </div>
             <div className="filter">
-                <p>Фильтр</p>
+                <p className="filter-header">Фильтр</p>
                 <div className="filter-country">
-                    <div>Страна</div>
+                    <div className="filter-section-header">Страна</div>
                     <div className="filter-wrapper">
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="poland"
@@ -174,9 +187,10 @@ const SearchAndFilter = (props: Props) => {
                                         : false
                                 }
                             />
+                            <span className="checkmark"></span>
                             <label htmlFor="poland">Польша</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="czech"
@@ -191,7 +205,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="czech">Чехия</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="romania"
@@ -206,7 +220,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="romania">Румыния</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="slovakia"
@@ -221,7 +235,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="slovakia">Словакия</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="lithuania"
@@ -236,7 +250,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="lithuania">Литва</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="holland"
@@ -251,7 +265,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="holland">Голландия</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="germany"
@@ -266,7 +280,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="germany">Германия</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="greece"
@@ -281,7 +295,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="greece">Греция</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="spain"
@@ -296,7 +310,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="spain">Испания</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="cyprus"
@@ -314,9 +328,9 @@ const SearchAndFilter = (props: Props) => {
                     </div>
                 </div>
                 <div className="filter-sex">
-                    <div>Пол</div>
+                    <div className="filter-section-header">Пол</div>
                     <div className="filter-wrapper">
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="male"
@@ -326,7 +340,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="male">Мужчины</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="feemale"
@@ -336,7 +350,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                             <label htmlFor="feemale">Женщины</label>
                         </div>
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="couples"
@@ -352,7 +366,7 @@ const SearchAndFilter = (props: Props) => {
                 </div>
                 <div className="filter-adult">
                     <div className="filter-wrapper">
-                        <div>
+                        <div className="filter-item">
                             <input
                                 type="checkbox"
                                 id="is-minor"
@@ -381,10 +395,17 @@ const SearchAndFilter = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                <button onClick={() => resetFilter()}>сбросить фильтр</button>
-                <button onClick={() => dispatch(addFilters())}>
-                    применить фильтр
-                </button>
+                <div className="row filter-buttons">
+                    <button
+                        onClick={() => dispatch(addFilters())}
+                        style={filterState ? isFilterAdded : {}}
+                    >
+                        применить фильтр
+                    </button>
+                    <button onClick={() => resetFilter()}>
+                        сбросить фильтр
+                    </button>
+                </div>
             </div>
         </div>
     )

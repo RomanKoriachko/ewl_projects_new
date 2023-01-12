@@ -24,6 +24,11 @@
         flex-direction: column-reverse;
         align-items: center;
     }
+    .main-content {
+        .sidebar {
+            display: none;
+        }
+    }
 }
 
 

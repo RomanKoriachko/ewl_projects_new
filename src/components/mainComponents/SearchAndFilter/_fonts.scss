@@ -1,0 +1,48 @@
+@mixin sans300() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+@mixin sans400() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+@mixin sans700() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+@mixin raleway100() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+@mixin raleway100() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+@mixin raleway400() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+@mixin raleway600() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+@mixin raleway700() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}
+
+@mixin mainButton($fz) {
+    padding: 10px;
+    border: 1px solid black;
+    background: transparent;
+    font-size: $fz;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s all;
+    &:hover {
+        border: 1px solid #EB6A09;
+        color: #EB6A09;
+    }
+}
