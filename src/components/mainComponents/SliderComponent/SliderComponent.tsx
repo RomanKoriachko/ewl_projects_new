@@ -2,7 +2,7 @@ import Slider from 'react-slick'
 import './SliderComponent.scss'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { Background, Parallax } from 'react-parallax'
+import { Parallax } from 'react-parallax'
 
 type Props = {}
 

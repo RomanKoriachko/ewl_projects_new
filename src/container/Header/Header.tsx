@@ -38,6 +38,10 @@ const Header = (props: Props) => {
         localStorage.setItem('loginData', JSON.stringify(logoutData))
     }
 
+    const reloadPage = () => {
+        document.location.reload()
+    }
+
     return (
         <header className="header">
             <div className="upper-line"></div>
@@ -50,14 +54,14 @@ const Header = (props: Props) => {
                                 Пользователь: {localLoginData.email}
                             </div>
                             <div>
-                                <a href="">
+                                <div onClick={reloadPage}>
                                     <button
                                         className="logout-btn"
                                         onClick={() => logout()}
                                     >
                                         Выйти
                                     </button>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
