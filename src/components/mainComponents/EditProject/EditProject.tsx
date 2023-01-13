@@ -2,6 +2,7 @@ import { update, ref, getDatabase, get, child } from 'firebase/database'
 import {
     addNewEditedSex,
     deliteEditedProjectData,
+    editCategory,
     editCountry,
     editProjectAdditionalInfo,
     editProjectAgeFrom,
@@ -45,6 +46,11 @@ const EditProject = ({ setEditFormState }: Props) => {
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         dispatch(editProjectLocation(e.target.value))
+    }
+    const handleChangeProjectCategory = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(editCategory(e.target.value))
     }
 
     let checkboxMale = document.querySelector('.chechbox-male-edit')
@@ -132,7 +138,8 @@ const EditProject = ({ setEditFormState }: Props) => {
         nationalaty: string,
         additionalInfo: string,
         housing: string,
-        projectInfo: string
+        projectInfo: string,
+        category: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -156,6 +163,7 @@ const EditProject = ({ setEditFormState }: Props) => {
                             additionalInfo: additionalInfo,
                             housing: housing,
                             projectInfo: projectInfo,
+                            category: category,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -189,6 +197,7 @@ const EditProject = ({ setEditFormState }: Props) => {
             editProjectState.projectInfo === '' ||
             editProjectState.country === 'empty' ||
             editProjectState.sex === 'empty' ||
+            editProjectState.category === '' ||
             (!editProjectState.sex.includes('Мужчины') &&
                 !editProjectState.sex.includes('Женщины') &&
                 !editProjectState.sex.includes('Пары'))
@@ -208,7 +217,8 @@ const EditProject = ({ setEditFormState }: Props) => {
                 editProjectState.nationalaty,
                 editProjectState.additionalInfo,
                 editProjectState.housing,
-                editProjectState.projectInfo
+                editProjectState.projectInfo,
+                editProjectState.category
             )
             setEditFormState(false)
         }
@@ -299,6 +309,13 @@ const EditProject = ({ setEditFormState }: Props) => {
                     placeholder="Локализация"
                     value={editProjectState.location}
                     onChange={handleChangeProjectLocation}
+                />
+                <input
+                    type="text"
+                    id="edit-category"
+                    placeholder="Категория"
+                    value={editProjectState.category}
+                    onChange={handleChangeProjectCategory}
                 />
                 <div className="row age-wrapper">
                     <input

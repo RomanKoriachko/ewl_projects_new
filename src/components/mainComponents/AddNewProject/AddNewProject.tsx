@@ -1,6 +1,7 @@
 import { getDatabase, ref, set, get, child } from 'firebase/database'
 import {
     addNewSex,
+    changeCategory,
     changeCountry,
     changeProjectAdditionalInfo,
     changeProjectAgeFrom,
@@ -39,6 +40,11 @@ const AddNewProject = (props: Props) => {
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         dispatch(changeProjectLocation(e.target.value))
+    }
+    const handleChangeProjectCategory = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(changeCategory(e.target.value))
     }
 
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,7 +113,8 @@ const AddNewProject = (props: Props) => {
         nationalaty: string,
         additionalInfo: string,
         housing: string,
-        projectInfo: string
+        projectInfo: string,
+        category: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -130,6 +137,7 @@ const AddNewProject = (props: Props) => {
                             additionalInfo: additionalInfo,
                             housing: housing,
                             projectInfo: projectInfo,
+                            category: category,
                         })
                         dispatch(deliteProjectData(''))
                         resetSex()
@@ -156,7 +164,8 @@ const AddNewProject = (props: Props) => {
             ProjectState.nationalaty === '' ||
             ProjectState.additionalInfo === '' ||
             ProjectState.housing === '' ||
-            ProjectState.projectInfo === ''
+            ProjectState.projectInfo === '' ||
+            ProjectState.category === ''
         ) {
             alert('Все поля обязательны для заполнения')
         } else if (ProjectState.ageFrom > ProjectState.ageTo) {
@@ -173,7 +182,8 @@ const AddNewProject = (props: Props) => {
                 ProjectState.nationalaty,
                 ProjectState.additionalInfo,
                 ProjectState.housing,
-                ProjectState.projectInfo
+                ProjectState.projectInfo,
+                ProjectState.category
             )
         }
     }
@@ -260,6 +270,13 @@ const AddNewProject = (props: Props) => {
                     placeholder="Локализация"
                     value={ProjectState.location}
                     onChange={handleChangeProjectLocation}
+                />
+                <input
+                    type="text"
+                    id="category"
+                    placeholder="Категория"
+                    value={ProjectState.category}
+                    onChange={handleChangeProjectCategory}
                 />
                 <div className="row age-row">
                     <input

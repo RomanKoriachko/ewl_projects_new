@@ -12,6 +12,7 @@ type ProjectType = {
     additionalInfo: string
     housing: string
     projectInfo: string
+    category: string
 }
 
 const initialState: ProjectType = {
@@ -26,6 +27,7 @@ const initialState: ProjectType = {
     additionalInfo: '',
     housing: '',
     projectInfo: ``,
+    category: "",
 }
 
 export const editProjectSlice = createSlice({
@@ -80,6 +82,10 @@ export const editProjectSlice = createSlice({
             ...state,
             projectInfo: action.payload
         }),
+        editCategory: (state, action) => ({
+            ...state,
+            category: action.payload
+        }),
         deliteEditedProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -92,6 +98,7 @@ export const editProjectSlice = createSlice({
             additionalInfo: action.payload,
             housing: action.payload,
             projectInfo: action.payload,
+            category: action.payload,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
@@ -105,9 +112,10 @@ export const editProjectSlice = createSlice({
             additionalInfo: action.payload.additionalInfo,
             housing: action.payload.housing,
             projectInfo: action.payload.projectInfo,
+            category: action.payload.category,
         }),
     }
 })
 
-export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, getProjectData} = editProjectSlice.actions
+export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData} = editProjectSlice.actions
 export default editProjectSlice.reducer
