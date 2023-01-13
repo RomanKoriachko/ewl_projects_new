@@ -9,6 +9,7 @@ import newProjectReduser from "./newProjectReduser";
 import registrationDataReducer from "./registrationDataReducer";
 import searchContentReducer from "./searchContentReducer";
 import sexCheckboxReducer from "./sexCheckboxReducer";
+import ShowMoreReducer from "./ShowMoreReducer";
 
 
 export const store = configureStore({
@@ -23,6 +24,7 @@ export const store = configureStore({
         isMinorState: isMinorReducer,
         ageSearchState: ageSearchReducer,
         filterState: filterReducer,
+        showMoreState: ShowMoreReducer,
     }
 })
 

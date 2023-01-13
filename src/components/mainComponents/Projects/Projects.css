@@ -25,6 +25,8 @@
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 10px;
+  position: relative;
+  transition: 0.3s all;
 }
 .projects .project-item .project-item-section {
   margin-bottom: 10px;

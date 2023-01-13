@@ -5,6 +5,7 @@ import './Projects.scss'
 import CopyButton from '@yozora/react-common-copy-button'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
+import { showLessData, showMoreData } from 'redux/ShowMoreReducer'
 
 type Props = {}
 
@@ -32,6 +33,7 @@ const Projects = (props: Props) => {
     const isMinorState = useAppSelector((state) => state.isMinorState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const filterState = useAppSelector((state) => state.filterState)
+    const showMoreState = useAppSelector((state) => state.showMoreState)
     const dispatch = useAppDispatch()
 
     const [projectsArr, setProjectsArr] = useState<ProjectType[]>([])
@@ -322,8 +324,6 @@ const Projects = (props: Props) => {
         return tempStr
     }
 
-    console.log(filtredArr)
-
     return (
         <div className="projects-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -384,11 +384,23 @@ const Projects = (props: Props) => {
                                     <div>Cтавка в злотых: {element.salary}</div>
                                 </div>
                                 <div>
-                                    <div className="project-info">
+                                    <div
+                                        className={`project-item-section project-info ${
+                                            showMoreState[element.projectName]
+                                                ? 'hide'
+                                                : 'show'
+                                        }`}
+                                    >
                                         {getShortString(element.projectInfo)}
                                     </div>
                                 </div>
-                                <div>
+                                <div
+                                    className={
+                                        showMoreState[element.projectName]
+                                            ? 'show'
+                                            : 'hide'
+                                    }
+                                >
                                     <div className="project-item-section">
                                         <div>
                                             Национальность:{' '}
@@ -412,7 +424,7 @@ const Projects = (props: Props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div className="row">
                                     <button
                                         className="delite-btn project-item-btn"
                                         onClick={() =>
@@ -443,8 +455,37 @@ const Projects = (props: Props) => {
                                     >
                                         Редактировать
                                     </button>
-                                    <button className="show-more-btn project-item-btn">
+                                    <button
+                                        className={`show-more-btn project-item-btn ${
+                                            showMoreState[element.projectName]
+                                                ? 'hide'
+                                                : 'show'
+                                        }`}
+                                        onClick={() =>
+                                            dispatch(
+                                                showMoreData(
+                                                    element.projectName
+                                                )
+                                            )
+                                        }
+                                    >
                                         Развернуть
+                                    </button>
+                                    <button
+                                        className={`show-more-btn project-item-btn ${
+                                            showMoreState[element.projectName]
+                                                ? 'show'
+                                                : 'hide'
+                                        }`}
+                                        onClick={() =>
+                                            dispatch(
+                                                showLessData(
+                                                    element.projectName
+                                                )
+                                            )
+                                        }
+                                    >
+                                        Свернуть
                                     </button>
                                     <CopyButton
                                         className="copy-btn project-item-btn"
