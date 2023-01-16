@@ -1,4 +1,4 @@
-@use 'fonts';
+@import './../../../fonts';
 
 .project-edit-form {
     position: fixed;
@@ -10,7 +10,7 @@
     width: 50%;
     background: white;
     z-index: 10;
-    @include fonts.sans400();
+    @include sans400();
     .project-edit-header {
         display: flex;
         justify-content: space-between;
@@ -72,7 +72,7 @@
         button {
             width: 250px;
             height: 40px;
-            @include fonts.mainButton(16px);
+            @include mainButton();
         }
     }
 }

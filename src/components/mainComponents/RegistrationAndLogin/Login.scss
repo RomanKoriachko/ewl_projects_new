@@ -1,4 +1,4 @@
-@use 'fonts';
+@import './../../../fonts';
 
 .login {
     position: absolute;
@@ -11,7 +11,7 @@
     font-size: 30px;
     margin-bottom: 20px;
     text-align: center;
-    @include fonts.raleway700();
+    @include raleway700();
 }
 
 .grid-wrapper {
@@ -27,7 +27,7 @@
         height: 50px;
         width: 300px;
         padding: 0px 10px;
-        @include fonts.sans400();
+        @include sans400();
         font-size: 18px;
         transition: .3s all;
         &:focus {
@@ -45,7 +45,7 @@
     }
     .submit-button {
         grid-area: c;
-        @include fonts.mainButton(21px);
+        @include mainButton();
     }
 }
 

@@ -1,4 +1,4 @@
-@use 'fonts';
+@import './../../../fonts';
 
 .projects-content {
     width: 100%;
@@ -19,7 +19,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     .project-item {
-        @include fonts.sans400();
+        @include sans400();
         border: 1px solid black;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -30,7 +30,7 @@
             margin-bottom: 10px;
         }
         .project-header {
-            @include fonts.raleway600();
+            @include raleway600();
             font-size: 24px;
             transition: .3s all;
             &:hover {
@@ -51,21 +51,21 @@
                 color: white;
                 background-color: black;
                 padding: 3px 5px;
-                @include fonts.sans600();
+                @include sans600();
                 font-size: 12px;
             }
         }
         .project-country {
-            @include fonts.sans700();
+            @include sans700();
             font-size: 12px;
         }
         .project-location {
-            @include fonts.sans400();
+            @include sans400();
             font-size: 12px;
             color: #444;
         }
         .project-category {
-            @include fonts.sans400();
+            @include sans400();
             font-size: 16px;
             background-color: #EB6A09;
             color: white;
@@ -73,7 +73,7 @@
         }
         .project-item-btn {
             border: none;
-            @include fonts.raleway600();
+            @include raleway600();
             padding: 6px 12px;
             background-color: black;
             color: white;

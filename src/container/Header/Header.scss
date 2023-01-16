@@ -1,4 +1,4 @@
-@import 'fonts';
+@import './../../fonts';
 
 .header{
     border-bottom: 1px solid black;
@@ -24,16 +24,8 @@
             align-items: center;
             @include raleway700();
             .logout-btn {
-                border: 1px solid black;
-                background: transparent;
-                padding: 7px 15px;
-                cursor: pointer;
-                @include raleway700();
-                transition: .3s all;
-                &:hover {
-                    border: 1px solid #EB6A09;
-                    color: #EB6A09;
-                }
+                @include mainButton();
+                height: 50px;
             }
         }
     }

@@ -1,4 +1,4 @@
-@use 'fonts';
+@import './../../../fonts';
 
 .slider-item {
     height: 800px;
@@ -17,7 +17,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         .slider-text {
-            @include fonts.raleway700();
+            @include raleway700();
             font-size: 54px;
             color: white;
         }

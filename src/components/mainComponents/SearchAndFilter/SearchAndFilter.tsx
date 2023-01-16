@@ -149,8 +149,9 @@ const SearchAndFilter = (props: Props) => {
     }
 
     let isFilterAdded = {
-        color: '#f18a01',
+        color: 'white',
         borderColor: '#f18a01',
+        backgroundColor: '#f18a01',
     }
 
     return (
@@ -395,7 +396,7 @@ const SearchAndFilter = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                <div className="row filter-buttons">
+                <div className="filter-buttons">
                     <button
                         onClick={() => dispatch(addFilters())}
                         style={filterState ? isFilterAdded : {}}

@@ -71,20 +71,30 @@
 .project-edit-form form button {
   width: 250px;
   height: 40px;
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  padding: 10px;
-  border: 1px solid black;
-  background: transparent;
-  font-size: 16px;
+  background-image: linear-gradient(92.88deg, #ee7c25 9.16%, #EB6A09 43.89%, #ff6f00 64.72%);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s all;
+  font-size: 16px;
+  height: 4rem;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all 0.5s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 .project-edit-form form button:hover {
-  border: 1px solid #EB6A09;
-  color: #EB6A09;
+  box-shadow: rgba(235, 106, 9, 0.5) 0 1px 30px;
+  transition-duration: 0.1s;
 }
 
 @media (max-width: 992px) {
