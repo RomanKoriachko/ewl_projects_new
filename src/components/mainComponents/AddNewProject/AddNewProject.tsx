@@ -17,25 +17,36 @@ import {
 } from 'redux/newProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import './AddNewProject.scss'
-import { TextField } from '@mui/material'
+import { FormGroup, FormHelperText, TextField } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import FormLabel from '@mui/material/FormLabel'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-import { useState } from 'react'
-import Button from '@mui/material/Button'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-
+import {
+    addCheckedCheckbox,
+    removeAllCheckboxes,
+} from 'redux/checkboxCheckedReducer'
 type Props = {}
 
-type CheckedType = {
-    [name: string]: boolean
-}
-
 const AddNewProject = (props: Props) => {
-    const ProjectState = useAppSelector((state) => state.newProjectState)
+    const projectState = useAppSelector((state) => state.newProjectState)
+    const checkboxState = useAppSelector((state) => state.checkboxCheckedState)
     const dispatch = useAppDispatch()
+
+    const countrysOptions = [
+        '',
+        'Польша',
+        'Чехия',
+        'Румыния',
+        'Словакия',
+        'Литва',
+        'Голландия',
+        'Германия',
+        'Греция',
+        'Испания',
+        'Кипр',
+    ]
 
     const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(changeSalary(e.target.value))
@@ -56,22 +67,35 @@ const AddNewProject = (props: Props) => {
         dispatch(changeCategory(e.target.value))
     }
 
-    const [checked, setChecked] = useState<CheckedType>({})
-
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
             dispatch(changeSex(e.target.value))
-        } else if (ProjectState.sex.includes(e.target.value)) {
-            let tempStr = ProjectState.sex
+        } else if (projectState.sex.includes(e.target.value)) {
+            let tempStr = projectState.sex
             let newStr = tempStr.replace(e.target.value, '')
             newStr.trim()
             dispatch(addNewSex(newStr.trim()))
         }
-        setChecked((prevState: CheckedType) => ({
-            ...prevState,
-            [e.target.value]: e.target.checked,
-        }))
+        dispatch(
+            addCheckedCheckbox({
+                value: e.target.value,
+                checked: e.target.checked,
+            })
+        )
     }
+
+    const errorElement = projectState.sex
+        .split(' ')
+        .filter((element) => element.length > 1)
+
+    let error = true
+    errorElement.forEach((element) => {
+        if (element.length < 1) {
+            error = true
+        } else {
+            error = false
+        }
+    })
 
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -127,7 +151,7 @@ const AddNewProject = (props: Props) => {
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     if (
-                        snapshot.val().hasOwnProperty(ProjectState.projectName)
+                        snapshot.val().hasOwnProperty(projectState.projectName)
                     ) {
                         alert('Проект с таким названием уже добавлен')
                     } else {
@@ -146,7 +170,7 @@ const AddNewProject = (props: Props) => {
                             category: category,
                         })
                         dispatch(deliteProjectData(''))
-                        setChecked({})
+                        dispatch(removeAllCheckboxes())
                     }
                 } else {
                     console.log('No data available')
@@ -159,68 +183,25 @@ const AddNewProject = (props: Props) => {
 
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (
-            ProjectState.country === '' ||
-            ProjectState.country === null ||
-            ProjectState.salary === '' ||
-            ProjectState.projectName === '' ||
-            ProjectState.location === '' ||
-            ProjectState.sex === '' ||
-            ProjectState.ageFrom === undefined ||
-            ProjectState.ageTo === undefined ||
-            ProjectState.nationalaty === '' ||
-            ProjectState.additionalInfo === '' ||
-            ProjectState.housing === '' ||
-            ProjectState.projectInfo === '' ||
-            ProjectState.category === ''
-        ) {
-            alert('Все поля обязательны для заполнения')
-        } else if (ProjectState.ageFrom > ProjectState.ageTo) {
-            alert('Возраст От не может быть больше возраста До')
-        } else {
+        if (projectState.sex === '') {
+            alert('Необходимо выбрать пол')
+        } else if (projectState.ageFrom && projectState.ageTo) {
             writeProjectData(
-                ProjectState.country,
-                ProjectState.salary,
-                ProjectState.projectName,
-                ProjectState.location,
-                ProjectState.sex,
-                ProjectState.ageFrom,
-                ProjectState.ageTo,
-                ProjectState.nationalaty,
-                ProjectState.additionalInfo,
-                ProjectState.housing,
-                ProjectState.projectInfo,
-                ProjectState.category
+                projectState.country,
+                projectState.salary,
+                projectState.projectName,
+                projectState.location,
+                projectState.sex,
+                projectState.ageFrom,
+                projectState.ageTo,
+                projectState.nationalaty,
+                projectState.additionalInfo,
+                projectState.housing,
+                projectState.projectInfo,
+                projectState.category
             )
         }
     }
-
-    const countrysOptions = [
-        '',
-        'Польша',
-        'Чехия',
-        'Румыния',
-        'Словакия',
-        'Литва',
-        'Голландия',
-        'Германия',
-        'Греция',
-        'Испания',
-        'Кипр',
-    ]
-
-    const errorElement = ProjectState.sex
-        .split(' ')
-        .filter((element) => element.length > 1)
-
-    let error = true
-    errorElement.forEach((element) => {
-        if (element.length < 1) {
-            error = true
-        } else {
-            error = false
-        }
-    })
 
     return (
         <div className="project-form">
@@ -229,17 +210,17 @@ const AddNewProject = (props: Props) => {
                 <Autocomplete
                     id="country"
                     renderInput={(params) => (
-                        <TextField {...params} label="Страна" />
+                        <TextField {...params} label="Страна" required />
                     )}
                     options={countrysOptions}
-                    value={ProjectState.country}
+                    value={projectState.country}
                     onChange={(event: any, newValue: string | null) => {
                         dispatch(changeCountry(newValue))
                     }}
                 />
-                <div className="sex-select">
-                    <FormControl required error={error}>
-                        <FormLabel>Выбор пола</FormLabel>
+                <FormControl required error={error}>
+                    <FormLabel>Выбор пола</FormLabel>
+                    <FormGroup>
                         <div className="row sex-select-wrapper">
                             <FormControlLabel
                                 className="checkbox-item"
@@ -251,7 +232,9 @@ const AddNewProject = (props: Props) => {
                                             },
                                         }}
                                         checked={
-                                            checked['Мужчины'] ? true : false
+                                            checkboxState['Мужчины']
+                                                ? true
+                                                : false
                                         }
                                         className="checkbox"
                                         value="Мужчины"
@@ -271,7 +254,9 @@ const AddNewProject = (props: Props) => {
                                             },
                                         }}
                                         checked={
-                                            checked['Женщины'] ? true : false
+                                            checkboxState['Женщины']
+                                                ? true
+                                                : false
                                         }
                                         className="checkbox"
                                         value="Женщины"
@@ -290,7 +275,9 @@ const AddNewProject = (props: Props) => {
                                                 color: '#EB6A09',
                                             },
                                         }}
-                                        checked={checked['Пары'] ? true : false}
+                                        checked={
+                                            checkboxState['Пары'] ? true : false
+                                        }
                                         className="checkbox"
                                         value="Пары"
                                         onChange={handleChangeSex}
@@ -300,82 +287,92 @@ const AddNewProject = (props: Props) => {
                                 label="Пары"
                             />
                         </div>
-                    </FormControl>
-                </div>
+                    </FormGroup>
+                </FormControl>
                 <TextField
+                    required
                     label="Название проекта"
                     variant="outlined"
                     id="project"
-                    value={ProjectState.projectName}
+                    value={projectState.projectName}
                     onChange={handleChangeProjectName}
                 />
                 <TextField
+                    required
                     label="Ставка"
                     variant="outlined"
                     id="salary"
-                    value={ProjectState.salary}
+                    value={projectState.salary}
                     onChange={handleChangeSalary}
                 />
                 <TextField
+                    required
                     label="Локализация"
                     variant="outlined"
                     id="location"
-                    value={ProjectState.location}
+                    value={projectState.location}
                     onChange={handleChangeProjectLocation}
                 />
                 <TextField
+                    required
                     label="Категория"
                     variant="outlined"
                     id="category"
-                    value={ProjectState.category}
+                    value={projectState.category}
                     onChange={handleChangeProjectCategory}
                 />
                 <div className="row age-row">
                     <TextField
+                        required
                         label="Возраст От"
                         variant="outlined"
                         id="age-from"
-                        value={ProjectState.ageFrom}
+                        value={projectState.ageFrom}
                         onChange={handleChangeProjectAgeFrom}
                     />
                     <TextField
+                        required
                         label="Возраст До"
                         variant="outlined"
                         id="age-to"
-                        value={ProjectState.ageTo}
+                        value={projectState.ageTo}
                         onChange={handleChangeProjectAgeTo}
                     />
                 </div>
                 <TextField
+                    required
                     label="Национальность"
                     variant="outlined"
                     id="nationalaty"
-                    value={ProjectState.nationalaty}
+                    value={projectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
                 <TextField
+                    required
                     label="Дополнительная информация"
                     variant="outlined"
                     id="additionalInfo"
-                    value={ProjectState.additionalInfo}
+                    value={projectState.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <TextField
+                    required
                     label="Примеры жилья"
                     variant="outlined"
                     id="housing"
-                    value={ProjectState.housing}
+                    value={projectState.housing}
                     onChange={handleChangeProjectHousing}
                 />
                 <TextField
+                    required
                     label="Описание проекта"
                     variant="outlined"
                     id="projectInfo"
                     multiline
-                    value={ProjectState.projectInfo}
+                    value={projectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
                 />
-                <button role="button" className="add-project-btn" type="submit">
+                <button className="add-project-btn" type="submit">
                     Добавить проект
                 </button>
             </form>

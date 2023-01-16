@@ -16,22 +16,36 @@ import {
     editSex,
 } from 'redux/editProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { TextField } from '@mui/material'
+import Autocomplete from '@mui/material/Autocomplete'
+import FormLabel from '@mui/material/FormLabel'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 import './EditProject.scss'
 
 type Props = {
     setEditFormState: (prevState: boolean) => void
 }
 
-//
 const EditProject = ({ setEditFormState }: Props) => {
     const editProjectState = useAppSelector((state) => state.editProjectState)
     const dispatch = useAppDispatch()
 
-    const handleChangeProjectCountry = (
-        e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        dispatch(editCountry(e.target.value))
-    }
+    const countrysOptions = [
+        '',
+        'Польша',
+        'Чехия',
+        'Румыния',
+        'Словакия',
+        'Литва',
+        'Голландия',
+        'Германия',
+        'Греция',
+        'Испания',
+        'Кипр',
+    ]
+
     const handleChangeProjectSalary = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -53,32 +67,6 @@ const EditProject = ({ setEditFormState }: Props) => {
         dispatch(editCategory(e.target.value))
     }
 
-    let checkboxMale = document.querySelector('.chechbox-male-edit')
-    let checkboxFemale = document.querySelector('.chechbox-female-edit')
-    let checkboxCouples = document.querySelector('.chechbox-couples-edit')
-
-    if (editProjectState.sex.includes('Мужчины')) {
-        /* @ts-ignore */
-        checkboxMale.checked = true
-    } else if (checkboxMale !== null) {
-        /* @ts-ignore */
-        checkboxMale.checked = false
-    }
-    if (editProjectState.sex.includes('Женщины')) {
-        /* @ts-ignore */
-        checkboxFemale.checked = true
-    } else if (checkboxFemale !== null) {
-        /* @ts-ignore */
-        checkboxFemale.checked = false
-    }
-    if (editProjectState.sex.includes('Пары')) {
-        /* @ts-ignore */
-        checkboxCouples.checked = true
-    } else if (checkboxCouples !== null) {
-        /* @ts-ignore */
-        checkboxCouples.checked = false
-    }
-
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
             dispatch(editSex(e.target.value))
@@ -89,6 +77,19 @@ const EditProject = ({ setEditFormState }: Props) => {
             dispatch(addNewEditedSex(newStr.trim()))
         }
     }
+
+    const errorElement = editProjectState.sex
+        .split(' ')
+        .filter((element) => element.length > 1)
+
+    let error = true
+    errorElement.forEach((element) => {
+        if (element.length < 1) {
+            error = true
+        } else {
+            error = false
+        }
+    })
 
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -184,28 +185,9 @@ const EditProject = ({ setEditFormState }: Props) => {
 
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (
-            editProjectState.country === '' ||
-            editProjectState.salary === '' ||
-            editProjectState.projectName === '' ||
-            editProjectState.location === '' ||
-            editProjectState.ageFrom === undefined ||
-            editProjectState.ageTo === undefined ||
-            editProjectState.nationalaty === '' ||
-            editProjectState.additionalInfo === '' ||
-            editProjectState.housing === '' ||
-            editProjectState.projectInfo === '' ||
-            editProjectState.country === 'empty' ||
-            editProjectState.sex === 'empty' ||
-            editProjectState.category === '' ||
-            (!editProjectState.sex.includes('Мужчины') &&
-                !editProjectState.sex.includes('Женщины') &&
-                !editProjectState.sex.includes('Пары'))
-        ) {
-            alert('все поля обязательні для заполнения')
-        } else if (editProjectState.ageFrom > editProjectState.ageTo) {
-            alert('Возраст От не может быть больше возраста До')
-        } else {
+        if (editProjectState.sex === '') {
+            alert('Необходимо выбрать пол')
+        } else if (editProjectState.ageFrom && editProjectState.ageTo) {
             onEditClick(
                 editProjectState.country,
                 editProjectState.salary,
@@ -231,141 +213,183 @@ const EditProject = ({ setEditFormState }: Props) => {
                 <button onClick={closeEditForm}></button>
             </div>
             <form onSubmit={onSendClick}>
-                <label htmlFor="country">Выбор страны</label>
-                <select
-                    name="country"
-                    id="edit-country"
-                    form="add-project"
+                <Autocomplete
+                    id="country"
+                    renderInput={(params) => (
+                        <TextField {...params} label="Страна" required />
+                    )}
+                    options={countrysOptions}
                     value={editProjectState.country}
-                    onChange={handleChangeProjectCountry}
-                >
-                    <option value="empty"></option>
-                    <option value="Польша">Польша</option>
-                    <option value="Чехия">Чехия</option>
-                    <option value="Румыния">Румыния</option>
-                    <option value="Словакия">Словакия</option>
-                    <option value="Литва">Литва</option>
-                    <option value="Голландия">Голландия</option>
-                    <option value="Германия">Германия</option>
-                    <option value="Греция">Греция</option>
-                    <option value="Испания">Испания</option>
-                    <option value="Кипр">Кипр</option>
-                </select>
+                    onChange={(event: any, newValue: string | null) => {
+                        dispatch(editCountry(newValue))
+                    }}
+                />
                 <div className="sex-select-edit">
-                    <p>Выбор пола</p>
-                    <div className="row sex-select-row">
-                        <div>
-                            <input
-                                type="checkbox"
-                                id="male-edit"
-                                name="sex-edit"
-                                value="Мужчины"
-                                className="chechbox-male-edit"
-                                onChange={handleChangeSex}
+                    <FormControl required error={error}>
+                        <FormLabel>Выбор пола</FormLabel>
+                        <div className="row sex-select-wrapper">
+                            <FormControlLabel
+                                className="checkbox-item"
+                                control={
+                                    <Checkbox
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                        }}
+                                        checked={
+                                            editProjectState.sex.includes(
+                                                'Мужчины'
+                                            )
+                                                ? true
+                                                : false
+                                        }
+                                        className="checkbox"
+                                        value="Мужчины"
+                                        onChange={handleChangeSex}
+                                        name="Мужчины"
+                                    />
+                                }
+                                label="Мужчины"
                             />
-                            <label htmlFor="male-edit">Мужчины</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                id="female-edit"
-                                name="sex-edit"
-                                value="Женщины"
-                                className="chechbox-female-edit"
-                                onChange={handleChangeSex}
+                            <FormControlLabel
+                                className="checkbox-item"
+                                control={
+                                    <Checkbox
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                        }}
+                                        checked={
+                                            editProjectState.sex.includes(
+                                                'Женщины'
+                                            )
+                                                ? true
+                                                : false
+                                        }
+                                        className="checkbox"
+                                        value="Женщины"
+                                        onChange={handleChangeSex}
+                                        name="Женщины"
+                                    />
+                                }
+                                label="Женщины"
                             />
-                            <label htmlFor="female-edit">Женщины</label>
-                        </div>
-                        <div>
-                            <input
-                                type="checkbox"
-                                id="couples-edit"
-                                name="sex-edit"
-                                value="Пары"
-                                className="chechbox-couples-edit"
-                                onChange={handleChangeSex}
+                            <FormControlLabel
+                                className="checkbox-item"
+                                control={
+                                    <Checkbox
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                        }}
+                                        checked={
+                                            editProjectState.sex.includes(
+                                                'Пары'
+                                            )
+                                                ? true
+                                                : false
+                                        }
+                                        className="checkbox"
+                                        value="Пары"
+                                        onChange={handleChangeSex}
+                                        name="Пары"
+                                    />
+                                }
+                                label="Пары"
                             />
-                            <label htmlFor="couples-edit">Пары</label>
                         </div>
-                    </div>
+                    </FormControl>
                 </div>
-                <input
-                    type="text"
-                    id="edit-project"
-                    placeholder="Название проекта"
+                <TextField
+                    required
+                    label="Название проекта"
+                    variant="outlined"
+                    id="edit-project-name"
                     value={editProjectState.projectName}
                     onChange={handleChangeProjectName}
                 />
-                <input
-                    type="text"
+                <TextField
+                    required
+                    label="Ставка"
+                    variant="outlined"
                     id="edit-salary"
-                    placeholder="Ставка"
                     value={editProjectState.salary}
                     onChange={handleChangeProjectSalary}
                 />
-                <input
-                    type="text"
+                <TextField
+                    required
+                    label="Локализация"
+                    variant="outlined"
                     id="edit-location"
-                    placeholder="Локализация"
                     value={editProjectState.location}
                     onChange={handleChangeProjectLocation}
                 />
-                <input
-                    type="text"
+                <TextField
+                    required
+                    label="Категория"
+                    variant="outlined"
                     id="edit-category"
-                    placeholder="Категория"
                     value={editProjectState.category}
                     onChange={handleChangeProjectCategory}
                 />
                 <div className="row age-wrapper">
-                    <input
-                        type="text"
+                    <TextField
+                        required
+                        label="Возраст От"
+                        variant="outlined"
                         id="edit-age-from"
-                        placeholder="Возраст От"
                         value={editProjectState.ageFrom}
-                        maxLength={2}
                         onChange={handleChangeProjectAgeFrom}
                     />
-                    <input
-                        type="text"
+                    <TextField
+                        required
+                        label="Возраст До"
+                        variant="outlined"
                         id="edit-age-to"
-                        placeholder="Возраст До"
                         value={editProjectState.ageTo}
-                        maxLength={2}
                         onChange={handleChangeProjectAgeTo}
                     />
                 </div>
-                <input
-                    type="text"
+                <TextField
+                    required
+                    label="Национальность"
+                    variant="outlined"
                     id="edit-nationalaty"
-                    placeholder="Национальность"
                     value={editProjectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
-                <input
-                    type="text"
+                <TextField
+                    required
+                    label="Дополнительная информация"
+                    variant="outlined"
                     id="edit-additionalInfo"
-                    placeholder="Дополнительная информация"
                     value={editProjectState.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
-                <input
-                    type="text"
+                <TextField
+                    required
+                    label="Примеры жилья"
+                    variant="outlined"
                     id="edit-housing"
-                    placeholder="Примеры жилья"
                     value={editProjectState.housing}
                     onChange={handleChangeProjectHousing}
                 />
-                <textarea
-                    name="projectInfo"
+                <TextField
+                    required
+                    label="Описание проекта"
+                    variant="outlined"
                     id="edit-projectInfo"
-                    placeholder="Описание проекта"
-                    cols={30}
-                    rows={10}
+                    multiline
+                    rows={6}
                     value={editProjectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
-                ></textarea>
-                <button type="submit">Редактировать проект</button>
+                />
+                <button className="edit-project-btn" type="submit">
+                    Редактировать проект
+                </button>
             </form>
         </div>
     )
