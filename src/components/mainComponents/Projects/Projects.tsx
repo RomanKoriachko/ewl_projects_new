@@ -371,11 +371,13 @@ const Projects = (props: Props) => {
                                                 )}
                                             </div>
                                         </div>
-                                        <div className="project-country">
-                                            {element.country},
-                                        </div>
-                                        <div className="project-location">
-                                            {element.location}
+                                        <div className="row">
+                                            <div className="project-country">
+                                                {element.country},
+                                            </div>
+                                            <div className="project-location">
+                                                {element.location}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="project-category">
@@ -434,93 +436,103 @@ const Projects = (props: Props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <button
-                                        className="delite-btn project-item-btn"
-                                        onClick={() =>
-                                            deliteProject(element.projectName)
-                                        }
-                                        disabled={projectsArr.length <= 1}
-                                    >
-                                        Удалить
-                                    </button>
-                                    <button
-                                        className="edit-btn project-item-btn"
-                                        onClick={() =>
-                                            edit(
-                                                element.projectName,
-                                                element.country,
-                                                element.salary,
-                                                element.location,
-                                                element.sex,
-                                                element.ageFrom,
-                                                element.ageTo,
-                                                element.nationalaty,
-                                                element.additionalInfo,
-                                                element.housing,
-                                                element.projectInfo,
-                                                element.category
-                                            )
-                                        }
-                                    >
-                                        Редактировать
-                                    </button>
-                                    <button
-                                        className={`show-more-btn project-item-btn ${
-                                            showMoreState[element.projectName]
-                                                ? 'hide'
-                                                : 'show'
-                                        }`}
-                                        onClick={() =>
-                                            dispatch(
-                                                showMoreData(
+                                <div className="row project-item-buttons">
+                                    <div className="row">
+                                        <button
+                                            className="delite-btn project-item-btn"
+                                            onClick={() =>
+                                                deliteProject(
                                                     element.projectName
                                                 )
-                                            )
-                                        }
-                                    >
-                                        Развернуть
-                                    </button>
-                                    <button
-                                        className={`show-more-btn project-item-btn ${
-                                            showMoreState[element.projectName]
-                                                ? 'show'
-                                                : 'hide'
-                                        }`}
-                                        onClick={() =>
-                                            dispatch(
-                                                showLessData(
-                                                    element.projectName
+                                            }
+                                            disabled={projectsArr.length <= 1}
+                                        >
+                                            Удалить
+                                        </button>
+                                        <button
+                                            className="edit-btn project-item-btn"
+                                            onClick={() =>
+                                                edit(
+                                                    element.projectName,
+                                                    element.country,
+                                                    element.salary,
+                                                    element.location,
+                                                    element.sex,
+                                                    element.ageFrom,
+                                                    element.ageTo,
+                                                    element.nationalaty,
+                                                    element.additionalInfo,
+                                                    element.housing,
+                                                    element.projectInfo,
+                                                    element.category
                                                 )
-                                            )
-                                        }
-                                    >
-                                        Свернуть
-                                    </button>
-                                    <CopyButton
-                                        className="copy-btn project-item-btn"
-                                        value={`Название проекта\n${
-                                            element.projectName
-                                        }\n\nСтрана\n${
-                                            element.country
-                                        }\n\nCтавка в злотых\n${
-                                            element.salary
-                                        }\n\nЛокализация\n${
-                                            element.location
-                                        }\n\nПол\n${element.sex.trim()}\n\nВозраст от\n${
-                                            element.ageFrom
-                                        }\n\nВозраст до\n${
-                                            element.ageTo
-                                        }\n\nНациональность\n${
-                                            element.nationalaty
-                                        }\n\nДополнительная информация\n${
-                                            element.additionalInfo
-                                        }\n\nПримеры жилья\n${
-                                            element.housing
-                                        }\n\nОписание вакансии\n${
-                                            element.projectInfo
-                                        }`}
-                                    />
+                                            }
+                                        >
+                                            Редактировать
+                                        </button>
+                                    </div>
+                                    <div className="row">
+                                        <button
+                                            className={`show-more-btn project-item-btn ${
+                                                showMoreState[
+                                                    element.projectName
+                                                ]
+                                                    ? 'hide'
+                                                    : 'show'
+                                            }`}
+                                            onClick={() =>
+                                                dispatch(
+                                                    showMoreData(
+                                                        element.projectName
+                                                    )
+                                                )
+                                            }
+                                        >
+                                            Развернуть
+                                        </button>
+                                        <button
+                                            className={`show-more-btn project-item-btn ${
+                                                showMoreState[
+                                                    element.projectName
+                                                ]
+                                                    ? 'show'
+                                                    : 'hide'
+                                            }`}
+                                            onClick={() =>
+                                                dispatch(
+                                                    showLessData(
+                                                        element.projectName
+                                                    )
+                                                )
+                                            }
+                                        >
+                                            Свернуть
+                                        </button>
+                                        <CopyButton
+                                            className="copy-btn project-item-btn"
+                                            value={`Название проекта\n${
+                                                element.projectName
+                                            }\n\nСтрана\n${
+                                                element.country
+                                            }\n\nCтавка в злотых\n${
+                                                element.salary
+                                            }\n\nЛокализация\n${
+                                                element.location
+                                            }\n\nПол\n${element.sex.trim()}\n\nВозраст от\n${
+                                                element.ageFrom
+                                            }\n\nВозраст до\n${
+                                                element.ageTo
+                                            }\n\nНациональность\n${
+                                                element.nationalaty
+                                            }\n\nДополнительная информация\n${
+                                                element.additionalInfo
+                                            }\n\nПримеры жилья\n${
+                                                element.housing
+                                            }\n\nОписание вакансии\n${
+                                                element.projectInfo
+                                            }`}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         ))}

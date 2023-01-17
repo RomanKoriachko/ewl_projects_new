@@ -58,6 +58,7 @@
         .project-country {
             @include sans700();
             font-size: 12px;
+            margin-right: 5px;
         }
         .project-location {
             @include sans400();
@@ -80,6 +81,7 @@
             cursor: pointer;
             margin-right: 10px;
             transition: .3s all;
+            border-radius: 5px;
             &:hover {
                 background-color: #EB6A09;
             }
@@ -102,4 +104,42 @@
 .no-search-results {
     font-size: 42px;
     text-align: center;
+}
+
+// Desktop
+@media(max-width: 1500px) {
+    .projects {
+        gap: 20px;
+        grid-template-columns: 1fr;
+        .project-item {
+            padding: 20px;
+        }
+    }
+
+}
+
+// Laptop
+@media(max-width: 1200px) {
+
+}
+
+// Mobile
+@media(max-width: 576px) {
+    .projects {
+        .project-item {
+            .project-firs-descroption-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                .project-row {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+            .project-item-buttons {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+    }
 }

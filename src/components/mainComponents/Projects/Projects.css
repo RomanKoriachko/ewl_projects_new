@@ -63,6 +63,7 @@
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-size: 12px;
+  margin-right: 5px;
 }
 .projects .project-item .project-location {
   font-family: "Open Sans", sans-serif;
@@ -88,6 +89,7 @@
   cursor: pointer;
   margin-right: 10px;
   transition: 0.3s all;
+  border-radius: 5px;
 }
 .projects .project-item .project-item-btn:hover {
   background-color: #EB6A09;
@@ -108,4 +110,29 @@
 .no-search-results {
   font-size: 42px;
   text-align: center;
+}
+
+@media (max-width: 1500px) {
+  .projects {
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  .projects .project-item {
+    padding: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .projects .project-item .project-firs-descroption-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .projects .project-item .project-firs-descroption-row .project-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .projects .project-item .project-item-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }
