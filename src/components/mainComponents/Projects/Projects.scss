@@ -19,6 +19,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     .project-item {
+        background-color: white;
         @include sans400();
         border: 1px solid black;
         border-radius: 10px;

@@ -1,4 +1,5 @@
 .project-edit-form {
+  background: white;
   position: fixed;
   height: 80vh;
   top: 50%;
@@ -112,7 +113,7 @@
   .project-edit-form form input {
     height: 35px;
   }
-  .project-edit-form form button {
+  .project-edit-form form .edit-project-btn {
     width: 100%;
   }
   .project-edit-form form .sex-select-row {

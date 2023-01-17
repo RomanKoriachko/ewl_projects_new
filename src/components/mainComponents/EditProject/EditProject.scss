@@ -1,6 +1,7 @@
 @import './../../../fonts';
 
 .project-edit-form {
+    background: white;
     position: fixed;
     height: 80vh;
     top: 50%;
@@ -99,7 +100,7 @@
             input{
                 height: 35px;
             }
-            button{
+            .edit-project-btn{
                 width: 100%;
             }
             .sex-select-row {

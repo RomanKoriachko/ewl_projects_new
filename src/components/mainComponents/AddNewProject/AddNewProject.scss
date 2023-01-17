@@ -5,6 +5,7 @@
     border-radius: 10px;
     padding: 40px;
     width: 50%;
+    background: white;
     @include sans400;
     >p{
         @include raleway700();
@@ -63,7 +64,7 @@
             .sex-select-wrapper {
                 flex-direction: column;
             }
-            button{
+            .add-project-btn{
                 width: 100%;
                 font-size: 16px;
             }

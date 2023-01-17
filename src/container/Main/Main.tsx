@@ -83,7 +83,9 @@ const Main = (props: Props) => {
                     </>
                 )
             ) : (
-                <Login />
+                <div className="login-wrapper">
+                    <Login />
+                </div>
             )}
         </main>
     )

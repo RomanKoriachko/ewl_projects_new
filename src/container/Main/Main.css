@@ -20,6 +20,13 @@
   display: block;
 }
 
+.main {
+  background: linear-gradient(217deg, #fe6e00, rgba(255, 0, 0, 0) 70.71%), linear-gradient(127deg, #fd8c01, rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, #feaa02, rgba(0, 0, 255, 0) 70.71%);
+}
+.main .login-wrapper {
+  height: calc(100vh - 100px);
+}
+
 .hide-2 {
   position: absolute;
   opacity: 0;
