@@ -214,7 +214,7 @@ const EditProject = ({ setEditFormState }: Props) => {
             </div>
             <form onSubmit={onSendClick}>
                 <Autocomplete
-                    id="country"
+                    id="esit-country-select"
                     renderInput={(params) => (
                         <TextField {...params} label="Страна" required />
                     )}
