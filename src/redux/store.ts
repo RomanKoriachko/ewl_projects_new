@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import ageSearchReducer from "./ageSearchReducer";
 import checkboxCheckedReducer from "./checkboxCheckedReducer";
 import countryCheckboxReducer from "./countryCheckboxReducer";
+import editFormReducer from "./editFormReducer";
 import editProjectReduser from "./editProjectReduser";
 import filterReducer from "./filterReducer";
 import isMinorReducer from "./isMinorReducer";
@@ -27,6 +28,7 @@ export const store = configureStore({
         filterState: filterReducer,
         showMoreState: ShowMoreReducer,
         checkboxCheckedState: checkboxCheckedReducer,
+        editFormState: editFormReducer,
     }
 })
 

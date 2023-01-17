@@ -23,12 +23,11 @@ import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import './EditProject.scss'
+import { setFormState } from 'redux/editFormReducer'
 
-type Props = {
-    setEditFormState: (prevState: boolean) => void
-}
+type Props = {}
 
-const EditProject = ({ setEditFormState }: Props) => {
+const EditProject = (props: Props) => {
     const editProjectState = useAppSelector((state) => state.editProjectState)
     const dispatch = useAppDispatch()
 
@@ -125,7 +124,7 @@ const EditProject = ({ setEditFormState }: Props) => {
     }
 
     const closeEditForm = () => {
-        setEditFormState(false)
+        dispatch(setFormState(false))
     }
 
     const onEditClick = (
@@ -202,7 +201,7 @@ const EditProject = ({ setEditFormState }: Props) => {
                 editProjectState.projectInfo,
                 editProjectState.category
             )
-            setEditFormState(false)
+            dispatch(setFormState(false))
         }
     }
 
@@ -383,7 +382,7 @@ const EditProject = ({ setEditFormState }: Props) => {
                     variant="outlined"
                     id="edit-projectInfo"
                     multiline
-                    rows={6}
+                    rows={5}
                     value={editProjectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
                 />

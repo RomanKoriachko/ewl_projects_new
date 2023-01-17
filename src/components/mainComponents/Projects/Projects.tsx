@@ -6,6 +6,7 @@ import CopyButton from '@yozora/react-common-copy-button'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 import { showLessData, showMoreData } from 'redux/ShowMoreReducer'
+import { setFormState } from 'redux/editFormReducer'
 
 type Props = {}
 
@@ -34,6 +35,7 @@ const Projects = (props: Props) => {
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const filterState = useAppSelector((state) => state.filterState)
     const showMoreState = useAppSelector((state) => state.showMoreState)
+    const editFormState = useAppSelector((state) => state.editFormState)
     const dispatch = useAppDispatch()
 
     const [projectsArr, setProjectsArr] = useState<ProjectType[]>([])
@@ -66,8 +68,6 @@ const Projects = (props: Props) => {
         })
     }
 
-    const [editFormState, setEditFormState] = useState<boolean>(false)
-
     const edit = (
         project: string,
         country: string,
@@ -99,7 +99,9 @@ const Projects = (props: Props) => {
                 category: category,
             })
         )
-        editFormState ? setEditFormState(false) : setEditFormState(true)
+        editFormState
+            ? dispatch(setFormState(false))
+            : dispatch(setFormState(true))
     }
 
     // ---------------------- Search ----------------------
@@ -324,6 +326,14 @@ const Projects = (props: Props) => {
         return tempStr
     }
 
+    // disable scroll
+
+    if (editFormState) {
+        document.body.style.overflow = 'hidden'
+    } else {
+        document.body.style.overflow = 'auto'
+    }
+
     return (
         <div className="projects-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -331,11 +341,11 @@ const Projects = (props: Props) => {
                     className="project-edit-bg"
                     onClick={
                         window.innerWidth > 992
-                            ? () => setEditFormState(false)
+                            ? () => dispatch(setFormState(false))
                             : undefined
                     }
                 ></div>
-                <EditProject setEditFormState={setEditFormState} />
+                <EditProject />
             </div>
             {localLoginData.email === 'mazaxaka.tyt@gmail.com' ||
             localLoginData.email === 'juliiaderevianko@gmail.com' ? (
