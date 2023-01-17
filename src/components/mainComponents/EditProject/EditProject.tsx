@@ -94,13 +94,13 @@ const EditProject = (props: Props) => {
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         const onlyNumbers = e.target.value.replace(/\D/g, '')
-        dispatch(editProjectAgeFrom(e.target.value))
+        dispatch(editProjectAgeFrom(onlyNumbers))
     }
     const handleChangeProjectAgeTo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         const onlyNumbers = e.target.value.replace(/\D/g, '')
-        dispatch(editProjectAgeTo(e.target.value))
+        dispatch(editProjectAgeTo(onlyNumbers))
     }
     const handleChangeProjectNationalaty = (
         e: React.ChangeEvent<HTMLInputElement>

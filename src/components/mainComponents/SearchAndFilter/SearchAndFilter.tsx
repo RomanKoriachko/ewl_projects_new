@@ -1,10 +1,4 @@
-import {
-    Checkbox,
-    FormControlLabel,
-    FormGroup,
-    Switch,
-    TextField,
-} from '@mui/material'
+import { Checkbox, FormControlLabel, FormGroup, Switch } from '@mui/material'
 import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
 import {
     clearAllCountrysCheckboxes,
