@@ -5,6 +5,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid black;
+  border-radius: 10px;
   padding: 40px;
   width: 50%;
   background: white;
@@ -53,7 +54,6 @@
 }
 .project-edit-form form .age-wrapper {
   justify-content: space-between;
-  gap: 10px;
 }
 .project-edit-form form .edit-project-btn {
   width: 250px;
@@ -123,5 +123,8 @@
   }
   .project-edit-form form .sex-select-row > div {
     margin-bottom: 10px;
+  }
+  .project-edit-form form .sex-select-wrapper {
+    flex-direction: column;
   }
 }

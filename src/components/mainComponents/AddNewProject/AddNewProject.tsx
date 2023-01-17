@@ -203,6 +203,14 @@ const AddNewProject = (props: Props) => {
         }
     }
 
+    let inputSize: 'medium' | 'small' | undefined = 'medium'
+
+    if (window.innerWidth <= 576) {
+        inputSize = 'small'
+    } else {
+        inputSize = 'medium'
+    }
+
     return (
         <div className="project-form">
             <p className="add-project-header">Добавить проект</p>
@@ -214,6 +222,7 @@ const AddNewProject = (props: Props) => {
                     )}
                     options={countrysOptions}
                     value={projectState.country}
+                    size={inputSize}
                     onChange={(event: any, newValue: string | null) => {
                         dispatch(changeCountry(newValue))
                     }}
@@ -294,6 +303,7 @@ const AddNewProject = (props: Props) => {
                     label="Название проекта"
                     variant="outlined"
                     id="project"
+                    size={inputSize}
                     value={projectState.projectName}
                     onChange={handleChangeProjectName}
                 />
@@ -302,6 +312,7 @@ const AddNewProject = (props: Props) => {
                     label="Ставка"
                     variant="outlined"
                     id="salary"
+                    size={inputSize}
                     value={projectState.salary}
                     onChange={handleChangeSalary}
                 />
@@ -310,6 +321,7 @@ const AddNewProject = (props: Props) => {
                     label="Локализация"
                     variant="outlined"
                     id="location"
+                    size={inputSize}
                     value={projectState.location}
                     onChange={handleChangeProjectLocation}
                 />
@@ -318,6 +330,7 @@ const AddNewProject = (props: Props) => {
                     label="Категория"
                     variant="outlined"
                     id="category"
+                    size={inputSize}
                     value={projectState.category}
                     onChange={handleChangeProjectCategory}
                 />
@@ -327,6 +340,7 @@ const AddNewProject = (props: Props) => {
                         label="Возраст От"
                         variant="outlined"
                         id="age-from"
+                        size={inputSize}
                         value={projectState.ageFrom}
                         onChange={handleChangeProjectAgeFrom}
                     />
@@ -335,6 +349,7 @@ const AddNewProject = (props: Props) => {
                         label="Возраст До"
                         variant="outlined"
                         id="age-to"
+                        size={inputSize}
                         value={projectState.ageTo}
                         onChange={handleChangeProjectAgeTo}
                     />
@@ -344,6 +359,7 @@ const AddNewProject = (props: Props) => {
                     label="Национальность"
                     variant="outlined"
                     id="nationalaty"
+                    size={inputSize}
                     value={projectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
@@ -352,6 +368,7 @@ const AddNewProject = (props: Props) => {
                     label="Дополнительная информация"
                     variant="outlined"
                     id="additionalInfo"
+                    size={inputSize}
                     value={projectState.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
@@ -360,6 +377,7 @@ const AddNewProject = (props: Props) => {
                     label="Примеры жилья"
                     variant="outlined"
                     id="housing"
+                    size={inputSize}
                     value={projectState.housing}
                     onChange={handleChangeProjectHousing}
                 />
@@ -369,6 +387,7 @@ const AddNewProject = (props: Props) => {
                     variant="outlined"
                     id="projectInfo"
                     multiline
+                    size={inputSize}
                     value={projectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
                 />

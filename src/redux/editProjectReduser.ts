@@ -26,8 +26,8 @@ const initialState: ProjectType = {
     nationalaty: '',
     additionalInfo: '',
     housing: '',
-    projectInfo: ``,
-    category: "",
+    projectInfo: '',
+    category: '',
 }
 
 export const editProjectSlice = createSlice({

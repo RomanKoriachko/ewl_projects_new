@@ -94,13 +94,13 @@ const EditProject = (props: Props) => {
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         const onlyNumbers = e.target.value.replace(/\D/g, '')
-        dispatch(editProjectAgeFrom(onlyNumbers))
+        dispatch(editProjectAgeFrom(e.target.value))
     }
     const handleChangeProjectAgeTo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         const onlyNumbers = e.target.value.replace(/\D/g, '')
-        dispatch(editProjectAgeTo(onlyNumbers))
+        dispatch(editProjectAgeTo(e.target.value))
     }
     const handleChangeProjectNationalaty = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -205,6 +205,14 @@ const EditProject = (props: Props) => {
         }
     }
 
+    let inputSize: 'medium' | 'small' | undefined = 'medium'
+
+    if (window.innerWidth <= 576) {
+        inputSize = 'small'
+    } else {
+        inputSize = 'medium'
+    }
+
     return (
         <div className="project-edit-form">
             <div className="project-edit-header">
@@ -217,6 +225,7 @@ const EditProject = (props: Props) => {
                     renderInput={(params) => (
                         <TextField {...params} label="Страна" required />
                     )}
+                    size={inputSize}
                     options={countrysOptions}
                     value={editProjectState.country}
                     onChange={(event: any, newValue: string | null) => {
@@ -307,6 +316,7 @@ const EditProject = (props: Props) => {
                     label="Название проекта"
                     variant="outlined"
                     id="edit-project-name"
+                    size={inputSize}
                     value={editProjectState.projectName}
                     onChange={handleChangeProjectName}
                 />
@@ -315,6 +325,7 @@ const EditProject = (props: Props) => {
                     label="Ставка"
                     variant="outlined"
                     id="edit-salary"
+                    size={inputSize}
                     value={editProjectState.salary}
                     onChange={handleChangeProjectSalary}
                 />
@@ -323,6 +334,7 @@ const EditProject = (props: Props) => {
                     label="Локализация"
                     variant="outlined"
                     id="edit-location"
+                    size={inputSize}
                     value={editProjectState.location}
                     onChange={handleChangeProjectLocation}
                 />
@@ -331,6 +343,7 @@ const EditProject = (props: Props) => {
                     label="Категория"
                     variant="outlined"
                     id="edit-category"
+                    size={inputSize}
                     value={editProjectState.category}
                     onChange={handleChangeProjectCategory}
                 />
@@ -340,6 +353,7 @@ const EditProject = (props: Props) => {
                         label="Возраст От"
                         variant="outlined"
                         id="edit-age-from"
+                        size={inputSize}
                         value={editProjectState.ageFrom}
                         onChange={handleChangeProjectAgeFrom}
                     />
@@ -348,6 +362,7 @@ const EditProject = (props: Props) => {
                         label="Возраст До"
                         variant="outlined"
                         id="edit-age-to"
+                        size={inputSize}
                         value={editProjectState.ageTo}
                         onChange={handleChangeProjectAgeTo}
                     />
@@ -357,6 +372,7 @@ const EditProject = (props: Props) => {
                     label="Национальность"
                     variant="outlined"
                     id="edit-nationalaty"
+                    size={inputSize}
                     value={editProjectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
@@ -365,6 +381,7 @@ const EditProject = (props: Props) => {
                     label="Дополнительная информация"
                     variant="outlined"
                     id="edit-additionalInfo"
+                    size={inputSize}
                     value={editProjectState.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
@@ -373,6 +390,7 @@ const EditProject = (props: Props) => {
                     label="Примеры жилья"
                     variant="outlined"
                     id="edit-housing"
+                    size={inputSize}
                     value={editProjectState.housing}
                     onChange={handleChangeProjectHousing}
                 />

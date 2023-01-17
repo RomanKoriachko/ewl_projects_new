@@ -7,6 +7,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border: 1px solid black;
+    border-radius: 10px;
     padding: 40px;
     width: 50%;
     background: white;
@@ -54,7 +55,6 @@
         }
         .age-wrapper {
             justify-content: space-between;
-            gap: 10px;
         }
         .edit-project-btn {
             width: 250px;
@@ -110,6 +110,9 @@
                 >div{
                     margin-bottom: 10px;
                 }
+            }
+            .sex-select-wrapper {
+                flex-direction: column;
             }
         }
     }
