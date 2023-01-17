@@ -97,6 +97,9 @@
 }
 .projects .project-item .project-info {
   line-height: 21px;
+  white-space: pre-line;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .projects .project-item .copy-btn {
   padding: 8px 12px;

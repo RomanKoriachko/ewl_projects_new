@@ -1,17 +1,21 @@
 .search-and-filter .search {
   border: 1px solid black;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   padding: 28px;
   margin-bottom: 5px;
 }
 .search-and-filter .search .search-and-btn {
-  border: 1px solid black;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
 }
 .search-and-filter .search .search-and-btn .search-input {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  width: 200px;
-  height: 30px;
+  width: 170px;
+  height: 40px;
   padding: 0px 10px;
   border: none;
   outline: none;
@@ -33,6 +37,8 @@
 }
 .search-and-filter .filter {
   border: 1px solid black;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   padding: 20px;
 }
 .search-and-filter .filter .filter-header {
@@ -45,8 +51,11 @@
   font-size: 18px;
   margin-bottom: 10px;
 }
-.search-and-filter .filter .filter-item {
-  margin-bottom: 5px;
+.search-and-filter .filter .filter-item .filter-checkbox {
+  margin-left: -5px;
+}
+.search-and-filter .filter .filter-item .filter-checkbox > span {
+  padding: 4px;
 }
 .search-and-filter .filter > p {
   text-align: center;
@@ -59,14 +68,13 @@
   margin-bottom: 20px;
 }
 .search-and-filter .filter .filter-age input {
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
   width: 50px;
   height: 30px;
-  margin-right: 20px;
+  margin-right: 10px;
   padding: 0px 13px;
   font-size: 18px;
-}
-.search-and-filter .filter input {
-  margin-right: 10px;
 }
 .search-and-filter .filter label {
   font-family: "Open Sans", sans-serif;
@@ -99,10 +107,10 @@
   font-size: 16px;
   font-weight: 600;
   line-height: normal;
-  min-height: 60px;
+  min-height: 45px;
   min-width: 0;
   outline: none;
-  padding: 16px 24px;
+  padding: 10px 24px;
   text-align: center;
   text-decoration: none;
   transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);

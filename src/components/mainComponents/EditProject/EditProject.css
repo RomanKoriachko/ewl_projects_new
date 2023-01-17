@@ -1,5 +1,6 @@
 .project-edit-form {
   position: fixed;
+  height: 80vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -10,6 +11,7 @@
   z-index: 10;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
+  overflow-y: auto;
 }
 .project-edit-form .project-edit-header {
   display: flex;
@@ -53,22 +55,7 @@
   justify-content: space-between;
   gap: 10px;
 }
-.project-edit-form form .age-wrapper > input {
-  width: 100%;
-}
-.project-edit-form form select {
-  padding: 0px 20px;
-  height: 40px;
-}
-.project-edit-form form input {
-  height: 40px;
-  padding: 0px 20px;
-}
-.project-edit-form form textarea {
-  padding: 20px;
-  resize: none;
-}
-.project-edit-form form button {
+.project-edit-form form .edit-project-btn {
   width: 250px;
   height: 40px;
   background-image: linear-gradient(92.88deg, #ee7c25 9.16%, #EB6A09 43.89%, #ff6f00 64.72%);
@@ -92,7 +79,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-.project-edit-form form button:hover {
+.project-edit-form form .edit-project-btn:hover {
   box-shadow: rgba(235, 106, 9, 0.5) 0 1px 30px;
   transition-duration: 0.1s;
 }

@@ -17,22 +17,6 @@
   grid-template-columns: 1fr;
   gap: 10px;
 }
-.project-form form .sex-select > p {
-  margin-bottom: 10px;
-}
-.project-form form .sex-select input {
-  height: 15px;
-}
-.project-form form .sex-select label {
-  margin-right: 10px;
-}
-.project-form form .sex-select .checkbox-item {
-  margin-right: 25px;
-}
-.project-form form select {
-  padding: 0px 20px;
-  height: 40px;
-}
 .project-form form input {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -91,7 +75,7 @@
   .project-form .add-project-header {
     font-size: 21px;
   }
-  .project-form form .sex-select .sex-select-wrapper {
+  .project-form form .sex-select-wrapper {
     flex-direction: column;
   }
   .project-form form button {

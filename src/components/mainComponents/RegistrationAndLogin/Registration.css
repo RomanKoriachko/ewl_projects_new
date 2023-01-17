@@ -1,5 +1,6 @@
 .registration {
   border: 1px solid black;
+  border-radius: 10px;
   padding: 20px;
 }
 .registration .registration-header {
@@ -12,10 +13,12 @@
 .registration .registration-input {
   height: 50px;
   width: 300px;
-  padding: 0px 10px;
+  padding: 0 10px;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
   transition: 0.3s all;
 }
 .registration .registration-input:focus {
