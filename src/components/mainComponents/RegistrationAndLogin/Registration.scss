@@ -2,6 +2,7 @@
 
 .registration {
     border: 1px solid black;
+    border-radius: 10px;
     padding: 20px;
     .registration-header{
         @include raleway700();
@@ -12,9 +13,11 @@
     .registration-input {
         height: 50px;
         width: 300px;
-        padding: 0px 10px;
+        padding: 0 10px;
         @include sans400();
-        font-size: 18px;
+        font-size: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.23);
+        border-radius: 5px;
         transition: .3s all;
         &:focus {
             outline-color: #EB6A09;
