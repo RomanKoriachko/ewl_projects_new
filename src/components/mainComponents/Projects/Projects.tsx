@@ -25,6 +25,8 @@ type ProjectType = {
     category: string
 }
 
+type ICopyStatus = 'waiting' | 'copying' | 'failed' | 'succeed'
+
 const Projects = (props: Props) => {
     const searchState = useAppSelector((state) => state.searchState)
     const countryCheckboxState = useAppSelector(
@@ -334,6 +336,13 @@ const Projects = (props: Props) => {
         document.body.style.overflow = 'auto'
     }
 
+    const StatusNodeMap: Record<ICopyStatus, React.ReactNode> = {
+        waiting: 'Копіювати',
+        copying: 'Копіюю..',
+        failed: 'Помилка!',
+        succeed: 'Скопійовано!',
+    }
+
     return (
         <div className="projects-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -509,6 +518,7 @@ const Projects = (props: Props) => {
                                             Свернуть
                                         </button>
                                         <CopyButton
+                                            statusNodeMap={StatusNodeMap}
                                             className="copy-btn project-item-btn"
                                             value={`Название проекта\n${
                                                 element.projectName
@@ -659,6 +669,7 @@ const Projects = (props: Props) => {
                                         Свернуть
                                     </button>
                                     <CopyButton
+                                        statusNodeMap={StatusNodeMap}
                                         className="copy-btn project-item-btn"
                                         value={`Название проекта\n${
                                             element.projectName
