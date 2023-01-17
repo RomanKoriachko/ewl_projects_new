@@ -542,7 +542,6 @@ const SearchAndFilter = (props: Props) => {
                                 <FormControlLabel
                                     control={
                                         <Switch
-                                            defaultChecked
                                             color="warning"
                                             onChange={isMinorChecking}
                                             checked={
