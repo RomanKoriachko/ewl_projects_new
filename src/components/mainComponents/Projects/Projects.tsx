@@ -512,13 +512,15 @@ const Projects = (props: Props) => {
                                             className="copy-btn project-item-btn"
                                             value={`Название проекта\n${
                                                 element.projectName
-                                            }\n\nСтрана\n${
+                                            }\n\nПол\n${element.sex.trim()}\n\nСтрана\n${
                                                 element.country
                                             }\n\nCтавка в злотых\n${
                                                 element.salary
                                             }\n\nЛокализация\n${
                                                 element.location
-                                            }\n\nПол\n${element.sex.trim()}\n\nВозраст от\n${
+                                            }\n\nКатегорія\n${
+                                                element.category
+                                            }\n\nВозраст от\n${
                                                 element.ageFrom
                                             }\n\nВозраст до\n${
                                                 element.ageTo
@@ -545,57 +547,145 @@ const Projects = (props: Props) => {
                     {filtredArr.map((element: ProjectType, i: number) => (
                         <div key={i} className="project-item">
                             <div className="project-item-section">
-                                <p>Назва проекту</p>
-                                <div>{element.projectName}</div>
+                                <p className="project-header">
+                                    {element.projectName}
+                                </p>
                             </div>
-                            <div className="project-item-section">
-                                <p>Країна</p>
-                                <div>{element.country}</div>
+                            <div className="project-item-section row project-firs-descroption-row">
+                                <div className="row project-row">
+                                    <div>
+                                        <div className="project-sex row">
+                                            {splitString(element.sex).map(
+                                                (el: string, i: number) => (
+                                                    <div key={i}>{el}</div>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="project-country">
+                                            {element.country},
+                                        </div>
+                                        <div className="project-location">
+                                            {element.location}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="project-category">
+                                    {element.category}
+                                </div>
                             </div>
-                            <div className="project-item-section">
-                                <p>Cтавка в злотих</p>
-                                <div>{element.salary}</div>
-                            </div>
-                            <div className="project-item-section">
-                                <p>Локалізація</p>
-                                <div>{element.location}</div>
-                            </div>
-                            <div className="project-item-section">
-                                <p>Стать</p>
-                                <div>{element.sex}</div>
-                            </div>
-                            <div className="row">
+                            <div className="row project-age-row">
                                 <div className="project-item-section">
-                                    <p>Возраст от</p>
-                                    <div>{element.ageFrom}</div>
+                                    <div>Возраст от: {element.ageFrom}</div>
                                 </div>
                                 <div className="project-item-section">
-                                    <p>Возраст до</p>
-                                    <div>{element.ageTo}</div>
+                                    <div>Возраст до: {element.ageTo}</div>
                                 </div>
                             </div>
                             <div className="project-item-section">
-                                <p>Національність</p>
-                                <div>{element.nationalaty}</div>
+                                <div>Cтавка в злотых: {element.salary}</div>
                             </div>
-                            <div className="project-item-section">
-                                <p>Додаткова інформація</p>
-                                <div>{element.additionalInfo}</div>
-                            </div>
-                            <div className="project-item-section">
-                                <p>Приклади житла</p>
-                                <div>{element.housing}</div>
-                            </div>
-                            <div className="project-item-section">
-                                <p>Опис вакансії</p>
-                                <div className="project-info">
-                                    {element.projectInfo}
+                            <div>
+                                <div
+                                    className={`project-item-section project-info ${
+                                        showMoreState[element.projectName]
+                                            ? 'hide'
+                                            : 'show'
+                                    }`}
+                                >
+                                    {getShortString(element.projectInfo)}
                                 </div>
                             </div>
-                            <CopyButton
-                                className="copy-btn"
-                                value={`Название проекта\n${element.projectName}\n\nСтрана\n${element.country}\n\nCтавка в злотых\n${element.salary}\n\nЛокализация\n${element.location}\n\nПол\n${element.sex}\n\nВозраст от\n${element.ageFrom}\n\nВозраст до\n${element.ageTo}\n\nНациональность\n${element.nationalaty}\n\nДополнительная информация\n${element.additionalInfo}\n\nПримеры жилья\n${element.housing}\n\nОписание вакансии\n${element.projectInfo}`}
-                            />
+                            <div
+                                className={
+                                    showMoreState[element.projectName]
+                                        ? 'show'
+                                        : 'hide'
+                                }
+                            >
+                                <div className="project-item-section">
+                                    <div>
+                                        Национальность: {element.nationalaty}
+                                    </div>
+                                </div>
+                                <div className="project-item-section">
+                                    <div>
+                                        Дополнительная информация:{' '}
+                                        {element.additionalInfo}
+                                    </div>
+                                </div>
+                                <div className="project-item-section">
+                                    <div>Примеры жилья: {element.housing}</div>
+                                </div>
+                                <div className="project-item-section">
+                                    <div className="project-info">
+                                        {element.projectInfo}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row project-item-buttons">
+                                <div className="row">
+                                    <button
+                                        className={`show-more-btn project-item-btn ${
+                                            showMoreState[element.projectName]
+                                                ? 'hide'
+                                                : 'show'
+                                        }`}
+                                        onClick={() =>
+                                            dispatch(
+                                                showMoreData(
+                                                    element.projectName
+                                                )
+                                            )
+                                        }
+                                    >
+                                        Развернуть
+                                    </button>
+                                    <button
+                                        className={`show-more-btn project-item-btn ${
+                                            showMoreState[element.projectName]
+                                                ? 'show'
+                                                : 'hide'
+                                        }`}
+                                        onClick={() =>
+                                            dispatch(
+                                                showLessData(
+                                                    element.projectName
+                                                )
+                                            )
+                                        }
+                                    >
+                                        Свернуть
+                                    </button>
+                                    <CopyButton
+                                        className="copy-btn project-item-btn"
+                                        value={`Название проекта\n${
+                                            element.projectName
+                                        }\n\nПол\n${element.sex.trim()}\n\nСтрана\n${
+                                            element.country
+                                        }\n\nCтавка в злотых\n${
+                                            element.salary
+                                        }\n\nЛокализация\n${
+                                            element.location
+                                        }\n\nКатегорія\n${
+                                            element.category
+                                        }\n\nВозраст от\n${
+                                            element.ageFrom
+                                        }\n\nВозраст до\n${
+                                            element.ageTo
+                                        }\n\nНациональность\n${
+                                            element.nationalaty
+                                        }\n\nДополнительная информация\n${
+                                            element.additionalInfo
+                                        }\n\nПримеры жилья\n${
+                                            element.housing
+                                        }\n\nОписание вакансии\n${
+                                            element.projectInfo
+                                        }`}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>

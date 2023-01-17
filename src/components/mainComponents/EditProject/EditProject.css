@@ -55,6 +55,7 @@
 }
 .project-edit-form form .age-wrapper {
   justify-content: space-between;
+  gap: 10px;
 }
 .project-edit-form form .edit-project-btn {
   width: 250px;
