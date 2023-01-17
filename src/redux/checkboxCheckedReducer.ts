@@ -23,15 +23,15 @@ export const checkboxCheckedReducer = createSlice({
         },
         maleChecked: (state) => ({
             ...state,
-            ["Мужчины"]: true,
+            "Мужчины": true,
         }),
         femaleChecked: (state) => ({
             ...state,
-            ["Женщины"]: true,
+            "Женщины": true,
         }),
         couplesChecked: (state) => ({
             ...state,
-            ["Пары"]: true,
+            "Пары": true,
         }),
     }
 })

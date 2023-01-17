@@ -17,7 +17,7 @@ import {
 } from 'redux/newProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import './AddNewProject.scss'
-import { FormGroup, FormHelperText, TextField } from '@mui/material'
+import { FormGroup, TextField } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import FormLabel from '@mui/material/FormLabel'
 import FormControl from '@mui/material/FormControl'
