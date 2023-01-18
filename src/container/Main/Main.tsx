@@ -79,6 +79,7 @@ const Main = (props: Props) => {
                                 >
                                     <SearchAndFilter />
                                 </StickyBox>
+                                <TabletFilter />
                                 <Projects />
                             </div>
                         </div>

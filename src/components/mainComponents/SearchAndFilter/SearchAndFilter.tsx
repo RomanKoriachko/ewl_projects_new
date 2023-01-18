@@ -554,7 +554,6 @@ const SearchAndFilter = (props: Props) => {
                         <div>
                             <input
                                 type="text"
-                                id="age18"
                                 name="age18"
                                 maxLength={2}
                                 onChange={ageToValue}
