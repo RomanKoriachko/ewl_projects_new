@@ -36,16 +36,16 @@ const AddNewProject = (props: Props) => {
 
     const countrysOptions = [
         '',
-        'Польша',
-        'Чехия',
-        'Румыния',
-        'Словакия',
+        'Польща',
+        'Чехія',
+        'Румунія',
+        'Словаччина',
         'Литва',
-        'Голландия',
-        'Германия',
-        'Греция',
-        'Испания',
-        'Кипр',
+        'Голландія',
+        'Німеччина',
+        'Греція',
+        'Іспанія',
+        'Кіпр',
     ]
 
     const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,7 +153,7 @@ const AddNewProject = (props: Props) => {
                     if (
                         snapshot.val().hasOwnProperty(projectState.projectName)
                     ) {
-                        alert('Проект с таким названием уже добавлен')
+                        alert('Проект з такою назвою вже додано')
                     } else {
                         set(ref(db, `vacancy/${projectName}/`), {
                             country: country,
@@ -184,7 +184,13 @@ const AddNewProject = (props: Props) => {
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (projectState.sex === '') {
-            alert('Необходимо выбрать пол')
+            alert('Необхідно обрати стать')
+        } else if (
+            projectState.ageFrom &&
+            projectState.ageTo &&
+            projectState.ageFrom > projectState.ageTo
+        ) {
+            alert('Вік Від не може бути більше, ніж Вік До')
         } else if (projectState.ageFrom && projectState.ageTo) {
             writeProjectData(
                 projectState.country,
@@ -213,12 +219,12 @@ const AddNewProject = (props: Props) => {
 
     return (
         <div className="project-form">
-            <p className="add-project-header">Добавить проект</p>
+            <p className="add-project-header">Додати проєкт</p>
             <form onSubmit={onSendClick} id="add-project">
                 <Autocomplete
                     id="country"
                     renderInput={(params) => (
-                        <TextField {...params} label="Страна" required />
+                        <TextField {...params} label="Країна" required />
                     )}
                     options={countrysOptions}
                     value={projectState.country}
@@ -228,7 +234,7 @@ const AddNewProject = (props: Props) => {
                     }}
                 />
                 <FormControl required error={error}>
-                    <FormLabel>Выбор пола</FormLabel>
+                    <FormLabel>Вибір статі</FormLabel>
                     <FormGroup>
                         <div className="row sex-select-wrapper">
                             <FormControlLabel
@@ -241,17 +247,17 @@ const AddNewProject = (props: Props) => {
                                             },
                                         }}
                                         checked={
-                                            checkboxState['Мужчины']
+                                            checkboxState['Чоловіки']
                                                 ? true
                                                 : false
                                         }
                                         className="checkbox"
-                                        value="Мужчины"
+                                        value="Чоловіки"
                                         onChange={handleChangeSex}
-                                        name="Мужчины"
+                                        name="Чоловіки"
                                     />
                                 }
-                                label="Мужчины"
+                                label="Чоловіки"
                             />
                             <FormControlLabel
                                 className="checkbox-item"
@@ -263,17 +269,17 @@ const AddNewProject = (props: Props) => {
                                             },
                                         }}
                                         checked={
-                                            checkboxState['Женщины']
+                                            checkboxState['Жінки']
                                                 ? true
                                                 : false
                                         }
                                         className="checkbox"
-                                        value="Женщины"
+                                        value="Жінки"
                                         onChange={handleChangeSex}
-                                        name="Женщины"
+                                        name="Жінки"
                                     />
                                 }
-                                label="Женщины"
+                                label="Жінки"
                             />
                             <FormControlLabel
                                 className="checkbox-item"
@@ -285,22 +291,22 @@ const AddNewProject = (props: Props) => {
                                             },
                                         }}
                                         checked={
-                                            checkboxState['Пары'] ? true : false
+                                            checkboxState['Пари'] ? true : false
                                         }
                                         className="checkbox"
-                                        value="Пары"
+                                        value="Пари"
                                         onChange={handleChangeSex}
-                                        name="Пары"
+                                        name="Пари"
                                     />
                                 }
-                                label="Пары"
+                                label="Пари"
                             />
                         </div>
                     </FormGroup>
                 </FormControl>
                 <TextField
                     required
-                    label="Название проекта"
+                    label="Назва проєкту"
                     variant="outlined"
                     id="project"
                     size={inputSize}
@@ -318,7 +324,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Локализация"
+                    label="Локалізація"
                     variant="outlined"
                     id="location"
                     size={inputSize}
@@ -327,7 +333,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Категория"
+                    label="Категорія"
                     variant="outlined"
                     id="category"
                     size={inputSize}
@@ -337,7 +343,7 @@ const AddNewProject = (props: Props) => {
                 <div className="row age-row">
                     <TextField
                         required
-                        label="Возраст От"
+                        label="Вік Від"
                         variant="outlined"
                         id="age-from"
                         size={inputSize}
@@ -346,7 +352,7 @@ const AddNewProject = (props: Props) => {
                     />
                     <TextField
                         required
-                        label="Возраст До"
+                        label="Вік До"
                         variant="outlined"
                         id="age-to"
                         size={inputSize}
@@ -356,7 +362,7 @@ const AddNewProject = (props: Props) => {
                 </div>
                 <TextField
                     required
-                    label="Национальность"
+                    label="Національність"
                     variant="outlined"
                     id="nationalaty"
                     size={inputSize}
@@ -365,7 +371,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Дополнительная информация"
+                    label="Додаткова інформація"
                     variant="outlined"
                     id="additionalInfo"
                     size={inputSize}
@@ -374,7 +380,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Примеры жилья"
+                    label="Приклади житла"
                     variant="outlined"
                     id="housing"
                     size={inputSize}
@@ -383,7 +389,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Описание проекта"
+                    label="Опис проєкту"
                     variant="outlined"
                     id="projectInfo"
                     multiline
@@ -392,7 +398,7 @@ const AddNewProject = (props: Props) => {
                     onChange={handleChangeProjectProjectInfo}
                 />
                 <button className="add-project-btn" type="submit">
-                    Добавить проект
+                    Додати проєкт
                 </button>
             </form>
         </div>

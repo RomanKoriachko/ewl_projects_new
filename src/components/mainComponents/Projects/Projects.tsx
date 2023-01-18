@@ -359,7 +359,7 @@ const Projects = (props: Props) => {
             {localLoginData.email === 'mazaxaka.tyt@gmail.com' ||
             localLoginData.email === 'juliiaderevianko@gmail.com' ? (
                 filtredArr.length === 0 ? (
-                    <div className="no-search-results">Совпадений нет</div>
+                    <div className="no-search-results">Співпадінь нема</div>
                 ) : (
                     <div className="projects">
                         {filtredArr.map((element: ProjectType, i: number) => (
@@ -395,14 +395,14 @@ const Projects = (props: Props) => {
                                 </div>
                                 <div className="row project-age-row">
                                     <div className="project-item-section">
-                                        <div>Возраст от: {element.ageFrom}</div>
+                                        <div>Вік від: {element.ageFrom}</div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>Возраст до: {element.ageTo}</div>
+                                        <div>Вік до: {element.ageTo}</div>
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>Cтавка в злотых: {element.salary}</div>
+                                    <div>Ставка у злотих: {element.salary}</div>
                                 </div>
                                 <div>
                                     <div
@@ -424,19 +424,19 @@ const Projects = (props: Props) => {
                                 >
                                     <div className="project-item-section">
                                         <div>
-                                            Национальность:{' '}
+                                            Національність:{' '}
                                             {element.nationalaty}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
                                         <div>
-                                            Дополнительная информация:{' '}
+                                            Додаткова інформація:{' '}
                                             {element.additionalInfo}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
                                         <div>
-                                            Примеры жилья: {element.housing}
+                                            Приклади житла: {element.housing}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
@@ -456,7 +456,7 @@ const Projects = (props: Props) => {
                                             }
                                             disabled={projectsArr.length <= 1}
                                         >
-                                            Удалить
+                                            Видалити
                                         </button>
                                         <button
                                             className="edit-btn project-item-btn"
@@ -477,7 +477,7 @@ const Projects = (props: Props) => {
                                                 )
                                             }
                                         >
-                                            Редактировать
+                                            Редагувати
                                         </button>
                                     </div>
                                     <div className="row">
@@ -497,7 +497,7 @@ const Projects = (props: Props) => {
                                                 )
                                             }
                                         >
-                                            Развернуть
+                                            Розгорнути
                                         </button>
                                         <button
                                             className={`show-more-btn project-item-btn ${
@@ -515,32 +515,32 @@ const Projects = (props: Props) => {
                                                 )
                                             }
                                         >
-                                            Свернуть
+                                            Згорнути
                                         </button>
                                         <CopyButton
                                             statusNodeMap={StatusNodeMap}
                                             className="copy-btn project-item-btn"
-                                            value={`Название проекта\n${
+                                            value={`Назва проєкту\n${
                                                 element.projectName
-                                            }\n\nПол\n${element.sex.trim()}\n\nСтрана\n${
+                                            }\n\nСтать\n${element.sex.trim()}\n\nКраїна\n${
                                                 element.country
-                                            }\n\nCтавка в злотых\n${
+                                            }\n\nСтавка у злотих\n${
                                                 element.salary
-                                            }\n\nЛокализация\n${
+                                            }\n\nЛокалізація\n${
                                                 element.location
                                             }\n\nКатегорія\n${
                                                 element.category
-                                            }\n\nВозраст от\n${
+                                            }\n\nВік від\n${
                                                 element.ageFrom
-                                            }\n\nВозраст до\n${
+                                            }\n\nВік до\n${
                                                 element.ageTo
-                                            }\n\nНациональность\n${
+                                            }\n\nНвціональність\n${
                                                 element.nationalaty
-                                            }\n\nДополнительная информация\n${
+                                            }\n\nДодаткова інформація\n${
                                                 element.additionalInfo
-                                            }\n\nПримеры жилья\n${
+                                            }\n\nПриклади житла\n${
                                                 element.housing
-                                            }\n\nОписание вакансии\n${
+                                            }\n\nОпис вакансії\n${
                                                 element.projectInfo
                                             }`}
                                         />
@@ -587,14 +587,14 @@ const Projects = (props: Props) => {
                             </div>
                             <div className="row project-age-row">
                                 <div className="project-item-section">
-                                    <div>Возраст от: {element.ageFrom}</div>
+                                    <div>Вік від: {element.ageFrom}</div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>Возраст до: {element.ageTo}</div>
+                                    <div>Вік до: {element.ageTo}</div>
                                 </div>
                             </div>
                             <div className="project-item-section">
-                                <div>Cтавка в злотых: {element.salary}</div>
+                                <div>Cтавка у злотих: {element.salary}</div>
                             </div>
                             <div>
                                 <div
@@ -616,17 +616,17 @@ const Projects = (props: Props) => {
                             >
                                 <div className="project-item-section">
                                     <div>
-                                        Национальность: {element.nationalaty}
+                                        Національність: {element.nationalaty}
                                     </div>
                                 </div>
                                 <div className="project-item-section">
                                     <div>
-                                        Дополнительная информация:{' '}
+                                        Додаткова інформація:{' '}
                                         {element.additionalInfo}
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>Примеры жилья: {element.housing}</div>
+                                    <div>Приклади житла: {element.housing}</div>
                                 </div>
                                 <div className="project-item-section">
                                     <div className="project-info">
@@ -650,7 +650,7 @@ const Projects = (props: Props) => {
                                             )
                                         }
                                     >
-                                        Развернуть
+                                        Разгорнути
                                     </button>
                                     <button
                                         className={`show-more-btn project-item-btn ${
@@ -666,32 +666,32 @@ const Projects = (props: Props) => {
                                             )
                                         }
                                     >
-                                        Свернуть
+                                        Згорнути
                                     </button>
                                     <CopyButton
                                         statusNodeMap={StatusNodeMap}
                                         className="copy-btn project-item-btn"
-                                        value={`Название проекта\n${
+                                        value={`Назва проєкту\n${
                                             element.projectName
-                                        }\n\nПол\n${element.sex.trim()}\n\nСтрана\n${
+                                        }\n\nСтать\n${element.sex.trim()}\n\nКраїна\n${
                                             element.country
-                                        }\n\nCтавка в злотых\n${
+                                        }\n\nСтавка у злотих\n${
                                             element.salary
-                                        }\n\nЛокализация\n${
+                                        }\n\nЛокалізація\n${
                                             element.location
                                         }\n\nКатегорія\n${
                                             element.category
-                                        }\n\nВозраст от\n${
+                                        }\n\nВік від\n${
                                             element.ageFrom
-                                        }\n\nВозраст до\n${
+                                        }\n\nВік до\n${
                                             element.ageTo
-                                        }\n\nНациональность\n${
+                                        }\n\nНаціональність\n${
                                             element.nationalaty
-                                        }\n\nДополнительная информация\n${
+                                        }\n\nДодаткова інформація\n${
                                             element.additionalInfo
-                                        }\n\nПримеры жилья\n${
+                                        }\n\nПриклади житла\n${
                                             element.housing
-                                        }\n\nОписание вакансии\n${
+                                        }\n\nОпис вакансії\n${
                                             element.projectInfo
                                         }`}
                                     />

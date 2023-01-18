@@ -33,16 +33,16 @@ const EditProject = (props: Props) => {
 
     const countrysOptions = [
         '',
-        'Польша',
-        'Чехия',
-        'Румыния',
-        'Словакия',
+        'Польща',
+        'Чехія',
+        'Румунія',
+        'Словаччина',
         'Литва',
-        'Голландия',
-        'Германия',
-        'Греция',
-        'Испания',
-        'Кипр',
+        'Голландія',
+        'Німеччина',
+        'Греція',
+        'Іспанія',
+        'Кіпр',
     ]
 
     const handleChangeProjectSalary = (
@@ -171,7 +171,7 @@ const EditProject = (props: Props) => {
                         dispatch(deliteEditedProjectData(''))
                         return update(ref(db), updates)
                     } else {
-                        alert('Такого проекта не существует')
+                        alert('Такого проекта не існує')
                     }
                 } else {
                     console.log('No data available')
@@ -185,7 +185,7 @@ const EditProject = (props: Props) => {
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (editProjectState.sex === '') {
-            alert('Необходимо выбрать пол')
+            alert('Необхідно обрати стать')
         } else if (editProjectState.ageFrom && editProjectState.ageTo) {
             onEditClick(
                 editProjectState.country,
@@ -216,14 +216,14 @@ const EditProject = (props: Props) => {
     return (
         <div className="project-edit-form">
             <div className="project-edit-header">
-                <p className="tablet-header">Редактировать проект</p>
+                <p className="tablet-header">Редагувати проєкт</p>
                 <button onClick={closeEditForm}></button>
             </div>
             <form onSubmit={onSendClick}>
                 <Autocomplete
                     id="esit-country-select"
                     renderInput={(params) => (
-                        <TextField {...params} label="Страна" required />
+                        <TextField {...params} label="Країна" required />
                     )}
                     size={inputSize}
                     options={countrysOptions}
@@ -234,7 +234,7 @@ const EditProject = (props: Props) => {
                 />
                 <div className="sex-select-edit">
                     <FormControl required error={error}>
-                        <FormLabel>Выбор пола</FormLabel>
+                        <FormLabel>Вибір статі</FormLabel>
                         <div className="row sex-select-wrapper">
                             <FormControlLabel
                                 className="checkbox-item"
@@ -247,18 +247,18 @@ const EditProject = (props: Props) => {
                                         }}
                                         checked={
                                             editProjectState.sex.includes(
-                                                'Мужчины'
+                                                'Чоловіки'
                                             )
                                                 ? true
                                                 : false
                                         }
                                         className="checkbox"
-                                        value="Мужчины"
+                                        value="Чоловіки"
                                         onChange={handleChangeSex}
-                                        name="Мужчины"
+                                        name="Чоловіки"
                                     />
                                 }
-                                label="Мужчины"
+                                label="Чоловіки"
                             />
                             <FormControlLabel
                                 className="checkbox-item"
@@ -271,18 +271,18 @@ const EditProject = (props: Props) => {
                                         }}
                                         checked={
                                             editProjectState.sex.includes(
-                                                'Женщины'
+                                                'Жінки'
                                             )
                                                 ? true
                                                 : false
                                         }
                                         className="checkbox"
-                                        value="Женщины"
+                                        value="Жінки"
                                         onChange={handleChangeSex}
-                                        name="Женщины"
+                                        name="Жінки"
                                     />
                                 }
-                                label="Женщины"
+                                label="Жінки"
                             />
                             <FormControlLabel
                                 className="checkbox-item"
@@ -295,25 +295,25 @@ const EditProject = (props: Props) => {
                                         }}
                                         checked={
                                             editProjectState.sex.includes(
-                                                'Пары'
+                                                'Пари'
                                             )
                                                 ? true
                                                 : false
                                         }
                                         className="checkbox"
-                                        value="Пары"
+                                        value="Пари"
                                         onChange={handleChangeSex}
-                                        name="Пары"
+                                        name="Пари"
                                     />
                                 }
-                                label="Пары"
+                                label="Пари"
                             />
                         </div>
                     </FormControl>
                 </div>
                 <TextField
                     required
-                    label="Название проекта"
+                    label="Назва проєкту"
                     variant="outlined"
                     id="edit-project-name"
                     size={inputSize}
@@ -331,7 +331,7 @@ const EditProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Локализация"
+                    label="Локалізація"
                     variant="outlined"
                     id="edit-location"
                     size={inputSize}
@@ -340,7 +340,7 @@ const EditProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Категория"
+                    label="Категорія"
                     variant="outlined"
                     id="edit-category"
                     size={inputSize}
@@ -350,7 +350,7 @@ const EditProject = (props: Props) => {
                 <div className="row age-wrapper">
                     <TextField
                         required
-                        label="Возраст От"
+                        label="Вік Від"
                         variant="outlined"
                         id="edit-age-from"
                         size={inputSize}
@@ -359,7 +359,7 @@ const EditProject = (props: Props) => {
                     />
                     <TextField
                         required
-                        label="Возраст До"
+                        label="Вік До"
                         variant="outlined"
                         id="edit-age-to"
                         size={inputSize}
@@ -369,7 +369,7 @@ const EditProject = (props: Props) => {
                 </div>
                 <TextField
                     required
-                    label="Национальность"
+                    label="Національність"
                     variant="outlined"
                     id="edit-nationalaty"
                     size={inputSize}
@@ -378,7 +378,7 @@ const EditProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Дополнительная информация"
+                    label="Додаткова інформація"
                     variant="outlined"
                     id="edit-additionalInfo"
                     size={inputSize}
@@ -387,7 +387,7 @@ const EditProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Примеры жилья"
+                    label="Приклади житла"
                     variant="outlined"
                     id="edit-housing"
                     size={inputSize}
@@ -396,7 +396,7 @@ const EditProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Описание проекта"
+                    label="Опис проєкту"
                     variant="outlined"
                     id="edit-projectInfo"
                     multiline
@@ -405,7 +405,7 @@ const EditProject = (props: Props) => {
                     onChange={handleChangeProjectProjectInfo}
                 />
                 <button className="edit-project-btn" type="submit">
-                    Редактировать проект
+                    Редагувати проєкт
                 </button>
             </form>
         </div>

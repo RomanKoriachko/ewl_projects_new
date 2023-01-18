@@ -45,7 +45,7 @@ const Registration = (props: Props) => {
     return (
         <div className="registration">
             <div className="registration-header">
-                Зарегистрировать нового пользователя
+                Зареєструвати нового користувача
             </div>
             <form id="registration-form" onSubmit={createAccount}>
                 <div className="grid-wrapper registration-wrapper">
@@ -66,7 +66,7 @@ const Registration = (props: Props) => {
                         value={RedistrationState.password}
                     />
                     <button type="submit" className="submit-button">
-                        Зарегистрировать
+                        Зареєструвати
                     </button>
                 </div>
             </form>

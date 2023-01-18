@@ -13,7 +13,7 @@ const initialState: SexCheckboxType = {
 }
 
 export const sexCheckboxReducer = createSlice({
-    name:'searchContent',
+    name:'sexCheckbox',
     initialState,
     reducers:{
         setMaleCheckbox: (state, action) => ({

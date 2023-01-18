@@ -5,13 +5,13 @@ type CheckedType = {
 }
 
 const initialState: CheckedType = {
-    "Мужчины": false,
-    "Женщины": false,
-    "Пары": false,
+    "Чоловіки": false,
+    "Жінки": false,
+    "Пари": false,
 }
 
 export const checkboxCheckedReducer = createSlice({
-    name:'ageSearch',
+    name:'checkboxCheched',
     initialState,
     reducers:{
         addCheckedCheckbox: (state, action) => ({
@@ -23,15 +23,15 @@ export const checkboxCheckedReducer = createSlice({
         },
         maleChecked: (state) => ({
             ...state,
-            "Мужчины": true,
+            "Чоловіки": true,
         }),
         femaleChecked: (state) => ({
             ...state,
-            "Женщины": true,
+            "Жінки": true,
         }),
         couplesChecked: (state) => ({
             ...state,
-            "Пары": true,
+            "Пари": true,
         }),
     }
 })

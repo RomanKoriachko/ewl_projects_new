@@ -55,7 +55,7 @@ const Header = (props: Props) => {
                         <div className="header-logo"></div>
                         <div className="row user-name-and-btn">
                             <div className="header-user">
-                                Пользователь: {localLoginData.email}
+                                Користувач: {localLoginData.email}
                             </div>
                             <div>
                                 <div onClick={reloadPage}>
@@ -63,7 +63,7 @@ const Header = (props: Props) => {
                                         className="logout-btn"
                                         onClick={() => logout()}
                                     >
-                                        Выйти
+                                        Вийти
                                     </button>
                                 </div>
                             </div>

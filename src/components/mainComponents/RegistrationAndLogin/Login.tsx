@@ -52,7 +52,7 @@ const Login = (props: Props) => {
 
     return (
         <div className="login">
-            <div className="login-header">Введите логин и пароль</div>
+            <div className="login-header">Введіть логін та пароль</div>
             <form id="login-form" onSubmit={login}>
                 <div>
                     <div className="grid-wrapper">
@@ -71,7 +71,7 @@ const Login = (props: Props) => {
                             value={loginState.password}
                         />
                         <button type="submit" className="submit-button">
-                            Войти
+                            Увійти
                         </button>
                     </div>
                 </div>
