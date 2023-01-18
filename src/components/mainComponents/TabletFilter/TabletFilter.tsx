@@ -5,17 +5,7 @@ import './TabletFilter.scss'
 type Props = {}
 
 const TabletFilter = (props: Props) => {
-    const [filterState, setFilterState] = useState<string>('hide-filter')
     const [isFilteOpen, setIsFilteOpen] = useState<string>('close')
-
-    // // Show filter button
-    // window.addEventListener('scroll', function () {
-    //     if (window.scrollY > 600) {
-    //         setFilterState('show-filter')
-    //     } else {
-    //         setFilterState('hide-filter')
-    //     }
-    // })
 
     // Open Filter
     const onfilterClick = () => {
@@ -35,10 +25,6 @@ const TabletFilter = (props: Props) => {
 
     // filter width
     const filterWidth = 1 + window.innerWidth - window.innerWidth / 5
-
-    window.addEventListener('scroll', function () {
-        console.log(window.scrollY)
-    })
 
     return (
         <div className={`tablet-filter show-filter ${isFilteOpen}`}>

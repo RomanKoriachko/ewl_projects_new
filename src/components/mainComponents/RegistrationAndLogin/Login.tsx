@@ -27,7 +27,7 @@ const Login = (props: Props) => {
         signInWithEmailAndPassword(auth, loginState.email, loginState.password)
             .then(() => {
                 if (
-                    loginState.email === 'mazaxaka.tyt@gmail.com' &&
+                    loginState.email === 'mazaxaka.tyt@gmail.com' ||
                     'juliiaderevianko@gmail.com'
                 ) {
                     dispatch(loginAdmin())
