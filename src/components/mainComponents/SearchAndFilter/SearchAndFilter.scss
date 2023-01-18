@@ -151,6 +151,24 @@
         }
         .filter{
             border-bottom-right-radius: 0px;
+            .filter-buttons {
+                >button{
+                    &:hover {
+                        color: #3B3B3B;
+                        background-color: transparent;
+                        border-color: #3B3B3B;
+                        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+                        transform: translateY(-2px);
+                    }
+                    &:active {
+                        color: #fff;
+                        background-color: #f18a01;
+                        border-color: #f18a01;
+                        box-shadow: none;
+                        transform: translateY(0);
+                    }
+                }
+            }
         }
     }
 }
