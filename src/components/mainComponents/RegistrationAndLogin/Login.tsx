@@ -28,7 +28,7 @@ const Login = (props: Props) => {
             .then(() => {
                 if (
                     loginState.email === 'mazaxaka.tyt@gmail.com' ||
-                    'juliiaderevianko@gmail.com'
+                    loginState.email === 'juliiaderevianko@gmail.com'
                 ) {
                     dispatch(loginAdmin())
                     localStorage.setItem(
@@ -45,7 +45,7 @@ const Login = (props: Props) => {
             })
             .catch(() => {
                 alert(
-                    'Пользователя не существует или неправильно вписаны данные'
+                    'Такого користувача не існує або неправильно введені дані'
                 )
             })
     }
