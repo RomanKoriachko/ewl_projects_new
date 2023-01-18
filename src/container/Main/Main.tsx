@@ -7,6 +7,7 @@ import Login from 'components/mainComponents/RegistrationAndLogin/Login'
 import { useAppSelector } from 'redux/hooks'
 import SliderComponent from 'components/mainComponents/SliderComponent/SliderComponent'
 import StickyBox from 'react-sticky-box'
+import TabletFilter from 'components/mainComponents/TabletFilter/TabletFilter'
 
 type Props = {}
 
@@ -61,6 +62,7 @@ const Main = (props: Props) => {
                                 >
                                     <SearchAndFilter />
                                 </StickyBox>
+                                <TabletFilter />
                                 <Projects />
                             </div>
                         </div>

@@ -1,0 +1,25 @@
+.tablet-filter {
+    position: fixed;
+    height: 70px;
+    width: 30px;
+    top: 50px;
+    z-index: 10;
+    border: 1px solid black;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: white;
+    transition: .5s all;
+    background-image: url(./../../../assets/filter-img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.show-filter {
+    right: 0px;
+    transition: .5s all;
+}
+.hide-filter {
+    right: -40px;
+    transition: .5s all;
+}
