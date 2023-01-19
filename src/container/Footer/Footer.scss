@@ -1,13 +1,46 @@
+@import '../../fonts';
+
 .footer-wrapper {
     align-items: center;
     justify-content: space-between;
+    padding: 10px 0px;
 }
 
 .logo {
-    height: 80px;
-    width: 150px;
+    height: 60px;
+    width: 120px;
     background-image: url(./../../assets/footer-logo.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+}
+.contacts {
+    align-items: center;
+    gap: 10px;
+    @include raleway700();
+    .viber-btn {
+        height: 35px;
+        width: 35px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        background-image: url(../../assets/viber-img.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        transition: .3s all;
+        &:hover {
+            transform: scale(120%);
+        }
+    }
+}
+
+// Mobile
+@media(max-width: 576px) {
+    .footer-wrapper {
+        flex-direction: column;
+    }
+    .logo {
+        height: 40px;
+    }
 }

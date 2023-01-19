@@ -10,13 +10,14 @@
         min-height: 70px;
         align-items: center;
         justify-content: space-between;
+        padding: 10px 0px;
         .header-logo {
             background-image: url(../../assets/header-logo.png);
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             width: 200px;
-            height: 50px;
+            height: 60px;
         }
         .user-name-and-btn {
             gap: 20px;
@@ -56,13 +57,18 @@
         .header-content {
             .header-logo {
                 width: 100px;
-                height: 30px;
+                height: 40px;
             }
             .user-name-and-btn {
                 flex-direction: column;
                 align-items: flex-end;
                 gap: 7px;
                 padding: 5px 0px;
+                .logout-btn {
+                    padding: 5px 10px;
+                    height: 30px;
+                    font-size: 14px;
+                }
             }
         }
     }

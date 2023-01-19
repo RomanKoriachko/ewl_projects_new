@@ -16,6 +16,9 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
+        label{
+            user-select: none;
+        }
         input{
             @include sans400();
         }
@@ -73,6 +76,7 @@
             .add-project-btn{
                 width: 100%;
                 font-size: 16px;
+                height: 40px;
             }
         }
     }

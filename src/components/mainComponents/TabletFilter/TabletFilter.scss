@@ -2,8 +2,7 @@
     position: fixed;
     height: 70px;
     width: 30px;
-    top: 30px;
-    transform: (-50%);
+    top: 105px;
     z-index: 10;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -26,7 +25,7 @@
         position: relative;
         .filter-content {
             position: absolute;
-            top: -101px;
+            top: -176px;
             left: 28px;
             height: 100vh;
             border-radius: 10px;
@@ -53,9 +52,4 @@
     .tablet-filter {
         display: block;
     }
-}
-
-// Mobile
-@media(max-width: 576px) {
-
 }

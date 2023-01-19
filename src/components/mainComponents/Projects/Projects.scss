@@ -35,9 +35,6 @@
             @include raleway600();
             font-size: 24px;
             transition: .3s all;
-            &:hover {
-                color: #EB6A09;
-            }
         }
         .is-actual-state {
             margin-top: 10px;
@@ -92,6 +89,12 @@
                 background-color: #EB6A09;
             }
         }
+        .delite-btn {
+            background-color: rgb(177, 33, 33);
+        }
+        .edit-btn {
+            background-color: rgb(211, 104, 43);
+        }
         .project-age-row {
             gap: 15px;
         }
@@ -103,6 +106,9 @@
         }
         .copy-btn {
             padding: 8px 12px;
+        }
+        &:hover .project-header{
+            color: #EB6A09;
         }
     }
 }
