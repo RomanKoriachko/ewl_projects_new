@@ -5,6 +5,7 @@ import countryCheckboxReducer from "./countryCheckboxReducer";
 import editFormReducer from "./editFormReducer";
 import editProjectReduser from "./editProjectReduser";
 import filterReducer from "./filterReducer";
+import isFilterOpenReducer from "./isFilterOpenReducer";
 import isMinorReducer from "./isMinorReducer";
 import loginDataReducer from "./loginDataReducer";
 import newProjectReduser from "./newProjectReduser";
@@ -29,6 +30,7 @@ export const store = configureStore({
         showMoreState: ShowMoreReducer,
         checkboxCheckedState: checkboxCheckedReducer,
         editFormState: editFormReducer,
+        isFilterOpenState: isFilterOpenReducer,
     }
 })
 

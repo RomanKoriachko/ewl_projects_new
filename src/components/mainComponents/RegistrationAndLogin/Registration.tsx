@@ -51,7 +51,7 @@ const Registration = (props: Props) => {
                 <div className="grid-wrapper registration-wrapper">
                     <input
                         className="login-input registration-input"
-                        placeholder="Почта"
+                        placeholder="Пошта"
                         type="text"
                         id="registration-login"
                         onChange={handleChangeRegistrationLogin}

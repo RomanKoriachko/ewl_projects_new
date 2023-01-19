@@ -1,35 +1,31 @@
 import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { changeFilterState } from 'redux/isFilterOpenReducer'
 import SearchAndFilter from '../SearchAndFilter/SearchAndFilter'
 import './TabletFilter.scss'
 
 type Props = {}
 
 const TabletFilter = (props: Props) => {
-    const [isFilteOpen, setIsFilteOpen] = useState<string>('close')
+    const isFilterOpenState = useAppSelector((state) => state.isFilterOpenState)
+    const dispatch = useAppDispatch()
 
     // Open Filter
     const onfilterClick = () => {
-        if (isFilteOpen === 'close') {
-            setIsFilteOpen('open')
+        if (isFilterOpenState === 'close') {
+            dispatch(changeFilterState('open'))
+            document.body.style.overflow = 'hidden'
         } else {
-            setIsFilteOpen('close')
+            dispatch(changeFilterState('close'))
+            document.body.style.overflow = 'auto'
         }
     }
-
-    // Disable scroll
-    if (isFilteOpen === 'open') {
-        document.body.style.overflow = 'hidden'
-    } else {
-        document.body.style.overflow = 'auto'
-    }
-
-    console.log(isFilteOpen)
 
     // filter width
     const filterWidth = 1 + window.innerWidth - window.innerWidth / 5
 
     return (
-        <div className={`tablet-filter show-filter ${isFilteOpen}`}>
+        <div className={`tablet-filter show-filter ${isFilterOpenState}`}>
             <button
                 className="filter-button"
                 onClick={() => onfilterClick()}
