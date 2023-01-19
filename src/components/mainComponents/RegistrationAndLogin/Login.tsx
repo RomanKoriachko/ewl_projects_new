@@ -28,7 +28,8 @@ const Login = (props: Props) => {
             .then(() => {
                 if (
                     loginState.email === 'mazaxaka.tyt@gmail.com' ||
-                    loginState.email === 'juliiaderevianko@gmail.com'
+                    loginState.email === 'juliiaderevianko@gmail.com' ||
+                    loginState.email === 'admin@gmail.com'
                 ) {
                     dispatch(loginAdmin())
                     localStorage.setItem(

@@ -357,7 +357,8 @@ const Projects = (props: Props) => {
                 <EditProject />
             </div>
             {localLoginData.email === 'mazaxaka.tyt@gmail.com' ||
-            localLoginData.email === 'juliiaderevianko@gmail.com' ? (
+            localLoginData.email === 'juliiaderevianko@gmail.com' ||
+            localLoginData.email === 'admin@gmail.com' ? (
                 filtredArr.length === 0 ? (
                     <div className="no-search-results">Співпадінь нема</div>
                 ) : (

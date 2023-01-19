@@ -34,10 +34,10 @@ const Registration = (props: Props) => {
             RedistrationState.password
         )
             .then(() => {
-                alert('Пользователь зарегистрирован')
+                alert('Користувач зареєстрований')
             })
             .catch(() => {
-                alert('Ошибка создания аккаунта')
+                alert('Помилка створення аккаунту')
             })
         dispatch(cleanRegistrationInput())
     }

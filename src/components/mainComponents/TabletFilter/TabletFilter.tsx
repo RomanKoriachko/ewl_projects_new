@@ -23,6 +23,8 @@ const TabletFilter = (props: Props) => {
         document.body.style.overflow = 'auto'
     }
 
+    console.log(isFilteOpen)
+
     // filter width
     const filterWidth = 1 + window.innerWidth - window.innerWidth / 5
 
