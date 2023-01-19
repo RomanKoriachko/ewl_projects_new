@@ -23,6 +23,7 @@ type ProjectType = {
     housing: string
     projectInfo: string
     category: string
+    isActual: boolean
 }
 
 type ICopyStatus = 'waiting' | 'copying' | 'failed' | 'succeed'
@@ -67,6 +68,7 @@ const Projects = (props: Props) => {
             housing: null,
             projectInfo: null,
             category: null,
+            isActual: null,
         })
     }
 
@@ -82,7 +84,8 @@ const Projects = (props: Props) => {
         additionalInfo: string,
         housing: string,
         projectInfo: string,
-        category: string
+        category: string,
+        isActual: boolean
     ) => {
         dispatch(
             getProjectData({
@@ -99,6 +102,7 @@ const Projects = (props: Props) => {
                 housing: housing,
                 projectInfo: projectInfo,
                 category: category,
+                isActual: isActual,
             })
         )
         editFormState
@@ -304,6 +308,10 @@ const Projects = (props: Props) => {
         filtredArr = temporaryIsMinorArr
     }
 
+    const filtredArrForUsers: ProjectType[] = filtredArr.filter(
+        (element: ProjectType) => element.isActual
+    )
+
     let raw = localStorage.getItem('loginData')
     let localLoginData
     if (raw) {
@@ -329,13 +337,13 @@ const Projects = (props: Props) => {
     }
 
     // disable scroll
-
     if (editFormState) {
         document.body.style.overflow = 'hidden'
     } else {
         document.body.style.overflow = 'auto'
     }
 
+    // change copy button placeholder
     const StatusNodeMap: Record<ICopyStatus, React.ReactNode> = {
         waiting: 'Копіювати',
         copying: 'Копіюю..',
@@ -368,6 +376,10 @@ const Projects = (props: Props) => {
                                 <div className="project-item-section">
                                     <p className="project-header">
                                         {element.projectName}
+                                    </p>
+                                    <p className="is-actual-state">
+                                        Актуальний:{' '}
+                                        {element.isActual ? 'Так' : 'Ні'}
                                     </p>
                                 </div>
                                 <div className="project-item-section row project-firs-descroption-row">
@@ -431,8 +443,10 @@ const Projects = (props: Props) => {
                                     </div>
                                     <div className="project-item-section">
                                         <div>
-                                            Додаткова інформація:{' '}
-                                            {element.additionalInfo}
+                                            Посилання на синхронер:{' '}
+                                            <a href={element.additionalInfo}>
+                                                {element.additionalInfo}
+                                            </a>
                                         </div>
                                     </div>
                                     <div className="project-item-section">
@@ -474,7 +488,8 @@ const Projects = (props: Props) => {
                                                     element.additionalInfo,
                                                     element.housing,
                                                     element.projectInfo,
-                                                    element.category
+                                                    element.category,
+                                                    element.isActual
                                                 )
                                             }
                                         >
@@ -555,151 +570,160 @@ const Projects = (props: Props) => {
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
                 <div className="projects">
-                    {filtredArr.map((element: ProjectType, i: number) => (
-                        <div key={i} className="project-item">
-                            <div className="project-item-section">
-                                <p className="project-header">
-                                    {element.projectName}
-                                </p>
-                            </div>
-                            <div className="project-item-section row project-firs-descroption-row">
-                                <div className="row project-row">
-                                    <div>
-                                        <div className="project-sex row">
-                                            {splitString(element.sex).map(
-                                                (el: string, i: number) => (
-                                                    <div key={i}>{el}</div>
-                                                )
-                                            )}
+                    {filtredArrForUsers.map(
+                        (element: ProjectType, i: number) => (
+                            <div key={i} className="project-item">
+                                <div className="project-item-section">
+                                    <p className="project-header">
+                                        {element.projectName}
+                                    </p>
+                                </div>
+                                <div className="project-item-section row project-firs-descroption-row">
+                                    <div className="row project-row">
+                                        <div>
+                                            <div className="project-sex row">
+                                                {splitString(element.sex).map(
+                                                    (el: string, i: number) => (
+                                                        <div key={i}>{el}</div>
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="project-country">
+                                                {element.country},
+                                            </div>
+                                            <div className="project-location">
+                                                {element.location}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="row">
-                                        <div className="project-country">
-                                            {element.country},
-                                        </div>
-                                        <div className="project-location">
-                                            {element.location}
-                                        </div>
+                                    <div className="project-category">
+                                        {element.category}
                                     </div>
                                 </div>
-                                <div className="project-category">
-                                    {element.category}
-                                </div>
-                            </div>
-                            <div className="row project-age-row">
-                                <div className="project-item-section">
-                                    <div>Вік від: {element.ageFrom}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <div>Вік до: {element.ageTo}</div>
-                                </div>
-                            </div>
-                            <div className="project-item-section">
-                                <div>Cтавка у злотих: {element.salary}</div>
-                            </div>
-                            <div>
-                                <div
-                                    className={`project-item-section project-info ${
-                                        showMoreState[element.projectName]
-                                            ? 'hide'
-                                            : 'show'
-                                    }`}
-                                >
-                                    {getShortString(element.projectInfo)}
-                                </div>
-                            </div>
-                            <div
-                                className={
-                                    showMoreState[element.projectName]
-                                        ? 'show'
-                                        : 'hide'
-                                }
-                            >
-                                <div className="project-item-section">
-                                    <div>
-                                        Національність: {element.nationalaty}
+                                <div className="row project-age-row">
+                                    <div className="project-item-section">
+                                        <div>Вік від: {element.ageFrom}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <div>Вік до: {element.ageTo}</div>
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>
-                                        Додаткова інформація:{' '}
-                                        {element.additionalInfo}
-                                    </div>
+                                    <div>Cтавка у злотих: {element.salary}</div>
                                 </div>
-                                <div className="project-item-section">
-                                    <div>Приклади житла: {element.housing}</div>
-                                </div>
-                                <div className="project-item-section">
-                                    <div className="project-info">
-                                        {element.projectInfo}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row project-item-buttons">
-                                <div className="row">
-                                    <button
-                                        className={`show-more-btn project-item-btn ${
+                                <div>
+                                    <div
+                                        className={`project-item-section project-info ${
                                             showMoreState[element.projectName]
                                                 ? 'hide'
                                                 : 'show'
                                         }`}
-                                        onClick={() =>
-                                            dispatch(
-                                                showMoreData(
-                                                    element.projectName
-                                                )
-                                            )
-                                        }
                                     >
-                                        Разгорнути
-                                    </button>
-                                    <button
-                                        className={`show-more-btn project-item-btn ${
-                                            showMoreState[element.projectName]
-                                                ? 'show'
-                                                : 'hide'
-                                        }`}
-                                        onClick={() =>
-                                            dispatch(
-                                                showLessData(
+                                        {getShortString(element.projectInfo)}
+                                    </div>
+                                </div>
+                                <div
+                                    className={
+                                        showMoreState[element.projectName]
+                                            ? 'show'
+                                            : 'hide'
+                                    }
+                                >
+                                    <div className="project-item-section">
+                                        <div>
+                                            Національність:{' '}
+                                            {element.nationalaty}
+                                        </div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <div>
+                                            Додаткова інформація:{' '}
+                                            {element.additionalInfo}
+                                        </div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <div>
+                                            Приклади житла: {element.housing}
+                                        </div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <div className="project-info">
+                                            {element.projectInfo}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row project-item-buttons">
+                                    <div className="row">
+                                        <button
+                                            className={`show-more-btn project-item-btn ${
+                                                showMoreState[
                                                     element.projectName
+                                                ]
+                                                    ? 'hide'
+                                                    : 'show'
+                                            }`}
+                                            onClick={() =>
+                                                dispatch(
+                                                    showMoreData(
+                                                        element.projectName
+                                                    )
                                                 )
-                                            )
-                                        }
-                                    >
-                                        Згорнути
-                                    </button>
-                                    <CopyButton
-                                        statusNodeMap={StatusNodeMap}
-                                        className="copy-btn project-item-btn"
-                                        value={`Назва проєкту\n${
-                                            element.projectName
-                                        }\n\nСтать\n${element.sex.trim()}\n\nКраїна\n${
-                                            element.country
-                                        }\n\nСтавка у злотих\n${
-                                            element.salary
-                                        }\n\nЛокалізація\n${
-                                            element.location
-                                        }\n\nКатегорія\n${
-                                            element.category
-                                        }\n\nВік від\n${
-                                            element.ageFrom
-                                        }\n\nВік до\n${
-                                            element.ageTo
-                                        }\n\nНаціональність\n${
-                                            element.nationalaty
-                                        }\n\nДодаткова інформація\n${
-                                            element.additionalInfo
-                                        }\n\nПриклади житла\n${
-                                            element.housing
-                                        }\n\nОпис вакансії\n${
-                                            element.projectInfo
-                                        }`}
-                                    />
+                                            }
+                                        >
+                                            Разгорнути
+                                        </button>
+                                        <button
+                                            className={`show-more-btn project-item-btn ${
+                                                showMoreState[
+                                                    element.projectName
+                                                ]
+                                                    ? 'show'
+                                                    : 'hide'
+                                            }`}
+                                            onClick={() =>
+                                                dispatch(
+                                                    showLessData(
+                                                        element.projectName
+                                                    )
+                                                )
+                                            }
+                                        >
+                                            Згорнути
+                                        </button>
+                                        <CopyButton
+                                            statusNodeMap={StatusNodeMap}
+                                            className="copy-btn project-item-btn"
+                                            value={`Назва проєкту\n${
+                                                element.projectName
+                                            }\n\nСтать\n${element.sex.trim()}\n\nКраїна\n${
+                                                element.country
+                                            }\n\nСтавка у злотих\n${
+                                                element.salary
+                                            }\n\nЛокалізація\n${
+                                                element.location
+                                            }\n\nКатегорія\n${
+                                                element.category
+                                            }\n\nВік від\n${
+                                                element.ageFrom
+                                            }\n\nВік до\n${
+                                                element.ageTo
+                                            }\n\nНаціональність\n${
+                                                element.nationalaty
+                                            }\n\nДодаткова інформація\n${
+                                                element.additionalInfo
+                                            }\n\nПриклади житла\n${
+                                                element.housing
+                                            }\n\nОпис вакансії\n${
+                                                element.projectInfo
+                                            }`}
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    )}
                 </div>
             )}
         </div>

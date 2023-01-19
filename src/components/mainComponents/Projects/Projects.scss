@@ -39,6 +39,10 @@
                 color: #EB6A09;
             }
         }
+        .is-actual-state {
+            margin-top: 10px;
+            @include raleway600();
+        }
         .project-firs-descroption-row {
             justify-content: space-between;
             align-items: center;

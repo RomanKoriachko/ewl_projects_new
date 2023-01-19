@@ -3,6 +3,7 @@ import {
     addNewSex,
     changeCategory,
     changeCountry,
+    changeIsActual,
     changeProjectAdditionalInfo,
     changeProjectAgeFrom,
     changeProjectAgeTo,
@@ -17,7 +18,7 @@ import {
 } from 'redux/newProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import './AddNewProject.scss'
-import { FormGroup, TextField } from '@mui/material'
+import { FormGroup, Switch, TextField } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import FormLabel from '@mui/material/FormLabel'
 import FormControl from '@mui/material/FormControl'
@@ -27,6 +28,7 @@ import {
     addCheckedCheckbox,
     removeAllCheckboxes,
 } from 'redux/checkboxCheckedReducer'
+
 type Props = {}
 
 const AddNewProject = (props: Props) => {
@@ -97,6 +99,10 @@ const AddNewProject = (props: Props) => {
         }
     })
 
+    const isActualChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(changeIsActual(e.target.checked))
+    }
+
     const handleChangeProjectAgeFrom = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -130,8 +136,8 @@ const AddNewProject = (props: Props) => {
         dispatch(changeProjectInfo(e.target.value))
     }
 
+    // --------- write data ---------
     const db = getDatabase()
-
     function writeProjectData(
         country: string,
         salary: string,
@@ -144,7 +150,8 @@ const AddNewProject = (props: Props) => {
         additionalInfo: string,
         housing: string,
         projectInfo: string,
-        category: string
+        category: string,
+        isActual: boolean
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -168,9 +175,11 @@ const AddNewProject = (props: Props) => {
                             housing: housing,
                             projectInfo: projectInfo,
                             category: category,
+                            isActual: isActual,
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
+                        dispatch(changeIsActual(false))
                     }
                 } else {
                     console.log('No data available')
@@ -181,6 +190,7 @@ const AddNewProject = (props: Props) => {
             })
     }
 
+    //  -------- sending form ---------
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (projectState.sex === '') {
@@ -204,7 +214,8 @@ const AddNewProject = (props: Props) => {
                 projectState.additionalInfo,
                 projectState.housing,
                 projectState.projectInfo,
-                projectState.category
+                projectState.category,
+                projectState.isActul
             )
         }
     }
@@ -236,71 +247,93 @@ const AddNewProject = (props: Props) => {
                 <FormControl required error={error}>
                     <FormLabel>Вибір статі</FormLabel>
                     <FormGroup>
-                        <div className="row sex-select-wrapper">
-                            <FormControlLabel
-                                className="checkbox-item"
-                                control={
-                                    <Checkbox
-                                        sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
-                                        }}
-                                        checked={
-                                            checkboxState['Чоловіки']
-                                                ? true
-                                                : false
+                        <div className="row sex-and-switch">
+                            <div className="row sex-select-wrapper">
+                                <FormControlLabel
+                                    className="checkbox-item"
+                                    control={
+                                        <Checkbox
+                                            sx={{
+                                                '&.Mui-checked': {
+                                                    color: '#EB6A09',
+                                                },
+                                            }}
+                                            checked={
+                                                checkboxState['Чоловіки']
+                                                    ? true
+                                                    : false
+                                            }
+                                            className="checkbox"
+                                            value="Чоловіки"
+                                            onChange={handleChangeSex}
+                                            name="Чоловіки"
+                                        />
+                                    }
+                                    label="Чоловіки"
+                                />
+                                <FormControlLabel
+                                    className="checkbox-item"
+                                    control={
+                                        <Checkbox
+                                            sx={{
+                                                '&.Mui-checked': {
+                                                    color: '#EB6A09',
+                                                },
+                                            }}
+                                            checked={
+                                                checkboxState['Жінки']
+                                                    ? true
+                                                    : false
+                                            }
+                                            className="checkbox"
+                                            value="Жінки"
+                                            onChange={handleChangeSex}
+                                            name="Жінки"
+                                        />
+                                    }
+                                    label="Жінки"
+                                />
+                                <FormControlLabel
+                                    className="checkbox-item"
+                                    control={
+                                        <Checkbox
+                                            sx={{
+                                                '&.Mui-checked': {
+                                                    color: '#EB6A09',
+                                                },
+                                            }}
+                                            checked={
+                                                checkboxState['Пари']
+                                                    ? true
+                                                    : false
+                                            }
+                                            className="checkbox"
+                                            value="Пари"
+                                            onChange={handleChangeSex}
+                                            name="Пари"
+                                        />
+                                    }
+                                    label="Пари"
+                                />
+                            </div>
+                            <div>
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                color="warning"
+                                                onChange={isActualChange}
+                                                checked={
+                                                    projectState.isActul
+                                                        ? true
+                                                        : false
+                                                }
+                                            />
                                         }
-                                        className="checkbox"
-                                        value="Чоловіки"
-                                        onChange={handleChangeSex}
-                                        name="Чоловіки"
+                                        label="Актуальний"
                                     />
-                                }
-                                label="Чоловіки"
-                            />
-                            <FormControlLabel
-                                className="checkbox-item"
-                                control={
-                                    <Checkbox
-                                        sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
-                                        }}
-                                        checked={
-                                            checkboxState['Жінки']
-                                                ? true
-                                                : false
-                                        }
-                                        className="checkbox"
-                                        value="Жінки"
-                                        onChange={handleChangeSex}
-                                        name="Жінки"
-                                    />
-                                }
-                                label="Жінки"
-                            />
-                            <FormControlLabel
-                                className="checkbox-item"
-                                control={
-                                    <Checkbox
-                                        sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
-                                        }}
-                                        checked={
-                                            checkboxState['Пари'] ? true : false
-                                        }
-                                        className="checkbox"
-                                        value="Пари"
-                                        onChange={handleChangeSex}
-                                        name="Пари"
-                                    />
-                                }
-                                label="Пари"
-                            />
+                                </FormGroup>
+                            </div>
                         </div>
                     </FormGroup>
                 </FormControl>
@@ -371,7 +404,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Додаткова інформація"
+                    label="Посилання на синхронер"
                     variant="outlined"
                     id="additionalInfo"
                     size={inputSize}

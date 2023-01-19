@@ -27,6 +27,9 @@
             justify-content: space-between;
         }
     }
+    .sex-and-switch {
+        justify-content: space-between;
+    }
 }
 
 // Laptop
@@ -62,6 +65,9 @@
         }
         form{
             .sex-select-wrapper {
+                flex-direction: column;
+            }
+            .sex-and-switch {
                 flex-direction: column;
             }
             .add-project-btn{

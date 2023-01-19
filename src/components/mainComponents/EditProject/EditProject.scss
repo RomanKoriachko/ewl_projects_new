@@ -39,6 +39,9 @@
             }
         }
     }
+    .edit-sex-and-switch {
+        gap: 20px;
+    }
     form{
         display: grid;
         grid-template-columns: 1fr;
@@ -95,6 +98,10 @@
         }
         .sex-select-row {
             flex-direction: column;
+        }
+        .edit-sex-and-switch {
+            flex-direction: column;
+            gap: 0;
         }
         form{
             input{

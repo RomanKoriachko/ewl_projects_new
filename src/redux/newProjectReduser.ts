@@ -13,6 +13,7 @@ type ProjectType = {
     housing: string
     projectInfo: string
     category: string
+    isActul: boolean
 }
 
 const initialState: ProjectType = {
@@ -28,6 +29,7 @@ const initialState: ProjectType = {
     housing: '',
     projectInfo: ``,
     category: '',
+    isActul: false,
 }
 
 export const newProjectSlice = createSlice({
@@ -86,6 +88,10 @@ export const newProjectSlice = createSlice({
             ...state,
             category: action.payload
         }),
+        changeIsActual: (state, action) =>( {
+            ...state,
+            isActul: action.payload
+        }),
         deliteProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -99,9 +105,10 @@ export const newProjectSlice = createSlice({
             housing: action.payload,
             projectInfo: action.payload,
             category: action.payload,
+            isActul: false,
         })
     }
 })
 
-export const {changeCountry, changeSalary, changeProjectName, changeProjectLocation, changeSex, addNewSex, changeProjectAgeFrom, changeProjectAgeTo, changeProjectNationality, changeProjectAdditionalInfo, changeProjectHousing, changeProjectInfo, changeCategory, deliteProjectData} = newProjectSlice.actions
+export const {changeCountry, changeSalary, changeProjectName, changeProjectLocation, changeSex, addNewSex, changeProjectAgeFrom, changeProjectAgeTo, changeProjectNationality, changeProjectAdditionalInfo, changeProjectHousing, changeProjectInfo, changeCategory, deliteProjectData, changeIsActual} = newProjectSlice.actions
 export default newProjectSlice.reducer

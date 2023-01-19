@@ -13,6 +13,7 @@ type ProjectType = {
     housing: string
     projectInfo: string
     category: string
+    isActual: boolean
 }
 
 const initialState: ProjectType = {
@@ -28,6 +29,7 @@ const initialState: ProjectType = {
     housing: '',
     projectInfo: '',
     category: '',
+    isActual: false,
 }
 
 export const editProjectSlice = createSlice({
@@ -86,6 +88,10 @@ export const editProjectSlice = createSlice({
             ...state,
             category: action.payload
         }),
+        editIsActual: (state, action) => ({
+            ...state,
+            isActual: action.payload
+        }),
         deliteEditedProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -99,6 +105,7 @@ export const editProjectSlice = createSlice({
             housing: action.payload,
             projectInfo: action.payload,
             category: action.payload,
+            isActual: action.payload,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
@@ -113,9 +120,10 @@ export const editProjectSlice = createSlice({
             housing: action.payload.housing,
             projectInfo: action.payload.projectInfo,
             category: action.payload.category,
+            isActual: action.payload.isActual,
         }),
     }
 })
 
-export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData} = editProjectSlice.actions
+export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData, editIsActual} = editProjectSlice.actions
 export default editProjectSlice.reducer
