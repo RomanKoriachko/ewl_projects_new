@@ -380,7 +380,11 @@ const AddNewProject = (props: Props) => {
                         variant="outlined"
                         id="age-from"
                         size={inputSize}
-                        value={projectState.ageFrom}
+                        value={
+                            projectState.ageFrom === 0
+                                ? ''
+                                : projectState.ageFrom
+                        }
                         onChange={handleChangeProjectAgeFrom}
                     />
                     <TextField
@@ -389,7 +393,9 @@ const AddNewProject = (props: Props) => {
                         variant="outlined"
                         id="age-to"
                         size={inputSize}
-                        value={projectState.ageTo}
+                        value={
+                            projectState.ageTo === 0 ? '' : projectState.ageTo
+                        }
                         onChange={handleChangeProjectAgeTo}
                     />
                 </div>

@@ -6,8 +6,8 @@ type ProjectType = {
     projectName: string
     location: string
     sex: string
-    ageFrom: number | undefined
-    ageTo: number | undefined
+    ageFrom: number 
+    ageTo: number 
     nationalaty: string
     additionalInfo: string
     housing: string
@@ -22,8 +22,8 @@ const initialState: ProjectType = {
     projectName: '',
     location: '',
     sex: '',
-    ageFrom: undefined,
-    ageTo: undefined,
+    ageFrom: 0,
+    ageTo: 0,
     nationalaty: '',
     additionalInfo: '',
     housing: '',
@@ -98,8 +98,8 @@ export const newProjectSlice = createSlice({
             projectName: action.payload,
             location: action.payload,
             sex: action.payload,
-            ageFrom: action.payload,
-            ageTo: action.payload,
+            ageFrom: 0,
+            ageTo: 0,
             nationalaty: action.payload,
             additionalInfo: action.payload,
             housing: action.payload,

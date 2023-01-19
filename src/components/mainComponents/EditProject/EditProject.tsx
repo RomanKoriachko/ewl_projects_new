@@ -32,6 +32,8 @@ const EditProject = (props: Props) => {
     const editProjectState = useAppSelector((state) => state.editProjectState)
     const dispatch = useAppDispatch()
 
+    console.log(editProjectState)
+
     const countrysOptions = [
         '',
         'Польща',
