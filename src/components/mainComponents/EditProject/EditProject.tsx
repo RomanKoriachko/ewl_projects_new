@@ -193,6 +193,8 @@ const EditProject = (props: Props) => {
         e.preventDefault()
         if (editProjectState.sex === '') {
             alert('Необхідно обрати стать')
+        } else if (editProjectState.ageFrom > editProjectState.ageTo) {
+            alert('Вік Від не може бути більше, ніж Вік До')
         } else if (editProjectState.ageFrom && editProjectState.ageTo) {
             onEditClick(
                 editProjectState.country,

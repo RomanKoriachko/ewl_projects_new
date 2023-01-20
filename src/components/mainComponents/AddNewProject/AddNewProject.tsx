@@ -195,11 +195,7 @@ const AddNewProject = (props: Props) => {
         e.preventDefault()
         if (projectState.sex === '') {
             alert('Необхідно обрати стать')
-        } else if (
-            projectState.ageFrom &&
-            projectState.ageTo &&
-            projectState.ageFrom > projectState.ageTo
-        ) {
+        } else if (projectState.ageFrom > projectState.ageTo) {
             alert('Вік Від не може бути більше, ніж Вік До')
         } else if (projectState.ageFrom && projectState.ageTo) {
             writeProjectData(

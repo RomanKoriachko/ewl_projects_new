@@ -377,10 +377,6 @@ const Projects = (props: Props) => {
                                     <p className="project-header">
                                         {element.projectName}
                                     </p>
-                                    <p className="is-actual-state">
-                                        Актуальний:{' '}
-                                        {element.isActual ? 'Так' : 'Ні'}
-                                    </p>
                                 </div>
                                 <div className="project-item-section row project-firs-descroption-row">
                                     <div className="row project-row">
@@ -406,6 +402,10 @@ const Projects = (props: Props) => {
                                         {element.category}
                                     </div>
                                 </div>
+                                <p className="is-actual-state">
+                                    Актуальний:{' '}
+                                    {element.isActual ? 'Так' : 'Ні'}
+                                </p>
                                 <div className="row project-age-row">
                                     <div className="project-item-section">
                                         <div>Вік від: {element.ageFrom}</div>
@@ -552,8 +552,6 @@ const Projects = (props: Props) => {
                                                 element.ageTo
                                             }\n\nНвціональність\n${
                                                 element.nationalaty
-                                            }\n\nДодаткова інформація\n${
-                                                element.additionalInfo
                                             }\n\nПриклади житла\n${
                                                 element.housing
                                             }\n\nОпис вакансії\n${
@@ -709,8 +707,6 @@ const Projects = (props: Props) => {
                                                 element.ageFrom
                                             }\n\nВік до\n${
                                                 element.ageTo
-                                            }\n\nНаціональність\n${
-                                                element.nationalaty
                                             }\n\nДодаткова інформація\n${
                                                 element.additionalInfo
                                             }\n\nПриклади житла\n${
