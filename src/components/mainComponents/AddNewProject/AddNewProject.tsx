@@ -344,7 +344,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Ставка"
+                    label="Заробітня плата"
                     variant="outlined"
                     id="salary"
                     size={inputSize}
@@ -372,7 +372,7 @@ const AddNewProject = (props: Props) => {
                 <div className="row age-row">
                     <TextField
                         required
-                        label="Вік Від"
+                        label="Вік від"
                         variant="outlined"
                         id="age-from"
                         size={inputSize}
@@ -385,7 +385,7 @@ const AddNewProject = (props: Props) => {
                     />
                     <TextField
                         required
-                        label="Вік До"
+                        label="Вік до"
                         variant="outlined"
                         id="age-to"
                         size={inputSize}
@@ -406,7 +406,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Посилання на синхронер"
+                    label="Посилання на приїзд"
                     variant="outlined"
                     id="additionalInfo"
                     size={inputSize}
@@ -415,7 +415,7 @@ const AddNewProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Приклади житла"
+                    label="Проживання"
                     variant="outlined"
                     id="housing"
                     size={inputSize}

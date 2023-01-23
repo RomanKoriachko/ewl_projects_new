@@ -350,7 +350,7 @@ const EditProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Ставка"
+                    label="Заробітня плата"
                     variant="outlined"
                     id="edit-salary"
                     size={inputSize}
@@ -378,7 +378,7 @@ const EditProject = (props: Props) => {
                 <div className="row age-wrapper">
                     <TextField
                         required
-                        label="Вік Від"
+                        label="Вік від"
                         variant="outlined"
                         id="edit-age-from"
                         size={inputSize}
@@ -387,7 +387,7 @@ const EditProject = (props: Props) => {
                     />
                     <TextField
                         required
-                        label="Вік До"
+                        label="Вік до"
                         variant="outlined"
                         id="edit-age-to"
                         size={inputSize}
@@ -406,7 +406,7 @@ const EditProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Посилання на синхронер"
+                    label="Посилання на приїзд"
                     variant="outlined"
                     id="edit-additionalInfo"
                     size={inputSize}
@@ -415,7 +415,7 @@ const EditProject = (props: Props) => {
                 />
                 <TextField
                     required
-                    label="Приклади житла"
+                    label="Проживання"
                     variant="outlined"
                     id="edit-housing"
                     size={inputSize}

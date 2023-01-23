@@ -415,7 +415,7 @@ const Projects = (props: Props) => {
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>Ставка у злотих: {element.salary}</div>
+                                    <div>Заробітня плата: {element.salary}</div>
                                 </div>
                                 <div>
                                     <div
@@ -443,16 +443,14 @@ const Projects = (props: Props) => {
                                     </div>
                                     <div className="project-item-section">
                                         <div>
-                                            Посилання на синхронер:{' '}
+                                            Посилання на приїзд:{' '}
                                             <a href={element.additionalInfo}>
                                                 {element.additionalInfo}
                                             </a>
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>
-                                            Приклади житла: {element.housing}
-                                        </div>
+                                        <div>Проживання: {element.housing}</div>
                                     </div>
                                     <div className="project-item-section">
                                         <div className="project-info">
@@ -609,7 +607,7 @@ const Projects = (props: Props) => {
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>Cтавка у злотих: {element.salary}</div>
+                                    <div>Заробітня плата: {element.salary}</div>
                                 </div>
                                 <div>
                                     <div
@@ -637,14 +635,12 @@ const Projects = (props: Props) => {
                                     </div>
                                     <div className="project-item-section">
                                         <div>
-                                            Додаткова інформація:{' '}
+                                            Посилання на приїзд:{' '}
                                             {element.additionalInfo}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>
-                                            Приклади житла: {element.housing}
-                                        </div>
+                                        <div>Проживання: {element.housing}</div>
                                     </div>
                                     <div className="project-item-section">
                                         <div className="project-info">

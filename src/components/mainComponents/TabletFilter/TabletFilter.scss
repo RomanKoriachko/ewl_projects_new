@@ -17,9 +17,10 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        border: 1px solid black;
+        border: 1px solid #EB6A09;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
+        transition: .5s all;
     }
     .filter-wrapper{
         position: relative;
@@ -44,6 +45,12 @@
 
 .open{
     right: 80%;
+    .filter-button{
+        background-color: #EB6A09;
+        background-image: url(./../../../assets/close-img-white.png);
+        background-size: 80%;
+    }
+    
 }
 
 

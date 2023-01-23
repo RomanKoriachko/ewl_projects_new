@@ -15,6 +15,7 @@ import {
 } from 'redux/countryCheckboxReducer'
 import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { changeFilterState } from 'redux/isFilterOpenReducer'
 import { setIsMinor } from 'redux/isMinorReducer'
 import { cleanSearchInput, getSearchInput } from 'redux/searchContentReducer'
 import {
@@ -137,6 +138,13 @@ const SearchAndFilter = (props: Props) => {
 
     const ageToValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(getAgeFromInput(e.target.value))
+    }
+
+    // --------------------- Add filters ---------------------
+
+    const onAddFilterClick = () => {
+        dispatch(addFilters())
+        dispatch(changeFilterState('close'))
     }
 
     // --------------------- Reser Filter ---------------------
@@ -565,7 +573,7 @@ const SearchAndFilter = (props: Props) => {
                 </div>
                 <div className="filter-buttons">
                     <button
-                        onClick={() => dispatch(addFilters())}
+                        onClick={() => onAddFilterClick()}
                         style={filterState ? isFilterAdded : {}}
                     >
                         Застосувати фільтр
