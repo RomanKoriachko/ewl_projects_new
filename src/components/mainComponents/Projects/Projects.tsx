@@ -57,6 +57,8 @@ const Projects = (props: Props) => {
 
     const db = getDatabase()
 
+    // ---------------------- delite project ----------------------
+
     const deliteProject = (project: string) => {
         set(ref(db, `vacancy/${project}/`), {
             country: null,
@@ -77,6 +79,23 @@ const Projects = (props: Props) => {
             food: null,
         })
     }
+
+    const [confirmationState, setConfirmationState] = useState<string>('hide')
+    const [currentIndex, setCurrentIndex] = useState<number>(0)
+
+    const onDeliteProjectClick = (index: number) => {
+        setConfirmationState('show')
+        setCurrentIndex(index)
+    }
+    const acceptDeliting = () => {
+        deliteProject(filtredArr[currentIndex].projectName)
+        setConfirmationState('hide')
+    }
+    const declineDeliting = () => {
+        setConfirmationState('hide')
+    }
+
+    // ---------------------- edit project ----------------------
 
     const edit = (
         project: string,
@@ -383,6 +402,19 @@ const Projects = (props: Props) => {
                     <div className="no-search-results">Співпадінь нема</div>
                 ) : (
                     <div className="projects">
+                        <div className={`confirmation ${confirmationState}`}>
+                            <div className="confirmation-content">
+                                <p>Ви впевнені?</p>
+                                <div className="row confirmation-row">
+                                    <button onClick={() => acceptDeliting()}>
+                                        Так
+                                    </button>
+                                    <button onClick={declineDeliting}>
+                                        Ні
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         {filtredArr.map((element: ProjectType, i: number) => (
                             <div key={i} className="project-item">
                                 <div className="project-item-section">
@@ -494,11 +526,9 @@ const Projects = (props: Props) => {
                                         <button
                                             className="delite-btn project-item-btn"
                                             onClick={() =>
-                                                deliteProject(
-                                                    element.projectName
-                                                )
+                                                onDeliteProjectClick(i)
                                             }
-                                            disabled={projectsArr.length <= 1}
+                                            disabled={filtredArr.length <= 1}
                                         >
                                             Видалити
                                         </button>
