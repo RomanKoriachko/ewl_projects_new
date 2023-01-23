@@ -14,6 +14,9 @@ type ProjectType = {
     projectInfo: string
     category: string
     isActul: boolean
+    video: string
+    workSchedule: string
+    food: string
 }
 
 const initialState: ProjectType = {
@@ -30,6 +33,9 @@ const initialState: ProjectType = {
     projectInfo: ``,
     category: '',
     isActul: false,
+    video: '',
+    workSchedule: '',
+    food: '',
 }
 
 export const newProjectSlice = createSlice({
@@ -92,6 +98,18 @@ export const newProjectSlice = createSlice({
             ...state,
             isActul: action.payload
         }),
+        changeVideo: (state, action) =>( {
+            ...state,
+            video: action.payload
+        }),
+        changeWorkSchedule: (state, action) =>( {
+            ...state,
+            workSchedule: action.payload
+        }),
+        changeFood: (state, action) =>( {
+            ...state,
+            food: action.payload
+        }),
         deliteProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -106,9 +124,12 @@ export const newProjectSlice = createSlice({
             projectInfo: action.payload,
             category: action.payload,
             isActul: false,
+            video: action.payload,
+            workSchedule: action.payload,
+            food: action.payload,
         })
     }
 })
 
-export const {changeCountry, changeSalary, changeProjectName, changeProjectLocation, changeSex, addNewSex, changeProjectAgeFrom, changeProjectAgeTo, changeProjectNationality, changeProjectAdditionalInfo, changeProjectHousing, changeProjectInfo, changeCategory, deliteProjectData, changeIsActual} = newProjectSlice.actions
+export const {changeCountry, changeSalary, changeProjectName, changeProjectLocation, changeSex, addNewSex, changeProjectAgeFrom, changeProjectAgeTo, changeProjectNationality, changeProjectAdditionalInfo, changeProjectHousing, changeProjectInfo, changeCategory, deliteProjectData, changeIsActual, changeVideo, changeWorkSchedule, changeFood} = newProjectSlice.actions
 export default newProjectSlice.reducer

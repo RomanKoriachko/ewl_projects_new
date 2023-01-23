@@ -24,6 +24,9 @@ type ProjectType = {
     projectInfo: string
     category: string
     isActual: boolean
+    video: string
+    workSchedule: string
+    food: string
 }
 
 type ICopyStatus = 'waiting' | 'copying' | 'failed' | 'succeed'
@@ -69,6 +72,9 @@ const Projects = (props: Props) => {
             projectInfo: null,
             category: null,
             isActual: null,
+            video: null,
+            workSchedule: null,
+            food: null,
         })
     }
 
@@ -85,7 +91,10 @@ const Projects = (props: Props) => {
         housing: string,
         projectInfo: string,
         category: string,
-        isActual: boolean
+        isActual: boolean,
+        video: string,
+        workSchedule: string,
+        food: string
     ) => {
         dispatch(
             getProjectData({
@@ -103,6 +112,9 @@ const Projects = (props: Props) => {
                 projectInfo: projectInfo,
                 category: category,
                 isActual: isActual,
+                video: video,
+                workSchedule: workSchedule,
+                food: food,
             })
         )
         editFormState
@@ -449,8 +461,27 @@ const Projects = (props: Props) => {
                                             </a>
                                         </div>
                                     </div>
+                                    {element.video !== '' ? (
+                                        <div className="project-item-section">
+                                            <div>
+                                                Відео з проєкту:{' '}
+                                                <a href={element.video}>
+                                                    {element.video}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    ) : undefined}
                                     <div className="project-item-section">
                                         <div>Проживання: {element.housing}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <div>
+                                            Графік роботи:{' '}
+                                            {element.workSchedule}
+                                        </div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <div>Харчування: {element.food}</div>
                                     </div>
                                     <div className="project-item-section">
                                         <div className="project-info">
@@ -487,7 +518,10 @@ const Projects = (props: Props) => {
                                                     element.housing,
                                                     element.projectInfo,
                                                     element.category,
-                                                    element.isActual
+                                                    element.isActual,
+                                                    element.video,
+                                                    element.workSchedule,
+                                                    element.food
                                                 )
                                             }
                                         >
@@ -636,11 +670,32 @@ const Projects = (props: Props) => {
                                     <div className="project-item-section">
                                         <div>
                                             Посилання на приїзд:{' '}
-                                            {element.additionalInfo}
+                                            <a href={element.additionalInfo}>
+                                                {element.additionalInfo}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {element.video !== '' ? (
+                                        <div className="project-item-section">
+                                            <div>
+                                                Відео з проєкту:{' '}
+                                                <a href={element.video}>
+                                                    {element.video}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    ) : undefined}
+                                    <div className="project-item-section">
+                                        <div>Проживання: {element.housing}</div>
+                                    </div>
+                                    <div className="project-item-section">
+                                        <div>
+                                            Графік роботи:{' '}
+                                            {element.workSchedule}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>Проживання: {element.housing}</div>
+                                        <div>Харчування: {element.food}</div>
                                     </div>
                                     <div className="project-item-section">
                                         <div className="project-info">

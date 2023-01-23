@@ -4,6 +4,7 @@ import {
     deliteEditedProjectData,
     editCategory,
     editCountry,
+    editFood,
     editIsActual,
     editProjectAdditionalInfo,
     editProjectAgeFrom,
@@ -15,6 +16,8 @@ import {
     editProjectNationality,
     editSalary,
     editSex,
+    editVideo,
+    editWorkSchedule,
 } from 'redux/editProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { FormGroup, Switch, TextField } from '@mui/material'
@@ -117,10 +120,25 @@ const EditProject = (props: Props) => {
     ) => {
         dispatch(editProjectAdditionalInfo(e.target.value))
     }
+    const handleChangeProjectVideo = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(editVideo(e.target.value))
+    }
     const handleChangeProjectHousing = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         dispatch(editProjectHousing(e.target.value))
+    }
+    const handleChangeProjectWorkSchedule = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(editWorkSchedule(e.target.value))
+    }
+    const handleChangeProjectFood = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(editFood(e.target.value))
     }
     const handleChangeProjectProjectInfo = (
         e: React.ChangeEvent<HTMLTextAreaElement>
@@ -145,7 +163,10 @@ const EditProject = (props: Props) => {
         housing: string,
         projectInfo: string,
         category: string,
-        isActual: boolean
+        isActual: boolean,
+        video: string,
+        workSchedule: string,
+        food: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -171,6 +192,9 @@ const EditProject = (props: Props) => {
                             projectInfo: projectInfo,
                             category: category,
                             isActual: isActual,
+                            video: video,
+                            workSchedule: workSchedule,
+                            food: food,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -195,7 +219,7 @@ const EditProject = (props: Props) => {
             alert('Необхідно обрати стать')
         } else if (editProjectState.ageFrom > editProjectState.ageTo) {
             alert('Вік Від не може бути більше, ніж Вік До')
-        } else if (editProjectState.ageFrom && editProjectState.ageTo) {
+        } else {
             onEditClick(
                 editProjectState.country,
                 editProjectState.salary,
@@ -209,7 +233,10 @@ const EditProject = (props: Props) => {
                 editProjectState.housing,
                 editProjectState.projectInfo,
                 editProjectState.category,
-                editProjectState.isActual
+                editProjectState.isActual,
+                editProjectState.video,
+                editProjectState.workSchedule,
+                editProjectState.food
             )
             dispatch(setFormState(false))
         }
@@ -414,6 +441,14 @@ const EditProject = (props: Props) => {
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <TextField
+                    label="Відео з проєкту"
+                    variant="outlined"
+                    id="edit-video"
+                    size={inputSize}
+                    value={editProjectState.video}
+                    onChange={handleChangeProjectVideo}
+                />
+                <TextField
                     required
                     label="Проживання"
                     variant="outlined"
@@ -421,6 +456,24 @@ const EditProject = (props: Props) => {
                     size={inputSize}
                     value={editProjectState.housing}
                     onChange={handleChangeProjectHousing}
+                />
+                <TextField
+                    required
+                    label="Графік роботи"
+                    variant="outlined"
+                    id="edit-work-Schedule"
+                    size={inputSize}
+                    value={editProjectState.workSchedule}
+                    onChange={handleChangeProjectWorkSchedule}
+                />
+                <TextField
+                    required
+                    label="Харчування"
+                    variant="outlined"
+                    id="edit-food"
+                    size={inputSize}
+                    value={editProjectState.food}
+                    onChange={handleChangeProjectFood}
                 />
                 <TextField
                     required

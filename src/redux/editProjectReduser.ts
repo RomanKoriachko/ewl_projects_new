@@ -14,6 +14,9 @@ type ProjectType = {
     projectInfo: string
     category: string
     isActual: boolean
+    video: string
+    workSchedule: string
+    food: string
 }
 
 const initialState: ProjectType = {
@@ -30,6 +33,9 @@ const initialState: ProjectType = {
     projectInfo: '',
     category: '',
     isActual: false,
+    video: '',
+    workSchedule: '',
+    food: '',
 }
 
 export const editProjectSlice = createSlice({
@@ -92,6 +98,18 @@ export const editProjectSlice = createSlice({
             ...state,
             isActual: action.payload
         }),
+        editVideo: (state, action) =>( {
+            ...state,
+            video: action.payload
+        }),
+        editWorkSchedule: (state, action) =>( {
+            ...state,
+            workSchedule: action.payload
+        }),
+        editFood: (state, action) =>( {
+            ...state,
+            food: action.payload
+        }),
         deliteEditedProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -106,6 +124,9 @@ export const editProjectSlice = createSlice({
             projectInfo: action.payload,
             category: action.payload,
             isActual: false,
+            video: action.payload,
+            workSchedule: action.payload,
+            food: action.payload,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
@@ -121,9 +142,12 @@ export const editProjectSlice = createSlice({
             projectInfo: action.payload.projectInfo,
             category: action.payload.category,
             isActual: action.payload.isActual,
+            video: action.payload.video,
+            workSchedule: action.payload.workSchedule,
+            food: action.payload.food,
         }),
     }
 })
 
-export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData, editIsActual} = editProjectSlice.actions
+export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData, editIsActual, editVideo, editWorkSchedule, editFood} = editProjectSlice.actions
 export default editProjectSlice.reducer

@@ -3,6 +3,7 @@ import {
     addNewSex,
     changeCategory,
     changeCountry,
+    changeFood,
     changeIsActual,
     changeProjectAdditionalInfo,
     changeProjectAgeFrom,
@@ -14,6 +15,8 @@ import {
     changeProjectNationality,
     changeSalary,
     changeSex,
+    changeVideo,
+    changeWorkSchedule,
     deliteProjectData,
 } from 'redux/newProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
@@ -125,10 +128,21 @@ const AddNewProject = (props: Props) => {
     ) => {
         dispatch(changeProjectAdditionalInfo(e.target.value))
     }
+    const handleChangeVideo = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(changeVideo(e.target.value))
+    }
     const handleChangeProjectHousing = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         dispatch(changeProjectHousing(e.target.value))
+    }
+    const handleChangeWorkSchedule = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(changeWorkSchedule(e.target.value))
+    }
+    const handleChangeFood = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(changeFood(e.target.value))
     }
     const handleChangeProjectProjectInfo = (
         e: React.ChangeEvent<HTMLTextAreaElement>
@@ -151,7 +165,10 @@ const AddNewProject = (props: Props) => {
         housing: string,
         projectInfo: string,
         category: string,
-        isActual: boolean
+        isActual: boolean,
+        video: string,
+        workSchedule: string,
+        food: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -176,6 +193,9 @@ const AddNewProject = (props: Props) => {
                             projectInfo: projectInfo,
                             category: category,
                             isActual: isActual,
+                            video: video,
+                            workSchedule: workSchedule,
+                            food: food,
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
@@ -197,7 +217,7 @@ const AddNewProject = (props: Props) => {
             alert('Необхідно обрати стать')
         } else if (projectState.ageFrom > projectState.ageTo) {
             alert('Вік Від не може бути більше, ніж Вік До')
-        } else if (projectState.ageFrom && projectState.ageTo) {
+        } else {
             writeProjectData(
                 projectState.country,
                 projectState.salary,
@@ -211,7 +231,10 @@ const AddNewProject = (props: Props) => {
                 projectState.housing,
                 projectState.projectInfo,
                 projectState.category,
-                projectState.isActul
+                projectState.isActul,
+                projectState.video,
+                projectState.workSchedule,
+                projectState.food
             )
         }
     }
@@ -414,6 +437,14 @@ const AddNewProject = (props: Props) => {
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <TextField
+                    label="Відео з проєкту"
+                    variant="outlined"
+                    id="video"
+                    size={inputSize}
+                    value={projectState.video}
+                    onChange={handleChangeVideo}
+                />
+                <TextField
                     required
                     label="Проживання"
                     variant="outlined"
@@ -421,6 +452,24 @@ const AddNewProject = (props: Props) => {
                     size={inputSize}
                     value={projectState.housing}
                     onChange={handleChangeProjectHousing}
+                />
+                <TextField
+                    required
+                    label="Графік роботи"
+                    variant="outlined"
+                    id="work-Schedule"
+                    size={inputSize}
+                    value={projectState.workSchedule}
+                    onChange={handleChangeWorkSchedule}
+                />
+                <TextField
+                    required
+                    label="Харчування"
+                    variant="outlined"
+                    id="food"
+                    size={inputSize}
+                    value={projectState.food}
+                    onChange={handleChangeFood}
                 />
                 <TextField
                     required
