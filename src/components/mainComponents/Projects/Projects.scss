@@ -64,7 +64,10 @@
         position: relative;
         transition: .3s all;
         .project-item-section {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .bold-text {
+            @include sans700();
         }
         .project-header {
             @include raleway600();
@@ -72,8 +75,8 @@
             transition: .3s all;
         }
         .is-actual-state {
-            margin-bottom: 10px;
-            @include raleway600();
+            margin-bottom: 20px;
+            @include sans700();
         }
         .project-firs-descroption-row {
             justify-content: space-between;

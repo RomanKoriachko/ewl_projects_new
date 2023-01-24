@@ -16,6 +16,7 @@ import {
     editProjectNationality,
     editSalary,
     editSex,
+    editSynchronerLink,
     editVideo,
     editWorkSchedule,
 } from 'redux/editProjectReduser'
@@ -115,6 +116,11 @@ const EditProject = (props: Props) => {
     ) => {
         dispatch(editProjectNationality(e.target.value))
     }
+    const handleChangeProjectSynchronerLink = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(editSynchronerLink(e.target.value))
+    }
     const handleChangeProjectAdditionalInfo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -166,7 +172,8 @@ const EditProject = (props: Props) => {
         isActual: boolean,
         video: string,
         workSchedule: string,
-        food: string
+        food: string,
+        synchronerLink: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -195,6 +202,7 @@ const EditProject = (props: Props) => {
                             video: video,
                             workSchedule: workSchedule,
                             food: food,
+                            synchronerLink: synchronerLink,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -236,7 +244,8 @@ const EditProject = (props: Props) => {
                 editProjectState.isActual,
                 editProjectState.video,
                 editProjectState.workSchedule,
-                editProjectState.food
+                editProjectState.food,
+                editProjectState.synchronerLink
             )
             dispatch(setFormState(false))
         }
@@ -432,13 +441,12 @@ const EditProject = (props: Props) => {
                     onChange={handleChangeProjectNationalaty}
                 />
                 <TextField
-                    required
                     label="Посилання на приїзд"
                     variant="outlined"
-                    id="edit-additionalInfo"
+                    id="edit-synchroner-link"
                     size={inputSize}
-                    value={editProjectState.additionalInfo}
-                    onChange={handleChangeProjectAdditionalInfo}
+                    value={editProjectState.synchronerLink}
+                    onChange={handleChangeProjectSynchronerLink}
                 />
                 <TextField
                     label="Відео з проєкту"
@@ -484,6 +492,15 @@ const EditProject = (props: Props) => {
                     rows={5}
                     value={editProjectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
+                />
+                <TextField
+                    label="Додаткова інформація"
+                    variant="outlined"
+                    id="edit-additional-info"
+                    multiline
+                    rows={5}
+                    value={editProjectState.additionalInfo}
+                    onChange={handleChangeProjectAdditionalInfo}
                 />
                 <button className="edit-project-btn" type="submit">
                     Редагувати проєкт

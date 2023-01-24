@@ -15,6 +15,7 @@ import {
     changeProjectNationality,
     changeSalary,
     changeSex,
+    changeSynchronerlink,
     changeVideo,
     changeWorkSchedule,
     deliteProjectData,
@@ -149,6 +150,11 @@ const AddNewProject = (props: Props) => {
     ) => {
         dispatch(changeProjectInfo(e.target.value))
     }
+    const handleChangeProjectSynchronerLink = (
+        e: React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
+        dispatch(changeSynchronerlink(e.target.value))
+    }
 
     // --------- write data ---------
     const db = getDatabase()
@@ -168,7 +174,8 @@ const AddNewProject = (props: Props) => {
         isActual: boolean,
         video: string,
         workSchedule: string,
-        food: string
+        food: string,
+        synchronerLink: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -196,6 +203,7 @@ const AddNewProject = (props: Props) => {
                             video: video,
                             workSchedule: workSchedule,
                             food: food,
+                            synchronerLink: synchronerLink,
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
@@ -234,7 +242,8 @@ const AddNewProject = (props: Props) => {
                 projectState.isActul,
                 projectState.video,
                 projectState.workSchedule,
-                projectState.food
+                projectState.food,
+                projectState.synchronerLink
             )
         }
     }
@@ -428,13 +437,12 @@ const AddNewProject = (props: Props) => {
                     onChange={handleChangeProjectNationalaty}
                 />
                 <TextField
-                    required
                     label="Посилання на приїзд"
                     variant="outlined"
-                    id="additionalInfo"
+                    id="synchroner-link"
                     size={inputSize}
-                    value={projectState.additionalInfo}
-                    onChange={handleChangeProjectAdditionalInfo}
+                    value={projectState.synchronerLink}
+                    onChange={handleChangeProjectSynchronerLink}
                 />
                 <TextField
                     label="Відео з проєкту"
@@ -480,6 +488,15 @@ const AddNewProject = (props: Props) => {
                     size={inputSize}
                     value={projectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
+                />
+                <TextField
+                    label="Додаткова інформація"
+                    variant="outlined"
+                    id="additional-info"
+                    multiline
+                    size={inputSize}
+                    value={projectState.additionalInfo}
+                    onChange={handleChangeProjectAdditionalInfo}
                 />
                 <button className="add-project-btn" type="submit">
                     Додати проєкт

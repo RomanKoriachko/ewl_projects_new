@@ -17,6 +17,7 @@ type ProjectType = {
     video: string
     workSchedule: string
     food: string
+    synchronerLink: string
 }
 
 const initialState: ProjectType = {
@@ -36,6 +37,7 @@ const initialState: ProjectType = {
     video: '',
     workSchedule: '',
     food: '',
+    synchronerLink: '',
 }
 
 export const newProjectSlice = createSlice({
@@ -110,6 +112,10 @@ export const newProjectSlice = createSlice({
             ...state,
             food: action.payload
         }),
+        changeSynchronerlink: (state, action) => ({
+            ...state,
+            synchronerLink: action.payload
+        }),
         deliteProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -127,9 +133,10 @@ export const newProjectSlice = createSlice({
             video: action.payload,
             workSchedule: action.payload,
             food: action.payload,
+            synchronerLink: action.payload,
         })
     }
 })
 
-export const {changeCountry, changeSalary, changeProjectName, changeProjectLocation, changeSex, addNewSex, changeProjectAgeFrom, changeProjectAgeTo, changeProjectNationality, changeProjectAdditionalInfo, changeProjectHousing, changeProjectInfo, changeCategory, deliteProjectData, changeIsActual, changeVideo, changeWorkSchedule, changeFood} = newProjectSlice.actions
+export const {changeCountry, changeSalary, changeProjectName, changeProjectLocation, changeSex, addNewSex, changeProjectAgeFrom, changeProjectAgeTo, changeProjectNationality, changeProjectAdditionalInfo, changeProjectHousing, changeProjectInfo, changeCategory, deliteProjectData, changeIsActual, changeVideo, changeWorkSchedule, changeFood, changeSynchronerlink} = newProjectSlice.actions
 export default newProjectSlice.reducer

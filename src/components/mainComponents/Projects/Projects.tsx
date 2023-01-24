@@ -27,6 +27,7 @@ type ProjectType = {
     video: string
     workSchedule: string
     food: string
+    synchronerLink: string
 }
 
 type ICopyStatus = 'waiting' | 'copying' | 'failed' | 'succeed'
@@ -77,6 +78,7 @@ const Projects = (props: Props) => {
             video: null,
             workSchedule: null,
             food: null,
+            synchronerLink: null,
         })
     }
 
@@ -113,7 +115,8 @@ const Projects = (props: Props) => {
         isActual: boolean,
         video: string,
         workSchedule: string,
-        food: string
+        food: string,
+        synchronerLink: string
     ) => {
         dispatch(
             getProjectData({
@@ -134,6 +137,7 @@ const Projects = (props: Props) => {
                 video: video,
                 workSchedule: workSchedule,
                 food: food,
+                synchronerLink: synchronerLink,
             })
         )
         editFormState
@@ -446,20 +450,35 @@ const Projects = (props: Props) => {
                                         {element.category}
                                     </div>
                                 </div>
-                                <p className="is-actual-state">
+                                <div className="is-actual-state">
                                     Актуальний:{' '}
                                     {element.isActual ? 'Так' : 'Ні'}
-                                </p>
+                                </div>
                                 <div className="row project-age-row">
                                     <div className="project-item-section">
-                                        <div>Вік від: {element.ageFrom}</div>
+                                        <div>
+                                            <span className="bold-text">
+                                                Вік від:
+                                            </span>{' '}
+                                            {element.ageFrom}
+                                        </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>Вік до: {element.ageTo}</div>
+                                        <div>
+                                            <span className="bold-text">
+                                                Вік до:
+                                            </span>{' '}
+                                            {element.ageTo}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>Заробітня плата: {element.salary}</div>
+                                    <div>
+                                        <span className="bold-text">
+                                            Заробітня плата:
+                                        </span>{' '}
+                                        {element.salary}
+                                    </div>
                                 </div>
                                 <div>
                                     <div
@@ -481,22 +500,23 @@ const Projects = (props: Props) => {
                                 >
                                     <div className="project-item-section">
                                         <div>
-                                            Національність:{' '}
+                                            <span className="bold-text">
+                                                Національність:
+                                            </span>{' '}
                                             {element.nationalaty}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>
-                                            Посилання на приїзд:{' '}
-                                            <a href={element.additionalInfo}>
-                                                {element.additionalInfo}
-                                            </a>
+                                        <div className="project-info">
+                                            {element.projectInfo}
                                         </div>
                                     </div>
                                     {element.video !== '' ? (
                                         <div className="project-item-section">
                                             <div>
-                                                Відео з проєкту:{' '}
+                                                <span className="bold-text">
+                                                    Відео з проєкту:
+                                                </span>{' '}
                                                 <a href={element.video}>
                                                     {element.video}
                                                 </a>
@@ -504,22 +524,67 @@ const Projects = (props: Props) => {
                                         </div>
                                     ) : undefined}
                                     <div className="project-item-section">
-                                        <div>Проживання: {element.housing}</div>
-                                    </div>
-                                    <div className="project-item-section">
                                         <div>
-                                            Графік роботи:{' '}
+                                            <span className="bold-text">
+                                                Графік роботи:
+                                            </span>{' '}
                                             {element.workSchedule}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>Харчування: {element.food}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <div className="project-info">
-                                            {element.projectInfo}
+                                        <div>
+                                            <span className="bold-text">
+                                                Проживання:
+                                            </span>{' '}
+                                            {element.housing}
                                         </div>
                                     </div>
+                                    <div className="project-item-section">
+                                        <div>
+                                            <span className="bold-text">
+                                                Харчування:
+                                            </span>{' '}
+                                            {element.food}
+                                        </div>
+                                    </div>
+                                    {element.additionalInfo !== '' ? (
+                                        <div className="project-item-section">
+                                            <div>
+                                                <span className="bold-text">
+                                                    Додаткова інформація:
+                                                </span>{' '}
+                                                <div className="project-info">
+                                                    {element.additionalInfo}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : undefined}
+                                    {element.synchronerLink !== '' ? (
+                                        <div className="project-item-section">
+                                            <div>
+                                                <span className="bold-text">
+                                                    Посилання на приїзд:
+                                                </span>{' '}
+                                                <div className="column">
+                                                    {splitString(
+                                                        element.synchronerLink
+                                                    ).map(
+                                                        (
+                                                            el: string,
+                                                            i: number
+                                                        ) => (
+                                                            <a
+                                                                key={i}
+                                                                href={el}
+                                                            >
+                                                                {el}
+                                                            </a>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : undefined}
                                 </div>
                                 <div className="row project-item-buttons">
                                     <div className="row">
@@ -551,7 +616,8 @@ const Projects = (props: Props) => {
                                                     element.isActual,
                                                     element.video,
                                                     element.workSchedule,
-                                                    element.food
+                                                    element.food,
+                                                    element.synchronerLink
                                                 )
                                             }
                                         >
@@ -600,24 +666,28 @@ const Projects = (props: Props) => {
                                             className="copy-btn project-item-btn"
                                             value={`Назва проєкту\n${
                                                 element.projectName
-                                            }\n\nСтать\n${element.sex.trim()}\n\nКраїна\n${
-                                                element.country
-                                            }\n\nСтавка у злотих\n${
-                                                element.salary
-                                            }\n\nЛокалізація\n${
-                                                element.location
-                                            }\n\nКатегорія\n${
-                                                element.category
-                                            }\n\nВік від\n${
+                                            }\n\nСтать\n${element.sex.trim()}\n\nВік від ${
                                                 element.ageFrom
-                                            }\n\nВік до\n${
+                                            }, Вік до ${
                                                 element.ageTo
                                             }\n\nНвціональність\n${
                                                 element.nationalaty
-                                            }\n\nПриклади житла\n${
-                                                element.housing
+                                            }\n\nЛокалізація\n${
+                                                element.location
+                                            }\n\nЗаробітня плата\n${
+                                                element.salary
                                             }\n\nОпис вакансії\n${
                                                 element.projectInfo
+                                            }\n\nГрафік роботи\n${
+                                                element.workSchedule
+                                            }\n\nПроживання\n${
+                                                element.housing
+                                            }\n\nХарчування\n${
+                                                element.food
+                                            }\n\nДодаткова інформація\n${
+                                                element.additionalInfo
+                                            }\n\nВідео з проєкту\n${
+                                                element.video
                                             }`}
                                         />
                                     </div>
@@ -664,14 +734,29 @@ const Projects = (props: Props) => {
                                 </div>
                                 <div className="row project-age-row">
                                     <div className="project-item-section">
-                                        <div>Вік від: {element.ageFrom}</div>
+                                        <div>
+                                            <span className="bold-text">
+                                                Вік від:
+                                            </span>{' '}
+                                            {element.ageFrom}
+                                        </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>Вік до: {element.ageTo}</div>
+                                        <div>
+                                            <span className="bold-text">
+                                                Вік до:
+                                            </span>{' '}
+                                            {element.ageTo}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>Заробітня плата: {element.salary}</div>
+                                    <div>
+                                        <span className="bold-text">
+                                            Заробітня плата:
+                                        </span>{' '}
+                                        {element.salary}
+                                    </div>
                                 </div>
                                 <div>
                                     <div
@@ -693,22 +778,23 @@ const Projects = (props: Props) => {
                                 >
                                     <div className="project-item-section">
                                         <div>
-                                            Національність:{' '}
+                                            <span className="bold-text">
+                                                Національність:
+                                            </span>{' '}
                                             {element.nationalaty}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>
-                                            Посилання на приїзд:{' '}
-                                            <a href={element.additionalInfo}>
-                                                {element.additionalInfo}
-                                            </a>
+                                        <div className="project-info">
+                                            {element.projectInfo}
                                         </div>
                                     </div>
                                     {element.video !== '' ? (
                                         <div className="project-item-section">
                                             <div>
-                                                Відео з проєкту:{' '}
+                                                <span className="bold-text">
+                                                    Відео з проєкту:
+                                                </span>{' '}
                                                 <a href={element.video}>
                                                     {element.video}
                                                 </a>
@@ -716,22 +802,67 @@ const Projects = (props: Props) => {
                                         </div>
                                     ) : undefined}
                                     <div className="project-item-section">
-                                        <div>Проживання: {element.housing}</div>
-                                    </div>
-                                    <div className="project-item-section">
                                         <div>
-                                            Графік роботи:{' '}
+                                            <span className="bold-text">
+                                                Графік роботи:
+                                            </span>{' '}
                                             {element.workSchedule}
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div>Харчування: {element.food}</div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <div className="project-info">
-                                            {element.projectInfo}
+                                        <div>
+                                            <span className="bold-text">
+                                                Проживання:
+                                            </span>{' '}
+                                            {element.housing}
                                         </div>
                                     </div>
+                                    <div className="project-item-section">
+                                        <div>
+                                            <span className="bold-text">
+                                                Харчування:
+                                            </span>{' '}
+                                            {element.food}
+                                        </div>
+                                    </div>
+                                    {element.additionalInfo !== '' ? (
+                                        <div className="project-item-section">
+                                            <div>
+                                                <span className="bold-text">
+                                                    Додаткова інформація:
+                                                </span>{' '}
+                                                <div className="project-info">
+                                                    {element.additionalInfo}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : undefined}
+                                    {element.synchronerLink !== '' ? (
+                                        <div className="project-item-section">
+                                            <div>
+                                                <span className="bold-text">
+                                                    Посилання на приїзд:
+                                                </span>{' '}
+                                                <div className="column">
+                                                    {splitString(
+                                                        element.synchronerLink
+                                                    ).map(
+                                                        (
+                                                            el: string,
+                                                            i: number
+                                                        ) => (
+                                                            <a
+                                                                key={i}
+                                                                href={el}
+                                                            >
+                                                                {el}
+                                                            </a>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : undefined}
                                 </div>
                                 <div className="row project-item-buttons">
                                     <div className="row">
@@ -776,24 +907,28 @@ const Projects = (props: Props) => {
                                             className="copy-btn project-item-btn"
                                             value={`Назва проєкту\n${
                                                 element.projectName
-                                            }\n\nСтать\n${element.sex.trim()}\n\nКраїна\n${
-                                                element.country
-                                            }\n\nСтавка у злотих\n${
-                                                element.salary
+                                            }\n\nСтать\n${element.sex.trim()}\n\nВік від ${
+                                                element.ageFrom
+                                            }, Вік до ${
+                                                element.ageTo
+                                            }\n\nНвціональність\n${
+                                                element.nationalaty
                                             }\n\nЛокалізація\n${
                                                 element.location
-                                            }\n\nКатегорія\n${
-                                                element.category
-                                            }\n\nВік від\n${
-                                                element.ageFrom
-                                            }\n\nВік до\n${
-                                                element.ageTo
-                                            }\n\nДодаткова інформація\n${
-                                                element.additionalInfo
-                                            }\n\nПриклади житла\n${
-                                                element.housing
+                                            }\n\nЗаробітня плата\n${
+                                                element.salary
                                             }\n\nОпис вакансії\n${
                                                 element.projectInfo
+                                            }\n\nГрафік роботи\n${
+                                                element.workSchedule
+                                            }\n\nПроживання\n${
+                                                element.housing
+                                            }\n\nХарчування\n${
+                                                element.food
+                                            }\n\nДодаткова інформація\n${
+                                                element.additionalInfo
+                                            }\n\nВідео з проєкту\n${
+                                                element.video
                                             }`}
                                         />
                                     </div>

@@ -17,6 +17,7 @@ type ProjectType = {
     video: string
     workSchedule: string
     food: string
+    synchronerLink: string
 }
 
 const initialState: ProjectType = {
@@ -36,6 +37,7 @@ const initialState: ProjectType = {
     video: '',
     workSchedule: '',
     food: '',
+    synchronerLink: '',
 }
 
 export const editProjectSlice = createSlice({
@@ -110,6 +112,10 @@ export const editProjectSlice = createSlice({
             ...state,
             food: action.payload
         }),
+        editSynchronerLink: (state, action) =>( {
+            ...state,
+            synchronerLink: action.payload
+        }),
         deliteEditedProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -127,6 +133,7 @@ export const editProjectSlice = createSlice({
             video: action.payload,
             workSchedule: action.payload,
             food: action.payload,
+            synchronerLink: action.payload,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
@@ -145,9 +152,10 @@ export const editProjectSlice = createSlice({
             video: action.payload.video,
             workSchedule: action.payload.workSchedule,
             food: action.payload.food,
+            synchronerLink: action.payload.synchronerLink,
         }),
     }
 })
 
-export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData, editIsActual, editVideo, editWorkSchedule, editFood} = editProjectSlice.actions
+export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData, editIsActual, editVideo, editWorkSchedule, editFood, editSynchronerLink} = editProjectSlice.actions
 export default editProjectSlice.reducer
