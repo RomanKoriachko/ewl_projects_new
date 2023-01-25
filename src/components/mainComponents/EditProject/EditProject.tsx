@@ -58,7 +58,8 @@ const EditProject = (props: Props) => {
     const handleChangeProjectName = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        dispatch(editProjectName(e.target.value))
+        const newProjectName = e.target.value.replace('/', '|')
+        dispatch(editProjectName(newProjectName))
     }
     const handleChangeProjectLocation = (
         e: React.ChangeEvent<HTMLInputElement>

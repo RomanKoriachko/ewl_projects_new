@@ -60,8 +60,12 @@ const AddNewProject = (props: Props) => {
     const handleChangeProjectName = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
-        dispatch(changeProjectName(e.target.value))
+        const newProjectName = e.target.value.replace('/', '|')
+        dispatch(changeProjectName(newProjectName))
     }
+
+    console.log(projectState.projectName)
+
     const handleChangeProjectLocation = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
