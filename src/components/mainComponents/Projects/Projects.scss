@@ -65,6 +65,13 @@
         transition: .3s all;
         .project-item-section {
             margin-bottom: 20px;
+            >div{
+                line-height: 120%;
+            }
+            .synchroner-link {
+                margin-bottom: 5px;
+            }
+            
         }
         .bold-text {
             @include sans700();
@@ -168,11 +175,6 @@
             padding: 20px;
         }
     }
-
-}
-
-// Laptop
-@media(max-width: 1200px) {
 
 }
 

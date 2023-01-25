@@ -566,20 +566,33 @@ const Projects = (props: Props) => {
                                                     Посилання на приїзд:
                                                 </span>{' '}
                                                 <div className="column">
-                                                    {splitString(
-                                                        element.synchronerLink
-                                                    ).map(
-                                                        (
-                                                            el: string,
-                                                            i: number
-                                                        ) => (
-                                                            <a
-                                                                key={i}
-                                                                href={el}
-                                                            >
-                                                                {el}
-                                                            </a>
+                                                    {element.synchronerLink.includes(
+                                                        'http'
+                                                    ) ? (
+                                                        splitString(
+                                                            element.synchronerLink
+                                                        ).map(
+                                                            (
+                                                                el: string,
+                                                                i: number
+                                                            ) => (
+                                                                <a
+                                                                    className="synchroner-link"
+                                                                    key={i}
+                                                                    href={el}
+                                                                >
+                                                                    Посилання на
+                                                                    приїзд №
+                                                                    {i + 1}
+                                                                </a>
+                                                            )
                                                         )
+                                                    ) : (
+                                                        <div>
+                                                            {
+                                                                element.synchronerLink
+                                                            }
+                                                        </div>
                                                     )}
                                                 </div>
                                             </div>

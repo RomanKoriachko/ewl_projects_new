@@ -64,8 +64,6 @@ const AddNewProject = (props: Props) => {
         dispatch(changeProjectName(newProjectName))
     }
 
-    console.log(projectState.projectName)
-
     const handleChangeProjectLocation = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
