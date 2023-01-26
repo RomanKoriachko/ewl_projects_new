@@ -18,6 +18,12 @@
   grid-template-columns: 1fr;
   gap: 10px;
 }
+.project-form form label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 .project-form form input {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -52,6 +58,9 @@
 .project-form form .age-row {
   justify-content: space-between;
 }
+.project-form .sex-and-switch {
+  justify-content: space-between;
+}
 
 @media (max-width: 1200px) {
   .project-form {
@@ -79,8 +88,12 @@
   .project-form form .sex-select-wrapper {
     flex-direction: column;
   }
+  .project-form form .sex-and-switch {
+    flex-direction: column;
+  }
   .project-form form .add-project-btn {
     width: 100%;
     font-size: 16px;
+    height: 40px;
   }
 }

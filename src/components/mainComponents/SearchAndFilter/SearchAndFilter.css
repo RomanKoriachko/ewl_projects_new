@@ -8,6 +8,7 @@
 }
 .search-and-filter .search .search-and-btn {
   align-items: center;
+  justify-content: space-between;
   border: 1px solid rgba(0, 0, 0, 0.23);
   border-radius: 5px;
 }
@@ -15,14 +16,14 @@
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  width: 170px;
+  width: 70%;
   height: 40px;
   padding: 0px 10px;
   border: none;
   outline: none;
 }
 .search-and-filter .search .search-and-btn > button {
-  width: 30px;
+  min-width: 30px;
   height: 30px;
   background-image: url(../../../assets/close-img-black.png);
   background-position: center;
@@ -92,7 +93,7 @@
   color: #f18a01;
 }
 .search-and-filter .filter .filter-buttons {
-  width: 210px;
+  width: 215px;
 }
 .search-and-filter .filter .filter-buttons > button {
   margin-bottom: 10px;
@@ -134,4 +135,41 @@
 .search-and-filter .filter .filter-buttons > button:active {
   box-shadow: none;
   transform: translateY(0);
+}
+
+@media (max-width: 992px) {
+  .search-and-filter {
+    height: 100vh;
+    overflow-y: scroll;
+    z-index: 100;
+  }
+  .search-and-filter .search {
+    border-top-right-radius: 0px;
+    margin-bottom: 0;
+  }
+  .search-and-filter .search .search-and-btn {
+    width: 70%;
+  }
+  .search-and-filter .filter {
+    border-bottom-right-radius: 0px;
+  }
+  .search-and-filter .filter .filter-buttons > button:hover {
+    color: #3B3B3B;
+    background-color: transparent;
+    border-color: #3B3B3B;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  .search-and-filter .filter .filter-buttons > button:active {
+    color: #fff;
+    background-color: #f18a01;
+    border-color: #f18a01;
+    box-shadow: none;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 576px) {
+  .search-and-filter .search .search-and-btn {
+    width: 90%;
+  }
 }

@@ -462,6 +462,7 @@ const EditProject = (props: Props) => {
                     label="Проживання"
                     variant="outlined"
                     id="edit-housing"
+                    multiline
                     size={inputSize}
                     value={editProjectState.housing}
                     onChange={handleChangeProjectHousing}
@@ -471,6 +472,7 @@ const EditProject = (props: Props) => {
                     label="Графік роботи"
                     variant="outlined"
                     id="edit-work-Schedule"
+                    multiline
                     size={inputSize}
                     value={editProjectState.workSchedule}
                     onChange={handleChangeProjectWorkSchedule}
@@ -480,6 +482,7 @@ const EditProject = (props: Props) => {
                     label="Харчування"
                     variant="outlined"
                     id="edit-food"
+                    multiline
                     size={inputSize}
                     value={editProjectState.food}
                     onChange={handleChangeProjectFood}

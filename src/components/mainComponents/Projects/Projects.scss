@@ -65,9 +65,6 @@
         transition: .3s all;
         .project-item-section {
             margin-bottom: 20px;
-            >div{
-                line-height: 120%;
-            }
             .synchroner-link {
                 margin-bottom: 5px;
             }
@@ -143,8 +140,9 @@
         .project-age-row {
             gap: 15px;
         }
-        .project-info {
+        .textfield-content {
             line-height: 21px;
+            margin-top: 5px;
             white-space: pre-line;
             word-wrap: break-word;
             overflow-wrap: break-word;

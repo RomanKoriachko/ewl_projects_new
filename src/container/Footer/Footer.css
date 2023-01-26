@@ -1,0 +1,45 @@
+.footer-wrapper {
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.logo {
+  height: 60px;
+  width: 120px;
+  background-image: url(./../../assets/footer-logo.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.contacts {
+  align-items: center;
+  gap: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+}
+.contacts .viber-btn {
+  height: 35px;
+  width: 35px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  background-image: url(../../assets/viber-img.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: 0.3s all;
+}
+.contacts .viber-btn:hover {
+  transform: scale(120%);
+}
+
+@media (max-width: 576px) {
+  .footer-wrapper {
+    flex-direction: column;
+  }
+  .logo {
+    height: 40px;
+  }
+}

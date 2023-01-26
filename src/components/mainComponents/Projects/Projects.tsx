@@ -507,7 +507,7 @@ const Projects = (props: Props) => {
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div className="project-info">
+                                        <div className="textfield-content">
                                             {element.projectInfo}
                                         </div>
                                     </div>
@@ -517,9 +517,24 @@ const Projects = (props: Props) => {
                                                 <span className="bold-text">
                                                     Відео з проєкту:
                                                 </span>{' '}
-                                                <a href={element.video}>
-                                                    {element.video}
-                                                </a>
+                                                <div className="column textfield-content">
+                                                    {splitString(
+                                                        element.video
+                                                    ).map(
+                                                        (
+                                                            el: string,
+                                                            i: number
+                                                        ) => (
+                                                            <a
+                                                                className="synchroner-link"
+                                                                key={i}
+                                                                href={el}
+                                                            >
+                                                                {el}
+                                                            </a>
+                                                        )
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     ) : undefined}
@@ -528,7 +543,9 @@ const Projects = (props: Props) => {
                                             <span className="bold-text">
                                                 Графік роботи:
                                             </span>{' '}
-                                            {element.workSchedule}
+                                            <div className="textfield-content">
+                                                {element.workSchedule}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="project-item-section">
@@ -536,7 +553,9 @@ const Projects = (props: Props) => {
                                             <span className="bold-text">
                                                 Проживання:
                                             </span>{' '}
-                                            {element.housing}
+                                            <div className="textfield-content">
+                                                {element.housing}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="project-item-section">
@@ -544,7 +563,9 @@ const Projects = (props: Props) => {
                                             <span className="bold-text">
                                                 Харчування:
                                             </span>{' '}
-                                            {element.food}
+                                            <div className="textfield-content">
+                                                {element.food}
+                                            </div>
                                         </div>
                                     </div>
                                     {element.additionalInfo !== '' ? (
@@ -553,7 +574,7 @@ const Projects = (props: Props) => {
                                                 <span className="bold-text">
                                                     Додаткова інформація:
                                                 </span>{' '}
-                                                <div className="project-info">
+                                                <div className="textfield-content">
                                                     {element.additionalInfo}
                                                 </div>
                                             </div>
@@ -565,7 +586,7 @@ const Projects = (props: Props) => {
                                                 <span className="bold-text">
                                                     Посилання на приїзд:
                                                 </span>{' '}
-                                                <div className="column">
+                                                <div className="column textfield-content">
                                                     {element.synchronerLink.includes(
                                                         'http'
                                                     ) ? (
@@ -798,7 +819,7 @@ const Projects = (props: Props) => {
                                         </div>
                                     </div>
                                     <div className="project-item-section">
-                                        <div className="project-info">
+                                        <div className="textfield-content">
                                             {element.projectInfo}
                                         </div>
                                     </div>
@@ -819,7 +840,9 @@ const Projects = (props: Props) => {
                                             <span className="bold-text">
                                                 Графік роботи:
                                             </span>{' '}
-                                            {element.workSchedule}
+                                            <div className="textfield-content">
+                                                {element.workSchedule}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="project-item-section">
@@ -827,7 +850,9 @@ const Projects = (props: Props) => {
                                             <span className="bold-text">
                                                 Проживання:
                                             </span>{' '}
-                                            {element.housing}
+                                            <div className="textfield-content">
+                                                {element.housing}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="project-item-section">
@@ -835,7 +860,9 @@ const Projects = (props: Props) => {
                                             <span className="bold-text">
                                                 Харчування:
                                             </span>{' '}
-                                            {element.food}
+                                            <div className="textfield-content">
+                                                {element.food}
+                                            </div>
                                         </div>
                                     </div>
                                     {element.additionalInfo !== '' ? (
@@ -844,7 +871,7 @@ const Projects = (props: Props) => {
                                                 <span className="bold-text">
                                                     Додаткова інформація:
                                                 </span>{' '}
-                                                <div className="project-info">
+                                                <div className="textfield-content">
                                                     {element.additionalInfo}
                                                 </div>
                                             </div>

@@ -29,7 +29,6 @@
   color: #EB6A09;
 }
 .registration .submit-button {
-  padding: 12px;
   width: auto;
 }
 
@@ -60,5 +59,6 @@
   .registration .submit-button {
     width: 100%;
     font-size: 16px;
+    height: 40px;
   }
 }

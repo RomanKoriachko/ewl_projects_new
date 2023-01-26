@@ -39,10 +39,19 @@
 .project-edit-form .project-edit-header button:hover {
   background-image: url(../../../assets/close-img-orange.png);
 }
+.project-edit-form .edit-sex-and-switch {
+  gap: 20px;
+}
 .project-edit-form form {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+}
+.project-edit-form form label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .project-edit-form form .sex-select-edit > p {
   margin-bottom: 10px;
@@ -54,7 +63,6 @@
   margin-right: 10px;
 }
 .project-edit-form form .age-wrapper {
-  justify-content: space-between;
   gap: 10px;
 }
 .project-edit-form form .edit-project-btn {
@@ -110,6 +118,10 @@
   }
   .project-edit-form .sex-select-row {
     flex-direction: column;
+  }
+  .project-edit-form .edit-sex-and-switch {
+    flex-direction: column;
+    gap: 0;
   }
   .project-edit-form form input {
     height: 35px;

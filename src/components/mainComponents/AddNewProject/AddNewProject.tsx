@@ -459,6 +459,7 @@ const AddNewProject = (props: Props) => {
                     label="Проживання"
                     variant="outlined"
                     id="housing"
+                    multiline
                     size={inputSize}
                     value={projectState.housing}
                     onChange={handleChangeProjectHousing}
@@ -468,6 +469,7 @@ const AddNewProject = (props: Props) => {
                     label="Графік роботи"
                     variant="outlined"
                     id="work-Schedule"
+                    multiline
                     size={inputSize}
                     value={projectState.workSchedule}
                     onChange={handleChangeWorkSchedule}
@@ -477,6 +479,7 @@ const AddNewProject = (props: Props) => {
                     label="Харчування"
                     variant="outlined"
                     id="food"
+                    multiline
                     size={inputSize}
                     value={projectState.food}
                     onChange={handleChangeFood}
