@@ -21,6 +21,20 @@
   display: block;
 }
 
+.hide-scroll-up {
+  position: absolute;
+  opacity: 0;
+  right: -50px;
+  visibility: hidden;
+  transition: 0.5s all;
+}
+
+.show-scroll-up {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.5s all;
+}
+
 .main {
   background: linear-gradient(217deg, #fe6e00, rgba(255, 0, 0, 0) 70.71%), linear-gradient(127deg, #fd8c01, rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, #feaa02, rgba(0, 0, 255, 0) 70.71%);
 }

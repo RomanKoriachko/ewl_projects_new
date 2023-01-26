@@ -18,6 +18,18 @@
 .show{
     display: block;
 }
+.hide-scroll-up {
+    position: absolute;
+    opacity: 0;
+    right: -50px;
+    visibility: hidden;
+    transition: .5s all;
+}
+.show-scroll-up{
+    opacity: 1;
+    visibility: visible;
+    transition: .5s all;
+}
 
 .main {
     background: linear-gradient(217deg,  #fe6e00, rgba(255,0,0,0) 70.71%),

@@ -386,6 +386,20 @@ const Projects = (props: Props) => {
         succeed: 'Скопійовано!',
     }
 
+    // enable scroll up button
+    const [scrollUpState, setScrollUpState] = useState<boolean>(false)
+    window.addEventListener('scroll', function () {
+        window.scrollY > 2000 ? setScrollUpState(true) : setScrollUpState(false)
+    })
+
+    // scroll up function
+    const onScrollUpClick = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        })
+    }
+
     return (
         <div className="projects-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -399,6 +413,12 @@ const Projects = (props: Props) => {
                 ></div>
                 <EditProject />
             </div>
+            <div
+                className={`scroll-up ${
+                    scrollUpState ? 'show-scroll-up' : 'hide-scroll-up'
+                }`}
+                onClick={onScrollUpClick}
+            ></div>
             {localLoginData.email === 'mazaxaka.tyt@gmail.com' ||
             localLoginData.email === 'juliiaderevianko@gmail.com' ||
             localLoginData.email === 'admin@gmail.com' ? (
@@ -473,7 +493,7 @@ const Projects = (props: Props) => {
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>
+                                    <div className="project-info">
                                         <span className="bold-text">
                                             Заробітня плата:
                                         </span>{' '}
@@ -785,7 +805,7 @@ const Projects = (props: Props) => {
                                     </div>
                                 </div>
                                 <div className="project-item-section">
-                                    <div>
+                                    <div className="project-info">
                                         <span className="bold-text">
                                             Заробітня плата:
                                         </span>{' '}
