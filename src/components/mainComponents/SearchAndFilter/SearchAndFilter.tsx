@@ -1,4 +1,14 @@
-import { Checkbox, FormControlLabel, FormGroup, Switch } from '@mui/material'
+import {
+    Checkbox,
+    FormControl,
+    FormControlLabel,
+    FormGroup,
+    FormLabel,
+    Radio,
+    RadioGroup,
+    Switch,
+} from '@mui/material'
+import React from 'react'
 import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
 import {
     clearAllCountrysCheckboxes,
@@ -15,6 +25,7 @@ import {
 } from 'redux/countryCheckboxReducer'
 import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { setIsActualState } from 'redux/isActualReducer'
 import { changeFilterState } from 'redux/isFilterOpenReducer'
 import { setIsMinor } from 'redux/isMinorReducer'
 import { cleanSearchInput, getSearchInput } from 'redux/searchContentReducer'
@@ -35,6 +46,7 @@ const SearchAndFilter = (props: Props) => {
     )
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const isMinorState = useAppSelector((state) => state.isMinorState)
+    const isActualState = useAppSelector((state) => state.isActualState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const searchState = useAppSelector((state) => state.searchState)
     const filterState = useAppSelector((state) => state.filterState)
@@ -126,6 +138,12 @@ const SearchAndFilter = (props: Props) => {
             : dispatch(setCouplesCheckbox(''))
     }
 
+    // --------------------- is actual filter ---------------------
+
+    const onIsActualClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+        return dispatch(setIsActualState(e.target.value))
+    }
+
     // --------------------- is minor filter ---------------------
 
     const isMinorChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -161,6 +179,12 @@ const SearchAndFilter = (props: Props) => {
         color: 'white',
         borderColor: '#f18a01',
         backgroundColor: '#f18a01',
+    }
+
+    let raw = localStorage.getItem('loginData')
+    let localLoginData
+    if (raw) {
+        localLoginData = JSON.parse(raw)
     }
 
     return (
@@ -537,6 +561,38 @@ const SearchAndFilter = (props: Props) => {
                         </div>
                     </div>
                 </div>
+                {localLoginData.isAdmin ? (
+                    <div className="filter-is-actual">
+                        <FormControl>
+                            <FormLabel id="demo-radio-buttons-group-label">
+                                Актуальність
+                            </FormLabel>
+                            <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue="both"
+                                name="radio-buttons-group"
+                                value={isActualState}
+                                onChange={onIsActualClick}
+                            >
+                                <FormControlLabel
+                                    value="actual"
+                                    control={<Radio />}
+                                    label="Актуальний"
+                                />
+                                <FormControlLabel
+                                    value="notActual"
+                                    control={<Radio />}
+                                    label="Не актуальний"
+                                />
+                                <FormControlLabel
+                                    value="both"
+                                    control={<Radio />}
+                                    label="Всі"
+                                />
+                            </RadioGroup>
+                        </FormControl>
+                    </div>
+                ) : undefined}
                 <div className="filter-adult">
                     <div className="filter-wrapper">
                         <div className="filter-item">

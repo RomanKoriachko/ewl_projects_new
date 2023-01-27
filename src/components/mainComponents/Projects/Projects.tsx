@@ -40,6 +40,7 @@ const Projects = (props: Props) => {
     )
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const isMinorState = useAppSelector((state) => state.isMinorState)
+    const isActualState = useAppSelector((state) => state.isActualState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const filterState = useAppSelector((state) => state.filterState)
     const showMoreState = useAppSelector((state) => state.showMoreState)
@@ -335,22 +336,42 @@ const Projects = (props: Props) => {
         temporaryIsMinorArr = filtredSexArr
     }
 
+    // // ---------------------- is actual filter ----------------------
+
+    let temporaryIsActualArr: ProjectType[] = []
+
+    if (filterState) {
+        if (isActualState === 'actual') {
+            temporaryIsActualArr = temporaryIsMinorArr.filter(
+                (el: ProjectType) => el.isActual
+            )
+        } else if (isActualState === 'notActual') {
+            temporaryIsActualArr = temporaryIsMinorArr.filter(
+                (el: ProjectType) => el.isActual === false
+            )
+        } else {
+            temporaryIsActualArr = temporaryIsMinorArr
+        }
+    } else {
+        temporaryIsActualArr = temporaryIsMinorArr
+    }
+
     // ---------------------- Age to filter ----------------------
 
     let filtredArr: ProjectType[] = []
 
     if (filterState) {
         if (ageSearchState) {
-            filtredArr = temporaryIsMinorArr.filter(
+            filtredArr = temporaryIsActualArr.filter(
                 (el: ProjectType) =>
                     ageSearchState >= parseInt(el.ageFrom) &&
                     ageSearchState <= parseInt(el.ageTo)
             )
         } else {
-            filtredArr = temporaryIsMinorArr
+            filtredArr = temporaryIsActualArr
         }
     } else {
-        filtredArr = temporaryIsMinorArr
+        filtredArr = temporaryIsActualArr
     }
 
     const filtredArrForUsers: ProjectType[] = filtredArr.filter(
@@ -773,7 +794,7 @@ const Projects = (props: Props) => {
                         ))}
                     </div>
                 )
-            ) : filtredArr.length === 0 ? (
+            ) : filtredArrForUsers.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
                 <div className="projects">
