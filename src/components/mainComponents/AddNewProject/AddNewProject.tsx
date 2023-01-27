@@ -2,6 +2,7 @@ import { getDatabase, ref, set, get, child } from 'firebase/database'
 import {
     addNewSex,
     changeCategory,
+    changeContact,
     changeCountry,
     changeFood,
     changeIsActual,
@@ -126,7 +127,7 @@ const AddNewProject = (props: Props) => {
     ) => {
         dispatch(changeProjectNationality(e.target.value))
     }
-    const handleChangeProjectAdditionalInfo = (
+    const handleChangeAdditionalInfo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         dispatch(changeProjectAdditionalInfo(e.target.value))
@@ -147,7 +148,7 @@ const AddNewProject = (props: Props) => {
     const handleChangeFood = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(changeFood(e.target.value))
     }
-    const handleChangeProjectProjectInfo = (
+    const handleChangeProjectInfo = (
         e: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
         dispatch(changeProjectInfo(e.target.value))
@@ -156,6 +157,9 @@ const AddNewProject = (props: Props) => {
         e: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
         dispatch(changeSynchronerlink(e.target.value))
+    }
+    const handleChangeContact = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(changeContact(e.target.value))
     }
 
     // --------- write data ---------
@@ -177,7 +181,8 @@ const AddNewProject = (props: Props) => {
         video: string,
         workSchedule: string,
         food: string,
-        synchronerLink: string
+        synchronerLink: string,
+        contact: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -206,6 +211,7 @@ const AddNewProject = (props: Props) => {
                             workSchedule: workSchedule,
                             food: food,
                             synchronerLink: synchronerLink,
+                            contact: contact,
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
@@ -227,6 +233,14 @@ const AddNewProject = (props: Props) => {
             alert('Необхідно обрати стать')
         } else if (projectState.ageFrom > projectState.ageTo) {
             alert('Вік Від не може бути більше, ніж Вік До')
+        } else if (
+            projectState.projectName.includes('.') ||
+            projectState.projectName.includes('#') ||
+            projectState.projectName.includes('$') ||
+            projectState.projectName.includes('[') ||
+            projectState.projectName.includes(']')
+        ) {
+            alert("Недопустиме ім'я проєкту")
         } else {
             writeProjectData(
                 projectState.country,
@@ -245,7 +259,8 @@ const AddNewProject = (props: Props) => {
                 projectState.video,
                 projectState.workSchedule,
                 projectState.food,
-                projectState.synchronerLink
+                projectState.synchronerLink,
+                projectState.contact
             )
         }
     }
@@ -492,7 +507,7 @@ const AddNewProject = (props: Props) => {
                     multiline
                     size={inputSize}
                     value={projectState.projectInfo}
-                    onChange={handleChangeProjectProjectInfo}
+                    onChange={handleChangeProjectInfo}
                 />
                 <TextField
                     label="Додаткова інформація"
@@ -501,7 +516,15 @@ const AddNewProject = (props: Props) => {
                     multiline
                     size={inputSize}
                     value={projectState.additionalInfo}
-                    onChange={handleChangeProjectAdditionalInfo}
+                    onChange={handleChangeAdditionalInfo}
+                />
+                <TextField
+                    label="Контакт опікуна"
+                    variant="outlined"
+                    id="contact"
+                    size={inputSize}
+                    value={projectState.contact}
+                    onChange={handleChangeContact}
                 />
                 <button className="add-project-btn" type="submit">
                     Додати проєкт

@@ -3,6 +3,7 @@ import {
     addNewEditedSex,
     deliteEditedProjectData,
     editCategory,
+    editContact,
     editCountry,
     editFood,
     editIsActual,
@@ -152,6 +153,11 @@ const EditProject = (props: Props) => {
     ) => {
         dispatch(editProjectInfo(e.target.value))
     }
+    const handleChangeProjectContact = (
+        e: React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
+        dispatch(editContact(e.target.value))
+    }
 
     const closeEditForm = () => {
         dispatch(setFormState(false))
@@ -174,7 +180,8 @@ const EditProject = (props: Props) => {
         video: string,
         workSchedule: string,
         food: string,
-        synchronerLink: string
+        synchronerLink: string,
+        contact: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -204,6 +211,7 @@ const EditProject = (props: Props) => {
                             workSchedule: workSchedule,
                             food: food,
                             synchronerLink: synchronerLink,
+                            contact: contact,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -246,7 +254,8 @@ const EditProject = (props: Props) => {
                 editProjectState.video,
                 editProjectState.workSchedule,
                 editProjectState.food,
-                editProjectState.synchronerLink
+                editProjectState.synchronerLink,
+                editProjectState.contact
             )
             dispatch(setFormState(false))
         }
@@ -505,6 +514,13 @@ const EditProject = (props: Props) => {
                     rows={5}
                     value={editProjectState.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
+                />
+                <TextField
+                    label="Контакт опікуна"
+                    variant="outlined"
+                    id="edit-contact"
+                    value={editProjectState.contact}
+                    onChange={handleChangeProjectContact}
                 />
                 <button className="edit-project-btn" type="submit">
                     Редагувати проєкт

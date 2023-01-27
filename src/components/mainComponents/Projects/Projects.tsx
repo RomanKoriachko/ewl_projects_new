@@ -28,6 +28,7 @@ type ProjectType = {
     workSchedule: string
     food: string
     synchronerLink: string
+    contact: string
 }
 
 type ICopyStatus = 'waiting' | 'copying' | 'failed' | 'succeed'
@@ -79,6 +80,7 @@ const Projects = (props: Props) => {
             workSchedule: null,
             food: null,
             synchronerLink: null,
+            contact: null,
         })
     }
 
@@ -116,7 +118,8 @@ const Projects = (props: Props) => {
         video: string,
         workSchedule: string,
         food: string,
-        synchronerLink: string
+        synchronerLink: string,
+        contact: string
     ) => {
         dispatch(
             getProjectData({
@@ -138,6 +141,7 @@ const Projects = (props: Props) => {
                 workSchedule: workSchedule,
                 food: food,
                 synchronerLink: synchronerLink,
+                contact: contact,
             })
         )
         editFormState
@@ -170,7 +174,13 @@ const Projects = (props: Props) => {
             element.projectInfo
                 .toLowerCase()
                 .includes(searchState.toLowerCase()) ||
-            element.category.toLowerCase().includes(searchState.toLowerCase())
+            element.category
+                .toLowerCase()
+                .includes(searchState.toLowerCase()) ||
+            element.workSchedule
+                .toLowerCase()
+                .includes(searchState.toLowerCase()) ||
+            element.food.toLowerCase().includes(searchState.toLowerCase())
     )
 
     // ---------------------- country filter ----------------------
@@ -639,6 +649,18 @@ const Projects = (props: Props) => {
                                             </div>
                                         </div>
                                     ) : undefined}
+                                    {element.contact !== '' ? (
+                                        <div className="project-item-section">
+                                            <div>
+                                                <span className="bold-text">
+                                                    Контакт опікуна:
+                                                </span>{' '}
+                                                <div className="textfield-content">
+                                                    {element.contact}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : undefined}
                                 </div>
                                 <div className="row project-item-buttons">
                                     <div className="row">
@@ -647,7 +669,7 @@ const Projects = (props: Props) => {
                                             onClick={() =>
                                                 onDeliteProjectClick(i)
                                             }
-                                            disabled={filtredArr.length <= 1}
+                                            disabled={projectsArr.length <= 1}
                                         >
                                             Видалити
                                         </button>
@@ -671,7 +693,8 @@ const Projects = (props: Props) => {
                                                     element.video,
                                                     element.workSchedule,
                                                     element.food,
-                                                    element.synchronerLink
+                                                    element.synchronerLink,
+                                                    element.contact
                                                 )
                                             }
                                         >
@@ -919,6 +942,18 @@ const Projects = (props: Props) => {
                                                             </a>
                                                         )
                                                     )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : undefined}
+                                    {element.contact !== '' ? (
+                                        <div className="project-item-section">
+                                            <div>
+                                                <span className="bold-text">
+                                                    Контакт опікуна:
+                                                </span>{' '}
+                                                <div className="textfield-content">
+                                                    {element.contact}
                                                 </div>
                                             </div>
                                         </div>
