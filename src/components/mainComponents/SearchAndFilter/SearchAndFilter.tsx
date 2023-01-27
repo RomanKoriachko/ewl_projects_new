@@ -25,7 +25,7 @@ import {
 } from 'redux/countryCheckboxReducer'
 import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { setIsActualState } from 'redux/isActualReducer'
+import { resetActualState, setIsActualState } from 'redux/isActualReducer'
 import { changeFilterState } from 'redux/isFilterOpenReducer'
 import { setIsMinor } from 'redux/isMinorReducer'
 import { cleanSearchInput, getSearchInput } from 'redux/searchContentReducer'
@@ -173,6 +173,7 @@ const SearchAndFilter = (props: Props) => {
         dispatch(setIsMinor(false))
         dispatch(clearAgeState())
         dispatch(clearFilters())
+        dispatch(resetActualState())
     }
 
     let isFilterAdded = {
@@ -576,17 +577,41 @@ const SearchAndFilter = (props: Props) => {
                             >
                                 <FormControlLabel
                                     value="actual"
-                                    control={<Radio />}
+                                    control={
+                                        <Radio
+                                            sx={{
+                                                '&.Mui-checked': {
+                                                    color: '#EB6A09',
+                                                },
+                                            }}
+                                        />
+                                    }
                                     label="Актуальний"
                                 />
                                 <FormControlLabel
                                     value="notActual"
-                                    control={<Radio />}
+                                    control={
+                                        <Radio
+                                            sx={{
+                                                '&.Mui-checked': {
+                                                    color: '#EB6A09',
+                                                },
+                                            }}
+                                        />
+                                    }
                                     label="Не актуальний"
                                 />
                                 <FormControlLabel
                                     value="both"
-                                    control={<Radio />}
+                                    control={
+                                        <Radio
+                                            sx={{
+                                                '&.Mui-checked': {
+                                                    color: '#EB6A09',
+                                                },
+                                            }}
+                                        />
+                                    }
                                     label="Всі"
                                 />
                             </RadioGroup>

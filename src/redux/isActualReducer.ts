@@ -9,8 +9,11 @@ export const isActualReducer = createSlice({
         setIsActualState: (state, action) => {
             return action.payload
         },
+        resetActualState: (state) => {
+            return "both"
+        }
     }
 })
 
-export const {setIsActualState} = isActualReducer.actions
+export const {setIsActualState, resetActualState} = isActualReducer.actions
 export default isActualReducer.reducer
