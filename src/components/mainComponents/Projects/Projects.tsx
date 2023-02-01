@@ -788,7 +788,7 @@ const Projects = (props: Props) => {
                                             }
                                             ${
                                                 element.video !== ''
-                                                    ? `\n\Відео з проєкту\n${element.video}`
+                                                    ? `\n\nВідео з проєкту\n${element.video}`
                                                     : ''
                                             }`.trim()}
                                         />
@@ -1063,7 +1063,7 @@ const Projects = (props: Props) => {
                                             }
                                             ${
                                                 element.video !== ''
-                                                    ? `\n\Відео з проєкту\n${element.video}`
+                                                    ? `\n\nВідео з проєкту\n${element.video}`
                                                     : ''
                                             }`.trim()}
                                         />
