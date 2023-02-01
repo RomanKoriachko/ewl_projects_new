@@ -181,7 +181,8 @@ const Projects = (props: Props) => {
             element.workSchedule
                 .toLowerCase()
                 .includes(searchState.toLowerCase()) ||
-            element.food.toLowerCase().includes(searchState.toLowerCase())
+            element.food.toLowerCase().includes(searchState.toLowerCase()) ||
+            element.contact.toLowerCase().includes(searchState.toLowerCase())
     )
 
     // ---------------------- country filter ----------------------
@@ -780,13 +781,16 @@ const Projects = (props: Props) => {
                                                 element.workSchedule
                                             }\n\nПроживання\n${
                                                 element.housing
-                                            }\n\nХарчування\n${
-                                                element.food
-                                            }\n\nДодаткова інформація\n${
-                                                element.additionalInfo
-                                            }\n\nВідео з проєкту\n${
-                                                element.video
-                                            }`}
+                                            }\n\nХарчування\n${element.food}${
+                                                element.additionalInfo !== ''
+                                                    ? `\n\nДодаткова інформація\n${element.additionalInfo}`
+                                                    : ''
+                                            }
+                                            ${
+                                                element.video !== ''
+                                                    ? `\n\Відео з проєкту\n${element.video}`
+                                                    : ''
+                                            }`.trim()}
                                         />
                                     </div>
                                 </div>
@@ -947,21 +951,34 @@ const Projects = (props: Props) => {
                                                 <span className="bold-text">
                                                     Посилання на приїзд:
                                                 </span>{' '}
-                                                <div className="column">
-                                                    {splitString(
-                                                        element.synchronerLink
-                                                    ).map(
-                                                        (
-                                                            el: string,
-                                                            i: number
-                                                        ) => (
-                                                            <a
-                                                                key={i}
-                                                                href={el}
-                                                            >
-                                                                {el}
-                                                            </a>
+                                                <div className="column textfield-content">
+                                                    {element.synchronerLink.includes(
+                                                        'http'
+                                                    ) ? (
+                                                        splitString(
+                                                            element.synchronerLink
+                                                        ).map(
+                                                            (
+                                                                el: string,
+                                                                i: number
+                                                            ) => (
+                                                                <a
+                                                                    className="synchroner-link"
+                                                                    key={i}
+                                                                    href={el}
+                                                                >
+                                                                    Посилання на
+                                                                    приїзд №
+                                                                    {i + 1}
+                                                                </a>
+                                                            )
                                                         )
+                                                    ) : (
+                                                        <div>
+                                                            {
+                                                                element.synchronerLink
+                                                            }
+                                                        </div>
                                                     )}
                                                 </div>
                                             </div>
@@ -998,7 +1015,7 @@ const Projects = (props: Props) => {
                                                 )
                                             }
                                         >
-                                            Разгорнути
+                                            Розгорнути
                                         </button>
                                         <button
                                             className={`show-more-btn project-item-btn ${
@@ -1039,13 +1056,16 @@ const Projects = (props: Props) => {
                                                 element.workSchedule
                                             }\n\nПроживання\n${
                                                 element.housing
-                                            }\n\nХарчування\n${
-                                                element.food
-                                            }\n\nДодаткова інформація\n${
-                                                element.additionalInfo
-                                            }\n\nВідео з проєкту\n${
-                                                element.video
-                                            }`}
+                                            }\n\nХарчування\n${element.food}${
+                                                element.additionalInfo !== ''
+                                                    ? `\n\nДодаткова інформація\n${element.additionalInfo}`
+                                                    : ''
+                                            }
+                                            ${
+                                                element.video !== ''
+                                                    ? `\n\Відео з проєкту\n${element.video}`
+                                                    : ''
+                                            }`.trim()}
                                         />
                                     </div>
                                 </div>
