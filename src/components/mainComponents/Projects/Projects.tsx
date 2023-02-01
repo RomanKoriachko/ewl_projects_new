@@ -769,7 +769,7 @@ const Projects = (props: Props) => {
                                                 element.ageFrom
                                             }, Вік до ${
                                                 element.ageTo
-                                            }\n\nНвціональність\n${
+                                            }\n\nНаціональність\n${
                                                 element.nationalaty
                                             }\n\nЛокалізація\n${
                                                 element.location
@@ -1044,7 +1044,7 @@ const Projects = (props: Props) => {
                                                 element.ageFrom
                                             }, Вік до ${
                                                 element.ageTo
-                                            }\n\nНвціональність\n${
+                                            }\n\nНаціональність\n${
                                                 element.nationalaty
                                             }\n\nЛокалізація\n${
                                                 element.location
