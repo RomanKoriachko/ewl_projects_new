@@ -846,7 +846,11 @@ const Projects = (props: Props) => {
                                             element.ageTo
                                         }\n\nНаціональність\n${
                                             element.nationalaty
-                                        }\n\nЛокалізація\n${
+                                        }\n\nЛокалізація\n${element.country}, ${
+                                            element.location
+                                        }\nhttps://www.google.com.ua/maps/place/${
+                                            element.country
+                                        }+${
                                             element.location
                                         }\n\nЗаробітня плата\n${
                                             element.salary

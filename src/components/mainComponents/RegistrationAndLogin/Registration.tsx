@@ -29,18 +29,29 @@ const Registration = (props: Props) => {
     const createAccount = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const auth = getAuth()
-        createUserWithEmailAndPassword(
-            auth,
-            RegistrationState.email,
-            RegistrationState.password
-        )
-            .then(() => {
-                alert('Користувач зареєстрований')
-            })
-            .catch(() => {
-                alert('Помилка створення аккаунту')
-            })
-        dispatch(cleanRegistrationInput())
+        if (
+            RegistrationState.email.includes(' ') ||
+            RegistrationState.password.includes(' ')
+        ) {
+            alert('Логін та пароль не мають містити пробіли')
+        } else {
+            createUserWithEmailAndPassword(
+                auth,
+                RegistrationState.email,
+                RegistrationState.password
+            )
+                .then(() => {
+                    alert('Користувач зареєстрований')
+                })
+                .catch((error) => {
+                    const errorCode = error.code
+                    const errorMessage = error.message
+                    console.log(errorCode)
+                    console.log(errorMessage)
+                    alert('Помилка створення аккаунту')
+                })
+            dispatch(cleanRegistrationInput())
+        }
     }
 
     const [showPassword, setShowPassword] = useState<string>('password')
