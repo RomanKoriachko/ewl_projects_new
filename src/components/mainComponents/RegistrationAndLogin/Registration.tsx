@@ -10,7 +10,7 @@ import {
 type Props = {}
 
 const Registration = (props: Props) => {
-    const RedistrationState = useAppSelector(
+    const RegistrationState = useAppSelector(
         (state) => state.registrationDataState
     )
     const dispatch = useAppDispatch()
@@ -31,8 +31,8 @@ const Registration = (props: Props) => {
         const auth = getAuth()
         createUserWithEmailAndPassword(
             auth,
-            RedistrationState.email,
-            RedistrationState.password
+            RegistrationState.email,
+            RegistrationState.password
         )
             .then(() => {
                 alert('Користувач зареєстрований')
@@ -65,7 +65,7 @@ const Registration = (props: Props) => {
                         type="text"
                         id="registration-login"
                         onChange={handleChangeRegistrationLogin}
-                        value={RedistrationState.email}
+                        value={RegistrationState.email}
                     />
                     <div className="password-wrapper">
                         <input
@@ -75,7 +75,7 @@ const Registration = (props: Props) => {
                             type={showPassword}
                             id="registration-password"
                             onChange={handleChangeRegistrationPassword}
-                            value={RedistrationState.password}
+                            value={RegistrationState.password}
                         />
                         <button
                             type="button"
