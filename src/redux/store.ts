@@ -9,6 +9,7 @@ import isActualReducer from "./isActualReducer";
 import isFilterOpenReducer from "./isFilterOpenReducer";
 import isMinorReducer from "./isMinorReducer";
 import loginDataReducer from "./loginDataReducer";
+import nationalityCheckboxReducer from "./nationalityCheckboxReducer";
 import newProjectReduser from "./newProjectReduser";
 import registrationDataReducer from "./registrationDataReducer";
 import searchContentReducer from "./searchContentReducer";
@@ -33,6 +34,7 @@ export const store = configureStore({
         editFormState: editFormReducer,
         isFilterOpenState: isFilterOpenReducer,
         isActualState: isActualReducer,
+        nationalityCheckboxState: nationalityCheckboxReducer,
     }
 })
 

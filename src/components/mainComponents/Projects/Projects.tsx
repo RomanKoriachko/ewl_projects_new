@@ -52,6 +52,9 @@ const Projects = (props: Props) => {
     const filterState = useAppSelector((state) => state.filterState)
     const showMoreState = useAppSelector((state) => state.showMoreState)
     const editFormState = useAppSelector((state) => state.editFormState)
+    const nationalityCheckboxState = useAppSelector(
+        (state) => state.nationalityCheckboxState
+    )
     const dispatch = useAppDispatch()
 
     const [projectsArr, setProjectsArr] = useState<ProjectType[]>([])
@@ -328,20 +331,76 @@ const Projects = (props: Props) => {
         filtredSexArr = filtredCountryArr
     }
 
+    // ---------------------- nationality filter ----------------------
+
+    let nationalityArr: ProjectType[] = []
+    let tempNationalityArr1: ProjectType[] = []
+    let tempNationalityArr2: ProjectType[] = []
+    let tempNationalityArr3: ProjectType[] = []
+    let tempNationalityArr4: ProjectType[] = []
+    let tempNationalityArr5: ProjectType[] = []
+
+    if (filterState) {
+        if (nationalityCheckboxState.ukraine) {
+            tempNationalityArr1 = filtredSexArr.filter((el: ProjectType) =>
+                el.nationalaty.includes('Україна')
+            )
+        }
+        if (nationalityCheckboxState.moldova) {
+            tempNationalityArr2 = filtredSexArr.filter((el: ProjectType) =>
+                el.nationalaty.includes('Молдова')
+            )
+        }
+        if (nationalityCheckboxState.georgia) {
+            tempNationalityArr3 = filtredSexArr.filter((el: ProjectType) =>
+                el.nationalaty.includes('Грузія')
+            )
+        }
+        if (nationalityCheckboxState.armenia) {
+            tempNationalityArr4 = filtredSexArr.filter((el: ProjectType) =>
+                el.nationalaty.includes('Арменія')
+            )
+        }
+        if (nationalityCheckboxState.bilorus) {
+            tempNationalityArr5 = filtredSexArr.filter((el: ProjectType) =>
+                el.nationalaty.includes('Білорусь')
+            )
+        }
+        if (
+            nationalityCheckboxState.ukraine === false &&
+            nationalityCheckboxState.moldova === false &&
+            nationalityCheckboxState.georgia === false &&
+            nationalityCheckboxState.armenia === false &&
+            nationalityCheckboxState.bilorus === false
+        ) {
+            nationalityArr = filtredSexArr
+        } else {
+            nationalityArr = [
+                ...tempNationalityArr1,
+                ...tempNationalityArr2,
+                ...tempNationalityArr3,
+                ...tempNationalityArr4,
+                ...tempNationalityArr5,
+            ]
+        }
+    } else {
+        nationalityArr = filtredSexArr
+    }
+
     // ---------------------- is miner filter ----------------------
 
     let temporaryIsMinorArr: ProjectType[] = []
 
     if (filterState) {
         if (isMinorState) {
-            temporaryIsMinorArr = filtredSexArr.filter(
+            temporaryIsMinorArr = nationalityArr.filter(
                 (el: ProjectType) => parseInt(el.ageFrom) < 18
             )
         } else {
-            temporaryIsMinorArr = filtredSexArr
+            temporaryIsMinorArr = nationalityArr
         }
     } else {
-        temporaryIsMinorArr = filtredSexArr
+        temporaryIsMinorArr = nationalityArr
     }
 
     // // ---------------------- is actual filter ----------------------
@@ -514,7 +573,7 @@ const Projects = (props: Props) => {
                                         </div>
                                         <div className="project-location">
                                             <a
-                                                href={`https://www.google.com.ua/maps/place/${element.location}`}
+                                                href={`https://www.google.com.ua/maps/place/${element.country}+${element.location}`}
                                             >
                                                 {element.location}
                                             </a>

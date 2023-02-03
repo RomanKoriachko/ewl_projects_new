@@ -28,6 +28,10 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { resetActualState, setIsActualState } from 'redux/isActualReducer'
 import { changeFilterState } from 'redux/isFilterOpenReducer'
 import { setIsMinor } from 'redux/isMinorReducer'
+import {
+    resetNationality,
+    setNationalityCheckbox,
+} from 'redux/nationalityCheckboxReducer'
 import { cleanSearchInput, getSearchInput } from 'redux/searchContentReducer'
 import {
     clearAllSexCheckboxes,
@@ -50,6 +54,9 @@ const SearchAndFilter = (props: Props) => {
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const searchState = useAppSelector((state) => state.searchState)
     const filterState = useAppSelector((state) => state.filterState)
+    const nationalityCheckboxState = useAppSelector(
+        (state) => state.nationalityCheckboxState
+    )
 
     const changeSeacrchContent = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(getSearchInput(e.target.value))
@@ -138,6 +145,17 @@ const SearchAndFilter = (props: Props) => {
             : dispatch(setCouplesCheckbox(''))
     }
 
+    // --------------------- nationality filter ---------------------
+
+    const nationalityFilterClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(
+            setNationalityCheckbox({
+                name: e.target.name,
+                state: e.target.checked,
+            })
+        )
+    }
+
     // --------------------- is actual filter ---------------------
 
     const onIsActualClick = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -174,6 +192,7 @@ const SearchAndFilter = (props: Props) => {
         dispatch(clearAgeState())
         dispatch(clearFilters())
         dispatch(resetActualState())
+        dispatch(resetNationality())
     }
 
     let isFilterAdded = {
@@ -550,6 +569,133 @@ const SearchAndFilter = (props: Props) => {
                                                 ? true
                                                 : false
                                         }
+                                    />
+                                }
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className="filter-nationality">
+                    <div className="filter-section-header">Національність</div>
+                    <div className="filter-wrapper">
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Україна"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        id="ukraine-nationality"
+                                        name="ukraine"
+                                        onChange={nationalityFilterClick}
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            nationalityCheckboxState.ukraine
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Молдова"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        id="moldova-nationality"
+                                        name="moldova"
+                                        onChange={nationalityFilterClick}
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            nationalityCheckboxState.moldova
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Грузія"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        id="georgia-nationality"
+                                        name="georgia"
+                                        onChange={nationalityFilterClick}
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            nationalityCheckboxState.georgia
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Арменія"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        id="armenia-nationality"
+                                        name="armenia"
+                                        onChange={nationalityFilterClick}
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            nationalityCheckboxState.armenia
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Білорусь"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        id="bilorus-nationality"
+                                        name="bilorus"
+                                        onChange={nationalityFilterClick}
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        // checked={
+                                        //     nationalityCheckboxState.bilorus
+                                        //         ? true
+                                        //         : false
+                                        // }
                                     />
                                 }
                             />
