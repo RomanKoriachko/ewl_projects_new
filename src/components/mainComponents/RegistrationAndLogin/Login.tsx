@@ -1,4 +1,5 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import {
     loginAdmin,
@@ -51,9 +52,17 @@ const Login = (props: Props) => {
             })
     }
 
+    const [showPassword, setShowPassword] = useState<string>('password')
+
+    const onShowPasswordClick = () => {
+        showPassword === 'password'
+            ? setShowPassword('text')
+            : setShowPassword('password')
+    }
+
     return (
         <div className="login">
-            <div className="login-header">Введіть логін та пароль</div>
+            <div className="login-header">Введіть email та пароль</div>
             <form id="login-form" onSubmit={login}>
                 <div>
                     <div className="grid-wrapper">
@@ -61,16 +70,25 @@ const Login = (props: Props) => {
                             className="login-input login-form-input"
                             type="text"
                             id="login-email"
+                            placeholder="Email"
                             onChange={handleChangeLogin}
                             value={loginState.email}
                         />
-                        <input
-                            className="password-input login-form-input"
-                            type="password"
-                            id="login-password"
-                            onChange={handleChangePassword}
-                            value={loginState.password}
-                        />
+                        <div className="password-wrapper">
+                            <input
+                                className="password-input login-form-input"
+                                type={showPassword}
+                                id="login-password"
+                                placeholder="Пароль"
+                                onChange={handleChangePassword}
+                                value={loginState.password}
+                            />
+                            <button
+                                type="button"
+                                className={`show-password-btn ${showPassword}`}
+                                onClick={onShowPasswordClick}
+                            ></button>
+                        </div>
                         <button type="submit" className="submit-button">
                             Увійти
                         </button>

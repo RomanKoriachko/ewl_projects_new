@@ -513,7 +513,11 @@ const Projects = (props: Props) => {
                                             {element.country},
                                         </div>
                                         <div className="project-location">
-                                            {element.location}
+                                            <a
+                                                href={`https://www.google.com.ua/maps/place/${element.location}`}
+                                            >
+                                                {element.location}
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

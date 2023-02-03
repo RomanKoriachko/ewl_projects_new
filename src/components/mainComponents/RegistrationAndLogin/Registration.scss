@@ -50,7 +50,7 @@
         cursor: pointer;
         transition: .3s all;
         &:hover {
-            border-color: #EB6A09;
+            background-color: rgba(0, 0, 0, 0.05);
         }
     }
     .show-password-btn.text {
@@ -100,10 +100,10 @@
         }
         .show-password-btn {
             &:hover {
-                border-color: transparent;
+                background-color: transparent;
             }
             &:active {
-                border-color: #EB6A09;
+                background-color: rgba(0, 0, 0, 0.05);
             }
         }
     }

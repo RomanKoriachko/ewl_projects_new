@@ -182,12 +182,6 @@ const SearchAndFilter = (props: Props) => {
         backgroundColor: '#f18a01',
     }
 
-    // let raw = localStorage.getItem('loginData')
-    // let localLoginData
-    // if (raw) {
-    //     localLoginData = JSON.parse(raw)
-    // }
-
     return (
         <div className="search-and-filter">
             <div className="search">

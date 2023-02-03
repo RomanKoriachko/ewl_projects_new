@@ -46,8 +46,35 @@
     .login-input {
         grid-area: a;
     }
+    .password-wrapper {
+        position: relative;
+        width: 100%;
+    }
     .password-input {
         grid-area: b;
+        padding-right: 60px;
+    }
+    .show-password-btn {
+        position: absolute;
+        height: 40px;
+        width: 40px;
+        right: 5px;
+        top: 5px;
+        border: 1px solid transparent;
+        border-radius: 50px;
+        background-color: transparent;
+        background-image: url(../../../assets/show-password.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 70%;
+        cursor: pointer;
+        transition: .3s all;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+    .show-password-btn.text {
+        background-image: url(../../../assets/hide-password.png);
     }
     .submit-button {
         grid-area: c;
@@ -68,6 +95,14 @@
         "c";
         .submit-button{
             width: 100%;
+        }
+        .show-password-btn {
+            &:hover {
+                background-color: transparent;
+            }
+            &:active {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
         }
     }
 }
