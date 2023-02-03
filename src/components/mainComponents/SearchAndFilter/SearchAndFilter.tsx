@@ -564,12 +564,15 @@ const SearchAndFilter = (props: Props) => {
                 </div>
                 <div className="filter-is-actual">
                     <FormControl>
-                        <FormLabel id="demo-radio-buttons-group-label">
+                        <FormLabel
+                            className="is-actual-label"
+                            id="demo-radio-buttons-group-label"
+                        >
                             Актуальність
                         </FormLabel>
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="both"
+                            defaultValue="actual"
                             name="radio-buttons-group"
                             value={isActualState}
                             onChange={onIsActualClick}
@@ -585,7 +588,7 @@ const SearchAndFilter = (props: Props) => {
                                         }}
                                     />
                                 }
-                                label="Актуальний"
+                                label="Актуальні"
                             />
                             <FormControlLabel
                                 value="notActual"
@@ -598,7 +601,7 @@ const SearchAndFilter = (props: Props) => {
                                         }}
                                     />
                                 }
-                                label="Не актуальний"
+                                label="Не актуальні"
                             />
                             <FormControlLabel
                                 value="both"

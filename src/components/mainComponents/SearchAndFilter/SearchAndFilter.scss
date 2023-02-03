@@ -49,8 +49,9 @@
         .filter-header{
             @include raleway700();
         }
-        .filter-section-header {
+        .filter-section-header, .is-actual-label {
             @include raleway600();
+            color: black;
             font-size: 18px;
             margin-bottom: 10px;
         }

@@ -38,6 +38,14 @@
     align-items: start;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
+    .project-item.not-actual {
+        background: #cdcdcd;
+    }
+    .not-actual {
+        .is-actual-state {
+            color: rgb(177, 33, 33);
+        }
+    }
     .confirmation {
         width: 100%;
         height: 100%;

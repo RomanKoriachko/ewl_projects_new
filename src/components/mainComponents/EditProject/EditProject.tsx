@@ -516,7 +516,7 @@ const EditProject = (props: Props) => {
                     onChange={handleChangeProjectAdditionalInfo}
                 />
                 <TextField
-                    label="Контакт опікуна"
+                    label="Регіон, контакт опікуна"
                     variant="outlined"
                     id="edit-contact"
                     value={editProjectState.contact}

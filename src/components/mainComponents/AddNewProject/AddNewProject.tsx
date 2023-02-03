@@ -519,7 +519,7 @@ const AddNewProject = (props: Props) => {
                     onChange={handleChangeAdditionalInfo}
                 />
                 <TextField
-                    label="Контакт опікуна"
+                    label="Регіон, контакт опікуна"
                     variant="outlined"
                     id="contact"
                     size={inputSize}
