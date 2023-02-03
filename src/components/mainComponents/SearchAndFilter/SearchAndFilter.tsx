@@ -562,62 +562,60 @@ const SearchAndFilter = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                {localLoginData.isAdmin ? (
-                    <div className="filter-is-actual">
-                        <FormControl>
-                            <FormLabel id="demo-radio-buttons-group-label">
-                                Актуальність
-                            </FormLabel>
-                            <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="both"
-                                name="radio-buttons-group"
-                                value={isActualState}
-                                onChange={onIsActualClick}
-                            >
-                                <FormControlLabel
-                                    value="actual"
-                                    control={
-                                        <Radio
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
-                                        />
-                                    }
-                                    label="Актуальний"
-                                />
-                                <FormControlLabel
-                                    value="notActual"
-                                    control={
-                                        <Radio
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
-                                        />
-                                    }
-                                    label="Не актуальний"
-                                />
-                                <FormControlLabel
-                                    value="both"
-                                    control={
-                                        <Radio
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
-                                        />
-                                    }
-                                    label="Всі"
-                                />
-                            </RadioGroup>
-                        </FormControl>
-                    </div>
-                ) : undefined}
+                <div className="filter-is-actual">
+                    <FormControl>
+                        <FormLabel id="demo-radio-buttons-group-label">
+                            Актуальність
+                        </FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="both"
+                            name="radio-buttons-group"
+                            value={isActualState}
+                            onChange={onIsActualClick}
+                        >
+                            <FormControlLabel
+                                value="actual"
+                                control={
+                                    <Radio
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                        }}
+                                    />
+                                }
+                                label="Актуальний"
+                            />
+                            <FormControlLabel
+                                value="notActual"
+                                control={
+                                    <Radio
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                        }}
+                                    />
+                                }
+                                label="Не актуальний"
+                            />
+                            <FormControlLabel
+                                value="both"
+                                control={
+                                    <Radio
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                        }}
+                                    />
+                                }
+                                label="Всі"
+                            />
+                        </RadioGroup>
+                    </FormControl>
+                </div>
                 <div className="filter-adult">
                     <div className="filter-wrapper">
                         <div className="filter-item">
