@@ -1,4 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import {
     cleanRegistrationInput,
@@ -42,6 +43,14 @@ const Registration = (props: Props) => {
         dispatch(cleanRegistrationInput())
     }
 
+    const [showPassword, setShowPassword] = useState<string>('password')
+
+    const onShowPasswordClick = () => {
+        showPassword === 'password'
+            ? setShowPassword('text')
+            : setShowPassword('password')
+    }
+
     return (
         <div className="registration">
             <div className="registration-header">
@@ -50,6 +59,7 @@ const Registration = (props: Props) => {
             <form id="registration-form" onSubmit={createAccount}>
                 <div className="grid-wrapper registration-wrapper">
                     <input
+                        required
                         className="login-input registration-input"
                         placeholder="Пошта"
                         type="text"
@@ -57,14 +67,22 @@ const Registration = (props: Props) => {
                         onChange={handleChangeRegistrationLogin}
                         value={RedistrationState.email}
                     />
-                    <input
-                        className="password-input registration-input"
-                        placeholder="Пароль"
-                        type="password"
-                        id="registration-password"
-                        onChange={handleChangeRegistrationPassword}
-                        value={RedistrationState.password}
-                    />
+                    <div className="password-wrapper">
+                        <input
+                            required
+                            className="password-input registration-input"
+                            placeholder="Пароль"
+                            type={showPassword}
+                            id="registration-password"
+                            onChange={handleChangeRegistrationPassword}
+                            value={RedistrationState.password}
+                        />
+                        <button
+                            type="button"
+                            className={`show-password-btn ${showPassword}`}
+                            onClick={onShowPasswordClick}
+                        ></button>
+                    </div>
                     <button type="submit" className="submit-button">
                         Зареєструвати
                     </button>
