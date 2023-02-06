@@ -4,13 +4,16 @@
     border: 1px solid black;
     border-radius: 10px;
     padding: 40px;
-    width: 50%;
+    width: 100%;
     background: white;
     @include sans400;
     >p{
         @include raleway700();
         font-size: 32px;
         margin-bottom: 20px;
+    }
+    .country-choise {
+        width: 50%;
     }
     form{
         display: grid;
@@ -26,8 +29,13 @@
             width: 220px;
             @include mainButton();
         }
-        .age-row {
+        .form-item-row {
             justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            .form-item-input {
+                width: 50%;
+            }
         }
     }
     .sex-and-switch {
@@ -47,6 +55,9 @@
     .project-form{
         .add-project-header {
             font-size: 26px;
+        }
+        .country-choise {
+            width: 100%;
         }
         form{
             .age-row {
@@ -72,6 +83,12 @@
             }
             .sex-and-switch {
                 flex-direction: column;
+            }
+            .form-item-row {
+                flex-direction: column;
+                .form-item-input {
+                    width: 100%;
+                }
             }
             .add-project-btn{
                 width: 100%;
