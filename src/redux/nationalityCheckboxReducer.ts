@@ -4,7 +4,7 @@ type SexCheckboxType = {
     ukraine: boolean
     moldova: boolean
     georgia: boolean
-    armenia: boolean
+    virmenia: boolean
     bilorus: boolean
 }
 
@@ -12,7 +12,7 @@ const initialState: SexCheckboxType = {
     ukraine: false,
     moldova: false,
     georgia: false,
-    armenia: false,
+    virmenia: false,
     bilorus: false,
 }
 
@@ -28,7 +28,7 @@ export const nationalityCheckboxReducer = createSlice({
             ukraine: false,
             moldova: false,
             georgia: false,
-            armenia: false,
+            virmenia: false,
             bilorus: false,
         })
     }

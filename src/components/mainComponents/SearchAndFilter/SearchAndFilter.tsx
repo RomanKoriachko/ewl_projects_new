@@ -652,12 +652,12 @@ const SearchAndFilter = (props: Props) => {
                         </div>
                         <div className="filter-item">
                             <FormControlLabel
-                                label="Арменія"
+                                label="Вірменія"
                                 className="filter-checkbox"
                                 control={
                                     <Checkbox
-                                        id="armenia-nationality"
-                                        name="armenia"
+                                        id="virmenia-nationality"
+                                        name="virmenia"
                                         onChange={nationalityFilterClick}
                                         sx={{
                                             '&.Mui-checked': {
@@ -668,7 +668,7 @@ const SearchAndFilter = (props: Props) => {
                                             },
                                         }}
                                         checked={
-                                            nationalityCheckboxState.armenia
+                                            nationalityCheckboxState.virmenia
                                         }
                                     />
                                 }
@@ -691,11 +691,9 @@ const SearchAndFilter = (props: Props) => {
                                                 fontSize: 20,
                                             },
                                         }}
-                                        // checked={
-                                        //     nationalityCheckboxState.bilorus
-                                        //         ? true
-                                        //         : false
-                                        // }
+                                        checked={
+                                            nationalityCheckboxState.bilorus
+                                        }
                                     />
                                 }
                             />

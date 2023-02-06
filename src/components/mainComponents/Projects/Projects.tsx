@@ -356,7 +356,7 @@ const Projects = (props: Props) => {
                 el.nationalaty.includes('Грузія')
             )
         }
-        if (nationalityCheckboxState.armenia) {
+        if (nationalityCheckboxState.virmenia) {
             tempNationalityArr4 = filtredSexArr.filter((el: ProjectType) =>
                 el.nationalaty.includes('Арменія')
             )
@@ -370,7 +370,7 @@ const Projects = (props: Props) => {
             nationalityCheckboxState.ukraine === false &&
             nationalityCheckboxState.moldova === false &&
             nationalityCheckboxState.georgia === false &&
-            nationalityCheckboxState.armenia === false &&
+            nationalityCheckboxState.virmenia === false &&
             nationalityCheckboxState.bilorus === false
         ) {
             nationalityArr = filtredSexArr
@@ -567,7 +567,7 @@ const Projects = (props: Props) => {
                                             )}
                                         </div>
                                     </div>
-                                    <div className="row">
+                                    <div className="row project-location-row">
                                         <div className="project-country">
                                             {element.country},
                                         </div>

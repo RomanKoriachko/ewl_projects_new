@@ -132,10 +132,22 @@
             font-size: 12px;
             margin-right: 5px;
         }
+        .project-location-row {
+            align-items: center;
+        }
         .project-location {
-            @include sans400();
-            font-size: 12px;
-            color: #444;
+            >a{
+                @include sans400();
+                font-size: 12px;
+                color: #444;
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+                transition: .5s all;
+                &:hover {
+                    border-bottom: 1px solid #444;
+                }
+            }
+
         }
         .project-category {
             @include sans400();
