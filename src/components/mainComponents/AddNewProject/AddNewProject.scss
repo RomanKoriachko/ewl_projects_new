@@ -12,9 +12,6 @@
         font-size: 32px;
         margin-bottom: 20px;
     }
-    .country-choise {
-        width: 50%;
-    }
     form{
         display: grid;
         grid-template-columns: 1fr;
@@ -48,6 +45,11 @@
     .project-form {
         width: 100%;
     }
+    form{
+        .sex-select-wrapper {
+            flex-direction: column;
+        }
+    }
 }
 
 // Tablet
@@ -55,9 +57,6 @@
     .project-form{
         .add-project-header {
             font-size: 26px;
-        }
-        .country-choise {
-            width: 100%;
         }
         form{
             .age-row {
@@ -86,6 +85,7 @@
             }
             .form-item-row {
                 flex-direction: column;
+                gap: 10px;
                 .form-item-input {
                     width: 100%;
                 }

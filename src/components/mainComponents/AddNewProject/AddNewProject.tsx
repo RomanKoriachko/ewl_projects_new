@@ -383,53 +383,49 @@ const AddNewProject = (props: Props) => {
                         </div>
                     </FormGroup>
                 </FormControl>
-                <div className="row form-item-row">
-                    <TextField
-                        required
-                        className="form-item-input"
-                        label="Назва проєкту"
-                        variant="outlined"
-                        id="project"
-                        multiline
-                        size={inputSize}
-                        value={projectState.projectName}
-                        onChange={handleChangeProjectName}
-                    />
-                    <TextField
-                        required
-                        className="form-item-input"
-                        label="Заробітня плата"
-                        variant="outlined"
-                        id="salary"
-                        multiline
-                        size={inputSize}
-                        value={projectState.salary}
-                        onChange={handleChangeSalary}
-                    />
-                </div>
-                <div className="row form-item-row">
-                    <TextField
-                        required
-                        className="form-item-input"
-                        label="Локалізація"
-                        variant="outlined"
-                        id="location"
-                        multiline
-                        size={inputSize}
-                        value={projectState.location}
-                        onChange={handleChangeProjectLocation}
-                    />
-                    <TextField
-                        required
-                        className="form-item-input"
-                        label="Категорія"
-                        variant="outlined"
-                        id="category"
-                        size={inputSize}
-                        value={projectState.category}
-                        onChange={handleChangeProjectCategory}
-                    />
-                </div>
+                <TextField
+                    required
+                    className="form-item-input"
+                    label="Назва проєкту"
+                    variant="outlined"
+                    id="project"
+                    multiline
+                    size={inputSize}
+                    value={projectState.projectName}
+                    onChange={handleChangeProjectName}
+                />
+                <TextField
+                    required
+                    className="form-item-input"
+                    label="Заробітня плата"
+                    variant="outlined"
+                    id="salary"
+                    multiline
+                    size={inputSize}
+                    value={projectState.salary}
+                    onChange={handleChangeSalary}
+                />
+                <TextField
+                    required
+                    className="form-item-input"
+                    label="Локалізація"
+                    variant="outlined"
+                    id="location"
+                    multiline
+                    size={inputSize}
+                    value={projectState.location}
+                    onChange={handleChangeProjectLocation}
+                />
+                <TextField
+                    required
+                    className="form-item-input"
+                    label="Категорія"
+                    variant="outlined"
+                    id="category"
+                    size={inputSize}
+                    value={projectState.category}
+                    onChange={handleChangeProjectCategory}
+                />
                 <div className="row form-item-row">
                     <TextField
                         required
@@ -458,52 +454,48 @@ const AddNewProject = (props: Props) => {
                         onChange={handleChangeProjectAgeTo}
                     />
                 </div>
-                <div className="row form-item-row">
-                    <TextField
-                        required
-                        className="form-item-input"
-                        label="Національність"
-                        variant="outlined"
-                        id="nationalaty"
-                        multiline
-                        size={inputSize}
-                        value={projectState.nationalaty}
-                        onChange={handleChangeProjectNationalaty}
-                    />
-                    <TextField
-                        className="form-item-input"
-                        label="Посилання на приїзд"
-                        variant="outlined"
-                        id="synchroner-link"
-                        multiline
-                        size={inputSize}
-                        value={projectState.synchronerLink}
-                        onChange={handleChangeProjectSynchronerLink}
-                    />
-                </div>
-                <div className="row form-item-row">
-                    <TextField
-                        required
-                        className="form-item-input"
-                        label="Проживання"
-                        variant="outlined"
-                        id="housing"
-                        multiline
-                        size={inputSize}
-                        value={projectState.housing}
-                        onChange={handleChangeProjectHousing}
-                    />
-                    <TextField
-                        className="form-item-input"
-                        label="Відео з проєкту"
-                        variant="outlined"
-                        id="video"
-                        multiline
-                        size={inputSize}
-                        value={projectState.video}
-                        onChange={handleChangeVideo}
-                    />
-                </div>
+                <TextField
+                    required
+                    className="form-item-input"
+                    label="Національність"
+                    variant="outlined"
+                    id="nationalaty"
+                    multiline
+                    size={inputSize}
+                    value={projectState.nationalaty}
+                    onChange={handleChangeProjectNationalaty}
+                />
+                <TextField
+                    className="form-item-input"
+                    label="Посилання на приїзд"
+                    variant="outlined"
+                    id="synchroner-link"
+                    multiline
+                    size={inputSize}
+                    value={projectState.synchronerLink}
+                    onChange={handleChangeProjectSynchronerLink}
+                />
+                <TextField
+                    required
+                    className="form-item-input"
+                    label="Проживання"
+                    variant="outlined"
+                    id="housing"
+                    multiline
+                    size={inputSize}
+                    value={projectState.housing}
+                    onChange={handleChangeProjectHousing}
+                />
+                <TextField
+                    className="form-item-input"
+                    label="Відео з проєкту"
+                    variant="outlined"
+                    id="video"
+                    multiline
+                    size={inputSize}
+                    value={projectState.video}
+                    onChange={handleChangeVideo}
+                />
                 <TextField
                     required
                     label="Графік роботи"
