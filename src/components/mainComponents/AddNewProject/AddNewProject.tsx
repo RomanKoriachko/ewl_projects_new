@@ -10,6 +10,7 @@ import {
     changeProjectAgeFrom,
     changeProjectAgeTo,
     changeProjectHousing,
+    changeProjectHousingPhoto,
     changeProjectInfo,
     changeProjectLocation,
     changeProjectName,
@@ -140,6 +141,11 @@ const AddNewProject = (props: Props) => {
     ) => {
         dispatch(changeProjectHousing(e.target.value))
     }
+    const handleChangeProjectHousingPhoto = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(changeProjectHousingPhoto(e.target.value))
+    }
     const handleChangeWorkSchedule = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -182,7 +188,8 @@ const AddNewProject = (props: Props) => {
         workSchedule: string,
         food: string,
         synchronerLink: string,
-        contact: string
+        contact: string,
+        housingPhoto: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -212,6 +219,7 @@ const AddNewProject = (props: Props) => {
                             food: food,
                             synchronerLink: synchronerLink,
                             contact: contact,
+                            housingPhoto: housingPhoto,
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
@@ -260,7 +268,8 @@ const AddNewProject = (props: Props) => {
                 projectState.workSchedule,
                 projectState.food,
                 projectState.synchronerLink,
-                projectState.contact
+                projectState.contact,
+                projectState.housingPhoto
             )
         }
     }
@@ -485,6 +494,16 @@ const AddNewProject = (props: Props) => {
                     size={inputSize}
                     value={projectState.housing}
                     onChange={handleChangeProjectHousing}
+                />
+                <TextField
+                    className="form-item-input"
+                    label="Фото житла"
+                    variant="outlined"
+                    id="housing-photo"
+                    multiline
+                    size={inputSize}
+                    value={projectState.housingPhoto}
+                    onChange={handleChangeProjectHousingPhoto}
                 />
                 <TextField
                     className="form-item-input"

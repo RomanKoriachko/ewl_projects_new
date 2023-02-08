@@ -29,6 +29,7 @@ type ProjectType = {
     food: string
     synchronerLink: string
     contact: string
+    housingPhoto: string
 }
 
 type LocalDataType = {
@@ -92,6 +93,7 @@ const Projects = (props: Props) => {
             food: null,
             synchronerLink: null,
             contact: null,
+            housingPhoto: null,
         })
     }
 
@@ -130,7 +132,8 @@ const Projects = (props: Props) => {
         workSchedule: string,
         food: string,
         synchronerLink: string,
-        contact: string
+        contact: string,
+        housingPhoto: string
     ) => {
         dispatch(
             getProjectData({
@@ -153,6 +156,7 @@ const Projects = (props: Props) => {
                 food: food,
                 synchronerLink: synchronerLink,
                 contact: contact,
+                housingPhoto: housingPhoto,
             })
         )
         editFormState
@@ -683,6 +687,17 @@ const Projects = (props: Props) => {
                                         </span>{' '}
                                         <div className="textfield-content">
                                             {element.housing}
+                                            {element.housingPhoto ? (
+                                                <div>
+                                                    <a
+                                                        href={
+                                                            element.housingPhoto
+                                                        }
+                                                    >
+                                                        Фото житла
+                                                    </a>
+                                                </div>
+                                            ) : undefined}
                                         </div>
                                     </div>
                                 </div>
@@ -794,7 +809,8 @@ const Projects = (props: Props) => {
                                                     element.workSchedule,
                                                     element.food,
                                                     element.synchronerLink,
-                                                    element.contact
+                                                    element.contact,
+                                                    element.housingPhoto
                                                 )
                                             }
                                         >

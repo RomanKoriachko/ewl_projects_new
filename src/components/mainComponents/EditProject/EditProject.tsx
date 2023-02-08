@@ -11,6 +11,7 @@ import {
     editProjectAgeFrom,
     editProjectAgeTo,
     editProjectHousing,
+    editProjectHousingPhoto,
     editProjectInfo,
     editProjectLocation,
     editProjectName,
@@ -138,6 +139,11 @@ const EditProject = (props: Props) => {
     ) => {
         dispatch(editProjectHousing(e.target.value))
     }
+    const handleChangeProjectHousingPhoto = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(editProjectHousingPhoto(e.target.value))
+    }
     const handleChangeProjectWorkSchedule = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -181,7 +187,8 @@ const EditProject = (props: Props) => {
         workSchedule: string,
         food: string,
         synchronerLink: string,
-        contact: string
+        contact: string,
+        housingPhoto: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -212,6 +219,7 @@ const EditProject = (props: Props) => {
                             food: food,
                             synchronerLink: synchronerLink,
                             contact: contact,
+                            housingPhoto: housingPhoto,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -255,7 +263,8 @@ const EditProject = (props: Props) => {
                 editProjectState.workSchedule,
                 editProjectState.food,
                 editProjectState.synchronerLink,
-                editProjectState.contact
+                editProjectState.contact,
+                editProjectState.housingPhoto
             )
             dispatch(setFormState(false))
         }
@@ -475,6 +484,15 @@ const EditProject = (props: Props) => {
                     size={inputSize}
                     value={editProjectState.housing}
                     onChange={handleChangeProjectHousing}
+                />
+                <TextField
+                    label="Фото житла"
+                    variant="outlined"
+                    id="edit-housing-photo"
+                    multiline
+                    size={inputSize}
+                    value={editProjectState.housingPhoto}
+                    onChange={handleChangeProjectHousingPhoto}
                 />
                 <TextField
                     required

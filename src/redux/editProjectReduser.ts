@@ -19,6 +19,7 @@ type ProjectType = {
     food: string
     synchronerLink: string
     contact: string
+    housingPhoto: string
 }
 
 const initialState: ProjectType = {
@@ -40,6 +41,7 @@ const initialState: ProjectType = {
     food: '',
     synchronerLink: '',
     contact: '',
+    housingPhoto: '',
 }
 
 export const editProjectSlice = createSlice({
@@ -89,6 +91,10 @@ export const editProjectSlice = createSlice({
         editProjectHousing: (state, action) => ({
             ...state,
             housing: action.payload
+        }),
+        editProjectHousingPhoto: (state, action) => ({
+            ...state,
+            housingPhoto: action.payload
         }),
         editProjectInfo: (state, action) => ({
             ...state,
@@ -141,6 +147,7 @@ export const editProjectSlice = createSlice({
             food: action.payload,
             synchronerLink: action.payload,
             contact: action.payload,
+            housingPhoto: action.payload
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
@@ -161,9 +168,10 @@ export const editProjectSlice = createSlice({
             food: action.payload.food,
             synchronerLink: action.payload.synchronerLink,
             contact: action.payload.contact,
+            housingPhoto: action.payload.housingPhoto,
         }),
     }
 })
 
-export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData, editIsActual, editVideo, editWorkSchedule, editFood, editSynchronerLink, editContact} = editProjectSlice.actions
+export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectHousingPhoto, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData, editIsActual, editVideo, editWorkSchedule, editFood, editSynchronerLink, editContact} = editProjectSlice.actions
 export default editProjectSlice.reducer
