@@ -45,10 +45,17 @@ const Login = (props: Props) => {
                     )
                 }
             })
-            .catch(() => {
-                alert(
-                    'Такого користувача не існує або неправильно введені дані'
-                )
+            .catch((error) => {
+                const errorCode = error.code
+                const errorMessage = error.message
+                if (errorCode === 'auth/invalid-email') {
+                    alert('Неправильно введена пошта')
+                }
+                if (errorCode === 'auth/wrong-password') {
+                    alert('Неправильно введений пароль')
+                }
+                console.log(errorCode)
+                console.log(errorMessage)
             })
     }
 

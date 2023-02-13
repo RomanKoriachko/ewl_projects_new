@@ -49,6 +49,9 @@ const Registration = (props: Props) => {
                     console.log(errorCode)
                     console.log(errorMessage)
                     alert('Помилка створення аккаунту')
+                    if (errorCode === 'auth/email-already-in-use') {
+                        alert('Цей користувач вже зареєстрований')
+                    }
                 })
             dispatch(cleanRegistrationInput())
         }
