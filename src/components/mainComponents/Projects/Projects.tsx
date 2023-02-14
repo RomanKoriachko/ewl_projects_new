@@ -874,8 +874,10 @@ const Projects = (props: Props) => {
                                             element.projectInfo
                                         }\n\nГрафік роботи\n${
                                             element.workSchedule
-                                        }\n\nПроживання\n${
-                                            element.housing
+                                        }\n\nПроживання\n${element.housing}${
+                                            element.housingPhoto !== ''
+                                                ? `\n\nФото житла\n${element.housingPhoto}`
+                                                : ''
                                         }\n\nХарчування\n${element.food}${
                                             element.additionalInfo !== ''
                                                 ? `\n\nДодаткова інформація\n${element.additionalInfo}`
