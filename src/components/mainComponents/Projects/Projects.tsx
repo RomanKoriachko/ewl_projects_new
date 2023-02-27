@@ -866,9 +866,10 @@ const Projects = (props: Props) => {
                                             element.location
                                         }\nhttps://www.google.com.ua/maps/place/${
                                             element.country
-                                        }+${
-                                            element.location
-                                        }\n\nЗаробітня плата\n${
+                                        }+${element.location.replace(
+                                            / /gi,
+                                            '+'
+                                        )}\n\nЗаробітня плата\n${
                                             element.salary
                                         }\n\nОпис вакансії\n${
                                             element.projectInfo
