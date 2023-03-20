@@ -20,6 +20,7 @@ type UserType = {
 
 const Main = (props: Props) => {
     const loginDataState = useAppSelector((state) => state.loginDataState)
+    const darkThemeState = useAppSelector((state) => state.darkThemeState)
 
     let raw = localStorage.getItem('loginData')
     let localLoginData
@@ -44,7 +45,7 @@ const Main = (props: Props) => {
     }
 
     return (
-        <main className="main main-dark">
+        <main className={`main ${darkThemeState.main}`}>
             {currentData.isLogged ? (
                 currentData.isAdmin ? (
                     <>

@@ -1,5 +1,8 @@
 import './Header.scss'
-import { useAppSelector } from 'redux/hooks'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { FormControlLabel, FormGroup, Switch } from '@mui/material'
+import { darkModeOff, darkModeOn } from 'redux/darkThemeReducer'
+import { useEffect } from 'react'
 
 type Props = {}
 
@@ -12,6 +15,8 @@ type UserType = {
 
 const Header = (props: Props) => {
     const loginDataState = useAppSelector((state) => state.loginDataState)
+    const darkThemeState = useAppSelector((state) => state.darkThemeState)
+    const dispatch = useAppDispatch()
 
     let raw = localStorage.getItem('loginData')
     let localLoginData
@@ -42,29 +47,74 @@ const Header = (props: Props) => {
         localStorage.setItem('loginData', JSON.stringify(logoutData))
     }
 
+    let localThemeData = localStorage.getItem('darkThemeState')
+
     const reloadPage = () => {
         document.location.reload()
     }
 
+    const isDarkThemeOn = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked ? dispatch(darkModeOn()) : dispatch(darkModeOff())
+    }
+
+    useEffect(() => {
+        let localThemeData = localStorage.getItem('darkThemeState')
+        if (localThemeData === 'on') {
+            dispatch(darkModeOn())
+        } else {
+            dispatch(darkModeOff())
+        }
+    }, [dispatch])
+
     return (
-        <header className="header header-dark">
-            <div className="upper-line"></div>
+        <header className={`header ${darkThemeState.header}`}>
+            <div className="upper-line">
+                <div className="container">
+                    <div className="dark-theme-switcher">
+                        <div className="switcher-wrapper">
+                            <div className="switcher-item">
+                                <FormGroup>
+                                    <FormControlLabel
+                                        className="label"
+                                        control={
+                                            <Switch
+                                                color="warning"
+                                                onChange={isDarkThemeOn}
+                                                checked={
+                                                    localThemeData === 'on'
+                                                        ? true
+                                                        : false
+                                                }
+                                            />
+                                        }
+                                        label=""
+                                    />
+                                </FormGroup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="container">
                 {currentData.isLogged ? (
                     <div className="header-content row">
                         <div className="header-logo"></div>
-                        <div className="row user-name-and-btn">
-                            <div className="header-user">
-                                Користувач: {localLoginData.email}
-                            </div>
+                        <div className="row">
                             <div>
-                                <div onClick={reloadPage}>
-                                    <button
-                                        className="logout-btn"
-                                        onClick={() => logout()}
-                                    >
-                                        Вийти
-                                    </button>
+                                <div className="row user-name-and-btn">
+                                    <div className="header-user">
+                                        Користувач: {localLoginData.email}
+                                    </div>
+                                    <div>
+                                        <div onClick={reloadPage}>
+                                            <button
+                                                className="logout-btn"
+                                                onClick={() => logout()}
+                                            >
+                                                Вийти
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

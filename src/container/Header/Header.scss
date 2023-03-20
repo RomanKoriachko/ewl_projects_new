@@ -3,8 +3,17 @@
 .header {
     min-height: 100px;
     .upper-line {
-        height: 30px;
         background-color: #eb6a09;
+    }
+    .label {
+        justify-content: flex-end;
+        > span:nth-child(2) {
+            background-image: url(../../assets/dark-theme-img.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 50px;
+            width: 35px;
+        }
     }
     .header-content {
         min-height: 70px;
@@ -41,6 +50,11 @@
     color: white;
     .upper-line {
         background: linear-gradient(180deg, #1f1f1f, #2c2c2c 70.71%);
+    }
+    .label {
+        > span:nth-child(2) {
+            background-image: url(../../assets/white-theme-img.svg);
+        }
     }
     .header-content {
         .header-logo {

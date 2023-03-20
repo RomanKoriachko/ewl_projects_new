@@ -1,21 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
-import ageSearchReducer from "./ageSearchReducer";
-import checkboxCheckedReducer from "./checkboxCheckedReducer";
-import countryCheckboxReducer from "./countryCheckboxReducer";
-import editFormReducer from "./editFormReducer";
-import editProjectReduser from "./editProjectReduser";
-import filterReducer from "./filterReducer";
-import isActualReducer from "./isActualReducer";
-import isFilterOpenReducer from "./isFilterOpenReducer";
-import isMinorReducer from "./isMinorReducer";
-import loginDataReducer from "./loginDataReducer";
-import nationalityCheckboxReducer from "./nationalityCheckboxReducer";
-import newProjectReduser from "./newProjectReduser";
-import registrationDataReducer from "./registrationDataReducer";
-import searchContentReducer from "./searchContentReducer";
-import sexCheckboxReducer from "./sexCheckboxReducer";
-import ShowMoreReducer from "./ShowMoreReducer";
-
+import { configureStore } from '@reduxjs/toolkit'
+import ageSearchReducer from './ageSearchReducer'
+import checkboxCheckedReducer from './checkboxCheckedReducer'
+import countryCheckboxReducer from './countryCheckboxReducer'
+import darkThemeReducer from './darkThemeReducer'
+import editFormReducer from './editFormReducer'
+import editProjectReduser from './editProjectReduser'
+import filterReducer from './filterReducer'
+import isActualReducer from './isActualReducer'
+import isFilterOpenReducer from './isFilterOpenReducer'
+import isMinorReducer from './isMinorReducer'
+import loginDataReducer from './loginDataReducer'
+import nationalityCheckboxReducer from './nationalityCheckboxReducer'
+import newProjectReduser from './newProjectReduser'
+import registrationDataReducer from './registrationDataReducer'
+import searchContentReducer from './searchContentReducer'
+import sexCheckboxReducer from './sexCheckboxReducer'
+import ShowMoreReducer from './ShowMoreReducer'
 
 export const store = configureStore({
     reducer: {
@@ -35,7 +35,8 @@ export const store = configureStore({
         isFilterOpenState: isFilterOpenReducer,
         isActualState: isActualReducer,
         nationalityCheckboxState: nationalityCheckboxReducer,
-    }
+        darkThemeState: darkThemeReducer,
+    },
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
