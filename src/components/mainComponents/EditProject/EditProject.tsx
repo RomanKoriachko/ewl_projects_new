@@ -85,10 +85,6 @@ const EditProject = (props: Props) => {
         }
     }
 
-    const errorElement = editProjectState.sex
-        .split(' ')
-        .filter((element) => element.length > 1)
-
     const handleChangeIsActual = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(editIsActual(e.target.checked))
     }

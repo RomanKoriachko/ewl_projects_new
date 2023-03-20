@@ -94,10 +94,6 @@ const AddNewProject = (props: Props) => {
         )
     }
 
-    const errorElement = projectState.sex
-        .split(' ')
-        .filter((element) => element.length > 1)
-
     const isActualChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(changeIsActual(e.target.checked))
     }
