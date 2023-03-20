@@ -299,7 +299,7 @@ const AddNewProject = (props: Props) => {
                         dispatch(changeCountry(newValue))
                     }}
                 />
-                <FormControl required error={error}>
+                <FormControl required>
                     <FormLabel>Вибір статі</FormLabel>
                     <FormGroup>
                         <div className="row sex-and-switch">
