@@ -98,15 +98,6 @@ const AddNewProject = (props: Props) => {
         .split(' ')
         .filter((element) => element.length > 1)
 
-    let error = true
-    errorElement.forEach((element) => {
-        if (element.length < 1) {
-            error = true
-        } else {
-            error = false
-        }
-    })
-
     const isActualChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(changeIsActual(e.target.checked))
     }
