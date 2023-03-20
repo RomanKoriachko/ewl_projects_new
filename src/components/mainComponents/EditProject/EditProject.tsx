@@ -298,7 +298,7 @@ const EditProject = (props: Props) => {
                     }}
                 />
                 <div className="sex-select-edit">
-                    <FormControl required error={error}>
+                    <FormControl required>
                         <FormLabel>Вибір статі</FormLabel>
                         <div className="row edit-sex-and-switch">
                             <div className="row sex-select-wrapper">
