@@ -14,7 +14,7 @@
 .hide {
     display: none;
 }
-.show{
+.show {
     display: block;
 }
 .hide-scroll-up {
@@ -22,21 +22,224 @@
     opacity: 0;
     right: -50px;
     visibility: hidden;
-    transition: .5s all;
+    transition: 0.5s all;
 }
-.show-scroll-up{
+.show-scroll-up {
     opacity: 1;
     visibility: visible;
-    transition: .5s all;
+    transition: 0.5s all;
 }
 
 .main {
-    background: linear-gradient(217deg,  #fe6e00, rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, #fd8c01, rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, #feaa02 , rgba(0,0,255,0) 70.71%);
-            .login-wrapper {
-                height: calc(100vh - 100px);
+    background: linear-gradient(217deg, #fe6e00, rgba(255, 0, 0, 0) 70.71%),
+        linear-gradient(127deg, #fd8c01, rgba(0, 255, 0, 0) 70.71%),
+        linear-gradient(336deg, #feaa02, rgba(0, 0, 255, 0) 70.71%);
+    .login-wrapper {
+        height: calc(100vh - 100px);
+    }
+}
+
+.main-dark {
+    background: linear-gradient(180deg, #1f1f1f, #2c2c2c 70.71%);
+    .login {
+        background-color: #424242;
+        border-color: #6b6b6b;
+        color: white;
+        .grid-wrapper {
+            .login-input,
+            .password-input {
+                background-color: #424242;
+                border-color: #6b6b6b;
+                color: white;
             }
+            .show-password-btn {
+                background-image: url(../../assets/show-password-dark.svg);
+            }
+            .show-password-btn.text {
+                background-image: url(../../assets/hide-password-dark.svg);
+            }
+            .login-input:-webkit-autofill,
+            .login-input:-webkit-autofill:focus,
+            .password-input:-webkit-autofill,
+            .password-input:-webkit-autofill:focus {
+                transition: background-color 600000s 0s, color 600000s 0s;
+            }
+            .submit-button {
+                background: linear-gradient(180deg, #161616, #222222 70.71%);
+            }
+        }
+    }
+    .slider-item {
+        .slider-content {
+            background: #000000be;
+        }
+    }
+    .project-form {
+        background-color: #424242;
+        border-color: #6b6b6b;
+        color: white;
+        form {
+            input {
+                color: white;
+            }
+        }
+        .add-project-btn {
+            background: linear-gradient(180deg, #161616, #222222 70.71%);
+        }
+    }
+    .registration {
+        background-color: #424242;
+        border-color: #6b6b6b;
+        color: white;
+        .registration-wrapper {
+            input {
+                background-color: #424242;
+                border-color: #6b6b6b;
+                color: white;
+            }
+            input:-webkit-autofill,
+            input:-webkit-autofill:focus {
+                transition: background-color 600000s 0s, color 600000s 0s;
+            }
+        }
+        .grid-wrapper {
+            .submit-button {
+                background: linear-gradient(180deg, #161616, #222222 70.71%);
+            }
+        }
+        .show-password-btn {
+            background-image: url(../../assets/show-password-dark.svg);
+        }
+        .show-password-btn.text {
+            background-image: url(../../assets/hide-password-dark.svg);
+        }
+    }
+    .search-and-filter {
+        .search {
+            background-color: #424242;
+            border-color: #6b6b6b;
+            color: white;
+            .search-and-btn {
+                border-color: #6b6b6b;
+                > button {
+                    background-image: url(../../assets/close-img-white.svg);
+                }
+            }
+            .search-input {
+                background-color: transparent;
+                color: white;
+            }
+            .search-input::placeholder {
+                color: white;
+            }
+        }
+        .filter {
+            background-color: #424242;
+            border-color: #6b6b6b;
+            color: white;
+            .filter-section-header,
+            .is-actual-label {
+                color: white;
+            }
+            .filter-age {
+                input {
+                    background-color: #424242;
+                    border-color: #6b6b6b;
+                    color: white;
+                }
+            }
+            .filter-buttons {
+                > button {
+                    border-color: #6b6b6b;
+                    color: white;
+                    &:hover {
+                        color: #fff;
+                        background-color: #414141;
+                        border-color: white;
+                        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+                        transform: translateY(-2px);
+                    }
+                    &:active {
+                        box-shadow: none;
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+    }
+    .projects {
+        .project-item {
+            background-color: #424242;
+            border-color: #6b6b6b;
+            color: white;
+            .project-item-section {
+                a {
+                    color: rgb(132, 183, 250);
+                }
+            }
+            .delite-btn {
+                background-color: rgba(177, 33, 33, 0.8);
+            }
+            .edit-btn {
+                background-color: rgba(211, 104, 43, 0.8);
+            }
+        }
+        .project-item.not-actual {
+            background-color: #44444434;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .confirmation {
+            .confirmation-content {
+                background-color: #424242;
+                border-color: #6b6b6b;
+                color: white;
+                .confirmation-row {
+                    button {
+                        background: linear-gradient(
+                            180deg,
+                            #161616,
+                            #222222 70.71%
+                        );
+                    }
+                }
+            }
+        }
+    }
+    .project-edit-form {
+        background-color: #424242;
+        border-color: #6b6b6b;
+        color: white;
+        .project-edit-header {
+            button {
+                background-image: url(../../assets/close-img-white.svg);
+            }
+        }
+        .edit-project-btn {
+            background: linear-gradient(180deg, #161616, #222222 70.71%);
+        }
+    }
+    .scroll-up {
+        background-color: #424242;
+        border-color: white;
+        background-image: url(../../assets/arrow-up-white.png);
+        &:hover {
+            background-color: #6b6b6b;
+        }
+    }
+    .tablet-filter .filter-button {
+        background-color: #424242;
+        border-color: white;
+        background-image: url(../../assets/filter-img-white.svg);
+        background-size: 75%;
+    }
+    .open .filter-button {
+        background-image: url(../../assets/close-img-white.svg);
+    }
+    .slider-item {
+        > img {
+            filter: brightness(70%);
+        }
+    }
 }
 
 .hide-2 {
@@ -45,14 +248,14 @@
     top: 0px;
     visibility: hidden;
 }
-.show-2{
+.show-2 {
     opacity: 1;
     visibility: visible;
-    transition: .5s all;
+    transition: 0.5s all;
 }
 
 // Tablet
-@media(max-width: 992px) {
+@media (max-width: 992px) {
     .admin-panel {
         flex-direction: column-reverse;
         align-items: center;
@@ -63,5 +266,3 @@
         }
     }
 }
-
-

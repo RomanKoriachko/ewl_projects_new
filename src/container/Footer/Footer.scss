@@ -28,15 +28,23 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        transition: .3s all;
+        transition: 0.3s all;
         &:hover {
             transform: scale(120%);
         }
     }
 }
 
+.footer-dark {
+    background-color: #424242;
+    color: white;
+    .logo {
+        background-image: url(../../assets/logo-ewl-dark.png);
+    }
+}
+
 // Mobile
-@media(max-width: 576px) {
+@media (max-width: 576px) {
     .footer-wrapper {
         flex-direction: column;
     }

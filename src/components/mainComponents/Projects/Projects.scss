@@ -19,7 +19,7 @@
     height: 50px;
     border-radius: 50px;
     background: white;
-    border: 1px solid #EB6A09;
+    border: 1px solid #eb6a09;
     background-image: url(../../../assets/arrow-up.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -29,7 +29,7 @@
     z-index: 100;
     cursor: pointer;
     &:hover {
-        background: #EB6A09;
+        background: #eb6a09;
         background-image: url(../../../assets/arrow-up-white.png);
     }
 }
@@ -65,7 +65,7 @@
             border: 1px solid black;
             border-radius: 10px;
             padding: 20px 40px;
-            >p{
+            > p {
                 @include sans600();
                 margin-bottom: 20px;
                 font-size: 21px;
@@ -73,13 +73,12 @@
             .confirmation-row {
                 justify-content: space-between;
                 gap: 20px;
-                >button{
+                > button {
                     @include mainButton();
                     height: 30px;
                 }
             }
         }
-
     }
     .project-item {
         background-color: white;
@@ -89,13 +88,12 @@
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         padding: 10px;
         position: relative;
-        transition: .3s all;
+        transition: 0.3s all;
         .project-item-section {
             margin-bottom: 20px;
             .synchroner-link {
                 margin-bottom: 5px;
             }
-            
         }
         .bold-text {
             @include sans700();
@@ -103,7 +101,7 @@
         .project-header {
             @include raleway600();
             font-size: 24px;
-            transition: .3s all;
+            transition: 0.3s all;
         }
         .is-actual-state {
             margin-bottom: 20px;
@@ -119,7 +117,7 @@
         }
         .project-sex {
             gap: 5px;
-            >div{
+            > div {
                 color: white;
                 background-color: black;
                 padding: 3px 5px;
@@ -136,13 +134,13 @@
             align-items: center;
         }
         .project-location {
-            >a{
+            > a {
                 @include sans400();
                 font-size: 12px;
                 color: #444;
                 text-decoration: none;
                 border-bottom: 1px solid transparent;
-                transition: .5s all;
+                transition: 0.5s all;
                 &:hover {
                     border-bottom: 1px solid #444;
                 }
@@ -151,7 +149,7 @@
         .project-category {
             @include sans400();
             font-size: 16px;
-            background-color: #EB6A09;
+            background-color: #eb6a09;
             color: white;
             padding: 5px;
         }
@@ -163,10 +161,10 @@
             color: white;
             cursor: pointer;
             margin-right: 10px;
-            transition: .3s all;
+            transition: 0.3s all;
             border-radius: 5px;
             &:hover {
-                background-color: #EB6A09;
+                background-color: #eb6a09;
             }
         }
         .delite-btn {
@@ -191,8 +189,8 @@
         .copy-btn {
             padding: 8px 12px;
         }
-        &:hover .project-header{
-            color: #EB6A09;
+        &:hover .project-header {
+            color: #eb6a09;
         }
     }
 }
@@ -206,7 +204,7 @@
 }
 
 // Desktop
-@media(max-width: 1500px) {
+@media (max-width: 1500px) {
     .projects {
         gap: 20px;
         grid-template-columns: 1fr;
@@ -214,11 +212,10 @@
             padding: 20px;
         }
     }
-
 }
 
 // Mobile
-@media(max-width: 576px) {
+@media (max-width: 576px) {
     .projects {
         .project-item {
             .project-firs-descroption-row {
@@ -241,7 +238,7 @@
         height: 50px;
         border-radius: 50px;
         background: white;
-        border: 1px solid #EB6A09;
+        border: 1px solid #eb6a09;
         background-image: url(../../../assets/arrow-up.png);
         background-position: center;
         background-repeat: no-repeat;
@@ -255,7 +252,7 @@
             background-image: url(../../../assets/arrow-up.png);
         }
         &:active {
-            background: #EB6A09;
+            background: #eb6a09;
             background-image: url(../../../assets/arrow-up-white.png);
         }
     }

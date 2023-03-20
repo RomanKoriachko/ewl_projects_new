@@ -47,7 +47,7 @@ const Header = (props: Props) => {
     }
 
     return (
-        <header className="header">
+        <header className="header header-dark">
             <div className="upper-line"></div>
             <div className="container">
                 {currentData.isLogged ? (

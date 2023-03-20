@@ -44,7 +44,7 @@ const Main = (props: Props) => {
     }
 
     return (
-        <main className="main">
+        <main className="main main-dark">
             {currentData.isLogged ? (
                 currentData.isAdmin ? (
                     <>

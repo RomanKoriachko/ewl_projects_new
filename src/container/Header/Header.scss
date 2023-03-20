@@ -1,10 +1,10 @@
 @import './../../fonts';
 
-.header{
+.header {
     min-height: 100px;
     .upper-line {
         height: 30px;
-        background-color: #EB6A09;
+        background-color: #eb6a09;
     }
     .header-content {
         min-height: 70px;
@@ -36,12 +36,30 @@
     }
 }
 
+.header-dark {
+    background-color: #424242;
+    color: white;
+    .upper-line {
+        background: linear-gradient(180deg, #1f1f1f, #2c2c2c 70.71%);
+    }
+    .header-content {
+        .header-logo {
+            background-image: url(../../assets/logo-ewl-dark.png);
+        }
+        .user-name-and-btn {
+            .logout-btn {
+                background: linear-gradient(180deg, #161616, #222222 70.71%);
+            }
+        }
+    }
+}
+
 // Tablet
-@media(max-width: 992px) {
-    .header{
+@media (max-width: 992px) {
+    .header {
         .header-content {
             .user-name-and-btn {
-                .header-user{
+                .header-user {
                     font-size: 14px;
                     text-align: right;
                 }
@@ -51,8 +69,8 @@
 }
 
 // Mobile
-@media(max-width: 576px) {
-    .header{
+@media (max-width: 576px) {
+    .header {
         // min-height: 110px;
         .header-content {
             .header-logo {
