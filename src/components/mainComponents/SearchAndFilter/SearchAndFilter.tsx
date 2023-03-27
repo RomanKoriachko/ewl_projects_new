@@ -8,7 +8,7 @@ import {
     RadioGroup,
     Switch,
 } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
 import {
     clearAllCountrysCheckboxes,
@@ -42,6 +42,11 @@ import {
 import './SearchAndFilter.scss'
 
 type Props = {}
+type FilterClassState = {
+    countryClass: string
+    sexClass: string
+    nationalityClass: string
+}
 
 const SearchAndFilter = (props: Props) => {
     const dispatch = useAppDispatch()
@@ -201,6 +206,48 @@ const SearchAndFilter = (props: Props) => {
         backgroundColor: '#f18a01',
     }
 
+    // --------------------- Show filter categories ---------------------
+
+    const [filterClassState, setFilterClassState] = useState<FilterClassState>({
+        countryClass: 'show',
+        sexClass: 'show',
+        nationalityClass: 'show',
+    })
+
+    const onShowCountysFilterClick = () => {
+        filterClassState.countryClass === 'show'
+            ? setFilterClassState((prevState: FilterClassState) => ({
+                  ...prevState,
+                  countryClass: 'hide',
+              }))
+            : setFilterClassState((prevState: FilterClassState) => ({
+                  ...prevState,
+                  countryClass: 'show',
+              }))
+    }
+    const onShowSexFilterClick = () => {
+        filterClassState.sexClass === 'show'
+            ? setFilterClassState((prevState: FilterClassState) => ({
+                  ...prevState,
+                  sexClass: 'hide',
+              }))
+            : setFilterClassState((prevState: FilterClassState) => ({
+                  ...prevState,
+                  sexClass: 'show',
+              }))
+    }
+    const onShowNationalityFilterClick = () => {
+        filterClassState.nationalityClass === 'show'
+            ? setFilterClassState((prevState: FilterClassState) => ({
+                  ...prevState,
+                  nationalityClass: 'hide',
+              }))
+            : setFilterClassState((prevState: FilterClassState) => ({
+                  ...prevState,
+                  nationalityClass: 'show',
+              }))
+    }
+
     return (
         <div className="search-and-filter">
             <div className="search">
@@ -220,8 +267,16 @@ const SearchAndFilter = (props: Props) => {
             <div className="filter">
                 <p className="filter-header">Фільтр</p>
                 <div className="filter-country">
-                    <div className="filter-section-header">Країна</div>
-                    <div className="filter-wrapper">
+                    <div
+                        className="row filter-category-header"
+                        onClick={() => onShowCountysFilterClick()}
+                    >
+                        <div className="filter-section-header">Країна</div>
+                        <div className="filter-arrow-btn"></div>
+                    </div>
+                    <div
+                        className={`filter-wrapper ${filterClassState.countryClass}`}
+                    >
                         <div className="filter-item">
                             <FormControlLabel
                                 label="Польща"
@@ -495,8 +550,16 @@ const SearchAndFilter = (props: Props) => {
                     </div>
                 </div>
                 <div className="filter-sex">
-                    <div className="filter-section-header">Стать</div>
-                    <div className="filter-wrapper">
+                    <div
+                        className="row filter-category-header"
+                        onClick={() => onShowSexFilterClick()}
+                    >
+                        <div className="filter-section-header">Стать</div>
+                        <div className="filter-arrow-btn"></div>
+                    </div>
+                    <div
+                        className={`filter-wrapper ${filterClassState.sexClass}`}
+                    >
                         <div className="filter-item">
                             <FormControlLabel
                                 label="Чоловіки"
@@ -576,8 +639,18 @@ const SearchAndFilter = (props: Props) => {
                     </div>
                 </div>
                 <div className="filter-nationality">
-                    <div className="filter-section-header">Національність</div>
-                    <div className="filter-wrapper">
+                    <div
+                        className="row filter-category-header"
+                        onClick={() => onShowNationalityFilterClick()}
+                    >
+                        <div className="filter-section-header">
+                            Національність
+                        </div>
+                        <div className="filter-arrow-btn"></div>
+                    </div>
+                    <div
+                        className={`filter-wrapper ${filterClassState.nationalityClass}`}
+                    >
                         <div className="filter-item">
                             <FormControlLabel
                                 label="Україна"
