@@ -141,6 +141,14 @@
             .is-actual-label {
                 color: white;
             }
+            .filter-country,
+            .filter-sex,
+            .filter-nationality {
+                border-bottom: 1px solid rgb(255, 255, 255);
+            }
+            .filter-arrow-btn {
+                background-image: url(../../assets/filter-arrow-down-white.svg);
+            }
             .filter-age {
                 input {
                     background-color: #424242;

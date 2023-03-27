@@ -362,7 +362,7 @@ const Projects = (props: Props) => {
         }
         if (nationalityCheckboxState.virmenia) {
             tempNationalityArr4 = filtredSexArr.filter((el: ProjectType) =>
-                el.nationalaty.includes('Арменія')
+                el.nationalaty.includes('Вірменія')
             )
         }
         if (nationalityCheckboxState.bilorus) {

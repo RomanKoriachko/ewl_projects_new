@@ -52,7 +52,6 @@
         .filter-sex,
         .filter-nationality {
             border-bottom: 1px solid black;
-            position: relative;
         }
         .filter-is-actual {
             padding-bottom: 10px;
@@ -64,9 +63,13 @@
             padding: 15px 0px;
         }
         .filter-arrow-btn {
-            background-image: url(../../../assets/filter-arrow-down-black.svg);
             width: 15px;
             height: 15px;
+            background-image: url(../../../assets/filter-arrow-down-black.svg);
+            transition: 0.3s all;
+        }
+        .filter-arrow-btn.filter-show {
+            transform: rotate(180deg);
         }
         .filter-section-header,
         .is-actual-label {
@@ -91,22 +94,19 @@
             display: grid;
             grid-template-columns: 1fr;
             margin-bottom: 20px;
+            transition: 0.3s all;
         }
-        .filter-wrapper.hide {
-            transform: translateY(-110%);
+        .filter-wrapper.filter-hide {
             visibility: hidden;
             opacity: 0;
-            position: absolute;
-            top: -100px;
-            transition: 0.3s all;
+            height: 0px;
+            margin-top: -20px;
         }
-        .filter-wrapper.show {
-            transform: translateY(0%);
+        .filter-wrapper.filter-show {
+            margin-top: 0px;
             visibility: visible;
             opacity: 1;
-            position: static;
-            top: 0px;
-            transition: 0.3s all;
+            height: auto;
         }
         .filter-is-actual {
             margin-top: 20px;
@@ -189,6 +189,7 @@
         }
         .filter {
             border-bottom-right-radius: 0px;
+            min-height: calc(100vh - 100px);
             .filter-buttons {
                 > button {
                     &:hover {

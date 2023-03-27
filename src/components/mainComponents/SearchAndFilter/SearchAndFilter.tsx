@@ -42,7 +42,7 @@ import {
 import './SearchAndFilter.scss'
 
 type Props = {}
-type FilterClassState = {
+type FilterClassStateType = {
     countryClass: string
     sexClass: string
     nationalityClass: string
@@ -208,43 +208,44 @@ const SearchAndFilter = (props: Props) => {
 
     // --------------------- Show filter categories ---------------------
 
-    const [filterClassState, setFilterClassState] = useState<FilterClassState>({
-        countryClass: 'show',
-        sexClass: 'show',
-        nationalityClass: 'show',
-    })
+    const [filterClassState, setFilterClassState] =
+        useState<FilterClassStateType>({
+            countryClass: 'filter-hide',
+            sexClass: 'filter-hide',
+            nationalityClass: 'filter-hide',
+        })
 
     const onShowCountysFilterClick = () => {
-        filterClassState.countryClass === 'show'
-            ? setFilterClassState((prevState: FilterClassState) => ({
+        filterClassState.countryClass === 'filter-show'
+            ? setFilterClassState((prevState: FilterClassStateType) => ({
                   ...prevState,
-                  countryClass: 'hide',
+                  countryClass: 'filter-hide',
               }))
-            : setFilterClassState((prevState: FilterClassState) => ({
+            : setFilterClassState((prevState: FilterClassStateType) => ({
                   ...prevState,
-                  countryClass: 'show',
+                  countryClass: 'filter-show',
               }))
     }
     const onShowSexFilterClick = () => {
-        filterClassState.sexClass === 'show'
-            ? setFilterClassState((prevState: FilterClassState) => ({
+        filterClassState.sexClass === 'filter-show'
+            ? setFilterClassState((prevState: FilterClassStateType) => ({
                   ...prevState,
-                  sexClass: 'hide',
+                  sexClass: 'filter-hide',
               }))
-            : setFilterClassState((prevState: FilterClassState) => ({
+            : setFilterClassState((prevState: FilterClassStateType) => ({
                   ...prevState,
-                  sexClass: 'show',
+                  sexClass: 'filter-show',
               }))
     }
     const onShowNationalityFilterClick = () => {
-        filterClassState.nationalityClass === 'show'
-            ? setFilterClassState((prevState: FilterClassState) => ({
+        filterClassState.nationalityClass === 'filter-show'
+            ? setFilterClassState((prevState: FilterClassStateType) => ({
                   ...prevState,
-                  nationalityClass: 'hide',
+                  nationalityClass: 'filter-hide',
               }))
-            : setFilterClassState((prevState: FilterClassState) => ({
+            : setFilterClassState((prevState: FilterClassStateType) => ({
                   ...prevState,
-                  nationalityClass: 'show',
+                  nationalityClass: 'filter-show',
               }))
     }
 
@@ -272,7 +273,9 @@ const SearchAndFilter = (props: Props) => {
                         onClick={() => onShowCountysFilterClick()}
                     >
                         <div className="filter-section-header">Країна</div>
-                        <div className="filter-arrow-btn"></div>
+                        <div
+                            className={`filter-arrow-btn ${filterClassState.countryClass}`}
+                        ></div>
                     </div>
                     <div
                         className={`filter-wrapper ${filterClassState.countryClass}`}
@@ -555,7 +558,9 @@ const SearchAndFilter = (props: Props) => {
                         onClick={() => onShowSexFilterClick()}
                     >
                         <div className="filter-section-header">Стать</div>
-                        <div className="filter-arrow-btn"></div>
+                        <div
+                            className={`filter-arrow-btn ${filterClassState.sexClass}`}
+                        ></div>
                     </div>
                     <div
                         className={`filter-wrapper ${filterClassState.sexClass}`}
@@ -646,7 +651,9 @@ const SearchAndFilter = (props: Props) => {
                         <div className="filter-section-header">
                             Національність
                         </div>
-                        <div className="filter-arrow-btn"></div>
+                        <div
+                            className={`filter-arrow-btn ${filterClassState.nationalityClass}`}
+                        ></div>
                     </div>
                     <div
                         className={`filter-wrapper ${filterClassState.nationalityClass}`}
