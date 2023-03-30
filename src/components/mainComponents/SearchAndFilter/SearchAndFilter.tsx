@@ -104,7 +104,7 @@ const SearchAndFilter = (props: Props) => {
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         e.target.checked
-            ? dispatch(hollandChecked('Голландія'))
+            ? dispatch(hollandChecked('Нідерланди'))
             : dispatch(hollandChecked(''))
     }
     const germanyCheckboxChecking = (
@@ -417,7 +417,7 @@ const SearchAndFilter = (props: Props) => {
                         </div>
                         <div className="filter-item">
                             <FormControlLabel
-                                label="Голландія"
+                                label="Нідерланди"
                                 className="filter-checkbox"
                                 control={
                                     <Checkbox
