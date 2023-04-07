@@ -11,6 +11,7 @@ import {
 import React, { useState } from 'react'
 import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
 import {
+    FranceChecked,
     clearAllCountrysCheckboxes,
     cyprusChecked,
     czechChecked,
@@ -128,6 +129,11 @@ const SearchAndFilter = (props: Props) => {
         e.target.checked
             ? dispatch(cyprusChecked('Кіпр'))
             : dispatch(cyprusChecked(''))
+    }
+    const franceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(FranceChecked('Франція'))
+            : dispatch(FranceChecked(''))
     }
 
     // --------------------- Sex Filter ---------------------
@@ -543,6 +549,33 @@ const SearchAndFilter = (props: Props) => {
                                         }}
                                         checked={
                                             countryCheckboxState.checkboxCyprus
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Франція"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        className="france-checkbox"
+                                        id="france"
+                                        name="france"
+                                        onChange={franceCheckboxChecking}
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            countryCheckboxState.checkboxFrance
                                                 ? true
                                                 : false
                                         }

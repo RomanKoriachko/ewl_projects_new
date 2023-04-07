@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 type CountryCheckboxType = {
     checkboxPoland: string
@@ -11,6 +11,7 @@ type CountryCheckboxType = {
     checkboxGreece: string
     checkboxSpain: string
     checkboxCyprus: string
+    checkboxFrance: string
 }
 
 const initialState: CountryCheckboxType = {
@@ -24,12 +25,13 @@ const initialState: CountryCheckboxType = {
     checkboxGreece: '',
     checkboxSpain: '',
     checkboxCyprus: '',
+    checkboxFrance: '',
 }
 
 export const countryCheckboxReducer = createSlice({
-    name:'countryCheckbox',
+    name: 'countryCheckbox',
     initialState,
-    reducers:{
+    reducers: {
         polandChecked: (state, action) => ({
             ...state,
             checkboxPoland: action.payload,
@@ -70,7 +72,11 @@ export const countryCheckboxReducer = createSlice({
             ...state,
             checkboxCyprus: action.payload,
         }),
-        clearAllCountrysCheckboxes: (state) =>( {
+        FranceChecked: (state, action) => ({
+            ...state,
+            checkboxFrance: action.payload,
+        }),
+        clearAllCountrysCheckboxes: (state) => ({
             checkboxPoland: '',
             checkboxCzech: '',
             checkboxRomania: '',
@@ -81,9 +87,23 @@ export const countryCheckboxReducer = createSlice({
             checkboxGreece: '',
             checkboxSpain: '',
             checkboxCyprus: '',
-        })
-    }
+            checkboxFrance: '',
+        }),
+    },
 })
 
-export const {polandChecked, czechChecked, romaniaChecked, slovakiaChecked, lithuaniaChecked, hollandChecked, germanyChecked, greeceChecked, spainChecked, cyprusChecked, clearAllCountrysCheckboxes} = countryCheckboxReducer.actions
+export const {
+    polandChecked,
+    czechChecked,
+    romaniaChecked,
+    slovakiaChecked,
+    lithuaniaChecked,
+    hollandChecked,
+    germanyChecked,
+    greeceChecked,
+    spainChecked,
+    cyprusChecked,
+    FranceChecked,
+    clearAllCountrysCheckboxes,
+} = countryCheckboxReducer.actions
 export default countryCheckboxReducer.reducer
