@@ -4,6 +4,24 @@
     min-height: 100px;
     .upper-line {
         background-color: #eb6a09;
+        .switcher-item {
+            justify-content: flex-end;
+            align-items: center;
+            .white-theme-img {
+                background-image: url(../../assets/white-theme-img.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 40px;
+                width: 35px;
+            }
+            .dark-theme-img {
+                background-image: url(../../assets/dark-theme-img.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 40px;
+                width: 35px;
+            }
+        }
     }
     .label {
         justify-content: flex-end;

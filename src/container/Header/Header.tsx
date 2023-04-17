@@ -1,6 +1,6 @@
 import './Header.scss'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { FormControlLabel, FormGroup, Switch } from '@mui/material'
+import { Switch } from '@mui/material'
 import { darkModeOff, darkModeOn } from 'redux/darkThemeReducer'
 import { useEffect } from 'react'
 
@@ -72,24 +72,16 @@ const Header = (props: Props) => {
                 <div className="container">
                     <div className="dark-theme-switcher">
                         <div className="switcher-wrapper">
-                            <div className="switcher-item">
-                                <FormGroup>
-                                    <FormControlLabel
-                                        className="label"
-                                        control={
-                                            <Switch
-                                                color="warning"
-                                                onChange={isDarkThemeOn}
-                                                checked={
-                                                    localThemeData === 'on'
-                                                        ? true
-                                                        : false
-                                                }
-                                            />
-                                        }
-                                        label=""
-                                    />
-                                </FormGroup>
+                            <div className="switcher-item row">
+                                <div className="white-theme-img"></div>
+                                <Switch
+                                    color="warning"
+                                    onChange={isDarkThemeOn}
+                                    checked={
+                                        localThemeData === 'on' ? true : false
+                                    }
+                                />
+                                <div className="dark-theme-img"></div>
                             </div>
                         </div>
                     </div>
