@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 type ProjectType = {
     country: string
@@ -6,8 +6,8 @@ type ProjectType = {
     projectName: string
     location: string
     sex: string
-    ageFrom: number 
-    ageTo: number 
+    ageFrom: number
+    ageTo: number
     nationalaty: string
     additionalInfo: string
     housing: string
@@ -20,6 +20,7 @@ type ProjectType = {
     synchronerLink: string
     contact: string
     housingPhoto: string
+    date: string
 }
 
 const initialState: ProjectType = {
@@ -42,91 +43,96 @@ const initialState: ProjectType = {
     synchronerLink: '',
     contact: '',
     housingPhoto: '',
+    date: '',
 }
 
 export const editProjectSlice = createSlice({
-    name:'editProjectData',
+    name: 'editProjectData',
     initialState,
-    reducers:{
+    reducers: {
         editCountry: (state, action) => ({
             ...state,
-            country: action.payload
+            country: action.payload,
         }),
         editSalary: (state, action) => ({
             ...state,
-            salary: action.payload
+            salary: action.payload,
         }),
         editProjectName: (state, action) => ({
             ...state,
-            projectName: action.payload
+            projectName: action.payload,
         }),
         editProjectLocation: (state, action) => ({
             ...state,
-            location: action.payload
+            location: action.payload,
         }),
         editSex: (state, action) => ({
             ...state,
-            sex: state.sex + " " + action.payload
+            sex: state.sex + ' ' + action.payload,
         }),
         addNewEditedSex: (state, action) => ({
             ...state,
-            sex: action.payload
+            sex: action.payload,
         }),
         editProjectAgeFrom: (state, action) => ({
             ...state,
-            ageFrom: action.payload
+            ageFrom: action.payload,
         }),
         editProjectAgeTo: (state, action) => ({
             ...state,
-            ageTo: action.payload
+            ageTo: action.payload,
         }),
         editProjectNationality: (state, action) => ({
             ...state,
-            nationalaty: action.payload
+            nationalaty: action.payload,
         }),
         editProjectAdditionalInfo: (state, action) => ({
             ...state,
-            additionalInfo: action.payload
+            additionalInfo: action.payload,
         }),
         editProjectHousing: (state, action) => ({
             ...state,
-            housing: action.payload
+            housing: action.payload,
         }),
         editProjectHousingPhoto: (state, action) => ({
             ...state,
-            housingPhoto: action.payload
+            housingPhoto: action.payload,
         }),
         editProjectInfo: (state, action) => ({
             ...state,
-            projectInfo: action.payload
+            projectInfo: action.payload,
         }),
         editCategory: (state, action) => ({
             ...state,
-            category: action.payload
+            category: action.payload,
         }),
         editIsActual: (state, action) => ({
             ...state,
-            isActual: action.payload
+            isActual: action.payload,
         }),
-        editVideo: (state, action) =>( {
+        editVideo: (state, action) => ({
             ...state,
-            video: action.payload
+            video: action.payload,
         }),
-        editWorkSchedule: (state, action) =>( {
+        editWorkSchedule: (state, action) => ({
             ...state,
-            workSchedule: action.payload
+            workSchedule: action.payload,
         }),
-        editFood: (state, action) =>( {
+        editFood: (state, action) => ({
             ...state,
-            food: action.payload
+            food: action.payload,
         }),
-        editSynchronerLink: (state, action) =>( {
+        editSynchronerLink: (state, action) => ({
             ...state,
-            synchronerLink: action.payload
+            synchronerLink: action.payload,
         }),
-        editContact: (state, action) =>( {
+        editContact: (state, action) => ({
             ...state,
-            contact: action.payload
+            contact: action.payload,
+        }),
+        editDate: (state, action) => ({
+            ...state,
+            date: action.payload,
         }),
         deliteEditedProjectData: (state, action) => ({
             country: action.payload,
@@ -147,7 +153,8 @@ export const editProjectSlice = createSlice({
             food: action.payload,
             synchronerLink: action.payload,
             contact: action.payload,
-            housingPhoto: action.payload
+            housingPhoto: action.payload,
+            date: action.payload,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
@@ -169,9 +176,34 @@ export const editProjectSlice = createSlice({
             synchronerLink: action.payload.synchronerLink,
             contact: action.payload.contact,
             housingPhoto: action.payload.housingPhoto,
+            date: action.payload.date,
         }),
-    }
+    },
 })
 
-export const {editCountry, editSalary, editProjectName, editProjectLocation, editSex, addNewEditedSex, editProjectAgeFrom, editProjectAgeTo, editProjectNationality, editProjectAdditionalInfo, editProjectHousing, editProjectHousingPhoto, editProjectInfo, deliteEditedProjectData, editCategory, getProjectData, editIsActual, editVideo, editWorkSchedule, editFood, editSynchronerLink, editContact} = editProjectSlice.actions
+export const {
+    editCountry,
+    editSalary,
+    editProjectName,
+    editProjectLocation,
+    editSex,
+    addNewEditedSex,
+    editProjectAgeFrom,
+    editProjectAgeTo,
+    editProjectNationality,
+    editProjectAdditionalInfo,
+    editProjectHousing,
+    editProjectHousingPhoto,
+    editProjectInfo,
+    deliteEditedProjectData,
+    editCategory,
+    getProjectData,
+    editIsActual,
+    editVideo,
+    editWorkSchedule,
+    editFood,
+    editSynchronerLink,
+    editContact,
+    editDate,
+} = editProjectSlice.actions
 export default editProjectSlice.reducer

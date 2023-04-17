@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 type ProjectType = {
     country: string
@@ -6,8 +6,8 @@ type ProjectType = {
     projectName: string
     location: string
     sex: string
-    ageFrom: number 
-    ageTo: number 
+    ageFrom: number
+    ageTo: number
     nationalaty: string
     additionalInfo: string
     housing: string
@@ -20,6 +20,7 @@ type ProjectType = {
     synchronerLink: string
     contact: string
     housingPhoto: string
+    date: string
 }
 
 const initialState: ProjectType = {
@@ -42,91 +43,96 @@ const initialState: ProjectType = {
     synchronerLink: '',
     contact: '',
     housingPhoto: '',
+    date: '',
 }
 
 export const newProjectSlice = createSlice({
-    name:'addNewProjectData',
+    name: 'addNewProjectData',
     initialState,
-    reducers:{
+    reducers: {
         changeCountry: (state, action) => ({
             ...state,
-            country: action.payload
+            country: action.payload,
         }),
         changeSalary: (state, action) => ({
             ...state,
-            salary: action.payload
+            salary: action.payload,
         }),
         changeProjectName: (state, action) => ({
             ...state,
-            projectName: action.payload
+            projectName: action.payload,
         }),
         changeProjectLocation: (state, action) => ({
             ...state,
-            location: action.payload
+            location: action.payload,
         }),
         changeSex: (state, action) => ({
             ...state,
-            sex: state.sex + " " + action.payload
+            sex: state.sex + ' ' + action.payload,
         }),
         addNewSex: (state, action) => ({
             ...state,
-            sex: action.payload
+            sex: action.payload,
         }),
         changeProjectAgeFrom: (state, action) => ({
             ...state,
-            ageFrom: action.payload
+            ageFrom: action.payload,
         }),
         changeProjectAgeTo: (state, action) => ({
             ...state,
-            ageTo: action.payload
+            ageTo: action.payload,
         }),
         changeProjectNationality: (state, action) => ({
             ...state,
-            nationalaty: action.payload
+            nationalaty: action.payload,
         }),
         changeProjectAdditionalInfo: (state, action) => ({
             ...state,
-            additionalInfo: action.payload
+            additionalInfo: action.payload,
         }),
         changeProjectHousing: (state, action) => ({
             ...state,
-            housing: action.payload
+            housing: action.payload,
         }),
         changeProjectHousingPhoto: (state, action) => ({
             ...state,
-            housingPhoto: action.payload
+            housingPhoto: action.payload,
         }),
         changeProjectInfo: (state, action) => ({
             ...state,
-            projectInfo: action.payload
+            projectInfo: action.payload,
         }),
         changeCategory: (state, action) => ({
             ...state,
-            category: action.payload
+            category: action.payload,
         }),
-        changeIsActual: (state, action) =>( {
+        changeIsActual: (state, action) => ({
             ...state,
-            isActul: action.payload
+            isActul: action.payload,
         }),
-        changeVideo: (state, action) =>( {
+        changeVideo: (state, action) => ({
             ...state,
-            video: action.payload
+            video: action.payload,
         }),
-        changeWorkSchedule: (state, action) =>( {
+        changeWorkSchedule: (state, action) => ({
             ...state,
-            workSchedule: action.payload
+            workSchedule: action.payload,
         }),
-        changeFood: (state, action) =>( {
+        changeFood: (state, action) => ({
             ...state,
-            food: action.payload
+            food: action.payload,
         }),
         changeSynchronerlink: (state, action) => ({
             ...state,
-            synchronerLink: action.payload
+            synchronerLink: action.payload,
         }),
         changeContact: (state, action) => ({
             ...state,
-            contact: action.payload
+            contact: action.payload,
+        }),
+        changeDate: (state, action) => ({
+            ...state,
+            date: action.payload,
         }),
         deliteProjectData: (state, action) => ({
             country: action.payload,
@@ -148,9 +154,33 @@ export const newProjectSlice = createSlice({
             synchronerLink: action.payload,
             contact: action.payload,
             housingPhoto: action.payload,
-        })
-    }
+            date: action.payload,
+        }),
+    },
 })
 
-export const {changeCountry, changeSalary, changeProjectName, changeProjectLocation, changeSex, addNewSex, changeProjectAgeFrom, changeProjectAgeTo, changeProjectNationality, changeProjectAdditionalInfo, changeProjectHousing, changeProjectHousingPhoto, changeProjectInfo, changeCategory, deliteProjectData, changeIsActual, changeVideo, changeWorkSchedule, changeFood, changeSynchronerlink, changeContact} = newProjectSlice.actions
+export const {
+    changeCountry,
+    changeSalary,
+    changeProjectName,
+    changeProjectLocation,
+    changeSex,
+    addNewSex,
+    changeProjectAgeFrom,
+    changeProjectAgeTo,
+    changeProjectNationality,
+    changeProjectAdditionalInfo,
+    changeProjectHousing,
+    changeProjectHousingPhoto,
+    changeProjectInfo,
+    changeCategory,
+    deliteProjectData,
+    changeIsActual,
+    changeVideo,
+    changeWorkSchedule,
+    changeFood,
+    changeSynchronerlink,
+    changeContact,
+    changeDate,
+} = newProjectSlice.actions
 export default newProjectSlice.reducer

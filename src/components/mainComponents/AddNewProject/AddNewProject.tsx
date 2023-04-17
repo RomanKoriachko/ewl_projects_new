@@ -4,6 +4,7 @@ import {
     changeCategory,
     changeContact,
     changeCountry,
+    changeDate,
     changeFood,
     changeIsActual,
     changeProjectAdditionalInfo,
@@ -156,6 +157,9 @@ const AddNewProject = (props: Props) => {
         dispatch(changeContact(e.target.value))
     }
 
+    const today = new Date()
+    const now = today.toLocaleString()
+
     // --------- write data ---------
     const db = getDatabase()
     function writeProjectData(
@@ -177,7 +181,8 @@ const AddNewProject = (props: Props) => {
         food: string,
         synchronerLink: string,
         contact: string,
-        housingPhoto: string
+        housingPhoto: string,
+        date: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -188,6 +193,7 @@ const AddNewProject = (props: Props) => {
                     ) {
                         alert('Проект з такою назвою вже додано')
                     } else {
+                        dispatch(changeDate(now))
                         set(ref(db, `vacancy/${projectName}/`), {
                             country: country,
                             salary: salary,
@@ -208,6 +214,7 @@ const AddNewProject = (props: Props) => {
                             synchronerLink: synchronerLink,
                             contact: contact,
                             housingPhoto: housingPhoto,
+                            date: now,
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
@@ -257,7 +264,8 @@ const AddNewProject = (props: Props) => {
                 projectState.food,
                 projectState.synchronerLink,
                 projectState.contact,
-                projectState.housingPhoto
+                projectState.housingPhoto,
+                projectState.date
             )
         }
     }

@@ -157,6 +157,9 @@ const EditProject = (props: Props) => {
         dispatch(setFormState(false))
     }
 
+    const today = new Date()
+    const now = today.toLocaleString()
+
     const onEditClick = (
         country: string,
         salary: string,
@@ -176,7 +179,8 @@ const EditProject = (props: Props) => {
         food: string,
         synchronerLink: string,
         contact: string,
-        housingPhoto: string
+        housingPhoto: string,
+        date: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -208,6 +212,7 @@ const EditProject = (props: Props) => {
                             synchronerLink: synchronerLink,
                             contact: contact,
                             housingPhoto: housingPhoto,
+                            date: now,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -252,7 +257,8 @@ const EditProject = (props: Props) => {
                 editProjectState.food,
                 editProjectState.synchronerLink,
                 editProjectState.contact,
-                editProjectState.housingPhoto
+                editProjectState.housingPhoto,
+                editProjectState.date
             )
             dispatch(setFormState(false))
         }

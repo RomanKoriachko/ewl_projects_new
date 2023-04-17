@@ -30,6 +30,7 @@ type ProjectType = {
     synchronerLink: string
     contact: string
     housingPhoto: string
+    date: string
 }
 
 type LocalDataType = {
@@ -49,6 +50,7 @@ const Projects = (props: Props) => {
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const isMinorState = useAppSelector((state) => state.isMinorState)
     const isActualState = useAppSelector((state) => state.isActualState)
+    const sortingState = useAppSelector((state) => state.sortingState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const filterState = useAppSelector((state) => state.filterState)
     const showMoreState = useAppSelector((state) => state.showMoreState)
@@ -520,6 +522,12 @@ const Projects = (props: Props) => {
             top: 0,
             behavior: 'smooth',
         })
+    }
+
+    if (sortingState === 'name') {
+        filtredArr.sort((a, b) => (a.projectName > b.projectName ? 1 : -1))
+    } else {
+        filtredArr.sort((a, b) => (a.date > b.date ? -1 : 1))
     }
 
     return (

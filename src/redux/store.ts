@@ -16,6 +16,7 @@ import registrationDataReducer from './registrationDataReducer'
 import searchContentReducer from './searchContentReducer'
 import sexCheckboxReducer from './sexCheckboxReducer'
 import ShowMoreReducer from './ShowMoreReducer'
+import typeOfSortingReducer from './typeOfSortingReducer'
 
 export const store = configureStore({
     reducer: {
@@ -36,6 +37,7 @@ export const store = configureStore({
         isActualState: isActualReducer,
         nationalityCheckboxState: nationalityCheckboxReducer,
         darkThemeState: darkThemeReducer,
+        sortingState: typeOfSortingReducer,
     },
 })
 

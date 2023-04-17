@@ -41,6 +41,10 @@ import {
     setMaleCheckbox,
 } from 'redux/sexCheckboxReducer'
 import './SearchAndFilter.scss'
+import {
+    resetTypeOfSortingState,
+    setTypeOfSortingState,
+} from 'redux/typeOfSortingReducer'
 
 type Props = {}
 type FilterClassStateType = {
@@ -57,6 +61,7 @@ const SearchAndFilter = (props: Props) => {
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const isMinorState = useAppSelector((state) => state.isMinorState)
     const isActualState = useAppSelector((state) => state.isActualState)
+    const sortingState = useAppSelector((state) => state.sortingState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const searchState = useAppSelector((state) => state.searchState)
     const filterState = useAppSelector((state) => state.filterState)
@@ -173,6 +178,12 @@ const SearchAndFilter = (props: Props) => {
         return dispatch(setIsActualState(e.target.value))
     }
 
+    // --------------------- sorting filter ---------------------
+
+    const onTypeOfSortingClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+        return dispatch(setTypeOfSortingState(e.target.value))
+    }
+
     // --------------------- is minor filter ---------------------
 
     const isMinorChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -204,6 +215,7 @@ const SearchAndFilter = (props: Props) => {
         dispatch(clearFilters())
         dispatch(resetActualState())
         dispatch(resetNationality())
+        dispatch(resetTypeOfSortingState())
     }
 
     let isFilterAdded = {
@@ -866,6 +878,48 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                                 label="Всі"
+                            />
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl>
+                        <FormLabel
+                            className="is-actual-label"
+                            id="filter-by-group-label"
+                        >
+                            Сортування проєктів
+                        </FormLabel>
+                        <RadioGroup
+                            aria-labelledby="filter-by-group-label"
+                            defaultValue="name"
+                            name="radio-buttons-group"
+                            value={sortingState}
+                            onChange={onTypeOfSortingClick}
+                        >
+                            <FormControlLabel
+                                value="name"
+                                control={
+                                    <Radio
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                        }}
+                                    />
+                                }
+                                label="Сортувати по назві"
+                            />
+                            <FormControlLabel
+                                value="date"
+                                control={
+                                    <Radio
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                        }}
+                                    />
+                                }
+                                label="Сортувати по даті"
                             />
                         </RadioGroup>
                     </FormControl>
