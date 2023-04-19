@@ -3,7 +3,6 @@ import {
     FormControl,
     FormControlLabel,
     FormGroup,
-    FormLabel,
     Radio,
     RadioGroup,
     Switch,
@@ -51,6 +50,8 @@ type FilterClassStateType = {
     countryClass: string
     sexClass: string
     nationalityClass: string
+    actualityClass: string
+    sortingClass: string
 }
 
 const SearchAndFilter = (props: Props) => {
@@ -231,6 +232,8 @@ const SearchAndFilter = (props: Props) => {
             countryClass: 'filter-hide',
             sexClass: 'filter-hide',
             nationalityClass: 'filter-hide',
+            actualityClass: 'filter-hide',
+            sortingClass: 'filter-hide',
         })
 
     const onShowCountysFilterClick = () => {
@@ -266,6 +269,28 @@ const SearchAndFilter = (props: Props) => {
                   nationalityClass: 'filter-show',
               }))
     }
+    const onShowActualityFilterClick = () => {
+        filterClassState.actualityClass === 'filter-show'
+            ? setFilterClassState((prevState: FilterClassStateType) => ({
+                  ...prevState,
+                  actualityClass: 'filter-hide',
+              }))
+            : setFilterClassState((prevState: FilterClassStateType) => ({
+                  ...prevState,
+                  actualityClass: 'filter-show',
+              }))
+    }
+    const onShowSortingFilterClick = () => {
+        filterClassState.sortingClass === 'filter-show'
+            ? setFilterClassState((prevState: FilterClassStateType) => ({
+                  ...prevState,
+                  sortingClass: 'filter-hide',
+              }))
+            : setFilterClassState((prevState: FilterClassStateType) => ({
+                  ...prevState,
+                  sortingClass: 'filter-show',
+              }))
+    }
 
     return (
         <div className="search-and-filter">
@@ -296,7 +321,7 @@ const SearchAndFilter = (props: Props) => {
                         ></div>
                     </div>
                     <div
-                        className={`filter-wrapper ${filterClassState.countryClass}`}
+                        className={`filter-content-wrapper ${filterClassState.countryClass}`}
                     >
                         <div className="filter-item">
                             <FormControlLabel
@@ -608,7 +633,7 @@ const SearchAndFilter = (props: Props) => {
                         ></div>
                     </div>
                     <div
-                        className={`filter-wrapper ${filterClassState.sexClass}`}
+                        className={`filter-content-wrapper ${filterClassState.sexClass}`}
                     >
                         <div className="filter-item">
                             <FormControlLabel
@@ -701,7 +726,7 @@ const SearchAndFilter = (props: Props) => {
                         ></div>
                     </div>
                     <div
-                        className={`filter-wrapper ${filterClassState.nationalityClass}`}
+                        className={`filter-content-wrapper ${filterClassState.nationalityClass}`}
                     >
                         <div className="filter-item">
                             <FormControlLabel
@@ -826,14 +851,20 @@ const SearchAndFilter = (props: Props) => {
                     </div>
                 </div>
                 <div className="filter-is-actual">
-                    <FormControl>
-                        <FormLabel
-                            className="is-actual-label"
-                            id="demo-radio-buttons-group-label"
+                    <FormControl className="filter-radio-wrapper">
+                        <div
+                            className="row filter-category-header"
+                            onClick={() => onShowActualityFilterClick()}
                         >
-                            Актуальність
-                        </FormLabel>
+                            <div className="filter-section-header">
+                                Актуальність
+                            </div>
+                            <div
+                                className={`filter-arrow-btn ${filterClassState.actualityClass}`}
+                            ></div>
+                        </div>
                         <RadioGroup
+                            className={`filter-content-wrapper ${filterClassState.actualityClass}`}
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="actual"
                             name="radio-buttons-group"
@@ -881,14 +912,22 @@ const SearchAndFilter = (props: Props) => {
                             />
                         </RadioGroup>
                     </FormControl>
-                    <FormControl>
-                        <FormLabel
-                            className="is-actual-label"
-                            id="filter-by-group-label"
+                </div>
+                <div className="filter-sorting">
+                    <FormControl className="filter-radio-wrapper">
+                        <div
+                            className="row filter-category-header"
+                            onClick={() => onShowSortingFilterClick()}
                         >
-                            Сортування проєктів
-                        </FormLabel>
+                            <div className="filter-section-header">
+                                Сортування
+                            </div>
+                            <div
+                                className={`filter-arrow-btn ${filterClassState.sortingClass}`}
+                            ></div>
+                        </div>
                         <RadioGroup
+                            className={`filter-content-wrapper ${filterClassState.sortingClass}`}
                             aria-labelledby="filter-by-group-label"
                             defaultValue="name"
                             name="radio-buttons-group"
@@ -924,6 +963,7 @@ const SearchAndFilter = (props: Props) => {
                         </RadioGroup>
                     </FormControl>
                 </div>
+
                 <div className="filter-adult">
                     <div className="filter-wrapper">
                         <div className="filter-item">

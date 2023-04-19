@@ -53,9 +53,6 @@
         .filter-nationality {
             border-bottom: 1px solid black;
         }
-        .filter-is-actual {
-            padding-bottom: 10px;
-        }
         .filter-category-header {
             justify-content: space-between;
             align-items: center;
@@ -90,28 +87,37 @@
             font-size: 36px;
             margin-bottom: 20px;
         }
-        .filter-wrapper {
+        .filter-content-wrapper {
             display: grid;
             grid-template-columns: 1fr;
             margin-bottom: 20px;
             transition: 0.3s all;
         }
-        .filter-wrapper.filter-hide {
+        .filter-content-wrapper.filter-hide {
             visibility: hidden;
             opacity: 0;
             height: 0px;
             margin-top: -20px;
         }
-        .filter-wrapper.filter-show {
+        .filter-content-wrapper.filter-show {
             margin-top: 0px;
             visibility: visible;
             opacity: 1;
             height: auto;
         }
-        .filter-is-actual {
-            margin-top: 20px;
+        .filter-radio-wrapper {
+            width: 100%;
+        }
+        .filter-is-actual,
+        .filter-sorting {
+            border-bottom: 1px solid black;
+        }
+        .filter-adult {
+            padding: 15px 0px;
         }
         .filter-age {
+            padding-top: 10px;
+            padding-bottom: 30px;
             input {
                 border: 1px solid rgba(0, 0, 0, 0.23);
                 border-radius: 5px;
