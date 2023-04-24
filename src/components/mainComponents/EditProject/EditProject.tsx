@@ -195,7 +195,7 @@ const EditProject = (props: Props) => {
                         const projectData = {
                             country: country,
                             salary: salary,
-                            projectName: projectName,
+                            projectName: projectName.trim(),
                             location: location,
                             sex: sex,
                             ageFrom: ageFrom,
