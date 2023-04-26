@@ -186,16 +186,31 @@ const EditProject = (props: Props) => {
         get(child(dbRef, `vacancy/`))
             .then((snapshot) => {
                 if (snapshot.exists()) {
+                    console.log(snapshot.val())
                     if (
                         snapshot
                             .val()
                             .hasOwnProperty(editProjectState.projectName)
+                        //     ||
+                        // snapshot
+                        //     .val()
+                        //     .hasOwnProperty(
+                        //         ` ${editProjectState.projectName}`
+                        //     ) ||
+                        // snapshot
+                        //     .val()
+                        //     .hasOwnProperty(
+                        //         `${editProjectState.projectName} `
+                        //     ) ||
+                        // snapshot
+                        //     .val()
+                        //     .hasOwnProperty(` ${editProjectState.projectName} `)
                     ) {
                         const db = getDatabase()
                         const projectData = {
                             country: country,
                             salary: salary,
-                            projectName: projectName.trim(),
+                            projectName: projectName,
                             location: location,
                             sex: sex,
                             ageFrom: ageFrom,
@@ -241,7 +256,7 @@ const EditProject = (props: Props) => {
             onEditClick(
                 editProjectState.country,
                 editProjectState.salary,
-                editProjectState.projectName,
+                editProjectState.projectName.replace(/"/gi, '').trim(),
                 editProjectState.location,
                 editProjectState.sex,
                 editProjectState.ageFrom,

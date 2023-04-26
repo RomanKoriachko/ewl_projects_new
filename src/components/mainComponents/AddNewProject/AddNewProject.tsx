@@ -248,7 +248,7 @@ const AddNewProject = (props: Props) => {
             writeProjectData(
                 projectState.country,
                 projectState.salary,
-                projectState.projectName,
+                projectState.projectName.replace(/"/gi, '').trim(),
                 projectState.location,
                 projectState.sex,
                 projectState.ageFrom,
