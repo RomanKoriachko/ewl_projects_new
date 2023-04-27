@@ -21,7 +21,7 @@ const SliderComponent = (props: Props) => {
         <div className="slider">
             <Slider {...settings}>
                 <div className="slider-item">
-                    <img src="images/slider-img-1.jpg" alt="" />
+                    <img src="images/slider-img-1.webp" alt="" loading="lazy" />
                     <div className="slider-content">
                         <p className="slider-text">
                             Легко підбирай вакансію для свого кандидата
@@ -29,7 +29,7 @@ const SliderComponent = (props: Props) => {
                     </div>
                 </div>
                 <div className="slider-item">
-                    <img src="images/slider-img-2.jpg" alt="" />
+                    <img src="images/slider-img-2.webp" alt="" loading="lazy" />
                     <div className="slider-content">
                         <p className="slider-text">
                             Зручно копіюй опис вакансії
@@ -37,7 +37,7 @@ const SliderComponent = (props: Props) => {
                     </div>
                 </div>
                 <div className="slider-item">
-                    <img src="images/slider-img-3.jpg" alt="" />
+                    <img src="images/slider-img-3.webp" alt="" loading="lazy" />
                     <div className="slider-content">
                         <p className="slider-text">
                             Отримуй актуальну інформацію про приїзди
@@ -45,7 +45,7 @@ const SliderComponent = (props: Props) => {
                     </div>
                 </div>
                 <div className="slider-item">
-                    <img src="images/slider-img-4.jpg" alt="" />
+                    <img src="images/slider-img-4.webp" alt="" loading="lazy" />
                     <div className="slider-content">
                         <p className="slider-text">
                             Регулярне оновлення бази вакансій для твого комфорту
