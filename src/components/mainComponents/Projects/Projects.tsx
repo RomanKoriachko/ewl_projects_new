@@ -571,12 +571,10 @@ const Projects = (props: Props) => {
                                 element.isActual ? '' : 'not-actual'
                             }`}
                         >
-                            <div className="project-item-section">
-                                <p className="project-header">
-                                    {element.projectName}
-                                </p>
-                            </div>
-                            <div className="project-item-section row project-firs-descroption-row">
+                            <p className="project-header">
+                                {element.projectName}
+                            </p>
+                            <div className="row project-first-descroption-row">
                                 <div className="row project-row">
                                     <div>
                                         <div className="project-sex row">
@@ -633,16 +631,14 @@ const Projects = (props: Props) => {
                                     {element.salary}
                                 </div>
                             </div>
-                            <div>
-                                <div
-                                    className={`project-item-section project-info ${
-                                        showMoreState[element.projectName]
-                                            ? 'hide'
-                                            : 'show'
-                                    }`}
-                                >
-                                    {getShortString(element.projectInfo)}
-                                </div>
+                            <div
+                                className={`project-item-section project-info ${
+                                    showMoreState[element.projectName]
+                                        ? 'hide'
+                                        : 'show'
+                                }`}
+                            >
+                                {getShortString(element.projectInfo)}
                             </div>
                             <div
                                 className={
