@@ -157,8 +157,11 @@ const AddNewProject = (props: Props) => {
         dispatch(changeContact(e.target.value))
     }
 
-    const today = new Date()
-    const now = today.toLocaleString()
+    // const today = new Date()
+    // const now = today.toLocaleString()
+
+    const moment = require('moment')
+    const now = Number(moment().format('YYYYMMDD.HHmmss'))
 
     // --------- write data ---------
     const db = getDatabase()
@@ -182,7 +185,7 @@ const AddNewProject = (props: Props) => {
         synchronerLink: string,
         contact: string,
         housingPhoto: string,
-        date: string
+        date: number
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))

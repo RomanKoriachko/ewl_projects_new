@@ -157,8 +157,11 @@ const EditProject = (props: Props) => {
         dispatch(setFormState(false))
     }
 
-    const today = new Date()
-    const now = today.toLocaleString()
+    // const today = new Date()
+    // const now = today.toLocaleString()
+
+    const moment = require('moment')
+    const now = Number(moment().format('YYYYMMDD.HHmmss'))
 
     const onEditClick = (
         country: string,
@@ -180,13 +183,12 @@ const EditProject = (props: Props) => {
         synchronerLink: string,
         contact: string,
         housingPhoto: string,
-        date: string
+        date: number
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
             .then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log(snapshot.val())
                     if (
                         snapshot
                             .val()

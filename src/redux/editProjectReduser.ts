@@ -20,7 +20,7 @@ type ProjectType = {
     synchronerLink: string
     contact: string
     housingPhoto: string
-    date: string
+    date: number
 }
 
 const initialState: ProjectType = {
@@ -43,7 +43,7 @@ const initialState: ProjectType = {
     synchronerLink: '',
     contact: '',
     housingPhoto: '',
-    date: '',
+    date: 0,
 }
 
 export const editProjectSlice = createSlice({
@@ -154,7 +154,7 @@ export const editProjectSlice = createSlice({
             synchronerLink: action.payload,
             contact: action.payload,
             housingPhoto: action.payload,
-            date: action.payload,
+            date: 0,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
