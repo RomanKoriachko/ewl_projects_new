@@ -592,6 +592,8 @@ const Projects = (props: Props) => {
                                         <div className="project-location">
                                             <a
                                                 href={`https://www.google.com.ua/maps/place/${element.country}+${element.location}`}
+                                                target="_blank"
+                                                rel="noreferrer"
                                             >
                                                 {element.location}
                                             </a>

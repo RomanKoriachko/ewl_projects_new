@@ -187,6 +187,14 @@
             background-color: #424242;
             border-color: #6b6b6b;
             color: white;
+            .project-location {
+                > a {
+                    color: rgb(132, 183, 250);
+                    &:hover {
+                        border-bottom: 1px solid rgb(132, 183, 250);
+                    }
+                }
+            }
             .project-item-section {
                 a {
                     color: rgb(132, 183, 250);
