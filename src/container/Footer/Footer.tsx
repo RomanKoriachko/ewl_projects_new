@@ -12,7 +12,7 @@ const Footer = (props: Props) => {
                 <div className="row footer-wrapper">
                     <div className="row logo-and-copyright">
                         <div className="logo"></div>
-                        <p>ewl-projects ©, React.JS, v 1.0.7</p>
+                        <p>ewl-projects ©, React.JS, v 1.0.8</p>
                     </div>
                     <div className="contacts row">
                         <p>Слідкуйте за новинами нашої команди</p>

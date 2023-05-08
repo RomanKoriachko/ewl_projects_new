@@ -419,6 +419,7 @@ const EditProject = (props: Props) => {
                     label="Заробітня плата"
                     variant="outlined"
                     id="edit-salary"
+                    multiline
                     size={inputSize}
                     value={editProjectState.salary}
                     onChange={handleChangeProjectSalary}
@@ -474,6 +475,7 @@ const EditProject = (props: Props) => {
                     label="Посилання на приїзд"
                     variant="outlined"
                     id="edit-synchroner-link"
+                    multiline
                     size={inputSize}
                     value={editProjectState.synchronerLink}
                     onChange={handleChangeProjectSynchronerLink}
@@ -482,6 +484,7 @@ const EditProject = (props: Props) => {
                     label="Відео з проєкту"
                     variant="outlined"
                     id="edit-video"
+                    multiline
                     size={inputSize}
                     value={editProjectState.video}
                     onChange={handleChangeProjectVideo}
@@ -531,7 +534,6 @@ const EditProject = (props: Props) => {
                     variant="outlined"
                     id="edit-projectInfo"
                     multiline
-                    rows={5}
                     value={editProjectState.projectInfo}
                     onChange={handleChangeProjectProjectInfo}
                 />
@@ -540,7 +542,6 @@ const EditProject = (props: Props) => {
                     variant="outlined"
                     id="edit-additional-info"
                     multiline
-                    rows={5}
                     value={editProjectState.additionalInfo}
                     onChange={handleChangeProjectAdditionalInfo}
                 />
@@ -548,6 +549,7 @@ const EditProject = (props: Props) => {
                     label="Регіон, контакт опікуна"
                     variant="outlined"
                     id="edit-contact"
+                    multiline
                     value={editProjectState.contact}
                     onChange={handleChangeProjectContact}
                 />

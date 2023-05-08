@@ -533,11 +533,6 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.date > b.date ? -1 : 1))
     }
 
-    // const today = new Date()
-    // const now = today.toLocaleString()
-
-    // console.log(now)
-
     // console.log(filtredArr)
 
     return (
@@ -685,6 +680,8 @@ const Projects = (props: Props) => {
                                                             className="synchroner-link"
                                                             key={i}
                                                             href={el}
+                                                            target="_blank"
+                                                            rel="noreferrer"
                                                         >
                                                             {el}
                                                         </a>
@@ -717,6 +714,8 @@ const Projects = (props: Props) => {
                                                         href={
                                                             element.housingPhoto
                                                         }
+                                                        target="_blank"
+                                                        rel="noreferrer"
                                                     >
                                                         Фото житла
                                                     </a>
@@ -768,6 +767,8 @@ const Projects = (props: Props) => {
                                                                 className="synchroner-link"
                                                                 key={i}
                                                                 href={el}
+                                                                target="_blank"
+                                                                rel="noreferrer"
                                                             >
                                                                 Посилання на
                                                                 приїзд №{i + 1}
