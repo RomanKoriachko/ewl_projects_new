@@ -157,13 +157,11 @@ const AddNewProject = (props: Props) => {
         dispatch(changeContact(e.target.value))
     }
 
-    // const today = new Date()
-    // const now = today.toLocaleString()
-
     const moment = require('moment')
     const now = Number(moment().format('YYYYMMDD.HHmmss'))
 
     // --------- write data ---------
+
     const db = getDatabase()
     function writeProjectData(
         country: string,
@@ -233,6 +231,7 @@ const AddNewProject = (props: Props) => {
     }
 
     //  -------- sending form ---------
+
     const onSendClick = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (projectState.sex === '') {

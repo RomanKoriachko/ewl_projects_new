@@ -157,9 +157,6 @@ const EditProject = (props: Props) => {
         dispatch(setFormState(false))
     }
 
-    // const today = new Date()
-    // const now = today.toLocaleString()
-
     const moment = require('moment')
     const now = Number(moment().format('YYYYMMDD.HHmmss'))
 
@@ -193,20 +190,6 @@ const EditProject = (props: Props) => {
                         snapshot
                             .val()
                             .hasOwnProperty(editProjectState.projectName)
-                        //     ||
-                        // snapshot
-                        //     .val()
-                        //     .hasOwnProperty(
-                        //         ` ${editProjectState.projectName}`
-                        //     ) ||
-                        // snapshot
-                        //     .val()
-                        //     .hasOwnProperty(
-                        //         `${editProjectState.projectName} `
-                        //     ) ||
-                        // snapshot
-                        //     .val()
-                        //     .hasOwnProperty(` ${editProjectState.projectName} `)
                     ) {
                         const db = getDatabase()
                         const projectData = {

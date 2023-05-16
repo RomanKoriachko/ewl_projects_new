@@ -482,6 +482,9 @@ const Projects = (props: Props) => {
 
     const splitString = (string: string) => {
         let arrFromString = string.split(' ')
+        if (string.includes('\n')) {
+            arrFromString = string.split('\n')
+        }
         let filtredArrFromString = arrFromString.filter(
             (element) => element.length > 0
         )
@@ -533,7 +536,7 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.date > b.date ? -1 : 1))
     }
 
-    // console.log(filtredArr)
+    // console.log(filtredArr[0].synchronerLink)
 
     return (
         <div className="projects-content">
