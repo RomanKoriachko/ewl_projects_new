@@ -536,8 +536,6 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.date > b.date ? -1 : 1))
     }
 
-    // console.log(filtredArr[0].synchronerLink)
-
     return (
         <div className="projects-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
@@ -638,7 +636,9 @@ const Projects = (props: Props) => {
                                     <span className="bold-text">
                                         Заробітня плата:
                                     </span>{' '}
-                                    {element.salary}
+                                    <div className="textfield-content">
+                                        {element.salary}
+                                    </div>
                                 </div>
                             </div>
                             <div
