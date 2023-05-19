@@ -56,6 +56,7 @@ const AddNewProject = (props: Props) => {
         'Іспанія',
         'Кіпр',
         'Франція',
+        'Фінляндія',
     ]
 
     const handleChangeSalary = (e: React.ChangeEvent<HTMLInputElement>) => {

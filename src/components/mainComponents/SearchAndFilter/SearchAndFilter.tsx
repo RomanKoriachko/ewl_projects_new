@@ -10,7 +10,7 @@ import {
 import React, { useState } from 'react'
 import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
 import {
-    FranceChecked,
+    franceChecked,
     clearAllCountrysCheckboxes,
     cyprusChecked,
     czechChecked,
@@ -22,6 +22,7 @@ import {
     romaniaChecked,
     slovakiaChecked,
     spainChecked,
+    finlandChecked,
 } from 'redux/countryCheckboxReducer'
 import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
@@ -138,8 +139,15 @@ const SearchAndFilter = (props: Props) => {
     }
     const franceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked
-            ? dispatch(FranceChecked('Франція'))
-            : dispatch(FranceChecked(''))
+            ? dispatch(franceChecked('Франція'))
+            : dispatch(franceChecked(''))
+    }
+    const finlandCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        e.target.checked
+            ? dispatch(finlandChecked('Фінляндія'))
+            : dispatch(finlandChecked(''))
     }
 
     // --------------------- Sex Filter ---------------------
@@ -613,6 +621,33 @@ const SearchAndFilter = (props: Props) => {
                                         }}
                                         checked={
                                             countryCheckboxState.checkboxFrance
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Фінляндія"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        className="finland-checkbox"
+                                        id="finland"
+                                        name="finland"
+                                        onChange={finlandCheckboxChecking}
+                                        sx={{
+                                            '&.Mui-checked': {
+                                                color: '#EB6A09',
+                                            },
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            countryCheckboxState.checkboxFinland
                                                 ? true
                                                 : false
                                         }

@@ -12,6 +12,7 @@ type CountryCheckboxType = {
     checkboxSpain: string
     checkboxCyprus: string
     checkboxFrance: string
+    checkboxFinland: string
 }
 
 const initialState: CountryCheckboxType = {
@@ -26,6 +27,7 @@ const initialState: CountryCheckboxType = {
     checkboxSpain: '',
     checkboxCyprus: '',
     checkboxFrance: '',
+    checkboxFinland: '',
 }
 
 export const countryCheckboxReducer = createSlice({
@@ -72,9 +74,13 @@ export const countryCheckboxReducer = createSlice({
             ...state,
             checkboxCyprus: action.payload,
         }),
-        FranceChecked: (state, action) => ({
+        franceChecked: (state, action) => ({
             ...state,
             checkboxFrance: action.payload,
+        }),
+        finlandChecked: (state, action) => ({
+            ...state,
+            checkboxFinland: action.payload,
         }),
         clearAllCountrysCheckboxes: (state) => ({
             checkboxPoland: '',
@@ -88,6 +94,7 @@ export const countryCheckboxReducer = createSlice({
             checkboxSpain: '',
             checkboxCyprus: '',
             checkboxFrance: '',
+            checkboxFinland: '',
         }),
     },
 })
@@ -103,7 +110,8 @@ export const {
     greeceChecked,
     spainChecked,
     cyprusChecked,
-    FranceChecked,
+    franceChecked,
+    finlandChecked,
     clearAllCountrysCheckboxes,
 } = countryCheckboxReducer.actions
 export default countryCheckboxReducer.reducer

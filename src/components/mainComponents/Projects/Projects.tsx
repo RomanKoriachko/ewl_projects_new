@@ -218,6 +218,7 @@ const Projects = (props: Props) => {
     let temporaryCountryArr9: ProjectType[] = []
     let temporaryCountryArr10: ProjectType[] = []
     let temporaryCountryArr11: ProjectType[] = []
+    let temporaryCountryArr12: ProjectType[] = []
 
     if (filterState) {
         if (countryCheckboxState.checkboxPoland) {
@@ -275,6 +276,11 @@ const Projects = (props: Props) => {
                 el.country.includes(countryCheckboxState.checkboxFrance)
             )
         }
+        if (countryCheckboxState.checkboxFinland) {
+            temporaryCountryArr12 = tempArr.filter((el: ProjectType) =>
+                el.country.includes(countryCheckboxState.checkboxFinland)
+            )
+        }
         if (
             countryCheckboxState.checkboxPoland === '' &&
             countryCheckboxState.checkboxCzech === '' &&
@@ -286,7 +292,8 @@ const Projects = (props: Props) => {
             countryCheckboxState.checkboxGreece === '' &&
             countryCheckboxState.checkboxSpain === '' &&
             countryCheckboxState.checkboxCyprus === '' &&
-            countryCheckboxState.checkboxFrance === ''
+            countryCheckboxState.checkboxFrance === '' &&
+            countryCheckboxState.checkboxFinland === ''
         ) {
             filtredCountryArr = tempArr
         } else {
@@ -302,6 +309,7 @@ const Projects = (props: Props) => {
                 ...temporaryCountryArr9,
                 ...temporaryCountryArr10,
                 ...temporaryCountryArr11,
+                ...temporaryCountryArr12,
             ]
         }
     } else {
@@ -535,6 +543,9 @@ const Projects = (props: Props) => {
     } else {
         filtredArr.sort((a, b) => (a.date > b.date ? -1 : 1))
     }
+
+    // console.log(filtredArr)
+    // console.log(splitString(filtredArr[0].synchronerLink))
 
     return (
         <div className="projects-content">
