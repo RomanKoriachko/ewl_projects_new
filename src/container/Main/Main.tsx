@@ -8,6 +8,7 @@ import { useAppSelector } from 'redux/hooks'
 import SliderComponent from 'components/mainComponents/SliderComponent/SliderComponent'
 import StickyBox from 'react-sticky-box'
 import TabletFilter from 'components/mainComponents/TabletFilter/TabletFilter'
+import MapComponent from 'components/mainComponents/MapComponent/MapComponent'
 
 type Props = {}
 
@@ -50,6 +51,7 @@ const Main = (props: Props) => {
                 currentData.isAdmin ? (
                     <>
                         <SliderComponent />
+                        <MapComponent />
                         <div className="container">
                             <div className="admin-panel row">
                                 <AddNewProject />
@@ -71,6 +73,7 @@ const Main = (props: Props) => {
                 ) : (
                     <>
                         <SliderComponent />
+                        <MapComponent />
                         <div className="container">
                             <div className="main-content">
                                 <StickyBox

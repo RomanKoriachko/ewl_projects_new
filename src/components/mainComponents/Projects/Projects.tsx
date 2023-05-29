@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 import { showLessData, showMoreData } from 'redux/ShowMoreReducer'
 import { setFormState } from 'redux/editFormReducer'
+import { getFilterArrData } from 'redux/filtredArrReducer'
 
 type Props = {}
 
@@ -544,6 +545,15 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.date > b.date ? -1 : 1))
     }
 
+    // get globel filtredArr
+
+    useEffect(() => {
+        dispatch(getFilterArrData(filtredArr))
+        // eslint-disable-next-line
+    }, [filtredArr.length])
+
+    const filtredArrGlobal = useAppSelector((state) => state.filtredArrState)
+
     // console.log(filtredArr)
     // console.log(splitString(filtredArr[0].synchronerLink))
 
@@ -566,7 +576,7 @@ const Projects = (props: Props) => {
                 }`}
                 onClick={onScrollUpClick}
             ></div>
-            {filtredArr.length === 0 ? (
+            {filtredArrGlobal.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
                 <div className="projects">
@@ -581,7 +591,7 @@ const Projects = (props: Props) => {
                             </div>
                         </div>
                     </div>
-                    {filtredArr.map((element: ProjectType, i: number) => (
+                    {filtredArrGlobal.map((element: ProjectType, i: number) => (
                         <div
                             key={i}
                             className={`project-item ${
