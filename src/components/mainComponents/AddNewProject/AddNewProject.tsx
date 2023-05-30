@@ -7,6 +7,8 @@ import {
     changeDate,
     changeFood,
     changeIsActual,
+    changeLat,
+    changeLng,
     changeProjectAdditionalInfo,
     changeProjectAgeFrom,
     changeProjectAgeTo,
@@ -157,6 +159,12 @@ const AddNewProject = (props: Props) => {
     const handleChangeContact = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(changeContact(e.target.value))
     }
+    const handleChangelat = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(changeLat(e.target.value))
+    }
+    const handleChangelng = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(changeLng(e.target.value))
+    }
 
     const moment = require('moment')
     const now = Number(moment().format('YYYYMMDD.HHmmss'))
@@ -184,7 +192,9 @@ const AddNewProject = (props: Props) => {
         synchronerLink: string,
         contact: string,
         housingPhoto: string,
-        date: number
+        date: number,
+        lat: string,
+        lng: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -217,6 +227,8 @@ const AddNewProject = (props: Props) => {
                             contact: contact,
                             housingPhoto: housingPhoto,
                             date: now,
+                            lat: lat,
+                            lng: lng,
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
@@ -268,7 +280,9 @@ const AddNewProject = (props: Props) => {
                 projectState.synchronerLink,
                 projectState.contact,
                 projectState.housingPhoto,
-                projectState.date
+                projectState.date,
+                projectState.lat,
+                projectState.lng
             )
         }
     }
@@ -561,6 +575,22 @@ const AddNewProject = (props: Props) => {
                     size={inputSize}
                     value={projectState.contact}
                     onChange={handleChangeContact}
+                />
+                <TextField
+                    label="Широта (lat)"
+                    variant="outlined"
+                    id="lat"
+                    size={inputSize}
+                    value={projectState.lat}
+                    onChange={handleChangelat}
+                />
+                <TextField
+                    label="Довгота (lng)"
+                    variant="outlined"
+                    id="lng"
+                    size={inputSize}
+                    value={projectState.lng}
+                    onChange={handleChangelng}
                 />
                 <button className="add-project-btn" type="submit">
                     Додати проєкт

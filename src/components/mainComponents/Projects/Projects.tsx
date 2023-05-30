@@ -31,6 +31,8 @@ type ProjectType = {
     contact: string
     housingPhoto: string
     date: number
+    lat: string
+    lng: string
 }
 
 type LocalDataType = {
@@ -97,6 +99,8 @@ const Projects = (props: Props) => {
             contact: null,
             housingPhoto: null,
             date: null,
+            lat: null,
+            lng: null,
         })
     }
 
@@ -137,7 +141,9 @@ const Projects = (props: Props) => {
         synchronerLink: string,
         contact: string,
         housingPhoto: string,
-        date: number
+        date: number,
+        lat: string,
+        lng: string
     ) => {
         dispatch(
             getProjectData({
@@ -162,6 +168,8 @@ const Projects = (props: Props) => {
                 contact: contact,
                 housingPhoto: housingPhoto,
                 date: date,
+                lat: lat,
+                lng: lng,
             })
         )
         editFormState
@@ -850,7 +858,9 @@ const Projects = (props: Props) => {
                                                     element.synchronerLink,
                                                     element.contact,
                                                     element.housingPhoto,
-                                                    element.date
+                                                    element.date,
+                                                    element.lat,
+                                                    element.lng
                                                 )
                                             }
                                         >

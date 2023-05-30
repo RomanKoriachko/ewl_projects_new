@@ -7,6 +7,8 @@ import {
     editCountry,
     editFood,
     editIsActual,
+    editLat,
+    editLng,
     editProjectAdditionalInfo,
     editProjectAgeFrom,
     editProjectAgeTo,
@@ -153,6 +155,12 @@ const EditProject = (props: Props) => {
     ) => {
         dispatch(editContact(e.target.value))
     }
+    const handleChangeLat = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(editLat(e.target.value))
+    }
+    const handleChangeLng = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(editLng(e.target.value))
+    }
 
     const closeEditForm = () => {
         dispatch(setFormState(false))
@@ -181,7 +189,9 @@ const EditProject = (props: Props) => {
         synchronerLink: string,
         contact: string,
         housingPhoto: string,
-        date: number
+        date: number,
+        lat: string,
+        lng: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -214,6 +224,8 @@ const EditProject = (props: Props) => {
                             contact: contact,
                             housingPhoto: housingPhoto,
                             date: now,
+                            lat: lat,
+                            lng: lng,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -259,7 +271,9 @@ const EditProject = (props: Props) => {
                 editProjectState.synchronerLink,
                 editProjectState.contact,
                 editProjectState.housingPhoto,
-                editProjectState.date
+                editProjectState.date,
+                editProjectState.lat,
+                editProjectState.lng
             )
             dispatch(setFormState(false))
         }
@@ -536,6 +550,28 @@ const EditProject = (props: Props) => {
                     multiline
                     value={editProjectState.contact}
                     onChange={handleChangeProjectContact}
+                />
+                <TextField
+                    label="Широта (lat)"
+                    variant="outlined"
+                    id="edit-lat"
+                    value={
+                        editProjectState.lat === undefined
+                            ? ''
+                            : editProjectState.lat
+                    }
+                    onChange={handleChangeLat}
+                />
+                <TextField
+                    label="Довгота (lng)"
+                    variant="outlined"
+                    id="edit-lng"
+                    value={
+                        editProjectState.lng === undefined
+                            ? ''
+                            : editProjectState.lng
+                    }
+                    onChange={handleChangeLng}
                 />
                 <button className="edit-project-btn" type="submit">
                     Редагувати проєкт
