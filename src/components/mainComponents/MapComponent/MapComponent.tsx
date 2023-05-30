@@ -1,4 +1,5 @@
 import './MapComponent.scss'
+import { useState } from 'react'
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getSearchInput } from 'redux/searchContentReducer'
@@ -9,6 +10,10 @@ type Props = {}
 const MapComponent = (props: Props) => {
     const filtredArrState = useAppSelector((state) => state.filtredArrState)
     const dispatch = useAppDispatch()
+    const [mapCentring, setmapCentring] = useState<{
+        lat: number
+        lng: number
+    }>({ lat: 52.915845892170395, lng: 18.496121727194044 })
 
     const { isLoaded } = useLoadScript({
         /* @ts-ignore */
@@ -20,15 +25,17 @@ const MapComponent = (props: Props) => {
         const currentProject = filtredArrState.filter(
             (element) => element.location === location
         )
-        if (currentProject[0].lat !== undefined) {
-            dispatch(getSearchInput(currentProject[0].lat))
-        }
+        dispatch(getSearchInput(currentProject[0].lat))
+        setmapCentring({
+            lat: parseFloat(currentProject[0].lat),
+            lng: parseFloat(currentProject[0].lng),
+        })
     }
 
     return (
         <GoogleMap
             zoom={6}
-            center={{ lat: 52.915845892170395, lng: 18.496121727194044 }}
+            center={mapCentring}
             mapContainerClassName="map-container"
         >
             {filtredArrState.map((element: ProjectType, i: number) => (
