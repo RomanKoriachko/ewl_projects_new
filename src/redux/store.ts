@@ -17,6 +17,7 @@ import searchContentReducer from './searchContentReducer'
 import sexCheckboxReducer from './sexCheckboxReducer'
 import ShowMoreReducer from './ShowMoreReducer'
 import typeOfSortingReducer from './typeOfSortingReducer'
+import filtredArrReducer from './filtredArrReducer'
 
 export const store = configureStore({
     reducer: {
@@ -38,6 +39,7 @@ export const store = configureStore({
         nationalityCheckboxState: nationalityCheckboxReducer,
         darkThemeState: darkThemeReducer,
         sortingState: typeOfSortingReducer,
+        filtredArrState: filtredArrReducer,
     },
 })
 

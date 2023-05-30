@@ -7,10 +7,11 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 import { showLessData, showMoreData } from 'redux/ShowMoreReducer'
 import { setFormState } from 'redux/editFormReducer'
+import { getFiltredArrData } from 'redux/filtredArrReducer'
 
 type Props = {}
 
-type ProjectType = {
+export type ProjectType = {
     country: string
     salary: string
     projectName: string
@@ -553,10 +554,17 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.date > b.date ? -1 : 1))
     }
 
+    useEffect(() => {
+        dispatch(getFiltredArrData(filtredArr))
+        // eslint-disable-next-line
+    }, [filtredArr.length])
+
     // console.log(filtredArr)
     // console.log(splitString(filtredArr[0].synchronerLink))
 
-    // const test = filtredArr.filter((el) => el.lat === undefined)
+    // const test = filtredArr.filter(
+    //     (el) => el.lat === undefined || el.lat === ''
+    // )
     // console.log(test)
 
     return (
