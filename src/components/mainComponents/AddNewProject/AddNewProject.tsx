@@ -281,8 +281,8 @@ const AddNewProject = (props: Props) => {
                 projectState.contact,
                 projectState.housingPhoto,
                 projectState.date,
-                projectState.lat,
-                projectState.lng
+                projectState.lat.trim(),
+                projectState.lng.trim()
             )
         }
     }

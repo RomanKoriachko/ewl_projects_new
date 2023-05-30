@@ -272,8 +272,8 @@ const EditProject = (props: Props) => {
                 editProjectState.contact,
                 editProjectState.housingPhoto,
                 editProjectState.date,
-                editProjectState.lat,
-                editProjectState.lng
+                editProjectState.lat.trim(),
+                editProjectState.lng.trim()
             )
             dispatch(setFormState(false))
         }
