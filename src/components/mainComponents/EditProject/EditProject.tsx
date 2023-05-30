@@ -155,13 +155,11 @@ const EditProject = (props: Props) => {
     ) => {
         dispatch(editContact(e.target.value))
     }
-    const handleChangeLat = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const onlyNumbers = e.target.value.replace(/[^. \d]/g, '')
-        dispatch(editLat(onlyNumbers))
+    const handleChangeLat = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(editLat(e.target.value))
     }
-    const handleChangeLng = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const onlyNumbers = e.target.value.replace(/[^. \d]/g, '')
-        dispatch(editLng(onlyNumbers))
+    const handleChangeLng = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(editLng(e.target.value))
     }
 
     const closeEditForm = () => {
@@ -192,8 +190,8 @@ const EditProject = (props: Props) => {
         contact: string,
         housingPhoto: string,
         date: number,
-        lat: number,
-        lng: number
+        lat: string,
+        lng: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -279,8 +277,8 @@ const EditProject = (props: Props) => {
                 editProjectState.contact,
                 editProjectState.housingPhoto,
                 editProjectState.date,
-                editProjectState.lat,
-                editProjectState.lng
+                editProjectState.lat.trim(),
+                editProjectState.lng.trim()
             )
             dispatch(setFormState(false))
         }
@@ -559,17 +557,25 @@ const EditProject = (props: Props) => {
                     onChange={handleChangeProjectContact}
                 />
                 <TextField
-                    label="Широта"
+                    label="Широта (lat)"
                     variant="outlined"
                     id="edit-lat"
-                    value={editProjectState.lat}
+                    value={
+                        editProjectState.lat === undefined
+                            ? ''
+                            : editProjectState.lat
+                    }
                     onChange={handleChangeLat}
                 />
                 <TextField
-                    label="Довгота"
+                    label="Довгота (lng)"
                     variant="outlined"
                     id="edit-lng"
-                    value={editProjectState.lng}
+                    value={
+                        editProjectState.lng === undefined
+                            ? ''
+                            : editProjectState.lng
+                    }
                     onChange={handleChangeLng}
                 />
                 <button className="edit-project-btn" type="submit">

@@ -7,11 +7,11 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getProjectData } from 'redux/editProjectReduser'
 import { showLessData, showMoreData } from 'redux/ShowMoreReducer'
 import { setFormState } from 'redux/editFormReducer'
-import { getFilterArrData } from 'redux/filtredArrReducer'
+import { getFiltredArrData } from 'redux/filtredArrReducer'
 
 type Props = {}
 
-type ProjectType = {
+export type ProjectType = {
     country: string
     salary: string
     projectName: string
@@ -32,8 +32,8 @@ type ProjectType = {
     contact: string
     housingPhoto: string
     date: number
-    lat?: number
-    lng?: number
+    lat: string
+    lng: string
 }
 
 type LocalDataType = {
@@ -143,8 +143,8 @@ const Projects = (props: Props) => {
         contact: string,
         housingPhoto: string,
         date: number,
-        lat: number | null,
-        lng: number | null
+        lat: string,
+        lng: string
     ) => {
         dispatch(
             getProjectData({
@@ -210,7 +210,8 @@ const Projects = (props: Props) => {
                 .toLowerCase()
                 .includes(searchState.toLowerCase()) ||
             element.food.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.contact.toLowerCase().includes(searchState.toLowerCase())
+            element.contact.toLowerCase().includes(searchState.toLowerCase()) ||
+            element.lat.includes(searchState)
     )
 
     // ---------------------- country filter ----------------------
@@ -553,16 +554,18 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.date > b.date ? -1 : 1))
     }
 
-    // get globel filtredArr
-
     useEffect(() => {
-        dispatch(getFilterArrData(filtredArr))
+        dispatch(getFiltredArrData(filtredArr))
         // eslint-disable-next-line
     }, [filtredArr.length])
 
-    const filtredArrGlobal = useAppSelector((state) => state.filtredArrState)
-
     // console.log(filtredArr)
+    // console.log(splitString(filtredArr[0].synchronerLink))
+
+    // const test = filtredArr.filter(
+    //     (el) => el.lat === undefined || el.lat === ''
+    // )
+    // console.log(test)
 
     return (
         <div className="projects-content">
@@ -583,7 +586,7 @@ const Projects = (props: Props) => {
                 }`}
                 onClick={onScrollUpClick}
             ></div>
-            {filtredArrGlobal.length === 0 ? (
+            {filtredArr.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
                 <div className="projects">
@@ -598,7 +601,7 @@ const Projects = (props: Props) => {
                             </div>
                         </div>
                     </div>
-                    {filtredArrGlobal.map((element: ProjectType, i: number) => (
+                    {filtredArr.map((element: ProjectType, i: number) => (
                         <div
                             key={i}
                             className={`project-item ${
@@ -868,8 +871,8 @@ const Projects = (props: Props) => {
                                                     element.contact,
                                                     element.housingPhoto,
                                                     element.date,
-                                                    Number(element.lat),
-                                                    Number(element.lng)
+                                                    element.lat,
+                                                    element.lng
                                                 )
                                             }
                                         >

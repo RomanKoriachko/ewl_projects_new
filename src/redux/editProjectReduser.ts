@@ -21,8 +21,8 @@ type ProjectType = {
     contact: string
     housingPhoto: string
     date: number
-    lat: number
-    lng: number
+    lat: string
+    lng: string
 }
 
 const initialState: ProjectType = {
@@ -46,8 +46,8 @@ const initialState: ProjectType = {
     contact: '',
     housingPhoto: '',
     date: 0,
-    lat: 0,
-    lng: 0,
+    lat: '',
+    lng: '',
 }
 
 export const editProjectSlice = createSlice({
@@ -167,8 +167,8 @@ export const editProjectSlice = createSlice({
             contact: action.payload,
             housingPhoto: action.payload,
             date: 0,
-            lat: 0,
-            lng: 0,
+            lat: action.payload,
+            lng: action.payload,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,

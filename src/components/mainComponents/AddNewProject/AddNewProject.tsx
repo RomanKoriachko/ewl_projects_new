@@ -159,13 +159,11 @@ const AddNewProject = (props: Props) => {
     const handleChangeContact = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(changeContact(e.target.value))
     }
-    const handleChangeLat = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const onlyNumbers = e.target.value.replace(/[^. \d]/g, '')
-        dispatch(changeLat(onlyNumbers))
+    const handleChangelat = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(changeLat(e.target.value))
     }
-    const handleChangeLng = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const onlyNumbers = e.target.value.replace(/[^. \d]/g, '')
-        dispatch(changeLng(onlyNumbers))
+    const handleChangelng = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(changeLng(e.target.value))
     }
 
     const moment = require('moment')
@@ -195,8 +193,8 @@ const AddNewProject = (props: Props) => {
         contact: string,
         housingPhoto: string,
         date: number,
-        lat: number,
-        lng: number
+        lat: string,
+        lng: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -288,8 +286,8 @@ const AddNewProject = (props: Props) => {
                 projectState.contact,
                 projectState.housingPhoto,
                 projectState.date,
-                projectState.lat,
-                projectState.lng
+                projectState.lat.trim(),
+                projectState.lng.trim()
             )
         }
     }
@@ -584,20 +582,20 @@ const AddNewProject = (props: Props) => {
                     onChange={handleChangeContact}
                 />
                 <TextField
-                    label="Широта"
+                    label="Широта (lat)"
                     variant="outlined"
                     id="lat"
                     size={inputSize}
                     value={projectState.lat}
-                    onChange={handleChangeLat}
+                    onChange={handleChangelat}
                 />
                 <TextField
-                    label="Довгота"
+                    label="Довгота (lng)"
                     variant="outlined"
                     id="lng"
                     size={inputSize}
                     value={projectState.lng}
-                    onChange={handleChangeLng}
+                    onChange={handleChangelng}
                 />
                 <button className="add-project-btn" type="submit">
                     Додати проєкт

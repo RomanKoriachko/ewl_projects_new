@@ -21,6 +21,8 @@ type ProjectType = {
     contact: string
     housingPhoto: string
     date: number
+    lat: string
+    lng: string
 }
 
 const initialState: ProjectType[] = []
@@ -29,11 +31,11 @@ export const filtredArrReducer = createSlice({
     name: 'filtredArr',
     initialState,
     reducers: {
-        getFilterArrData: (state, action) => {
+        getFiltredArrData: (state, action) => {
             return action.payload
         },
     },
 })
 
-export const { getFilterArrData } = filtredArrReducer.actions
+export const { getFiltredArrData } = filtredArrReducer.actions
 export default filtredArrReducer.reducer
