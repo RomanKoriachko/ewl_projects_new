@@ -209,7 +209,8 @@ const Projects = (props: Props) => {
                 .toLowerCase()
                 .includes(searchState.toLowerCase()) ||
             element.food.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.contact.toLowerCase().includes(searchState.toLowerCase())
+            element.contact.toLowerCase().includes(searchState.toLowerCase()) ||
+            element.lat.includes(searchState)
     )
 
     // ---------------------- country filter ----------------------
@@ -554,6 +555,9 @@ const Projects = (props: Props) => {
 
     // console.log(filtredArr)
     // console.log(splitString(filtredArr[0].synchronerLink))
+
+    // const test = filtredArr.filter((el) => el.lat === undefined)
+    // console.log(test)
 
     return (
         <div className="projects-content">
