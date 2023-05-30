@@ -1,11 +1,12 @@
 import './MapComponent.scss'
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
+import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getSearchInput } from 'redux/searchContentReducer'
 
 type Props = {}
 
-type ProjectType = {
+type MapProjectType = {
     country: string
     salary: string
     projectName: string
@@ -33,26 +34,46 @@ type ProjectType = {
 const MapComponent = (props: Props) => {
     const filtredArrState = useAppSelector((state) => state.filtredArrState)
     const dispatch = useAppDispatch()
+    const [mapCenter, setMapCenter] = useState<{
+        lat: number
+        lng: number
+    }>({
+        lat: 52.915845892170395,
+        lng: 18.496121727194044,
+    })
+
     const { isLoaded } = useLoadScript({
         /* @ts-ignore */
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
     })
     if (!isLoaded) return <div>loading...</div>
 
-    const onMarkerClick = (name: string) => {
+    const onMarkerClick = (location: string) => {
         const currentProject = filtredArrState.filter(
-            (element) => element.projectName === name
+            (element) => element.location === location
         )
-        dispatch(getSearchInput(currentProject[0].projectName))
+        // console.log(currentProject[0].lat)
+        if (currentProject[0].lat !== undefined) {
+            dispatch(getSearchInput(currentProject[0].lat))
+        }
+        // if (
+        //     currentProject[0].lat !== undefined &&
+        //     currentProject[0].lng !== undefined
+        // ) {
+        //     setMapCenter({
+        //         lat: currentProject[0].lat,
+        //         lng: currentProject[0].lng,
+        //     })
+        // }
     }
 
     return (
         <GoogleMap
             zoom={6}
-            center={{ lat: 52.915845892170395, lng: 18.496121727194044 }}
+            center={mapCenter}
             mapContainerClassName="map-container"
         >
-            {filtredArrState.map((element: ProjectType, i: number) =>
+            {filtredArrState.map((element: MapProjectType, i: number) =>
                 element.lat ? (
                     <Marker
                         key={i}
@@ -61,7 +82,7 @@ const MapComponent = (props: Props) => {
                             lng: Number(element.lng),
                         }}
                         visible={element.isActual ? true : false}
-                        onClick={() => onMarkerClick(element.projectName)}
+                        onClick={() => onMarkerClick(element.location)}
                     />
                 ) : undefined
             )}
