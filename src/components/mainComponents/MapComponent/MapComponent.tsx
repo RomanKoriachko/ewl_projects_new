@@ -48,7 +48,7 @@ const MapComponent = (props: Props) => {
 
     return (
         <GoogleMap
-            zoom={7}
+            zoom={6}
             center={{ lat: 52.915845892170395, lng: 18.496121727194044 }}
             mapContainerClassName="map-container"
         >
@@ -60,6 +60,7 @@ const MapComponent = (props: Props) => {
                             lat: Number(element.lat),
                             lng: Number(element.lng),
                         }}
+                        visible={element.isActual ? true : false}
                         onClick={() => onMarkerClick(element.projectName)}
                     />
                 ) : undefined

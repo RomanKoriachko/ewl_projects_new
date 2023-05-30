@@ -32,6 +32,8 @@ type ProjectType = {
     contact: string
     housingPhoto: string
     date: number
+    lat?: number
+    lng?: number
 }
 
 type LocalDataType = {
@@ -98,6 +100,8 @@ const Projects = (props: Props) => {
             contact: null,
             housingPhoto: null,
             date: null,
+            lat: null,
+            lng: null,
         })
     }
 
@@ -138,7 +142,9 @@ const Projects = (props: Props) => {
         synchronerLink: string,
         contact: string,
         housingPhoto: string,
-        date: number
+        date: number,
+        lat: number | null,
+        lng: number | null
     ) => {
         dispatch(
             getProjectData({
@@ -163,6 +169,8 @@ const Projects = (props: Props) => {
                 contact: contact,
                 housingPhoto: housingPhoto,
                 date: date,
+                lat: lat,
+                lng: lng,
             })
         )
         editFormState
@@ -555,7 +563,6 @@ const Projects = (props: Props) => {
     const filtredArrGlobal = useAppSelector((state) => state.filtredArrState)
 
     // console.log(filtredArr)
-    // console.log(splitString(filtredArr[0].synchronerLink))
 
     return (
         <div className="projects-content">
@@ -860,7 +867,9 @@ const Projects = (props: Props) => {
                                                     element.synchronerLink,
                                                     element.contact,
                                                     element.housingPhoto,
-                                                    element.date
+                                                    element.date,
+                                                    Number(element.lat),
+                                                    Number(element.lng)
                                                 )
                                             }
                                         >

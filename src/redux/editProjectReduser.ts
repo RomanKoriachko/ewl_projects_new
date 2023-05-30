@@ -21,6 +21,8 @@ type ProjectType = {
     contact: string
     housingPhoto: string
     date: number
+    lat: number
+    lng: number
 }
 
 const initialState: ProjectType = {
@@ -44,6 +46,8 @@ const initialState: ProjectType = {
     contact: '',
     housingPhoto: '',
     date: 0,
+    lat: 0,
+    lng: 0,
 }
 
 export const editProjectSlice = createSlice({
@@ -134,6 +138,14 @@ export const editProjectSlice = createSlice({
             ...state,
             date: action.payload,
         }),
+        editLat: (state, action) => ({
+            ...state,
+            lat: action.payload,
+        }),
+        editLng: (state, action) => ({
+            ...state,
+            lng: action.payload,
+        }),
         deliteEditedProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -155,6 +167,8 @@ export const editProjectSlice = createSlice({
             contact: action.payload,
             housingPhoto: action.payload,
             date: 0,
+            lat: 0,
+            lng: 0,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
@@ -177,6 +191,8 @@ export const editProjectSlice = createSlice({
             contact: action.payload.contact,
             housingPhoto: action.payload.housingPhoto,
             date: action.payload.date,
+            lat: action.payload.lat,
+            lng: action.payload.lng,
         }),
     },
 })
@@ -205,5 +221,7 @@ export const {
     editSynchronerLink,
     editContact,
     editDate,
+    editLat,
+    editLng,
 } = editProjectSlice.actions
 export default editProjectSlice.reducer
