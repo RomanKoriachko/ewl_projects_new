@@ -582,6 +582,7 @@ const AddNewProject = (props: Props) => {
                     onChange={handleChangeContact}
                 />
                 <TextField
+                    required
                     label="Широта (lat)"
                     variant="outlined"
                     id="lat"
@@ -590,6 +591,7 @@ const AddNewProject = (props: Props) => {
                     onChange={handleChangelat}
                 />
                 <TextField
+                    required
                     label="Довгота (lng)"
                     variant="outlined"
                     id="lng"

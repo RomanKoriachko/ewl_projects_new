@@ -180,38 +180,107 @@ const Projects = (props: Props) => {
 
     // ---------------------- Search ----------------------
 
-    const tempArr: ProjectType[] = projectsArr.filter(
-        (element: ProjectType) =>
-            element.country.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.salary.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.projectName
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.location
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.sex.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.ageFrom.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.ageTo.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.nationalaty
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.additionalInfo
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.housing.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.projectInfo
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.category
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.workSchedule
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.food.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.contact.toLowerCase().includes(searchState.toLowerCase()) ||
-            element.lat.includes(searchState)
+    // const tempArr: ProjectType[] = projectsArr.filter((element: ProjectType) =>
+    //     element.country.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.salary.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.projectName.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.location.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.sex.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.ageFrom.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.ageTo.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.nationalaty.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.additionalInfo
+    //         .toLowerCase()
+    //         .includes(searchState.toLowerCase()) ||
+    //     element.housing.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.projectInfo.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.category.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.workSchedule
+    //         .toLowerCase()
+    //         .includes(searchState.toLowerCase()) ||
+    //     element.food.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.contact.toLowerCase().includes(searchState.toLowerCase()) ||
+    //     element.lat.includes(searchState)
+    // )
+    const tempArr: ProjectType[] = projectsArr.filter((element: ProjectType) =>
+        element.lat !== undefined
+            ? element.country
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.salary
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.projectName
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.location
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.sex.toLowerCase().includes(searchState.toLowerCase()) ||
+              element.ageFrom
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.ageTo.toLowerCase().includes(searchState.toLowerCase()) ||
+              element.nationalaty
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.additionalInfo
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.housing
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.projectInfo
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.category
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.workSchedule
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.food.toLowerCase().includes(searchState.toLowerCase()) ||
+              element.contact
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.lat.includes(searchState)
+            : element.country
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.salary
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.projectName
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.location
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.sex.toLowerCase().includes(searchState.toLowerCase()) ||
+              element.ageFrom
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.ageTo.toLowerCase().includes(searchState.toLowerCase()) ||
+              element.nationalaty
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.additionalInfo
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.housing
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.projectInfo
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.category
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.workSchedule
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.food.toLowerCase().includes(searchState.toLowerCase()) ||
+              element.contact.toLowerCase().includes(searchState.toLowerCase())
     )
 
     // ---------------------- country filter ----------------------
@@ -562,9 +631,7 @@ const Projects = (props: Props) => {
     // console.log(filtredArr)
     // console.log(splitString(filtredArr[0].synchronerLink))
 
-    // const test = filtredArr.filter(
-    //     (el) => el.lat === undefined || el.lat === ''
-    // )
+    // const test = filtredArr.filter((el) => el.lat === '0')
     // console.log(test)
 
     return (

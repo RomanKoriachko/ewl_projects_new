@@ -557,6 +557,7 @@ const EditProject = (props: Props) => {
                     onChange={handleChangeProjectContact}
                 />
                 <TextField
+                    required
                     label="Широта (lat)"
                     variant="outlined"
                     id="edit-lat"
@@ -568,6 +569,7 @@ const EditProject = (props: Props) => {
                     onChange={handleChangeLat}
                 />
                 <TextField
+                    required
                     label="Довгота (lng)"
                     variant="outlined"
                     id="edit-lng"

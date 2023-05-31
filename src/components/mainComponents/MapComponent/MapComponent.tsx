@@ -34,7 +34,7 @@ const MapComponent = (props: Props) => {
 
     return (
         <GoogleMap
-            zoom={6}
+            zoom={5}
             center={mapCentring}
             mapContainerClassName="map-container"
         >
