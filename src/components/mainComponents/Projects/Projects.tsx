@@ -631,7 +631,7 @@ const Projects = (props: Props) => {
     // console.log(filtredArr)
     // console.log(splitString(filtredArr[0].synchronerLink))
 
-    // const test = filtredArr.filter((el) => el.lat === '0')
+    // const test = filtredArr.filter((el) => el.lat === undefined)
     // console.log(test)
 
     return (
