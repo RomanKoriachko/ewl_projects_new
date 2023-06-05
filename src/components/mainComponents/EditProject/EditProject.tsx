@@ -273,7 +273,7 @@ const EditProject = (props: Props) => {
                 editProjectState.video,
                 editProjectState.workSchedule,
                 editProjectState.food,
-                editProjectState.synchronerLink,
+                editProjectState.synchronerLink.replace(/\s+/g, ' ').trim(),
                 editProjectState.contact,
                 editProjectState.housingPhoto,
                 editProjectState.date,

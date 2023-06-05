@@ -282,7 +282,7 @@ const AddNewProject = (props: Props) => {
                 projectState.video,
                 projectState.workSchedule,
                 projectState.food,
-                projectState.synchronerLink,
+                projectState.synchronerLink.replace(/\s+/g, ' ').trim(),
                 projectState.contact,
                 projectState.housingPhoto,
                 projectState.date,

@@ -631,9 +631,6 @@ const Projects = (props: Props) => {
     // console.log(filtredArr)
     // console.log(splitString(filtredArr[0].synchronerLink))
 
-    // const test = filtredArr.filter((el) => el.lat === undefined)
-    // console.log(test)
-
     return (
         <div className="projects-content">
             <div className={`${editFormState ? 'show' : 'hide'}`}>
