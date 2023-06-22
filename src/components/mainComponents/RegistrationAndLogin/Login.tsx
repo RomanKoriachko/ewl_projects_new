@@ -51,6 +51,12 @@ const Login = (props: Props) => {
                 if (errorCode === 'auth/invalid-email') {
                     alert('Неправильно введена пошта')
                 }
+                if (loginState.email.includes(' ')) {
+                    alert('email має буди введений без пробілів')
+                }
+                if (errorCode === 'auth/user-not-found') {
+                    alert('Такого користувача не існує')
+                }
                 if (errorCode === 'auth/wrong-password') {
                     alert('Неправильно введений пароль')
                 }
