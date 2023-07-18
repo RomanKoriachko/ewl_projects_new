@@ -628,7 +628,13 @@ const Projects = (props: Props) => {
         // eslint-disable-next-line
     }, [filtredArr.length])
 
+    // delite duplicates when use filter
+    const uniqueArray = filtredArr.filter(function (item, pos) {
+        return filtredArr.indexOf(item) === pos
+    })
+
     // console.log(filtredArr)
+    // console.log(uniqueArray)
     // console.log(splitString(filtredArr[0].synchronerLink))
 
     return (
@@ -650,7 +656,7 @@ const Projects = (props: Props) => {
                 }`}
                 onClick={onScrollUpClick}
             ></div>
-            {filtredArr.length === 0 ? (
+            {uniqueArray.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
                 <div className="projects">
@@ -665,7 +671,7 @@ const Projects = (props: Props) => {
                             </div>
                         </div>
                     </div>
-                    {filtredArr.map((element: ProjectType, i: number) => (
+                    {uniqueArray.map((element: ProjectType, i: number) => (
                         <div
                             key={i}
                             className={`project-item ${
