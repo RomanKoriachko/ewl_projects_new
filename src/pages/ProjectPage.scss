@@ -41,6 +41,9 @@
         margin-bottom: 20px;
         @include sans700();
     }
+    .is-actual-state.not-actual {
+        color: rgb(177, 33, 33);
+    }
     .project-first-descroption-row {
         justify-content: space-between;
         align-items: center;

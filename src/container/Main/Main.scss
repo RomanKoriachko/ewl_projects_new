@@ -264,6 +264,9 @@
     .project-page-item.not-actual {
         background-color: #44444434;
         color: rgba(255, 255, 255, 0.3);
+        .project-header {
+            color: white;
+        }
     }
     .project-edit-form {
         background-color: #424242;

@@ -28,7 +28,6 @@ const ProjectPage = (props: Props) => {
     const currentProject = projectsArr.filter(
         (element) => element.projectName === projectName
     )
-    console.log(currentProject)
 
     const splitString = (string: string) => {
         let arrFromString = string.split(' ')
@@ -49,11 +48,18 @@ const ProjectPage = (props: Props) => {
         succeed: 'Скопійовано!',
     }
 
+    let isActualClass = ''
+    if (currentProject.length >= 1) {
+        isActualClass = currentProject[0].isActual ? 'actual' : 'not-actual'
+    }
+
+    console.log(isActualClass)
+
     return (
         <main className={`main ${darkThemeState.main}`}>
             <div className="project-page">
                 <div className="container">
-                    <div className="project-page-item">
+                    <div className={`project-page-item ${isActualClass}`}>
                         {currentProject.length >= 1 ? (
                             <>
                                 <p className="project-header">
@@ -91,7 +97,9 @@ const ProjectPage = (props: Props) => {
                                         {currentProject[0].category}
                                     </div>
                                 </div>
-                                <div className="is-actual-state">
+                                <div
+                                    className={`is-actual-state ${isActualClass}`}
+                                >
                                     Актуальний:{' '}
                                     {currentProject[0].isActual ? 'Так' : 'Ні'}
                                 </div>
