@@ -4,6 +4,8 @@ import Header from 'container/Header/Header'
 import Main from 'container/Main/Main'
 import { useAppSelector } from 'redux/hooks'
 import './App.scss'
+import { Route, Routes } from 'react-router-dom'
+import ProjectPage from 'pages/ProjectPage'
 
 function App() {
     const darkThemeState = useAppSelector((state) => state.darkThemeState)
@@ -18,7 +20,10 @@ function App() {
         <>
             <ThemeProvider theme={darkTheme}>
                 <Header />
-                <Main />
+                <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/:projectName" element={<ProjectPage />} />
+                </Routes>
                 <Footer />
             </ThemeProvider>
         </>

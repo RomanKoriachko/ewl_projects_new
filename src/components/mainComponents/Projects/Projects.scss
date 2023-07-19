@@ -100,6 +100,10 @@
         .bold-text {
             @include sans700();
         }
+        > a {
+            text-decoration: none;
+            color: black;
+        }
         .project-header {
             @include raleway600();
             font-size: 24px;

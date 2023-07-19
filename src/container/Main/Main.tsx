@@ -48,47 +48,29 @@ const Main = (props: Props) => {
     return (
         <main className={`main ${darkThemeState.main}`}>
             {currentData.isLogged ? (
-                currentData.isAdmin ? (
-                    <>
-                        <SliderComponent />
-                        <MapComponent />
-                        <div className="container">
+                <>
+                    <SliderComponent />
+                    <MapComponent />
+                    <div className="container">
+                        {currentData.isAdmin ? (
                             <div className="admin-panel row">
                                 <AddNewProject />
                                 <Registration />
                             </div>
-                            <div className="main-content">
-                                <StickyBox
-                                    className="sidebar"
-                                    offsetTop={20}
-                                    offsetBottom={20}
-                                >
-                                    <SearchAndFilter />
-                                </StickyBox>
-                                <TabletFilter />
-                                <Projects />
-                            </div>
+                        ) : undefined}
+                        <div className="main-content">
+                            <StickyBox
+                                className="sidebar"
+                                offsetTop={20}
+                                offsetBottom={20}
+                            >
+                                <SearchAndFilter />
+                            </StickyBox>
+                            <TabletFilter />
+                            <Projects />
                         </div>
-                    </>
-                ) : (
-                    <>
-                        <SliderComponent />
-                        <MapComponent />
-                        <div className="container">
-                            <div className="main-content">
-                                <StickyBox
-                                    className="sidebar"
-                                    offsetTop={20}
-                                    offsetBottom={20}
-                                >
-                                    <SearchAndFilter />
-                                </StickyBox>
-                                <TabletFilter />
-                                <Projects />
-                            </div>
-                        </div>
-                    </>
-                )
+                    </div>
+                </>
             ) : (
                 <div className="login-wrapper">
                     <Login />

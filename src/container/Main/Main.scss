@@ -187,6 +187,9 @@
             background-color: #424242;
             border-color: #6b6b6b;
             color: white;
+            > a {
+                color: white;
+            }
             .project-location {
                 > a {
                     color: rgb(132, 183, 250);
@@ -227,6 +230,40 @@
                 }
             }
         }
+    }
+    .project-page {
+        background: linear-gradient(180deg, #1f1f1f, #2c2c2c 70.71%);
+    }
+    .project-page-item {
+        background-color: #424242;
+        border-color: #6b6b6b;
+        color: white;
+        > a {
+            color: white;
+        }
+        .project-location {
+            > a {
+                color: rgb(132, 183, 250);
+                &:hover {
+                    border-bottom: 1px solid rgb(132, 183, 250);
+                }
+            }
+        }
+        .project-item-section {
+            a {
+                color: rgb(132, 183, 250);
+            }
+        }
+        .delite-btn {
+            background-color: rgba(177, 33, 33, 0.8);
+        }
+        .edit-btn {
+            background-color: rgba(211, 104, 43, 0.8);
+        }
+    }
+    .project-page-item.not-actual {
+        background-color: #44444434;
+        color: rgba(255, 255, 255, 0.3);
     }
     .project-edit-form {
         background-color: #424242;

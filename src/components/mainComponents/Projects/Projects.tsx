@@ -8,6 +8,7 @@ import { getProjectData } from 'redux/editProjectReduser'
 import { showLessData, showMoreData } from 'redux/ShowMoreReducer'
 import { setFormState } from 'redux/editFormReducer'
 import { getFiltredArrData } from 'redux/filtredArrReducer'
+import { Link } from 'react-router-dom'
 
 type Props = {}
 
@@ -180,28 +181,6 @@ const Projects = (props: Props) => {
 
     // ---------------------- Search ----------------------
 
-    // const tempArr: ProjectType[] = projectsArr.filter((element: ProjectType) =>
-    //     element.country.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.salary.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.projectName.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.location.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.sex.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.ageFrom.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.ageTo.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.nationalaty.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.additionalInfo
-    //         .toLowerCase()
-    //         .includes(searchState.toLowerCase()) ||
-    //     element.housing.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.projectInfo.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.category.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.workSchedule
-    //         .toLowerCase()
-    //         .includes(searchState.toLowerCase()) ||
-    //     element.food.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.contact.toLowerCase().includes(searchState.toLowerCase()) ||
-    //     element.lat.includes(searchState)
-    // )
     const tempArr: ProjectType[] = projectsArr.filter((element: ProjectType) =>
         element.lat !== undefined
             ? element.country
@@ -678,9 +657,11 @@ const Projects = (props: Props) => {
                                 element.isActual ? '' : 'not-actual'
                             }`}
                         >
-                            <p className="project-header">
-                                {element.projectName}
-                            </p>
+                            <Link to={`/${element.projectName}`}>
+                                <p className="project-header">
+                                    {element.projectName}
+                                </p>
+                            </Link>
                             <div className="row project-first-descroption-row">
                                 <div className="row project-row">
                                     <div>
