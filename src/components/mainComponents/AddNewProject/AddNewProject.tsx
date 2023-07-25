@@ -37,6 +37,7 @@ import {
     addCheckedCheckbox,
     removeAllCheckboxes,
 } from 'redux/checkboxCheckedReducer'
+import $ from 'jquery'
 
 type Props = {}
 
@@ -290,6 +291,52 @@ const AddNewProject = (props: Props) => {
                 projectState.lng.trim()
             )
         }
+
+        // ----------
+
+        let data = new FormData()
+        data.append('name', projectState.projectName)
+        data.append('country', projectState.country)
+
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            data: data,
+            cache: false,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            // xhr: function () {
+            // /* @ts-ignore */
+            // let myXhr = $.ajaxSettings.xhr()
+
+            // if (myXhr.upload) {
+            //     myXhr.upload.addEventListener(
+            //         'progress',
+            //         function (e) {
+            //             if (e.lengthComputable) {
+            //                 let percentage = (e.loaded / e.total) * 100
+            //                 /* @ts-ignore */
+            //                 percentage = percentage.toFixed(0)
+            //                 // /* @ts-ignore */
+            //                 $('.submit', form).html(percentage + '%')
+            //             }
+            //         },
+            //         false
+            //     )
+            // }
+            // return myXhr
+            // },
+            error: function (jqXHR, textStatus) {
+                // Тут выводим ошибку
+            },
+            complete: function () {
+                // Тут можем что-то делать ПОСЛЕ успешной отправки формы
+                console.log('Complete')
+            },
+        })
+
+        // ----------
     }
 
     let inputSize: 'medium' | 'small' | undefined = 'medium'
