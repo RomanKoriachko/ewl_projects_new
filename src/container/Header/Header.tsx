@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { Switch } from '@mui/material'
 import { darkModeOff, darkModeOn } from 'redux/darkThemeReducer'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = {}
 
@@ -90,7 +91,9 @@ const Header = (props: Props) => {
             <div className="container">
                 {currentData.isLogged ? (
                     <div className="header-content row">
-                        <div className="header-logo"></div>
+                        <Link to={'/'}>
+                            <div className="header-logo"></div>
+                        </Link>
                         <div className="row">
                             <div>
                                 <div className="row user-name-and-btn">
