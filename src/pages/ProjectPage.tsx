@@ -53,8 +53,6 @@ const ProjectPage = (props: Props) => {
         isActualClass = currentProject[0].isActual ? 'actual' : 'not-actual'
     }
 
-    console.log(isActualClass)
-
     return (
         <main className={`main ${darkThemeState.main}`}>
             <div className="project-page">

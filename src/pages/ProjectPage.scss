@@ -6,6 +6,7 @@
 
 .project-page {
     padding: 30px 0px;
+    min-height: calc(100vh - 80px - 120px);
     background: linear-gradient(217deg, #fe6e00, rgba(255, 0, 0, 0) 70.71%),
         linear-gradient(127deg, #fd8c01, rgba(0, 255, 0, 0) 70.71%),
         linear-gradient(336deg, #feaa02, rgba(0, 0, 255, 0) 70.71%);
