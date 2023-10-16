@@ -23,6 +23,7 @@ type ProjectType = {
     date: number
     lat: string
     lng: string
+    partner: string
 }
 
 const initialState: ProjectType = {
@@ -48,6 +49,7 @@ const initialState: ProjectType = {
     date: 0,
     lat: '',
     lng: '',
+    partner: '',
 }
 
 export const editProjectSlice = createSlice({
@@ -146,6 +148,10 @@ export const editProjectSlice = createSlice({
             ...state,
             lng: action.payload,
         }),
+        editPartner: (state, action) => ({
+            ...state,
+            partner: action.payload,
+        }),
         deliteEditedProjectData: (state, action) => ({
             country: action.payload,
             salary: action.payload,
@@ -169,6 +175,7 @@ export const editProjectSlice = createSlice({
             date: 0,
             lat: action.payload,
             lng: action.payload,
+            partner: action.payload,
         }),
         getProjectData: (state, action) => ({
             country: action.payload.country,
@@ -193,6 +200,7 @@ export const editProjectSlice = createSlice({
             date: action.payload.date,
             lat: action.payload.lat,
             lng: action.payload.lng,
+            partner: action.payload.partner,
         }),
     },
 })
@@ -223,5 +231,6 @@ export const {
     editDate,
     editLat,
     editLng,
+    editPartner,
 } = editProjectSlice.actions
 export default editProjectSlice.reducer

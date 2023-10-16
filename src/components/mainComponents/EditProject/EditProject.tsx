@@ -191,7 +191,8 @@ const EditProject = (props: Props) => {
         housingPhoto: string,
         date: number,
         lat: string,
-        lng: string
+        lng: string,
+        partner: string
     ) => {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -226,6 +227,7 @@ const EditProject = (props: Props) => {
                             date: now,
                             lat: lat,
                             lng: lng,
+                            partner: 'EWL',
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -278,7 +280,8 @@ const EditProject = (props: Props) => {
                 editProjectState.housingPhoto,
                 editProjectState.date,
                 editProjectState.lat.trim(),
-                editProjectState.lng.trim()
+                editProjectState.lng.trim(),
+                editProjectState.partner
             )
             dispatch(setFormState(false))
         }

@@ -35,6 +35,7 @@ export type ProjectType = {
     date: number
     lat: string
     lng: string
+    partner: string
 }
 
 type LocalDataType = {
@@ -103,6 +104,7 @@ const Projects = (props: Props) => {
             date: null,
             lat: null,
             lng: null,
+            partner: null,
         })
     }
 
@@ -145,7 +147,8 @@ const Projects = (props: Props) => {
         housingPhoto: string,
         date: number,
         lat: string,
-        lng: string
+        lng: string,
+        partner: string
     ) => {
         dispatch(
             getProjectData({
@@ -172,6 +175,7 @@ const Projects = (props: Props) => {
                 date: date,
                 lat: lat,
                 lng: lng,
+                partner: partner,
             })
         )
         editFormState
@@ -609,7 +613,7 @@ const Projects = (props: Props) => {
 
     // delite duplicates when use filter
     const uniqueArray = filtredArr.filter(function (item, pos) {
-        return filtredArr.indexOf(item) === pos
+        return filtredArr.indexOf(item) === pos && item.partner === 'EWL'
     })
 
     // console.log(filtredArr)
@@ -923,7 +927,8 @@ const Projects = (props: Props) => {
                                                     element.housingPhoto,
                                                     element.date,
                                                     element.lat,
-                                                    element.lng
+                                                    element.lng,
+                                                    element.partner
                                                 )
                                             }
                                         >

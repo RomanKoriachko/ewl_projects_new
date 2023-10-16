@@ -23,6 +23,7 @@ type ProjectType = {
     date: number
     lat: string
     lng: string
+    partner: string
 }
 
 const initialState: ProjectType[] = []

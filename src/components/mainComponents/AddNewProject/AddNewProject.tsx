@@ -194,7 +194,8 @@ const AddNewProject = (props: Props) => {
         housingPhoto: string,
         date: number,
         lat: string,
-        lng: string
+        lng: string,
+        partner: string
     ) {
         const dbRef = ref(getDatabase())
         get(child(dbRef, `vacancy/`))
@@ -229,6 +230,7 @@ const AddNewProject = (props: Props) => {
                             date: now,
                             lat: lat,
                             lng: lng,
+                            partner: 'EWL',
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
@@ -287,7 +289,8 @@ const AddNewProject = (props: Props) => {
                 projectState.housingPhoto,
                 projectState.date,
                 projectState.lat.trim(),
-                projectState.lng.trim()
+                projectState.lng.trim(),
+                projectState.partner
             )
         }
     }
