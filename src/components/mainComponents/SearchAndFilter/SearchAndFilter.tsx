@@ -10,19 +10,13 @@ import {
 import React, { useState } from 'react'
 import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
 import {
-    franceChecked,
     clearAllCountrysCheckboxes,
-    cyprusChecked,
     czechChecked,
     germanyChecked,
-    greeceChecked,
     hollandChecked,
     lithuaniaChecked,
     polandChecked,
     romaniaChecked,
-    slovakiaChecked,
-    spainChecked,
-    finlandChecked,
 } from 'redux/countryCheckboxReducer'
 import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
@@ -94,13 +88,13 @@ const SearchAndFilter = (props: Props) => {
             ? dispatch(romaniaChecked('Румунія'))
             : dispatch(romaniaChecked(''))
     }
-    const slovakiaCheckboxChecking = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        e.target.checked
-            ? dispatch(slovakiaChecked('Словаччина'))
-            : dispatch(slovakiaChecked(''))
-    }
+    // const slovakiaCheckboxChecking = (
+    //     e: React.ChangeEvent<HTMLInputElement>
+    // ) => {
+    //     e.target.checked
+    //         ? dispatch(slovakiaChecked('Словаччина'))
+    //         : dispatch(slovakiaChecked(''))
+    // }
     const lithuaniaCheckboxChecking = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -122,33 +116,33 @@ const SearchAndFilter = (props: Props) => {
             ? dispatch(germanyChecked('Німеччина'))
             : dispatch(germanyChecked(''))
     }
-    const greeceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.target.checked
-            ? dispatch(greeceChecked('Греція'))
-            : dispatch(greeceChecked(''))
-    }
-    const spainCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.target.checked
-            ? dispatch(spainChecked('Іспанія'))
-            : dispatch(spainChecked(''))
-    }
-    const cyprusCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.target.checked
-            ? dispatch(cyprusChecked('Кіпр'))
-            : dispatch(cyprusChecked(''))
-    }
-    const franceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.target.checked
-            ? dispatch(franceChecked('Франція'))
-            : dispatch(franceChecked(''))
-    }
-    const finlandCheckboxChecking = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        e.target.checked
-            ? dispatch(finlandChecked('Фінляндія'))
-            : dispatch(finlandChecked(''))
-    }
+    // const greeceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     e.target.checked
+    //         ? dispatch(greeceChecked('Греція'))
+    //         : dispatch(greeceChecked(''))
+    // }
+    // const spainCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     e.target.checked
+    //         ? dispatch(spainChecked('Іспанія'))
+    //         : dispatch(spainChecked(''))
+    // }
+    // const cyprusCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     e.target.checked
+    //         ? dispatch(cyprusChecked('Кіпр'))
+    //         : dispatch(cyprusChecked(''))
+    // }
+    // const franceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     e.target.checked
+    //         ? dispatch(franceChecked('Франція'))
+    //         : dispatch(franceChecked(''))
+    // }
+    // const finlandCheckboxChecking = (
+    //     e: React.ChangeEvent<HTMLInputElement>
+    // ) => {
+    //     e.target.checked
+    //         ? dispatch(finlandChecked('Фінляндія'))
+    //         : dispatch(finlandChecked(''))
+    // }
 
     // --------------------- Sex Filter ---------------------
 
@@ -412,7 +406,7 @@ const SearchAndFilter = (props: Props) => {
                                 }
                             />
                         </div>
-                        <div className="filter-item">
+                        {/* <div className="filter-item">
                             <FormControlLabel
                                 label="Словаччина"
                                 className="filter-checkbox"
@@ -438,7 +432,7 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div>
+                        </div> */}
                         <div className="filter-item">
                             <FormControlLabel
                                 label="Литва"
@@ -520,7 +514,7 @@ const SearchAndFilter = (props: Props) => {
                                 }
                             />
                         </div>
-                        <div className="filter-item">
+                        {/* <div className="filter-item">
                             <FormControlLabel
                                 label="Греція"
                                 className="filter-checkbox"
@@ -546,8 +540,8 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div>
-                        <div className="filter-item">
+                        </div> */}
+                        {/* <div className="filter-item">
                             <FormControlLabel
                                 label="Іспанія"
                                 className="filter-checkbox"
@@ -573,8 +567,8 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div>
-                        <div className="filter-item">
+                        </div> */}
+                        {/* <div className="filter-item">
                             <FormControlLabel
                                 label="Кіпр"
                                 className="filter-checkbox"
@@ -600,8 +594,8 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div>
-                        <div className="filter-item">
+                        </div> */}
+                        {/* <div className="filter-item">
                             <FormControlLabel
                                 label="Франція"
                                 className="filter-checkbox"
@@ -627,8 +621,8 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div>
-                        <div className="filter-item">
+                        </div> */}
+                        {/* <div className="filter-item">
                             <FormControlLabel
                                 label="Фінляндія"
                                 className="filter-checkbox"
@@ -654,7 +648,7 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="filter-sex">

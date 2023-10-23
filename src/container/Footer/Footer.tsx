@@ -12,7 +12,7 @@ const Footer = (props: Props) => {
                 <div className="row footer-wrapper">
                     <div className="row logo-and-copyright">
                         <div className="logo"></div>
-                        <p>© 2023 EWL-Projects, v 2.0.3</p>
+                        <p>© 2023 EWL-Projects, v 2.0.4</p>
                     </div>
                     <div className="contacts row">
                         <p>Слідкуйте за новинами нашої команди</p>
