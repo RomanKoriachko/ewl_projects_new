@@ -20,9 +20,9 @@
 
 .grid-wrapper {
     display: grid;
-    grid-template-areas: 
-    "a b"
-    "c c";
+    grid-template-areas:
+        'a b'
+        'c c';
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 10px;
@@ -35,12 +35,12 @@
         padding: 0px 10px;
         @include sans400();
         font-size: 18px;
-        transition: .3s all;
+        transition: 0.3s all;
         &:focus {
-            outline-color: #EB6A09;
+            outline-color: #eb6a09;
         }
         &:focus-within {
-            color: #EB6A09;
+            color: #eb6a09;
         }
     }
     .login-input {
@@ -68,7 +68,7 @@
         background-position: center;
         background-size: 70%;
         cursor: pointer;
-        transition: .3s all;
+        transition: 0.3s all;
         &:hover {
             background-color: rgba(0, 0, 0, 0.05);
         }
@@ -84,16 +84,30 @@
     }
 }
 
+// Tablet
+@media (max-width: 992px) {
+    .grid-wrapper {
+        .login-form-input {
+            width: 250px;
+        }
+    }
+}
 
 // Mobile
-@media(max-width: 576px) {
+@media (max-width: 576px) {
+    .login {
+        width: 90%;
+    }
     .grid-wrapper {
         grid-template-columns: 1fr;
-        grid-template-areas: 
-        "a"
-        "b"
-        "c";
-        .submit-button{
+        grid-template-areas:
+            'a'
+            'b'
+            'c';
+        .login-form-input {
+            width: 100%;
+        }
+        .submit-button {
             width: 100%;
         }
         .show-password-btn {
