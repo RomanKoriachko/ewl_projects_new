@@ -6,7 +6,6 @@ import { showLessData, showMoreData } from 'redux/showMoreReducer'
 
 import './ProjectItem.scss'
 import { setErrorState } from 'redux/errorReducer'
-import { addToActualProjectState } from 'redux/actualProjectsReducer'
 
 type Props = { vacancy: NewProjectType }
 
@@ -87,6 +86,17 @@ const ProjectItem = ({ vacancy }: Props) => {
             return isActual.isActual
         }
     }
+
+    // Видалення \n після елемента "Додаткові послуги"
+    useEffect(() => {
+        if (newAdvertisementHtml) {
+            const updatedHtml = newAdvertisementHtml.replace(
+                /(Додаткові послуги<\/b><\/h6>)(\s*\\n)+/g,
+                '$1'
+            )
+            setNewAdvertisementHtml(updatedHtml)
+        }
+    }, [newAdvertisementHtml])
 
     return (
         <div
