@@ -18,6 +18,10 @@ import {
     CountryCheckboxType,
     setInitialCountries,
 } from 'redux/countryCheckboxReducer'
+import {
+    ActualProjectsType,
+    addToActualProjectState,
+} from 'redux/actualProjectsReducer'
 
 type Props = {}
 
@@ -43,6 +47,21 @@ const Projects = (props: Props) => {
         (state) => state.nationalityCheckboxState
     )
     const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        async function getData() {
+            getDataFromServer(
+                'https://corsproxy.io/?https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
+            )
+                .then((result) => {
+                    dispatch(setNewDataArr(result.value))
+                })
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
+        }
+        getData()
+    }, [dispatch])
 
     // ---------------------- Search ----------------------
 
@@ -142,34 +161,56 @@ const Projects = (props: Props) => {
 
     // // ---------------------- is actual filter ----------------------
 
-    // let temporaryIsActualArr: ProjectType[] = []
+    const processVacancies = () => {
+        const date = new Date()
+        const currentDate = date.toISOString()
+        const actualProjects: ActualProjectsType[] = []
 
-    // if (filterState) {
-    //     if (isActualState === 'actual') {
-    //         temporaryIsActualArr = temporaryIsMinorArr.filter(
-    //             (el: ProjectType) => el.isActual
-    //         )
-    //     } else if (isActualState === 'notActual') {
-    //         temporaryIsActualArr = temporaryIsMinorArr.filter(
-    //             (el: ProjectType) => el.isActual === false
-    //         )
-    //     } else {
-    //         temporaryIsActualArr = temporaryIsMinorArr
-    //     }
-    // } else {
-    //     temporaryIsActualArr = temporaryIsMinorArr
-    // }
-    // if (isActualState === 'actual') {
-    //     temporaryIsActualArr = temporaryIsMinorArr.filter(
-    //         (el: ProjectType) => el.isActual
-    //     )
-    // } else if (isActualState === 'notActual') {
-    //     temporaryIsActualArr = temporaryIsMinorArr.filter(
-    //         (el: ProjectType) => el.isActual === false
-    //     )
-    // } else {
-    //     temporaryIsActualArr = temporaryIsMinorArr
-    // }
+        dataArrState.forEach((vacancy) => {
+            let isActual = false
+            vacancy.recruitmentProjects.forEach((project) => {
+                if (
+                    !project.projectEndDate ||
+                    project.projectEndDate > currentDate
+                ) {
+                    isActual = true
+                }
+            })
+
+            actualProjects.push({ id: vacancy.id, isActual })
+        })
+
+        return actualProjects
+    }
+
+    useEffect(() => {
+        dispatch(addToActualProjectState(processVacancies()))
+    }, [dataArrState.length])
+
+    const actualProjectsState = useAppSelector(
+        (state) => state.actualProjectsState
+    )
+    let temporaryIsActualArr: NewProjectType[] = []
+
+    if (isActualState === 'actual') {
+        temporaryIsActualArr = filtredNationalityArr.filter(
+            (el: NewProjectType) => {
+                return actualProjectsState.some(
+                    (element) => element.id === el.id && element.isActual
+                )
+            }
+        )
+    } else if (isActualState === 'notActual') {
+        temporaryIsActualArr = filtredNationalityArr.filter(
+            (el: NewProjectType) => {
+                return actualProjectsState.some(
+                    (element) => element.id === el.id && !element.isActual
+                )
+            }
+        )
+    } else {
+        temporaryIsActualArr = filtredNationalityArr
+    }
 
     // ---------------------- is miner filter ----------------------
 
@@ -181,10 +222,10 @@ const Projects = (props: Props) => {
                 (el: NewProjectType) => el.minAge < 18
             )
         } else {
-            temporaryIsMinorArr = filtredNationalityArr
+            temporaryIsMinorArr = temporaryIsActualArr
         }
     } else {
-        temporaryIsMinorArr = filtredNationalityArr
+        temporaryIsMinorArr = temporaryIsActualArr
     }
 
     // ---------------------- Age to filter ----------------------
@@ -212,7 +253,7 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.modifiedOn > b.modifiedOn ? -1 : 1))
     }
 
-    console.log(filtredArr)
+    // console.log(filtredArr)
 
     // let raw = localStorage.getItem('loginData')
     // let localLoginData: LocalDataType = {
@@ -267,21 +308,6 @@ const Projects = (props: Props) => {
             behavior: 'smooth',
         })
     }
-
-    useEffect(() => {
-        async function getData() {
-            getDataFromServer(
-                'https://corsproxy.io/?https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
-            )
-                .then((result) => {
-                    dispatch(setNewDataArr(result.value))
-                })
-                .catch((error) => {
-                    console.error('Error:', error)
-                })
-        }
-        getData()
-    }, [dispatch])
 
     // console.log(filtredArr)
 

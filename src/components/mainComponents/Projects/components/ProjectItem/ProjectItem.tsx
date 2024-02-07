@@ -6,6 +6,7 @@ import { showLessData, showMoreData } from 'redux/showMoreReducer'
 
 import './ProjectItem.scss'
 import { setErrorState } from 'redux/errorReducer'
+import { addToActualProjectState } from 'redux/actualProjectsReducer'
 
 type Props = { vacancy: NewProjectType }
 
@@ -18,8 +19,6 @@ const ProjectItem = ({ vacancy }: Props) => {
         []
     )
     const [isLoading, setIsLoading] = useState<boolean>(false)
-
-    // console.log(currentProject)
 
     async function getData(correlationId: string) {
         setIsLoading(true)
@@ -59,8 +58,6 @@ const ProjectItem = ({ vacancy }: Props) => {
             })
     }
 
-    // console.log(newAdvertisementHtml)
-
     function onShowMoreClick(
         companyName: string,
         correlationId: string,
@@ -80,30 +77,22 @@ const ProjectItem = ({ vacancy }: Props) => {
         setCurrentProject(newArr)
     }
 
-    const [isActualState, setIsActualState] = useState<boolean>(false)
+    const isActualState = useAppSelector((state) => state.actualProjectsState)
 
-    useEffect(() => {
-        const date = new Date()
-        const currentDate = date.toISOString()
-        vacancy.recruitmentProjects.forEach((element) => {
-            if (element.projectEndDate < currentDate) {
-                setIsActualState(false)
-            } else {
-                setIsActualState(true)
-            }
-        })
-        vacancy.recruitmentProjects.forEach((element) => {
-            if (element.projectEndDate === null) {
-                setIsActualState(true)
-            }
-        })
-    }, [])
+    function getIsActualState() {
+        const isActual = isActualState.find(
+            (element) => element.id === vacancy.id
+        )
+        if (isActual) {
+            return isActual.isActual
+        }
+    }
 
     return (
         <div
             key={vacancy.id}
             className={`project-item ${
-                isActualState ? undefined : 'not-actual'
+                getIsActualState() ? undefined : 'not-actual'
             }`}
         >
             <p className="project-header">{vacancy.companyName}</p>

@@ -1,19 +1,19 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialState: string = "actual"
+const initialState: string = 'both'
 
 export const isActualReducer = createSlice({
-    name:'isActual',
+    name: 'isActual',
     initialState,
-    reducers:{
+    reducers: {
         setIsActualState: (state, action) => {
             return action.payload
         },
         resetActualState: (state) => {
-            return "actual"
-        }
-    }
+            return 'both'
+        },
+    },
 })
 
-export const {setIsActualState, resetActualState} = isActualReducer.actions
+export const { setIsActualState, resetActualState } = isActualReducer.actions
 export default isActualReducer.reducer

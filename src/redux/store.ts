@@ -20,6 +20,7 @@ import filtredArrReducer from './filtredArrReducer'
 import dataArrReducer from './dataArrReducer'
 import genderCheckboxReducer from './genderCheckboxReducer'
 import errorReducer from './errorReducer'
+import actualProjectsReducer from './actualProjectsReducer'
 
 export const store = configureStore({
     reducer: {
@@ -44,6 +45,7 @@ export const store = configureStore({
         filtredArrState: filtredArrReducer,
         dataArrState: dataArrReducer,
         errorState: errorReducer,
+        actualProjectsState: actualProjectsReducer,
     },
 })
 

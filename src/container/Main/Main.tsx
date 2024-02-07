@@ -50,7 +50,7 @@ const Main = (props: Props) => {
             {currentData.isLogged ? (
                 <>
                     {/* <SliderComponent /> */}
-                    <MapComponent />
+                    {/* <MapComponent /> */}
                     <div className="container">
                         {/* {currentData.isAdmin ? (
                             <div className="admin-panel row">

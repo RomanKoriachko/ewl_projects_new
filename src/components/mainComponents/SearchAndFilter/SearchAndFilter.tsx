@@ -114,17 +114,17 @@ const SearchAndFilter = (props: Props) => {
                   nationalityClass: 'filter-show',
               }))
     }
-    // const onShowActualityFilterClick = () => {
-    //     filterClassState.actualityClass === 'filter-show'
-    //         ? setFilterClassState((prevState: FilterClassStateType) => ({
-    //               ...prevState,
-    //               actualityClass: 'filter-hide',
-    //           }))
-    //         : setFilterClassState((prevState: FilterClassStateType) => ({
-    //               ...prevState,
-    //               actualityClass: 'filter-show',
-    //           }))
-    // }
+    const onShowActualityFilterClick = () => {
+        filterClassState.actualityClass === 'filter-show'
+            ? setFilterClassState((prevState: FilterClassStateType) => ({
+                  ...prevState,
+                  actualityClass: 'filter-hide',
+              }))
+            : setFilterClassState((prevState: FilterClassStateType) => ({
+                  ...prevState,
+                  actualityClass: 'filter-show',
+              }))
+    }
     const onShowSortingFilterClick = () => {
         filterClassState.sortingClass === 'filter-show'
             ? setFilterClassState((prevState: FilterClassStateType) => ({
@@ -204,9 +204,9 @@ const SearchAndFilter = (props: Props) => {
 
     // --------------------- is actual filter ---------------------
 
-    // const onIsActualClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     return dispatch(setIsActualState(e.target.value))
-    // }
+    const onIsActualClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+        return dispatch(setIsActualState(e.target.value))
+    }
 
     // --------------------- sorting filter ---------------------
 
@@ -409,7 +409,7 @@ const SearchAndFilter = (props: Props) => {
                         ))}
                     </div>
                 </div>
-                {/* <div className="filter-is-actual">
+                <div className="filter-is-actual">
                     <FormControl className="filter-radio-wrapper">
                         <div
                             className="row filter-category-header"
@@ -471,7 +471,7 @@ const SearchAndFilter = (props: Props) => {
                             />
                         </RadioGroup>
                     </FormControl>
-                </div> */}
+                </div>
                 <div className="filter-sorting">
                     <FormControl className="filter-radio-wrapper">
                         <div
