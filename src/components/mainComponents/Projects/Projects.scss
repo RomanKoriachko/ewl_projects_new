@@ -36,16 +36,8 @@
 .projects {
     display: grid;
     align-items: start;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     gap: 40px;
-    .project-item.not-actual {
-        background: #cdcdcd;
-    }
-    .not-actual {
-        .is-actual-state {
-            color: rgb(177, 33, 33);
-        }
-    }
     .confirmation {
         width: 100%;
         height: 100%;
@@ -80,130 +72,6 @@
             }
         }
     }
-    .project-item {
-        background-color: white;
-        max-width: 100%;
-        @include sans400();
-        border: 1px solid black;
-        border-radius: 10px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        padding: 10px;
-        position: relative;
-        transition: 0.3s all;
-        .project-item-section {
-            margin-bottom: 20px;
-            .synchroner-link {
-                margin-bottom: 5px;
-                word-break: break-all;
-            }
-        }
-        .bold-text {
-            @include sans700();
-        }
-        > a {
-            text-decoration: none;
-            color: black;
-        }
-        .project-header {
-            @include raleway600();
-            font-size: 24px;
-            transition: 0.3s all;
-            margin-bottom: 20px;
-        }
-        .is-actual-state {
-            margin-bottom: 20px;
-            @include sans700();
-        }
-        .project-first-descroption-row {
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .project-row {
-            gap: 10px;
-            align-items: center;
-        }
-        .project-sex {
-            gap: 5px;
-            > div {
-                color: white;
-                background-color: black;
-                padding: 3px 5px;
-                @include sans600();
-                font-size: 12px;
-            }
-        }
-        .project-country {
-            @include sans700();
-            font-size: 12px;
-            margin-right: 5px;
-        }
-        .project-location-row {
-            align-items: center;
-        }
-        .project-location {
-            > a {
-                @include sans400();
-                font-size: 12px;
-                color: #444;
-                text-decoration: none;
-                border-bottom: 1px solid transparent;
-                transition: 0.5s all;
-                &:hover {
-                    border-bottom: 1px solid #444;
-                }
-            }
-        }
-        .project-category {
-            @include sans400();
-            font-size: 16px;
-            background-color: #eb6a09;
-            color: white;
-            padding: 5px;
-        }
-        .project-item-btn {
-            border: none;
-            @include raleway600();
-            padding: 6px 12px;
-            background-color: black;
-            color: white;
-            cursor: pointer;
-            margin-right: 10px;
-            transition: 0.3s all;
-            border-radius: 5px;
-            &:hover {
-                background-color: #eb6a09;
-            }
-        }
-        .delite-btn {
-            background-color: rgb(177, 33, 33);
-        }
-        .edit-btn {
-            background-color: rgb(211, 104, 43);
-        }
-        .project-age-row {
-            gap: 15px;
-        }
-        .project-info {
-            line-height: 21px;
-            word-break: break-word;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        .textfield-content {
-            line-height: 21px;
-            margin-top: 5px;
-            white-space: pre-line;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        .copy-btn {
-            padding: 8px 12px;
-        }
-        &:hover .project-header {
-            color: #eb6a09;
-        }
-    }
 }
 
 .no-search-results {
@@ -219,31 +87,11 @@
     .projects {
         gap: 20px;
         grid-template-columns: 1fr;
-        .project-item {
-            padding: 20px;
-        }
     }
 }
 
 // Mobile
 @media (max-width: 576px) {
-    .projects {
-        .project-item {
-            .project-first-descroption-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                .project-row {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-            }
-            .project-item-buttons {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-        }
-    }
     .scroll-up {
         width: 50px;
         height: 50px;

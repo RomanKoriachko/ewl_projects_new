@@ -1,117 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-type CountryCheckboxType = {
-    checkboxPoland: string
-    checkboxCzech: string
-    checkboxRomania: string
-    checkboxSlovakia: string
-    checkboxLithuania: string
-    checkboxHolland: string
-    checkboxGermany: string
-    checkboxGreece: string
-    checkboxSpain: string
-    checkboxCyprus: string
-    checkboxFrance: string
-    checkboxFinland: string
+export type CountryCheckboxType = {
+    name: string
+    checked: boolean
 }
 
-const initialState: CountryCheckboxType = {
-    checkboxPoland: '',
-    checkboxCzech: '',
-    checkboxRomania: '',
-    checkboxSlovakia: '',
-    checkboxLithuania: '',
-    checkboxHolland: '',
-    checkboxGermany: '',
-    checkboxGreece: '',
-    checkboxSpain: '',
-    checkboxCyprus: '',
-    checkboxFrance: '',
-    checkboxFinland: '',
-}
+const initialState: CountryCheckboxType[] = []
 
 export const countryCheckboxReducer = createSlice({
     name: 'countryCheckbox',
     initialState,
     reducers: {
-        polandChecked: (state, action) => ({
-            ...state,
-            checkboxPoland: action.payload,
-        }),
-        czechChecked: (state, action) => ({
-            ...state,
-            checkboxCzech: action.payload,
-        }),
-        romaniaChecked: (state, action) => ({
-            ...state,
-            checkboxRomania: action.payload,
-        }),
-        slovakiaChecked: (state, action) => ({
-            ...state,
-            checkboxSlovakia: action.payload,
-        }),
-        lithuaniaChecked: (state, action) => ({
-            ...state,
-            checkboxLithuania: action.payload,
-        }),
-        hollandChecked: (state, action) => ({
-            ...state,
-            checkboxHolland: action.payload,
-        }),
-        germanyChecked: (state, action) => ({
-            ...state,
-            checkboxGermany: action.payload,
-        }),
-        greeceChecked: (state, action) => ({
-            ...state,
-            checkboxGreece: action.payload,
-        }),
-        spainChecked: (state, action) => ({
-            ...state,
-            checkboxSpain: action.payload,
-        }),
-        cyprusChecked: (state, action) => ({
-            ...state,
-            checkboxCyprus: action.payload,
-        }),
-        franceChecked: (state, action) => ({
-            ...state,
-            checkboxFrance: action.payload,
-        }),
-        finlandChecked: (state, action) => ({
-            ...state,
-            checkboxFinland: action.payload,
-        }),
-        clearAllCountrysCheckboxes: (state) => ({
-            checkboxPoland: '',
-            checkboxCzech: '',
-            checkboxRomania: '',
-            checkboxSlovakia: '',
-            checkboxLithuania: '',
-            checkboxHolland: '',
-            checkboxGermany: '',
-            checkboxGreece: '',
-            checkboxSpain: '',
-            checkboxCyprus: '',
-            checkboxFrance: '',
-            checkboxFinland: '',
-        }),
+        setInitialCountries: (state, action) => {
+            return action.payload
+        },
+        toggleCountryCheckbox: (state, action) => {
+            const countryName = action.payload
+            const countryIndex = state.findIndex(
+                (country) => country.name === countryName
+            )
+            if (countryIndex !== -1) {
+                state[countryIndex].checked = !state[countryIndex].checked
+            }
+        },
+        clearAllCountrysCheckboxes: (state) => {
+            state.forEach((country) => {
+                country.checked = false
+            })
+        },
     },
 })
 
 export const {
-    polandChecked,
-    czechChecked,
-    romaniaChecked,
-    slovakiaChecked,
-    lithuaniaChecked,
-    hollandChecked,
-    germanyChecked,
-    greeceChecked,
-    spainChecked,
-    cyprusChecked,
-    franceChecked,
-    finlandChecked,
+    setInitialCountries,
+    toggleCountryCheckbox,
     clearAllCountrysCheckboxes,
 } = countryCheckboxReducer.actions
 export default countryCheckboxReducer.reducer

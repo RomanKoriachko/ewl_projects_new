@@ -49,15 +49,15 @@ const Main = (props: Props) => {
         <main className={`main ${darkThemeState.main}`}>
             {currentData.isLogged ? (
                 <>
-                    <SliderComponent />
+                    {/* <SliderComponent /> */}
                     <MapComponent />
                     <div className="container">
-                        {currentData.isAdmin ? (
+                        {/* {currentData.isAdmin ? (
                             <div className="admin-panel row">
                                 <AddNewProject />
                                 <Registration />
                             </div>
-                        ) : undefined}
+                        ) : undefined} */}
                         <div className="main-content">
                             <StickyBox
                                 className="sidebar"

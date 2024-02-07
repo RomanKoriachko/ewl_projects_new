@@ -1,38 +1,39 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
-type SexCheckboxType = {
-    ukraine: boolean
-    moldova: boolean
-    georgia: boolean
-    virmenia: boolean
-    bilorus: boolean
+export type NationalityCheckboxType = {
+    name: string
+    checked: boolean
 }
 
-const initialState: SexCheckboxType = {
-    ukraine: false,
-    moldova: false,
-    georgia: false,
-    virmenia: false,
-    bilorus: false,
-}
+const initialState: NationalityCheckboxType[] = []
 
 export const nationalityCheckboxReducer = createSlice({
-    name:'nationalityCheckbox',
+    name: 'nationalityCheckbox',
     initialState,
-    reducers:{
-        setNationalityCheckbox: (state, action) => ({
-            ...state,
-            [action.payload.name]: action.payload.state
-        }),
-        resetNationality: (state) => ({
-            ukraine: false,
-            moldova: false,
-            georgia: false,
-            virmenia: false,
-            bilorus: false,
-        })
-    }
+    reducers: {
+        setInitialNationalities: (state, action) => {
+            return action.payload
+        },
+        toggleNationalityCheckbox: (state, action) => {
+            const countryName = action.payload
+            const countryIndex = state.findIndex(
+                (country) => country.name === countryName
+            )
+            if (countryIndex !== -1) {
+                state[countryIndex].checked = !state[countryIndex].checked
+            }
+        },
+        clearAllNationalitiesCheckboxes: (state) => {
+            state.forEach((country) => {
+                country.checked = false
+            })
+        },
+    },
 })
 
-export const {setNationalityCheckbox, resetNationality} = nationalityCheckboxReducer.actions
+export const {
+    setInitialNationalities,
+    toggleNationalityCheckbox,
+    clearAllNationalitiesCheckboxes,
+} = nationalityCheckboxReducer.actions
 export default nationalityCheckboxReducer.reducer

@@ -14,10 +14,12 @@ import nationalityCheckboxReducer from './nationalityCheckboxReducer'
 import newProjectReduser from './newProjectReduser'
 import registrationDataReducer from './registrationDataReducer'
 import searchContentReducer from './searchContentReducer'
-import sexCheckboxReducer from './sexCheckboxReducer'
-import ShowMoreReducer from './ShowMoreReducer'
+import ShowMoreReducer from './showMoreReducer'
 import typeOfSortingReducer from './typeOfSortingReducer'
 import filtredArrReducer from './filtredArrReducer'
+import dataArrReducer from './dataArrReducer'
+import genderCheckboxReducer from './genderCheckboxReducer'
+import errorReducer from './errorReducer'
 
 export const store = configureStore({
     reducer: {
@@ -27,7 +29,7 @@ export const store = configureStore({
         registrationDataState: registrationDataReducer,
         searchState: searchContentReducer,
         countryCheckboxState: countryCheckboxReducer,
-        sexCheckboxState: sexCheckboxReducer,
+        genderCheckboxState: genderCheckboxReducer,
         isMinorState: isMinorReducer,
         ageSearchState: ageSearchReducer,
         filterState: filterReducer,
@@ -40,6 +42,8 @@ export const store = configureStore({
         darkThemeState: darkThemeReducer,
         sortingState: typeOfSortingReducer,
         filtredArrState: filtredArrReducer,
+        dataArrState: dataArrReducer,
+        errorState: errorReducer,
     },
 })
 

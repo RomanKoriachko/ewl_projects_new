@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 type showMoreType = {
     [name: string]: boolean
@@ -7,19 +7,23 @@ type showMoreType = {
 const initialState: showMoreType = {}
 
 export const showMoreReducer = createSlice({
-    name:'showMoreState',
+    name: 'showMoreState',
     initialState,
-    reducers:{
+    reducers: {
         showMoreData: (state, action) => ({
             ...state,
-            [action.payload]: true
+            [action.payload]: true,
         }),
         showLessData: (state, action) => ({
             ...state,
-            [action.payload]: false
+            [action.payload]: false,
         }),
-    }
+        closeAllTabs: (state) => {
+            return {}
+        },
+    },
 })
 
-export const {showMoreData, showLessData} = showMoreReducer.actions
+export const { showMoreData, showLessData, closeAllTabs } =
+    showMoreReducer.actions
 export default showMoreReducer.reducer
