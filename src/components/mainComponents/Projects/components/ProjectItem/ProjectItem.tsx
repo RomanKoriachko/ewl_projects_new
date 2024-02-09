@@ -3,9 +3,10 @@ import { CurrentProjectType, NewProjectType } from '../../NewProjectType'
 import { getDataFromServer } from 'helper/getData'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { showLessData, showMoreData } from 'redux/showMoreReducer'
+import { setErrorState } from 'redux/errorReducer'
+import { CopyButtonComponent } from '../CopyButtonComponent'
 
 import './ProjectItem.scss'
-import { setErrorState } from 'redux/errorReducer'
 
 type Props = { vacancy: NewProjectType }
 
@@ -53,6 +54,7 @@ const ProjectItem = ({ vacancy }: Props) => {
             .catch((error) => {
                 dispatch(setErrorState(true))
                 setIsLoading(false)
+                setNewAdvertisementHtml('Помилка отримання даних')
                 console.error('Error:', error)
             })
     }
@@ -109,7 +111,7 @@ const ProjectItem = ({ vacancy }: Props) => {
         }
 
         setGenders(newGenders)
-    }, [])
+    }, [vacancy.allowGender, vacancy.recruitmentProjects])
 
     // Перевірка проєктив на актуальність
 
@@ -137,6 +139,13 @@ const ProjectItem = ({ vacancy }: Props) => {
             setNewAdvertisementHtml(updatedHtml)
         }
     }, [newAdvertisementHtml])
+
+    // Отримання додаткової інформації по проєкту
+
+    useEffect(() => {
+        getDataWithProjectId(vacancy.id)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div
@@ -244,45 +253,9 @@ const ProjectItem = ({ vacancy }: Props) => {
                     >
                         Згорнути
                     </button>
-                    {/* <CopyButton
-                                        statusNodeMap={StatusNodeMap}
-                                        className="copy-btn project-item-btn"
-                                        value={`Назва проєкту\n${
-                                            element.projectName
-                                        }\n\nСтать\n${element.sex.trim()}\n\nВік від ${
-                                            element.ageFrom
-                                        }, Вік до ${
-                                            element.ageTo
-                                        }\n\nНаціональність\n${
-                                            element.nationalaty
-                                        }\n\nЛокалізація\n${element.country}, ${
-                                            element.location
-                                        }\nhttps://www.google.com.ua/maps/place/${
-                                            element.country
-                                        }+${element.location.replace(
-                                            / /gi,
-                                            '+'
-                                        )}\n\nЗаробітня плата\n${
-                                            element.salary
-                                        }\n\nОпис вакансії\n${
-                                            element.projectInfo
-                                        }\n\nГрафік роботи\n${
-                                            element.workSchedule
-                                        }\n\nПроживання\n${element.housing}${
-                                            element.housingPhoto !== ''
-                                                ? `\n\nФото житла\n${element.housingPhoto}`
-                                                : ''
-                                        }\n\nХарчування\n${element.food}${
-                                            element.additionalInfo !== ''
-                                                ? `\n\nДодаткова інформація\n${element.additionalInfo}`
-                                                : ''
-                                        }
-                                    ${
-                                        element.video !== ''
-                                            ? `\n\nВідео з проєкту\n${element.video}`
-                                            : ''
-                                    }`.trim()}
-                                    /> */}
+                    <CopyButtonComponent
+                        newAdvertisementHtml={newAdvertisementHtml}
+                    />
                 </div>
             </div>
         </div>

@@ -1,31 +1,18 @@
-import { getDatabase, ref, onValue, set } from 'firebase/database'
 import { useState, useEffect } from 'react'
-import EditProject from '../EditProject/EditProject'
-import './Projects.scss'
-import CopyButton from '@yozora/react-common-copy-button'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { getProjectData } from 'redux/editProjectReduser'
-import { showLessData, showMoreData } from 'redux/showMoreReducer'
-import { setFormState } from 'redux/editFormReducer'
-import { getFiltredArrData } from 'redux/filtredArrReducer'
 import { Link } from 'react-router-dom'
 import { getDataFromServer } from 'helper/getData'
-import { CurrentProjectType, NewProjectType } from './NewProjectType'
+import { NewProjectType } from './NewProjectType'
 import { ProjectItem } from './components'
 import { setNewDataArr } from 'redux/dataArrReducer'
-import { NationalityCheckboxType } from 'redux/nationalityCheckboxReducer'
-import {
-    CountryCheckboxType,
-    setInitialCountries,
-} from 'redux/countryCheckboxReducer'
 import {
     ActualProjectsType,
     addToActualProjectState,
 } from 'redux/actualProjectsReducer'
 
-type Props = {}
+import './Projects.scss'
 
-type ICopyStatus = 'waiting' | 'copying' | 'failed' | 'succeed'
+type Props = {}
 
 const Projects = (props: Props) => {
     const dataArrState = useAppSelector((state) => state.dataArrState)
@@ -41,8 +28,6 @@ const Projects = (props: Props) => {
     const sortingState = useAppSelector((state) => state.sortingState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const filterState = useAppSelector((state) => state.filterState)
-    const showMoreState = useAppSelector((state) => state.showMoreState)
-    const editFormState = useAppSelector((state) => state.editFormState)
     const nationalityCheckboxState = useAppSelector(
         (state) => state.nationalityCheckboxState
     )
@@ -200,6 +185,7 @@ const Projects = (props: Props) => {
 
     useEffect(() => {
         dispatch(addToActualProjectState(processVacancies()))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataArrState.length])
 
     const actualProjectsState = useAppSelector(
@@ -268,63 +254,21 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.modifiedOn > b.modifiedOn ? -1 : 1))
     }
 
-    // console.log(filtredArr)
-
-    // let raw = localStorage.getItem('loginData')
-    // let localLoginData: LocalDataType = {
-    //     email: '',
-    //     password: '',
-    //     isLogged: false,
-    //     isAdmin: false,
-    // }
-    // if (raw) {
-    //     localLoginData = JSON.parse(raw)
-    // }
-
-    // const splitString = (string: string) => {
-    //     let arrFromString = string.split(' ')
-    //     if (string.includes('\n')) {
-    //         arrFromString = string.split('\n')
-    //     }
-    //     let filtredArrFromString = arrFromString.filter(
-    //         (element) => element.length > 0
-    //     )
-    //     return filtredArrFromString
-    // }
-
-    // const getShortString = (string: string) => {
-    //     let tempStr
-    //     if (string.length > 80) {
-    //         tempStr = string.slice(0, 80) + '...'
-    //     } else {
-    //         tempStr = string
-    //     }
-    //     return tempStr
-    // }
-
-    // change copy button placeholder
-    const StatusNodeMap: Record<ICopyStatus, React.ReactNode> = {
-        waiting: 'Копіювати',
-        copying: 'Копіюю..',
-        failed: 'Помилка!',
-        succeed: 'Скопійовано!',
-    }
-
     // enable scroll up button
+
     const [scrollUpState, setScrollUpState] = useState<boolean>(false)
     window.addEventListener('scroll', function () {
         window.scrollY > 2000 ? setScrollUpState(true) : setScrollUpState(false)
     })
 
     // scroll up function
+
     const onScrollUpClick = () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth',
         })
     }
-
-    console.log(filtredArr)
 
     return (
         <div className="projects-content">
