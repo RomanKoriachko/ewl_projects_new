@@ -173,7 +173,7 @@ const Projects = (props: Props) => {
         filtredNationalityArr = filtredGenderArr
     }
 
-    // // ---------------------- is actual filter ----------------------
+    //  ---------------------- is actual filter ----------------------
 
     const processVacancies = () => {
         const date = new Date()
@@ -184,8 +184,9 @@ const Projects = (props: Props) => {
             let isActual = false
             vacancy.recruitmentProjects.forEach((project) => {
                 if (
-                    !project.projectEndDate ||
-                    project.projectEndDate > currentDate
+                    project.vacancies.currentSumOfAllVacancies > 0 &&
+                    (!project.projectEndDate ||
+                        project.projectEndDate > currentDate)
                 ) {
                     isActual = true
                 }

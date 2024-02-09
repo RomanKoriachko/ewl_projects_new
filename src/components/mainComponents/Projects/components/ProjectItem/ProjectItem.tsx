@@ -57,18 +57,14 @@ const ProjectItem = ({ vacancy }: Props) => {
             })
     }
 
-    function onShowMoreClick(
-        companyName: string,
-        correlationId: string,
-        id: string
-    ) {
-        dispatch(showMoreData(companyName))
+    function onShowMoreClick(correlationId: string, id: string) {
+        dispatch(showMoreData(id))
         getData(correlationId)
         getDataWithProjectId(id)
     }
 
-    function onShowLessClick(companyName: string, correlationId: string) {
-        dispatch(showLessData(companyName))
+    function onShowLessClick(id: string, correlationId: string) {
+        dispatch(showLessData(id))
         const newArr = JSON.parse(JSON.stringify(currentProject)).filter(
             (element: CurrentProjectType) =>
                 element.correlationId !== correlationId
@@ -132,8 +128,11 @@ const ProjectItem = ({ vacancy }: Props) => {
     useEffect(() => {
         if (newAdvertisementHtml) {
             const updatedHtml = newAdvertisementHtml.replace(
-                /(Додаткові послуги<\/b><\/h6>)(\s*\\n)+/g,
-                '$1'
+                /(Додаткові послуги<\/b><\/h6>)([\s\S]*?)\\n/g,
+                (match, p1, p2) => {
+                    const updatedText = p2.replace(/\\n/g, '')
+                    return p1 + updatedText
+                }
             )
             setNewAdvertisementHtml(updatedHtml)
         }
@@ -163,15 +162,13 @@ const ProjectItem = ({ vacancy }: Props) => {
             </div>
             <div
                 className={`project-short-description ${
-                    showMoreState[vacancy.companyName] ? 'hide' : 'show'
+                    showMoreState[vacancy.id] ? 'hide' : 'show'
                 }`}
                 dangerouslySetInnerHTML={{
                     __html: vacancy.advertisementHtml,
                 }}
             />
-            <div
-                className={showMoreState[vacancy.companyName] ? 'show' : 'hide'}
-            >
+            <div className={showMoreState[vacancy.id] ? 'show' : 'hide'}>
                 {errorState ? (
                     <div>Виникла помилка при завантаженні даних</div>
                 ) : isLoading ? (
@@ -229,27 +226,20 @@ const ProjectItem = ({ vacancy }: Props) => {
                 <div className="row">
                     <button
                         className={`show-more-btn project-item-btn ${
-                            showMoreState[vacancy.companyName] ? 'hide' : 'show'
+                            showMoreState[vacancy.id] ? 'hide' : 'show'
                         }`}
                         onClick={() =>
-                            onShowMoreClick(
-                                vacancy.companyName,
-                                vacancy.correlationId,
-                                vacancy.id
-                            )
+                            onShowMoreClick(vacancy.correlationId, vacancy.id)
                         }
                     >
                         Розгорнути
                     </button>
                     <button
                         className={`show-more-btn project-item-btn ${
-                            showMoreState[vacancy.companyName] ? 'show' : 'hide'
+                            showMoreState[vacancy.id] ? 'show' : 'hide'
                         }`}
                         onClick={() =>
-                            onShowLessClick(
-                                vacancy.companyName,
-                                vacancy.correlationId
-                            )
+                            onShowLessClick(vacancy.id, vacancy.correlationId)
                         }
                     >
                         Згорнути
