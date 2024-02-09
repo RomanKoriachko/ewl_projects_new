@@ -8,6 +8,7 @@ type GenderCheckboxType = {
 const initialState: GenderCheckboxType[] = [
     { name: 'Male', checked: false },
     { name: 'Female', checked: false },
+    { name: 'Couples', checked: false },
 ]
 export const genderCheckboxReducer = createSlice({
     name: 'genderCheckbox',

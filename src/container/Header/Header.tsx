@@ -15,38 +15,38 @@ type UserType = {
 }
 
 const Header = (props: Props) => {
-    const loginDataState = useAppSelector((state) => state.loginDataState)
+    // const loginDataState = useAppSelector((state) => state.loginDataState)
     const darkThemeState = useAppSelector((state) => state.darkThemeState)
     const dispatch = useAppDispatch()
 
-    let raw = localStorage.getItem('loginData')
-    let localLoginData
-    if (raw) {
-        localLoginData = JSON.parse(raw)
-    }
+    // let raw = localStorage.getItem('loginData')
+    // let localLoginData
+    // if (raw) {
+    //     localLoginData = JSON.parse(raw)
+    // }
 
-    let currentData: UserType = localLoginData
+    // let currentData: UserType = localLoginData
 
-    if (loginDataState.isLogged) {
-        currentData.isLogged = true
-    }
-    if (loginDataState.isAdmin) {
-        currentData.isAdmin = true
-    }
+    // if (loginDataState.isLogged) {
+    //     currentData.isLogged = true
+    // }
+    // if (loginDataState.isAdmin) {
+    //     currentData.isAdmin = true
+    // }
 
-    if (currentData === undefined) {
-        currentData = loginDataState
-    }
+    // if (currentData === undefined) {
+    //     currentData = loginDataState
+    // }
 
-    const logout = () => {
-        let logoutData = {
-            email: '',
-            password: '',
-            isLogged: false,
-            isAdmin: false,
-        }
-        localStorage.setItem('loginData', JSON.stringify(logoutData))
-    }
+    // const logout = () => {
+    //     let logoutData = {
+    //         email: '',
+    //         password: '',
+    //         isLogged: false,
+    //         isAdmin: false,
+    //     }
+    //     localStorage.setItem('loginData', JSON.stringify(logoutData))
+    // }
 
     let localThemeData = localStorage.getItem('darkThemeState')
 
@@ -89,12 +89,11 @@ const Header = (props: Props) => {
                 </div>
             </div>
             <div className="container">
-                {currentData.isLogged ? (
-                    <div className="header-content row">
-                        <Link to={'/'}>
-                            <div className="header-logo"></div>
-                        </Link>
-                        <div className="row">
+                <div className="header-content row">
+                    <Link to={'/'}>
+                        <div className="header-logo"></div>
+                    </Link>
+                    {/* <div className="row">
                             <div>
                                 <div className="row user-name-and-btn">
                                     <div className="header-user">
@@ -112,13 +111,8 @@ const Header = (props: Props) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="header-content logout-header-content row">
-                        <div className="header-logo"></div>
-                    </div>
-                )}
+                        </div> */}
+                </div>
             </div>
         </header>
     )

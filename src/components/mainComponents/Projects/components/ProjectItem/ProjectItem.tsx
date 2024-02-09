@@ -76,6 +76,47 @@ const ProjectItem = ({ vacancy }: Props) => {
         setCurrentProject(newArr)
     }
 
+    // Перевірка гендеру
+
+    const [genders, setGenders] = useState<string[]>([])
+
+    useEffect(() => {
+        const activeGenders = vacancy.recruitmentProjects.map(
+            (vacanies) => vacanies
+        )
+
+        const newGenders: string[] = []
+
+        activeGenders.forEach((element) => {
+            if (
+                element.numberOfAnyGenderVacancies > 0 &&
+                !newGenders.includes('Пари')
+            ) {
+                newGenders.push('Пари')
+            }
+            if (
+                element.numberOfManVacancies > 0 &&
+                !newGenders.includes('Чоловіки')
+            ) {
+                newGenders.push('Чоловіки')
+            }
+            if (
+                element.numberOfWomanVacancies > 0 &&
+                !newGenders.includes('Жінки')
+            ) {
+                newGenders.push('Жінки')
+            }
+        })
+
+        if (newGenders.length < 1) {
+            newGenders.push(vacancy.allowGender)
+        }
+
+        setGenders(newGenders)
+    }, [])
+
+    // Перевірка проєктив на актуальність
+
     const isActualState = useAppSelector((state) => state.actualProjectsState)
 
     function getIsActualState() {
@@ -108,7 +149,11 @@ const ProjectItem = ({ vacancy }: Props) => {
             <p className="project-header">{vacancy.companyName}</p>
             <div className="row project-first-descroption-row">
                 <div className="row project-row">
-                    <div className="project-sex">{vacancy.allowGender}</div>
+                    {genders.map((element, i) => (
+                        <div key={i} className="project-sex">
+                            {element}
+                        </div>
+                    ))}
                     <div className="row project-location-row">
                         <div className="project-location">
                             {vacancy.cityNames}

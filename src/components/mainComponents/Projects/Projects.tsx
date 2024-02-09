@@ -117,17 +117,31 @@ const Projects = (props: Props) => {
             .filter((gender) => gender.checked)
             .map((gender) => gender.name)
 
-        filtredGenderArr = filtredCountryArr.filter((el) => {
-            for (const gender of activeGenders) {
+        filtredGenderArr = filtredCountryArr.filter((el) =>
+            el.recruitmentProjects.some((vacancy) => {
                 if (
-                    el.allowGender.includes(gender) ||
-                    el.allowGender.includes('Any')
+                    activeGenders.includes('Male') &&
+                    vacancy.numberOfManVacancies > 0
                 ) {
                     return true
                 }
-            }
-            return false
-        })
+
+                if (
+                    activeGenders.includes('Female') &&
+                    vacancy.numberOfWomanVacancies > 0
+                ) {
+                    return true
+                }
+
+                if (
+                    activeGenders.includes('Couples') &&
+                    vacancy.numberOfAnyGenderVacancies > 0
+                ) {
+                    return true
+                }
+                return false
+            })
+        )
         if (activeGenders.length < 1) {
             filtredGenderArr = filtredCountryArr
         }
@@ -309,7 +323,7 @@ const Projects = (props: Props) => {
         })
     }
 
-    // console.log(filtredArr)
+    console.log(filtredArr)
 
     return (
         <div className="projects-content">

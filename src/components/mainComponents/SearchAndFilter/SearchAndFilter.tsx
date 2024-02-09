@@ -216,11 +216,11 @@ const SearchAndFilter = (props: Props) => {
 
     // --------------------- is minor filter ---------------------
 
-    const isMinorChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.target.checked
-            ? dispatch(setIsMinor(true))
-            : dispatch(setIsMinor(false))
-    }
+    // const isMinorChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     e.target.checked
+    //         ? dispatch(setIsMinor(true))
+    //         : dispatch(setIsMinor(false))
+    // }
 
     // --------------------- Age to filter ---------------------
 
@@ -335,7 +335,13 @@ const SearchAndFilter = (props: Props) => {
                         {genderCheckboxState.map((element) => (
                             <div key={element.name} className="filter-item">
                                 <FormControlLabel
-                                    label={element.name}
+                                    label={
+                                        element.name === 'Male'
+                                            ? 'Чоловіки'
+                                            : element.name === 'Female'
+                                            ? 'Жінки'
+                                            : 'Пари'
+                                    }
                                     className="filter-checkbox"
                                     control={
                                         <Checkbox
@@ -523,7 +529,7 @@ const SearchAndFilter = (props: Props) => {
                     </FormControl>
                 </div>
 
-                <div className="filter-adult">
+                {/* <div className="filter-adult">
                     <div className="filter-wrapper">
                         <div className="filter-item">
                             <FormGroup>
@@ -542,7 +548,7 @@ const SearchAndFilter = (props: Props) => {
                             </FormGroup>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="filter-age">
                     <div className="filter-wrapper">
                         <div>
