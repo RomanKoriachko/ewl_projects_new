@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { getDataFromServer } from 'helper/getData'
 import { NewProjectType } from './NewProjectType'
 import { ProjectItem } from './components'
@@ -11,6 +11,7 @@ import {
 } from 'redux/actualProjectsReducer'
 
 import './Projects.scss'
+import { getFiltredArrData } from 'redux/filtredArrReducer'
 
 type Props = {}
 
@@ -66,7 +67,8 @@ const Projects = (props: Props) => {
                 .includes(searchState.toLowerCase()) ||
             element.typeOfContract
                 .toLowerCase()
-                .includes(searchState.toLowerCase())
+                .includes(searchState.toLowerCase()) ||
+            element.id.toLowerCase().includes(searchState.toLowerCase())
     )
 
     // ---------------------- country filter ----------------------
@@ -254,6 +256,10 @@ const Projects = (props: Props) => {
         filtredArr.sort((a, b) => (a.modifiedOn > b.modifiedOn ? -1 : 1))
     }
 
+    useEffect(() => {
+        dispatch(getFiltredArrData(filtredArr))
+    }, [filtredArr.length])
+
     // enable scroll up button
 
     const [scrollUpState, setScrollUpState] = useState<boolean>(false)
@@ -269,6 +275,8 @@ const Projects = (props: Props) => {
             behavior: 'smooth',
         })
     }
+
+    // console.log(filtredArr)
 
     return (
         <div className="projects-content">

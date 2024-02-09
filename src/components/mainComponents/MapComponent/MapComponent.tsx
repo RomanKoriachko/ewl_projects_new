@@ -3,9 +3,14 @@ import { useState } from 'react'
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getSearchInput } from 'redux/searchContentReducer'
-import { ProjectType } from '../Projects/Projects'
 
 type Props = {}
+
+type CoordinatesType = {
+    id: string
+    lat: number
+    long: number
+}
 
 const MapComponent = (props: Props) => {
     const filtredArrState = useAppSelector((state) => state.filtredArrState)
@@ -15,9 +20,33 @@ const MapComponent = (props: Props) => {
         lng: number
     }>({ lat: 52.915845892170395, lng: 18.496121727194044 })
 
-    const filtredEwlArrState = filtredArrState.filter((element) => {
-        return element.partner === 'EWL'
+    const uniqueCoordinates: CoordinatesType[] = []
+
+    filtredArrState.forEach((project) => {
+        project.recruitmentProjects.forEach((recruitmentProject) => {
+            const { companyGeoPosition } = recruitmentProject
+            if (companyGeoPosition) {
+                const { lat, long } = companyGeoPosition
+                const existingCoord = uniqueCoordinates.find(
+                    (coord) => coord.lat === lat && coord.long === long
+                )
+                if (!existingCoord) {
+                    uniqueCoordinates.push({ id: project.id, lat, long })
+                }
+            }
+        })
     })
+
+    const onMarkerClick = (id: string) => {
+        const currentProject = uniqueCoordinates.filter(
+            (element) => element.id === id
+        )
+        dispatch(getSearchInput(currentProject[0].id))
+        setmapCentring({
+            lat: currentProject[0].lat,
+            lng: currentProject[0].long,
+        })
+    }
 
     const { isLoaded } = useLoadScript({
         /* @ts-ignore */
@@ -25,32 +54,20 @@ const MapComponent = (props: Props) => {
     })
     if (!isLoaded) return <div>loading...</div>
 
-    const onMarkerClick = (location: string) => {
-        const currentProject = filtredEwlArrState.filter(
-            (element) => element.location === location
-        )
-        dispatch(getSearchInput(currentProject[0].lat))
-        setmapCentring({
-            lat: parseFloat(currentProject[0].lat),
-            lng: parseFloat(currentProject[0].lng),
-        })
-    }
-
     return (
         <GoogleMap
             zoom={5}
             center={mapCentring}
             mapContainerClassName="map-container"
         >
-            {filtredEwlArrState.map((element: ProjectType, i: number) => (
+            {uniqueCoordinates.map((element) => (
                 <Marker
-                    key={i}
+                    key={element.id}
                     position={{
-                        lat: Number(element.lat),
-                        lng: Number(element.lng),
+                        lat: element.lat,
+                        lng: element.long,
                     }}
-                    visible={element.isActual ? true : false}
-                    onClick={() => onMarkerClick(element.location)}
+                    onClick={() => onMarkerClick(element.id)}
                 />
             ))}
         </GoogleMap>

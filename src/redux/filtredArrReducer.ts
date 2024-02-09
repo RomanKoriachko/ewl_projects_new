@@ -1,32 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { NewProjectType } from 'components/mainComponents/Projects/NewProjectType'
 
-type ProjectType = {
-    country: string
-    salary: string
-    projectName: string
-    location: string
-    sex: string
-    ageFrom: string
-    ageTo: string
-    nationalaty: string
-    additionalInfo: string
-    housing: string
-    projectInfo: string
-    category: string
-    isActual: boolean
-    video: string
-    workSchedule: string
-    food: string
-    synchronerLink: string
-    contact: string
-    housingPhoto: string
-    date: number
-    lat: string
-    lng: string
-    partner: string
-}
-
-const initialState: ProjectType[] = []
+const initialState: NewProjectType[] = []
 
 export const filtredArrReducer = createSlice({
     name: 'filtredArr',
