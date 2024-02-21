@@ -5,6 +5,7 @@ export async function getDataFromServer(link: string) {
             headers: {
                 accept: 'application/json;odata.metadata=minimal;odata.streaming=true',
                 ApiKey: process.env.REACT_APP_DATA_API_KEY,
+                mode: 'no-cors',
             },
         })
 
