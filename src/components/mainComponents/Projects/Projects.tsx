@@ -258,6 +258,7 @@ const Projects = (props: Props) => {
 
     useEffect(() => {
         dispatch(getFiltredArrData(filtredArr))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filtredArr.length])
 
     // enable scroll up button

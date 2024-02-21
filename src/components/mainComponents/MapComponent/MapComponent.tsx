@@ -48,6 +48,12 @@ const MapComponent = (props: Props) => {
         })
     }
 
+    const [state, setState] = useState('none')
+
+    function onDubleClick() {
+        setState('block')
+    }
+
     const { isLoaded } = useLoadScript({
         /* @ts-ignore */
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
@@ -60,15 +66,20 @@ const MapComponent = (props: Props) => {
             center={mapCentring}
             mapContainerClassName="map-container"
         >
-            {uniqueCoordinates.map((element) => (
-                <Marker
-                    key={element.id}
-                    position={{
-                        lat: element.lat,
-                        lng: element.long,
-                    }}
-                    onClick={() => onMarkerClick(element.id)}
-                />
+            {uniqueCoordinates.map((element, i) => (
+                <div key={i}>
+                    <Marker
+                        position={{
+                            lat: element.lat,
+                            lng: element.long,
+                        }}
+                        onClick={() => onMarkerClick(element.id)}
+                        onDblClick={() => onDubleClick()}
+                    />
+                    <div className="test-div" style={{ display: state }}>
+                        test
+                    </div>
+                </div>
             ))}
         </GoogleMap>
     )

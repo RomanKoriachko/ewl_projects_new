@@ -27,7 +27,8 @@ const ProjectItem = ({ vacancy }: Props) => {
         )
             .then((result) => {
                 dispatch(setErrorState(false))
-                const newArr = JSON.parse(JSON.stringify(currentProject))
+                // const newArr = JSON.parse(JSON.stringify(currentProject))
+                const newArr = []
                 newArr.push(result)
                 setCurrentProject(newArr)
                 setIsLoading(false)
@@ -38,6 +39,13 @@ const ProjectItem = ({ vacancy }: Props) => {
                 console.error('Error:', error)
             })
     }
+
+    useEffect(() => {
+        getData(vacancy.correlationId)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    // console.log(currentProject)
 
     const [newAdvertisementHtml, setNewAdvertisementHtml] = useState<string>('')
 
@@ -254,7 +262,31 @@ const ProjectItem = ({ vacancy }: Props) => {
                         Згорнути
                     </button>
                     <CopyButtonComponent
-                        newAdvertisementHtml={newAdvertisementHtml}
+                        title={
+                            currentProject.length > 0
+                                ? currentProject[0].companyName
+                                : ''
+                        }
+                        description={
+                            currentProject.length > 0
+                                ? currentProject[0].description
+                                : ''
+                        }
+                        activity={
+                            currentProject.length > 0
+                                ? currentProject[0].contractActivity
+                                : ''
+                        }
+                        requirements={
+                            currentProject.length > 0
+                                ? currentProject[0].requirements
+                                : ''
+                        }
+                        benefits={
+                            currentProject.length > 0
+                                ? currentProject[0].benefits
+                                : ''
+                        }
                     />
                 </div>
             </div>

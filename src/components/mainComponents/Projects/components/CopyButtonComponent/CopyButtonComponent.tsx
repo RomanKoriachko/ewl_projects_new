@@ -2,10 +2,20 @@ import CopyButton, { ICopyStatus } from '@yozora/react-common-copy-button'
 import React from 'react'
 
 type Props = {
-    newAdvertisementHtml: string
+    title: string
+    description: string
+    activity: string
+    requirements: string
+    benefits: string
 }
 
-const CopyButtonComponent = ({ newAdvertisementHtml }: Props) => {
+const CopyButtonComponent = ({
+    title,
+    description,
+    activity,
+    requirements,
+    benefits,
+}: Props) => {
     const StatusNodeMap: Record<ICopyStatus, React.ReactNode> = {
         waiting: 'Копіювати',
         copying: 'Копіюю..',
@@ -21,7 +31,13 @@ const CopyButtonComponent = ({ newAdvertisementHtml }: Props) => {
         <CopyButton
             statusNodeMap={StatusNodeMap}
             className="copy-btn project-item-btn"
-            value={removeTags(newAdvertisementHtml)}
+            value={`${removeTags(title)}\n\n${removeTags(
+                description
+            )}\n\nОбов'язки\n${removeTags(
+                activity
+            )}\n\nНеобхідна кваліфікація\n${removeTags(
+                requirements
+            )}\n\nБонуси\n${removeTags(benefits)}`}
         />
     )
 }
