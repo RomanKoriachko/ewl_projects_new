@@ -37,7 +37,7 @@ const Projects = (props: Props) => {
     useEffect(() => {
         async function getData() {
             getDataFromServer(
-                'https://corsproxy.io/?https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
+                'https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
             )
                 .then((result) => {
                     dispatch(setNewDataArr(result.value))
