@@ -1,6 +1,6 @@
 export async function getDataFromServer(link: string) {
     try {
-        const response = await fetch(link, {
+        const response = await fetch('https://corsproxy.io/?' + link, {
             method: 'GET',
             headers: {
                 accept: 'application/json;odata.metadata=minimal;odata.streaming=true',
