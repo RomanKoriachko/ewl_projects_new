@@ -41,39 +41,11 @@
 
 .main-dark {
     background: linear-gradient(180deg, #1f1f1f, #2c2c2c 70.71%);
-    .login {
-        background-color: #424242;
-        border-color: #6b6b6b;
-        color: white;
-        .grid-wrapper {
-            .login-input,
-            .password-input {
-                background-color: #424242;
-                border-color: #6b6b6b;
-                color: white;
-            }
-            .show-password-btn {
-                background-image: url(../../assets/show-password-dark.svg);
-            }
-            .show-password-btn.text {
-                background-image: url(../../assets/hide-password-dark.svg);
-            }
-            .login-input:-webkit-autofill,
-            .login-input:-webkit-autofill:focus,
-            .password-input:-webkit-autofill,
-            .password-input:-webkit-autofill:focus {
-                transition: background-color 600000s 0s, color 600000s 0s;
-            }
-            .submit-button {
-                background: linear-gradient(180deg, #161616, #222222 70.71%);
-            }
-        }
-    }
-    .slider-item {
-        .slider-content {
-            background: #424242c5;
-        }
-    }
+    // .slider-item {
+    //     .slider-content {
+    //         background: #424242c5;
+    //     }
+    // }
     .project-form {
         background-color: #424242;
         border-color: #6b6b6b;
@@ -85,33 +57,6 @@
         }
         .add-project-btn {
             background: linear-gradient(180deg, #161616, #222222 70.71%);
-        }
-    }
-    .registration {
-        background-color: #424242;
-        border-color: #6b6b6b;
-        color: white;
-        .registration-wrapper {
-            input {
-                background-color: #424242;
-                border-color: #6b6b6b;
-                color: white;
-            }
-            input:-webkit-autofill,
-            input:-webkit-autofill:focus {
-                transition: background-color 600000s 0s, color 600000s 0s;
-            }
-        }
-        .grid-wrapper {
-            .submit-button {
-                background: linear-gradient(180deg, #161616, #222222 70.71%);
-            }
-        }
-        .show-password-btn {
-            background-image: url(../../assets/show-password-dark.svg);
-        }
-        .show-password-btn.text {
-            background-image: url(../../assets/hide-password-dark.svg);
         }
     }
     .search-and-filter {
@@ -208,6 +153,23 @@
             }
             .edit-btn {
                 background-color: rgba(211, 104, 43, 0.8);
+            }
+            .project-short-description {
+                .adv-project-list {
+                    .adv-project-list-element {
+                        background-color: #686868;
+                    }
+                }
+            }
+            .current-project-description {
+                .adv-project-list {
+                    .adv-project-list-element {
+                        background-color: #686868;
+                        a {
+                            color: white;
+                        }
+                    }
+                }
             }
         }
         .project-item.not-actual {
