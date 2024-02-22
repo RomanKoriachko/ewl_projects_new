@@ -1,2 +1,1 @@
-/*
-  Access-Control-Allow-Origin: *
+/api/*  https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements/:splat  200

@@ -1,6 +1,6 @@
 export async function getDataFromServer(link: string) {
     try {
-        const response = await fetch('https://corsproxy.io/?' + link, {
+        const response = await fetch(link, {
             method: 'GET',
             headers: {
                 accept: 'application/json;odata.metadata=minimal;odata.streaming=true',
@@ -14,6 +14,8 @@ export async function getDataFromServer(link: string) {
         console.error('Error:', error)
     }
 }
+
+// 'https://corsproxy.io/?' +
 
 // 'https://corsproxy.io/?https://platform-dev.ewl.com.pl/job-advertisements/external-job-advertisements',
 
