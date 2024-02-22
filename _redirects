@@ -1,5 +1,0 @@
-/api/*  https://corsproxy.io/?https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements/:splat  200
-
-/api/*  https://corsproxy.io/?https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements/current/:splat  200
-
-/api/*  https://corsproxy.io/:splat  200
