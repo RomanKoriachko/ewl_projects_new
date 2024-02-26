@@ -40,10 +40,10 @@ const ProjectItem = ({ vacancy }: Props) => {
             })
     }
 
-    useEffect(() => {
-        getData(vacancy.correlationId)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // useEffect(() => {
+    //     getData(vacancy.correlationId)
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
 
     // console.log(currentProject)
 
