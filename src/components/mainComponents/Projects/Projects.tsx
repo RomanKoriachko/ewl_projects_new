@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 // import { Link } from 'react-router-dom'
-import { getDataFromServer } from 'helper/getData'
+import { getDataFromServer } from 'helper/getDataFromServer'
 import { NewProjectType } from './NewProjectType'
 import { ProjectItem } from './components'
 import { setNewDataArr } from 'redux/dataArrReducer'
@@ -65,10 +65,11 @@ const Projects = (props: Props) => {
             element.jobPositionName
                 .toLowerCase()
                 .includes(searchState.toLowerCase()) ||
-            element.typeOfContract
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.id.toLowerCase().includes(searchState.toLowerCase())
+            (element.typeOfContract &&
+                element.typeOfContract
+                    .toLowerCase()
+                    .includes(searchState.toLowerCase())) ||
+            element.id.includes(searchState)
     )
 
     // ---------------------- country filter ----------------------

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState: string = 'both'
+const initialState: string = 'actual'
 
 export const isActualReducer = createSlice({
     name: 'isActual',
@@ -10,7 +10,7 @@ export const isActualReducer = createSlice({
             return action.payload
         },
         resetActualState: (state) => {
-            return 'both'
+            return 'actual'
         },
     },
 })

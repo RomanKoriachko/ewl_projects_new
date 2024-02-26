@@ -18,16 +18,16 @@
     display: block;
 }
 .hide-scroll-up {
-    position: absolute;
+    // position: absolute;
     opacity: 0;
-    right: -50px;
+    // right: -50px;
     visibility: hidden;
-    transition: 0.5s all;
+    // transition: 0.5s all;
 }
 .show-scroll-up {
     opacity: 1;
     visibility: visible;
-    transition: 0.5s all;
+    // transition: 0.5s all;
 }
 
 .main {

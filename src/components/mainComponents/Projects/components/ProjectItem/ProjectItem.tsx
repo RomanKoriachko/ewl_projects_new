@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+
 import { CurrentProjectType, NewProjectType } from '../../NewProjectType'
-import { getDataFromServer } from 'helper/getData'
+import { getDataFromServer } from 'helper/getDataFromServer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { showLessData, showMoreData } from 'redux/showMoreReducer'
 import { setErrorState } from 'redux/errorReducer'
@@ -20,6 +21,8 @@ const ProjectItem = ({ vacancy }: Props) => {
     )
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
+    // console.log(currentProject)
+
     async function getData(correlationId: string) {
         setIsLoading(true)
         getDataFromServer(
@@ -27,9 +30,12 @@ const ProjectItem = ({ vacancy }: Props) => {
         )
             .then((result) => {
                 dispatch(setErrorState(false))
-                // const newArr = JSON.parse(JSON.stringify(currentProject))
-                const newArr = []
-                newArr.push(result)
+                console.log(result)
+                const newArr = JSON.parse(JSON.stringify(currentProject))
+                console.log(newArr.includes(result))
+                if (!newArr.includes(result)) {
+                    newArr.push(result)
+                }
                 setCurrentProject(newArr)
                 setIsLoading(false)
             })
@@ -41,7 +47,7 @@ const ProjectItem = ({ vacancy }: Props) => {
     }
 
     // useEffect(() => {
-    //     getData(vacancy.correlationId)
+    //     getCurrentProjectData(vacancy.correlationId)
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [])
 
@@ -150,10 +156,10 @@ const ProjectItem = ({ vacancy }: Props) => {
 
     // Отримання додаткової інформації по проєкту
 
-    useEffect(() => {
-        getDataWithProjectId(vacancy.id)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // useEffect(() => {
+    //     getDataWithProjectId(vacancy.id)
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
 
     return (
         <div
@@ -262,6 +268,9 @@ const ProjectItem = ({ vacancy }: Props) => {
                         Згорнути
                     </button>
                     <CopyButtonComponent
+                        correlationId={vacancy.correlationId}
+                    />
+                    {/* <CopyButtonComponent
                         title={
                             currentProject.length > 0
                                 ? currentProject[0].companyName
@@ -287,7 +296,7 @@ const ProjectItem = ({ vacancy }: Props) => {
                                 ? currentProject[0].benefits
                                 : ''
                         }
-                    />
+                    /> */}
                 </div>
             </div>
         </div>
