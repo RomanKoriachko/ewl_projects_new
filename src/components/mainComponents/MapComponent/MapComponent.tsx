@@ -1,8 +1,10 @@
-import './MapComponent.scss'
-import { useState } from 'react'
+import { forwardRef, useState } from 'react'
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getSearchInput } from 'redux/searchContentReducer'
+import { NewProjectType } from '../Projects/NewProjectType'
+
+import './MapComponent.scss'
 
 type Props = {}
 
@@ -12,8 +14,9 @@ type CoordinatesType = {
     long: number
 }
 
-const MapComponent = (props: Props) => {
+const MapComponent = forwardRef((props: Props, ref) => {
     const filtredArrState = useAppSelector((state) => state.filtredArrState)
+    const allProjectsArr = useAppSelector((state) => state.dataArrState)
     const dispatch = useAppDispatch()
     const [mapCentring, setmapCentring] = useState<{
         lat: number
@@ -48,15 +51,37 @@ const MapComponent = (props: Props) => {
         })
     }
 
-    const [state, setState] = useState('none')
+    const [descriptionStyle, setDescriptionStyle] = useState({
+        display: 'none',
+        top: '0%',
+        left: '0%',
+    })
 
-    function onDubleClick() {
-        setState('block')
+    const [currentProjectObj, setCurrentProjectObj] = useState<NewProjectType>()
+
+    function onMouseOver(id: string) {
+        setDescriptionStyle({
+            display: 'block',
+            top: '50%',
+            left: '70%',
+        })
+        const currentProject = allProjectsArr.filter(
+            (project) => project.id === id
+        )
+        setCurrentProjectObj(currentProject[0])
+    }
+    function onMouseOut() {
+        setDescriptionStyle({
+            display: 'none',
+            top: '0%',
+            left: '0%',
+        })
     }
 
     const { isLoaded } = useLoadScript({
-        /* @ts-ignore */
-        googleMapsApiKey: process.env.REACT_APP_API_KEY,
+        googleMapsApiKey: process.env.REACT_APP_API_KEY
+            ? process.env.REACT_APP_API_KEY
+            : '',
     })
     if (!isLoaded) return <div>loading...</div>
 
@@ -67,22 +92,29 @@ const MapComponent = (props: Props) => {
             mapContainerClassName="map-container"
         >
             {uniqueCoordinates.map((element, i) => (
-                <div key={i}>
+                <div className="marker" key={i}>
                     <Marker
                         position={{
                             lat: element.lat,
                             lng: element.long,
                         }}
                         onClick={() => onMarkerClick(element.id)}
-                        onDblClick={() => onDubleClick()}
+                        onMouseOver={() => onMouseOver(element.id)}
+                        onMouseOut={() => onMouseOut()}
                     />
-                    <div className="test-div" style={{ display: state }}>
-                        test
-                    </div>
+                    {currentProjectObj && (
+                        <div
+                            className="marker-description"
+                            dangerouslySetInnerHTML={{
+                                __html: currentProjectObj?.mapTooltipHtml,
+                            }}
+                            style={descriptionStyle}
+                        ></div>
+                    )}
                 </div>
             ))}
         </GoogleMap>
     )
-}
+})
 
 export default MapComponent

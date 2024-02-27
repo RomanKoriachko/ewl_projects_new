@@ -30,9 +30,7 @@ const ProjectItem = ({ vacancy }: Props) => {
         )
             .then((result) => {
                 dispatch(setErrorState(false))
-                console.log(result)
                 const newArr = JSON.parse(JSON.stringify(currentProject))
-                console.log(newArr.includes(result))
                 if (!newArr.includes(result)) {
                     newArr.push(result)
                 }
@@ -270,33 +268,6 @@ const ProjectItem = ({ vacancy }: Props) => {
                     <CopyButtonComponent
                         correlationId={vacancy.correlationId}
                     />
-                    {/* <CopyButtonComponent
-                        title={
-                            currentProject.length > 0
-                                ? currentProject[0].companyName
-                                : ''
-                        }
-                        description={
-                            currentProject.length > 0
-                                ? currentProject[0].description
-                                : ''
-                        }
-                        activity={
-                            currentProject.length > 0
-                                ? currentProject[0].contractActivity
-                                : ''
-                        }
-                        requirements={
-                            currentProject.length > 0
-                                ? currentProject[0].requirements
-                                : ''
-                        }
-                        benefits={
-                            currentProject.length > 0
-                                ? currentProject[0].benefits
-                                : ''
-                        }
-                    /> */}
                 </div>
             </div>
         </div>
