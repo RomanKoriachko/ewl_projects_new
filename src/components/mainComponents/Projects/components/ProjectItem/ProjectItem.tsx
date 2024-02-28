@@ -44,11 +44,6 @@ const ProjectItem = ({ vacancy }: Props) => {
             })
     }
 
-    // useEffect(() => {
-    //     getCurrentProjectData(vacancy.correlationId)
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
-
     // console.log(currentProject)
 
     const [newAdvertisementHtml, setNewAdvertisementHtml] = useState<string>('')

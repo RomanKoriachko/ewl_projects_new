@@ -30,7 +30,6 @@ const CopyButtonComponent = ({ correlationId }: Props) => {
                 `https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements/current/${correlationId}`
             )
             dispatch(setErrorState(false))
-            // setCurrentProjectData(result)
 
             // Копіюємо дані в буфер обміну
             if (result) {
@@ -60,17 +59,6 @@ const CopyButtonComponent = ({ correlationId }: Props) => {
         >
             Копіювати
         </button>
-        // <CopyButton
-        //     statusNodeMap={StatusNodeMap}
-        //     className="copy-btn project-item-btn"
-        //     value={`${removeTags(title)}\n\n${removeTags(
-        //         description
-        //     )}\n\nОбов'язки\n${removeTags(
-        //         activity
-        //     )}\n\nНеобхідна кваліфікація\n${removeTags(
-        //         requirements
-        //     )}\n\nБонуси\n${removeTags(benefits)}`}
-        // />
     )
 }
 

@@ -49,12 +49,13 @@ const MapComponent = forwardRef((props: Props, ref) => {
             lat: currentProject[0].lat,
             lng: currentProject[0].long,
         })
+        setDescriptionStyle({
+            display: 'none',
+        })
     }
 
     const [descriptionStyle, setDescriptionStyle] = useState({
         display: 'none',
-        top: '0%',
-        left: '0%',
     })
 
     const [currentProjectObj, setCurrentProjectObj] = useState<NewProjectType>()
@@ -62,8 +63,6 @@ const MapComponent = forwardRef((props: Props, ref) => {
     function onMouseOver(id: string) {
         setDescriptionStyle({
             display: 'block',
-            top: '50%',
-            left: '70%',
         })
         const currentProject = allProjectsArr.filter(
             (project) => project.id === id
@@ -73,8 +72,6 @@ const MapComponent = forwardRef((props: Props, ref) => {
     function onMouseOut() {
         setDescriptionStyle({
             display: 'none',
-            top: '0%',
-            left: '0%',
         })
     }
 

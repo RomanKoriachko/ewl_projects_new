@@ -34,20 +34,62 @@ const Projects = (props: Props) => {
     )
     const dispatch = useAppDispatch()
 
+    // useEffect(() => {
+    //     async function getData() {
+    //         getDataFromServer(
+    //             'https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
+    //         )
+    //             .then((result) => {
+    //                 dispatch(setNewDataArr(result.value))
+    //             })
+    //             .catch((error) => {
+    //                 console.error('Error:', error)
+    //             })
+    //     }
+    //     getData()
+    // }, [dispatch])
+
+    // console.log(dataArrState)
+
+    // --------------------------------------------------
+
+    const INTERVAL_TIME = 30000
+
     useEffect(() => {
-        async function getData() {
-            getDataFromServer(
-                'https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
-            )
-                .then((result) => {
-                    dispatch(setNewDataArr(result.value))
-                })
-                .catch((error) => {
-                    console.error('Error:', error)
-                })
+        const fetchData = async () => {
+            try {
+                const result = await getDataFromServer(
+                    'https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
+                )
+                return result.value
+            } catch (error) {
+                console.error('Error:', error)
+                return []
+            }
         }
-        getData()
-    }, [dispatch])
+
+        const fetchDataAndUpdateState = async () => {
+            const newData = await fetchData()
+            const isDataChanged = newData.some(
+                (newItem: NewProjectType, index: number) => {
+                    const oldItem = dataArrState[index]
+                    return JSON.stringify(newItem) !== JSON.stringify(oldItem)
+                }
+            )
+            if (isDataChanged) {
+                console.log('test')
+                dispatch(setNewDataArr(newData))
+            }
+        }
+
+        fetchDataAndUpdateState()
+
+        const intervalId = setInterval(fetchDataAndUpdateState, INTERVAL_TIME)
+
+        return () => clearInterval(intervalId)
+    }, [dataArrState, dispatch])
+
+    // --------------------------------------------------
 
     // ---------------------- Search ----------------------
 
