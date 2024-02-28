@@ -120,6 +120,10 @@ const ProjectItem = ({ vacancy }: Props) => {
         setGenders(newGenders)
     }, [vacancy.allowGender, vacancy.recruitmentProjects])
 
+    // Перевірка назв міст
+
+    const splittedStrings = vacancy.cityNames.split(',')
+
     // Перевірка проєктив на актуальність
 
     const isActualState = useAppSelector((state) => state.actualProjectsState)
@@ -134,6 +138,7 @@ const ProjectItem = ({ vacancy }: Props) => {
     }
 
     // Видалення \n після елемента "Додаткові послуги"
+
     useEffect(() => {
         if (newAdvertisementHtml) {
             const updatedHtml = newAdvertisementHtml.replace(
@@ -146,13 +151,6 @@ const ProjectItem = ({ vacancy }: Props) => {
             setNewAdvertisementHtml(updatedHtml)
         }
     }, [newAdvertisementHtml])
-
-    // Отримання додаткової інформації по проєкту
-
-    // useEffect(() => {
-    //     getDataWithProjectId(vacancy.id)
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
 
     return (
         <div
@@ -171,10 +169,22 @@ const ProjectItem = ({ vacancy }: Props) => {
                     ))}
                     <div className="row project-location-row">
                         <div className="project-location">
-                            {vacancy.cityNames}
+                            {splittedStrings.map((city) => (
+                                <a
+                                    key={city}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    href={`https://www.google.com.ua/maps/place/${city}`}
+                                >
+                                    {city}
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="max-age">
+                Максимальний вік кандидата: {vacancy.maxAge}
             </div>
             <div
                 className={`project-short-description ${

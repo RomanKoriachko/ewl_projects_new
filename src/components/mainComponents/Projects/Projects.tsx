@@ -77,7 +77,7 @@ const Projects = (props: Props) => {
                 }
             )
             if (isDataChanged) {
-                console.log('test')
+                console.log('added new data')
                 dispatch(setNewDataArr(newData))
             }
         }
@@ -88,6 +88,8 @@ const Projects = (props: Props) => {
 
         return () => clearInterval(intervalId)
     }, [dataArrState, dispatch])
+
+    // console.log(dataArrState)
 
     // --------------------------------------------------
 
