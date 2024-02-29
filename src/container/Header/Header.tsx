@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom'
 
 type Props = {}
 
-type UserType = {
-    email: string
-    password: string
-    isLogged: boolean
-    isAdmin: boolean
-}
+// type UserType = {
+//     email: string
+//     password: string
+//     isLogged: boolean
+//     isAdmin: boolean
+// }
 
 const Header = (props: Props) => {
     // const loginDataState = useAppSelector((state) => state.loginDataState)
@@ -50,9 +50,9 @@ const Header = (props: Props) => {
 
     let localThemeData = localStorage.getItem('darkThemeState')
 
-    const reloadPage = () => {
-        document.location.reload()
-    }
+    // const reloadPage = () => {
+    //     document.location.reload()
+    // }
 
     const isDarkThemeOn = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.target.checked ? dispatch(darkModeOn()) : dispatch(darkModeOff())

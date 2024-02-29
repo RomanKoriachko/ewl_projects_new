@@ -2,10 +2,8 @@ import {
     Checkbox,
     FormControl,
     FormControlLabel,
-    FormGroup,
     Radio,
     RadioGroup,
-    Switch,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
@@ -53,7 +51,7 @@ const SearchAndFilter = (props: Props) => {
     const genderCheckboxState = useAppSelector(
         (state) => state.genderCheckboxState
     )
-    const isMinorState = useAppSelector((state) => state.isMinorState)
+    // const isMinorState = useAppSelector((state) => state.isMinorState)
     const isActualState = useAppSelector((state) => state.isActualState)
     const sortingState = useAppSelector((state) => state.sortingState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
@@ -159,6 +157,7 @@ const SearchAndFilter = (props: Props) => {
 
     useEffect(() => {
         dispatch(setInitialCountries(countriesStateArray))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterClassState.countryClass])
 
     const handleCountryCheckboxChange = (countryName: string) => {
@@ -196,6 +195,7 @@ const SearchAndFilter = (props: Props) => {
 
     useEffect(() => {
         dispatch(setInitialNationalities(nationalitiesStateArr))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterClassState.nationalityClass])
 
     const handleNationalityCheckboxChange = (nationalityName: string) => {

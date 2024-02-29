@@ -34,60 +34,59 @@ const Projects = (props: Props) => {
     )
     const dispatch = useAppDispatch()
 
-    // useEffect(() => {
-    //     async function getData() {
-    //         getDataFromServer(
-    //             'https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
-    //         )
-    //             .then((result) => {
-    //                 dispatch(setNewDataArr(result.value))
-    //             })
-    //             .catch((error) => {
-    //                 console.error('Error:', error)
-    //             })
-    //     }
-    //     getData()
-    // }, [dispatch])
+    useEffect(() => {
+        async function getData() {
+            getDataFromServer('/api/external-job-advertisements')
+                .then((result) => {
+                    // console.log(result.value)
+                    dispatch(setNewDataArr(result.value))
+                })
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
+        }
+        getData()
+    }, [dispatch])
 
     // console.log(dataArrState)
 
     // --------------------------------------------------
 
-    const INTERVAL_TIME = 30000
+    // const INTERVAL_TIME = 30000
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const result = await getDataFromServer(
-                    'https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
-                )
-                return result.value
-            } catch (error) {
-                console.error('Error:', error)
-                return []
-            }
-        }
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const result = await getDataFromServer(
+    //                 'https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'
+    //             )
+    //             return result.value
+    //         } catch (error) {
+    //             console.error('Error:', error)
+    //             return []
+    //         }
+    //     }
 
-        const fetchDataAndUpdateState = async () => {
-            const newData = await fetchData()
-            const isDataChanged = newData.some(
-                (newItem: NewProjectType, index: number) => {
-                    const oldItem = dataArrState[index]
-                    return JSON.stringify(newItem) !== JSON.stringify(oldItem)
-                }
-            )
-            if (isDataChanged) {
-                console.log('added new data')
-                dispatch(setNewDataArr(newData))
-            }
-        }
+    //     const fetchDataAndUpdateState = async () => {
+    //         const newData = await fetchData()
+    //         const isDataChanged = newData.some(
+    //             (newItem: NewProjectType, index: number) => {
+    //                 const oldItem = dataArrState[index]
+    //                 return JSON.stringify(newItem) !== JSON.stringify(oldItem)
+    //             }
+    //         )
+    //         if (isDataChanged) {
+    //             console.log('added new data')
+    //             dispatch(setNewDataArr(newData))
+    //         }
+    //     }
 
-        fetchDataAndUpdateState()
+    //     fetchDataAndUpdateState()
 
-        const intervalId = setInterval(fetchDataAndUpdateState, INTERVAL_TIME)
+    //     const intervalId = setInterval(fetchDataAndUpdateState, INTERVAL_TIME)
 
-        return () => clearInterval(intervalId)
-    }, [dataArrState, dispatch])
+    //     return () => clearInterval(intervalId)
+    // }, [dataArrState, dispatch])
 
     // console.log(dataArrState)
 
