@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { CurrentProjectType, NewProjectType } from '../../NewProjectType'
 import { getDataFromServer } from 'helper/getDataFromServer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { showLessData, showMoreData } from 'redux/showMoreReducer'
+import { closeAllTabs, showLessData, showMoreData } from 'redux/showMoreReducer'
 import { setErrorState } from 'redux/errorReducer'
 import { CopyButtonComponent } from '../CopyButtonComponent'
+import { Link } from 'react-router-dom'
+import { separateGenders } from 'helper/useGenders'
 
 import './ProjectItem.scss'
 
@@ -85,40 +87,12 @@ const ProjectItem = ({ vacancy }: Props) => {
 
     const [genders, setGenders] = useState<string[]>([])
 
+    // useGenders(setGenders, vacancy)
+
     useEffect(() => {
-        const activeGenders = vacancy.recruitmentProjects.map(
-            (vacanies) => vacanies
-        )
-
-        const newGenders: string[] = []
-
-        activeGenders.forEach((element) => {
-            if (
-                element.numberOfAnyGenderVacancies > 0 &&
-                !newGenders.includes('Пари')
-            ) {
-                newGenders.push('Пари')
-            }
-            if (
-                element.numberOfManVacancies > 0 &&
-                !newGenders.includes('Чоловіки')
-            ) {
-                newGenders.push('Чоловіки')
-            }
-            if (
-                element.numberOfWomanVacancies > 0 &&
-                !newGenders.includes('Жінки')
-            ) {
-                newGenders.push('Жінки')
-            }
-        })
-
-        if (newGenders.length < 1) {
-            newGenders.push(vacancy.allowGender)
-        }
-
-        setGenders(newGenders)
-    }, [vacancy.allowGender, vacancy.recruitmentProjects])
+        separateGenders(setGenders, vacancy)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     // Перевірка назв міст
 
@@ -156,7 +130,7 @@ const ProjectItem = ({ vacancy }: Props) => {
         <div
             key={vacancy.id}
             className={`project-item ${
-                getIsActualState() ? undefined : 'not-actual'
+                getIsActualState() ? 'actual' : 'not-actual'
             }`}
         >
             <p className="project-header">{vacancy.companyName}</p>
@@ -182,9 +156,15 @@ const ProjectItem = ({ vacancy }: Props) => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="max-age">
-                Максимальний вік кандидата: {vacancy.maxAge}
+                <Link
+                    to={`/${vacancy.id}`}
+                    onClick={() => dispatch(closeAllTabs())}
+                >
+                    <div className="link-wrapper row">
+                        <div>на сторінку</div>
+                        <div className="arrow-img"></div>
+                    </div>
+                </Link>
             </div>
             <div
                 className={`project-short-description ${

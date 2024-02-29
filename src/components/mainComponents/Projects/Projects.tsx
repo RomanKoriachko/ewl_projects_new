@@ -36,8 +36,6 @@ const Projects = (props: Props) => {
 
     const [loadingState, setLoadingState] = useState(false)
 
-    console.log(loadingState)
-
     useEffect(() => {
         async function getData() {
             setLoadingState(true)
@@ -53,7 +51,7 @@ const Projects = (props: Props) => {
         getData()
     }, [dispatch])
 
-    console.log(dataArrState)
+    // console.log(dataArrState)
 
     // --------------------------------------------------
 

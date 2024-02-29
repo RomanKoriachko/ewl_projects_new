@@ -27,7 +27,7 @@ const CopyButtonComponent = ({ correlationId }: Props) => {
     async function getData(correlationId: string) {
         try {
             const result = await getDataFromServer(
-                `https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements/current/${correlationId}`
+                `/job-advertisements/external-job-advertisements/current/${correlationId}`
             )
             dispatch(setErrorState(false))
 

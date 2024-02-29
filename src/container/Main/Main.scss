@@ -154,6 +154,14 @@
             .edit-btn {
                 background-color: rgba(211, 104, 43, 0.8);
             }
+            .project-first-descroption-row {
+                .link-wrapper {
+                    color: white;
+                    .arrow-img {
+                        background-image: url(../../assets/arrow-right-white-img.svg);
+                    }
+                }
+            }
             .project-short-description {
                 .adv-project-list {
                     .adv-project-list-element {
@@ -211,16 +219,28 @@
                 }
             }
         }
+        .project-first-descroption-row {
+            .link-wrapper {
+                color: white;
+                .arrow-img {
+                    background-image: url(../../assets/arrow-right-white-img.svg);
+                }
+            }
+        }
+        .current-project-description {
+            .adv-project-list {
+                .adv-project-list-element {
+                    background-color: #686868;
+                    a {
+                        color: rgb(132, 183, 250);
+                    }
+                }
+            }
+        }
         .project-item-section {
             a {
                 color: rgb(132, 183, 250);
             }
-        }
-        .delite-btn {
-            background-color: rgba(177, 33, 33, 0.8);
-        }
-        .edit-btn {
-            background-color: rgba(211, 104, 43, 0.8);
         }
     }
     .project-page-item.not-actual {

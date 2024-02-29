@@ -19,6 +19,9 @@
     padding: 10px;
     position: relative;
     transition: 0.3s all;
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 12px 25px;
+    }
     .project-item-section {
         margin-bottom: 20px;
         .synchroner-link {
@@ -47,9 +50,26 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
-    }
-    .max-age {
-        margin-bottom: 16px;
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+        .link-wrapper {
+            gap: 5px;
+            .arrow-img {
+                width: 16px;
+                height: 16px;
+                background-image: url(../../../../../assets/arrow-right-img.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                transition: transform 0.5s;
+            }
+            &:hover .arrow-img {
+                transform: translateX(20%);
+            }
+        }
     }
     .project-row {
         gap: 10px;
@@ -90,6 +110,26 @@
         background-color: #eb6a09;
         color: white;
         padding: 5px;
+    }
+    .current-project-info {
+        white-space: pre-wrap;
+        line-height: 21px;
+        .current-project-item {
+            margin-top: 16px;
+            .current-project-item-title {
+                font-weight: 700;
+                margin-bottom: 6px;
+            }
+            .current-project-coordinator-item {
+                margin-bottom: 10px;
+                .current-project-coordinator-name {
+                    font-weight: 600;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
     .project-short-description,
     .current-project-description {
@@ -134,26 +174,6 @@
         gap: 10px;
         > p {
             margin: 0px;
-        }
-    }
-    .current-project-info {
-        white-space: pre-wrap;
-        line-height: 21px;
-        .current-project-item {
-            margin-top: 16px;
-            .current-project-item-title {
-                font-weight: 700;
-                margin-bottom: 6px;
-            }
-            .current-project-coordinator-item {
-                margin-bottom: 10px;
-                .current-project-coordinator-name {
-                    font-weight: 600;
-                }
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
         }
     }
     .project-item-btn {

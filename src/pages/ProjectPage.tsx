@@ -1,346 +1,228 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import './ProjectPage.scss'
-import { ProjectType } from 'components/mainComponents/Projects/Projects'
-import { getDatabase, ref, onValue } from 'firebase/database'
 import { useAppSelector } from 'redux/hooks'
-import CopyButton from '@yozora/react-common-copy-button'
+import { separateGenders } from 'helper/useGenders'
+import { getDataFromServer } from 'helper/getDataFromServer'
+import { CurrentProjectType } from 'components/mainComponents/Projects/NewProjectType'
+import { CopyButtonComponent } from 'components/mainComponents/Projects/components'
+
+import './ProjectPage.scss'
 
 type Props = {}
 
-type ICopyStatus = 'waiting' | 'copying' | 'failed' | 'succeed'
-
 const ProjectPage = (props: Props) => {
-    const { projectName } = useParams()
+    const { id } = useParams()
 
-    const [projectsArr, setProjectsArr] = useState<ProjectType[]>([])
     const darkThemeState = useAppSelector((state) => state.darkThemeState)
 
-    useEffect(() => {
-        const dbEffect = getDatabase()
-        const starCountRefEffect = ref(dbEffect, `vacancy/`)
-        onValue(starCountRefEffect, (snapshot) => {
-            let data = snapshot.val()
-            setProjectsArr(Object.values(data))
-        })
-    }, [projectsArr.length])
-
-    const currentProject = projectsArr.filter(
-        (element) => element.projectName === projectName
+    const [currentProject, setCurrentProject] = useState<CurrentProjectType[]>(
+        []
     )
 
-    const splitString = (string: string) => {
-        let arrFromString = string.split(' ')
-        if (string.includes('\n')) {
-            arrFromString = string.split('\n')
+    const [loadingState, setLoadingState] = useState<boolean>(false)
+
+    useEffect(() => {
+        async function getDataWithProjectId(id: string) {
+            setLoadingState(true)
+            getDataFromServer(
+                `/job-advertisements/external-job-advertisements/${id}`
+            )
+                .then((result) => {
+                    // dispatch(setErrorState(false))
+                    const arr = []
+                    arr.push(result)
+                    setCurrentProject(arr)
+                    setLoadingState(false)
+                })
+                .catch((error) => {
+                    // dispatch(setErrorState(true))
+                    setLoadingState(false)
+                    console.error('Error:', error)
+                })
         }
-        let filtredArrFromString = arrFromString.filter(
-            (element) => element.length > 0
-        )
-        return filtredArrFromString
-    }
+        if (id) {
+            getDataWithProjectId(id)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
-    // change copy button placeholder
-    const StatusNodeMap: Record<ICopyStatus, React.ReactNode> = {
-        waiting: 'Копіювати',
-        copying: 'Копіюю..',
-        failed: 'Помилка!',
-        succeed: 'Скопійовано!',
-    }
+    // console.log(currentProject)
 
-    let isActualClass = ''
-    if (currentProject.length >= 1) {
-        isActualClass = currentProject[0].isActual ? 'actual' : 'not-actual'
+    const [projectDescription, setProjectDescription] = useState<
+        CurrentProjectType[]
+    >([])
+
+    // console.log(projectDescription)
+
+    useEffect(() => {
+        async function getDataWithProjectId() {
+            getDataFromServer(
+                `/job-advertisements/external-job-advertisements/current/${currentProject[0].correlationId}`
+            )
+                .then((result) => {
+                    const arr = []
+                    arr.push(result)
+                    setProjectDescription(arr)
+                })
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
+        }
+        if (currentProject.length > 0) {
+            getDataWithProjectId()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentProject.length])
+
+    const [genders, setGenders] = useState<string[]>([])
+
+    useEffect(() => {
+        if (currentProject.length > 0)
+            separateGenders(setGenders, undefined, currentProject)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentProject.length])
+
+    function splitCityNames(project: CurrentProjectType) {
+        return project.cityNames.split(',')
     }
 
     return (
         <main className={`main ${darkThemeState.main}`}>
             <div className="project-page">
-                <div className="container">
-                    <div className={`project-page-item ${isActualClass}`}>
-                        {currentProject.length >= 1 ? (
-                            <>
-                                <p className="project-header">
-                                    {currentProject[0].projectName}
-                                </p>
-                                <div className="row project-first-descroption-row">
-                                    <div className="row project-row">
-                                        <div>
-                                            <div className="project-sex row">
-                                                {splitString(
-                                                    currentProject[0].sex
-                                                ).map(
-                                                    (el: string, i: number) => (
-                                                        <div key={i}>{el}</div>
-                                                    )
-                                                )}
-                                            </div>
-                                        </div>
-                                        <div className="row project-location-row">
-                                            <div className="project-country">
-                                                {currentProject[0].country},
-                                            </div>
-                                            <div className="project-location">
-                                                <a
-                                                    href={`https://www.google.com.ua/maps/place/${currentProject[0].country}+${currentProject[0].location}`}
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                >
-                                                    {currentProject[0].location}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="project-category">
-                                        {currentProject[0].category}
-                                    </div>
-                                </div>
-                                <div
-                                    className={`is-actual-state ${isActualClass}`}
-                                >
-                                    Актуальний:{' '}
-                                    {currentProject[0].isActual ? 'Так' : 'Ні'}
-                                </div>
-                                <div className="row project-age-row">
-                                    <div className="project-item-section">
-                                        <div>
-                                            <span className="bold-text">
-                                                Вік від:
-                                            </span>{' '}
-                                            {currentProject[0].ageFrom}
-                                        </div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <div>
-                                            <span className="bold-text">
-                                                Вік до:
-                                            </span>{' '}
-                                            {currentProject[0].ageTo}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="project-item-section">
-                                    <div className="project-info">
-                                        <span className="bold-text">
-                                            Заробітня плата:
-                                        </span>{' '}
-                                        <div className="textfield-content">
-                                            {currentProject[0].salary}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="show">
-                                    <div className="project-item-section">
-                                        <div>
-                                            <span className="bold-text">
-                                                Національність:
-                                            </span>{' '}
-                                            {currentProject[0].nationalaty}
-                                        </div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <div className="textfield-content">
-                                            {currentProject[0].projectInfo}
-                                        </div>
-                                    </div>
-                                    {currentProject[0].video !== '' ? (
-                                        <div className="project-item-section">
+                {loadingState ? (
+                    <div className="loading"></div>
+                ) : currentProject.length > 0 ? (
+                    <div className="container">
+                        <div className={`project-page-item`}>
+                            {currentProject.length >= 1 ? (
+                                <>
+                                    <p className="project-header">
+                                        {currentProject[0].companyName}
+                                    </p>
+                                    <div className="row project-first-descroption-row">
+                                        <div className="row project-row">
                                             <div>
-                                                <span className="bold-text">
-                                                    Відео з проєкту:
-                                                </span>{' '}
-                                                <div className="column textfield-content">
-                                                    {splitString(
-                                                        currentProject[0].video
-                                                    ).map(
-                                                        (
-                                                            el: string,
-                                                            i: number
-                                                        ) => (
-                                                            <a
-                                                                className="synchroner-link"
+                                                <div className="project-sex row">
+                                                    {genders.map(
+                                                        (element, i) => (
+                                                            <div
                                                                 key={i}
-                                                                href={el}
-                                                                target="_blank"
-                                                                rel="noreferrer"
+                                                                className="project-sex"
                                                             >
-                                                                {el}
-                                                            </a>
+                                                                {element}
+                                                            </div>
                                                         )
                                                     )}
                                                 </div>
                                             </div>
-                                        </div>
-                                    ) : undefined}
-                                    <div className="project-item-section">
-                                        <div>
-                                            <span className="bold-text">
-                                                Графік роботи:
-                                            </span>{' '}
-                                            <div className="textfield-content">
-                                                {currentProject[0].workSchedule}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <div>
-                                            <span className="bold-text">
-                                                Проживання:
-                                            </span>{' '}
-                                            <div className="textfield-content">
-                                                {currentProject[0].housing}
-                                                {currentProject[0]
-                                                    .housingPhoto ? (
-                                                    <div>
+                                            <div className="row project-location-row">
+                                                <div className="project-location">
+                                                    {splitCityNames(
+                                                        currentProject[0]
+                                                    ).map((city) => (
                                                         <a
-                                                            href={
-                                                                currentProject[0]
-                                                                    .housingPhoto
-                                                            }
+                                                            key={city}
                                                             target="_blank"
                                                             rel="noreferrer"
+                                                            href={`https://www.google.com.ua/maps/place/${city}`}
                                                         >
-                                                            Фото житла
+                                                            {city}
                                                         </a>
-                                                    </div>
-                                                ) : undefined}
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="project-item-section">
-                                        <div>
-                                            <span className="bold-text">
-                                                Харчування:
-                                            </span>{' '}
-                                            <div className="textfield-content">
-                                                {currentProject[0].food}
+                                        <Link to="/">
+                                            <div className="link-wrapper row">
+                                                <div className="arrow-img"></div>
+                                                <div>назад</div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     </div>
-                                    {currentProject[0].additionalInfo !== '' ? (
-                                        <div className="project-item-section">
-                                            <div>
-                                                <span className="bold-text">
-                                                    Додаткова інформація:
-                                                </span>{' '}
-                                                <div className="textfield-content">
+                                    <div
+                                        key={currentProject[0].companyId}
+                                        className="current-project-info"
+                                    >
+                                        <div
+                                            className="current-project-description"
+                                            dangerouslySetInnerHTML={{
+                                                __html: currentProject[0]
+                                                    .advertisementHtml,
+                                            }}
+                                        />
+                                        <div className="current-project-item">
+                                            <p className="current-project-item-title">
+                                                Опис вакансії
+                                            </p>
+                                            {projectDescription.length > 0 ? (
+                                                <div>
                                                     {
-                                                        currentProject[0]
-                                                            .additionalInfo
+                                                        projectDescription[0]
+                                                            .description
                                                     }
                                                 </div>
-                                            </div>
+                                            ) : undefined}
                                         </div>
-                                    ) : undefined}
-                                    {currentProject[0].synchronerLink !== '' ? (
-                                        <div className="project-item-section">
-                                            <div>
-                                                <span className="bold-text">
-                                                    Посилання на приїзд:
-                                                </span>{' '}
-                                                <div className="column textfield-content">
-                                                    {currentProject[0].synchronerLink.includes(
-                                                        'http'
-                                                    ) ? (
-                                                        splitString(
-                                                            currentProject[0]
-                                                                .synchronerLink
-                                                        ).map(
-                                                            (
-                                                                el: string,
-                                                                i: number
-                                                            ) => (
-                                                                <a
-                                                                    className="synchroner-link"
-                                                                    key={i}
-                                                                    href={el}
-                                                                    target="_blank"
-                                                                    rel="noreferrer"
-                                                                >
-                                                                    Посилання на
-                                                                    приїзд №
-                                                                    {i + 1}
-                                                                </a>
-                                                            )
-                                                        )
-                                                    ) : (
-                                                        <div>
-                                                            {
-                                                                currentProject[0]
-                                                                    .synchronerLink
+                                        <div className="current-project-item">
+                                            <p className="current-project-item-title">
+                                                Бонуси
+                                            </p>
+                                            {projectDescription.length > 0 ? (
+                                                <div>
+                                                    {
+                                                        projectDescription[0]
+                                                            .benefits
+                                                    }
+                                                </div>
+                                            ) : undefined}
+                                        </div>
+                                        <div className="current-project-item">
+                                            <p className="current-project-item-title">
+                                                Контактні особи
+                                            </p>
+                                            {currentProject[0].contactPeople
+                                                .length > 0 ? (
+                                                currentProject[0].contactPeople.map(
+                                                    (coordinator) => (
+                                                        <div
+                                                            key={
+                                                                coordinator.userId
                                                             }
+                                                            className="current-project-coordinator-item"
+                                                        >
+                                                            <p className="current-project-coordinator-name">
+                                                                {
+                                                                    coordinator.userName
+                                                                }
+                                                            </p>
+                                                            <p>
+                                                                {
+                                                                    coordinator.phoneNumber
+                                                                }
+                                                            </p>
+                                                            <p>
+                                                                {
+                                                                    coordinator.email
+                                                                }
+                                                            </p>
                                                         </div>
-                                                    )}
-                                                </div>
-                                            </div>
+                                                    )
+                                                )
+                                            ) : (
+                                                <p>не вказано</p>
+                                            )}
                                         </div>
-                                    ) : undefined}
-                                    {currentProject[0].contact !== '' ? (
-                                        <div className="project-item-section">
-                                            <div>
-                                                <span className="bold-text">
-                                                    Регіон, контакт опікуна:
-                                                </span>{' '}
-                                                <div className="textfield-content">
-                                                    {currentProject[0].contact}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ) : undefined}
-                                </div>
-                                <div className="project-item-buttons">
-                                    <CopyButton
-                                        statusNodeMap={StatusNodeMap}
-                                        className="copy-btn project-item-btn"
-                                        value={`Назва проєкту\n${
-                                            currentProject[0].projectName
-                                        }\n\nСтать\n${currentProject[0].sex.trim()}\n\nВік від ${
-                                            currentProject[0].ageFrom
-                                        }, Вік до ${
-                                            currentProject[0].ageTo
-                                        }\n\nНаціональність\n${
-                                            currentProject[0].nationalaty
-                                        }\n\nЛокалізація\n${
-                                            currentProject[0].country
-                                        }, ${
-                                            currentProject[0].location
-                                        }\nhttps://www.google.com.ua/maps/place/${
-                                            currentProject[0].country
-                                        }+${currentProject[0].location.replace(
-                                            / /gi,
-                                            '+'
-                                        )}\n\nЗаробітня плата\n${
-                                            currentProject[0].salary
-                                        }\n\nОпис вакансії\n${
-                                            currentProject[0].projectInfo
-                                        }\n\nГрафік роботи\n${
-                                            currentProject[0].workSchedule
-                                        }\n\nПроживання\n${
-                                            currentProject[0].housing
-                                        }${
-                                            currentProject[0].housingPhoto !==
-                                            ''
-                                                ? `\n\nФото житла\n${currentProject[0].housingPhoto}`
-                                                : ''
-                                        }\n\nХарчування\n${
-                                            currentProject[0].food
-                                        }${
-                                            currentProject[0].additionalInfo !==
-                                            ''
-                                                ? `\n\nДодаткова інформація\n${currentProject[0].additionalInfo}`
-                                                : ''
+                                    </div>
+                                    <CopyButtonComponent
+                                        correlationId={
+                                            currentProject[0].correlationId
                                         }
-                                    ${
-                                        currentProject[0].video !== ''
-                                            ? `\n\nВідео з проєкту\n${currentProject[0].video}`
-                                            : ''
-                                    }`.trim()}
                                     />
-                                </div>
-                            </>
-                        ) : undefined}
+                                </>
+                            ) : undefined}
+                        </div>
                     </div>
-                </div>
+                ) : undefined}
             </div>
         </main>
     )

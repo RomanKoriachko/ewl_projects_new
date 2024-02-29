@@ -34,9 +34,10 @@
     }
     .project-header {
         @include raleway600();
-        font-size: 24px;
+        font-size: 36px;
         transition: 0.3s all;
         margin-bottom: 20px;
+        text-align: center;
     }
     .is-actual-state {
         margin-bottom: 20px;
@@ -49,10 +50,95 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+        .link-wrapper {
+            gap: 5px;
+            .arrow-img {
+                width: 16px;
+                height: 16px;
+                background-image: url(../assets/arrow-right-img.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                transform: rotate(180deg);
+                transition: transform 0.5s;
+            }
+            &:hover .arrow-img {
+                transform: rotate(180deg) translateX(20%);
+            }
+        }
     }
     .project-row {
         gap: 10px;
         align-items: center;
+    }
+    .current-project-info {
+        white-space: pre-wrap;
+        line-height: 21px;
+        .current-project-item {
+            margin-top: 16px;
+            .current-project-item-title {
+                font-weight: 700;
+                margin-bottom: 6px;
+            }
+            .current-project-coordinator-item {
+                margin-bottom: 10px;
+                .current-project-coordinator-name {
+                    font-weight: 600;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .current-project-description {
+        line-height: 21px;
+        > h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 21px;
+        }
+        > h6 {
+            font-weight: 700;
+        }
+        > p {
+            margin-top: 10px;
+        }
+        .pre-wrap {
+            white-space: pre-wrap;
+        }
+        .adv-project-list {
+            .adv-project-list-element {
+                margin: 10px 0px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                border-top: 1px solid black;
+                background-color: #f0f0f0;
+                border: 1px solid #e3e3e3;
+                border-radius: 6px;
+                padding: 7px;
+                .adv-project-end-date {
+                    font-weight: 700;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .current-project-description {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        > p {
+            margin: 0px;
+        }
     }
     .project-sex {
         gap: 5px;
@@ -64,14 +150,14 @@
             font-size: 12px;
         }
     }
-    .project-country {
-        @include sans700();
-        font-size: 12px;
-        margin-right: 5px;
-    }
-    .project-location-row {
-        align-items: center;
-    }
+    // .project-country {
+    //     @include sans700();
+    //     font-size: 12px;
+    //     margin-right: 5px;
+    // }
+    // .project-location-row {
+    //     align-items: center;
+    // }
     .project-location {
         > a {
             @include sans400();
@@ -85,13 +171,13 @@
             }
         }
     }
-    .project-category {
-        @include sans400();
-        font-size: 16px;
-        background-color: #eb6a09;
-        color: white;
-        padding: 5px;
-    }
+    // .project-category {
+    //     @include sans400();
+    //     font-size: 16px;
+    //     background-color: #eb6a09;
+    //     color: white;
+    //     padding: 5px;
+    // }
     .project-item-btn {
         border: none;
         @include raleway600();
@@ -99,7 +185,7 @@
         background-color: black;
         color: white;
         cursor: pointer;
-        margin-right: 10px;
+        margin-top: 16px;
         transition: 0.3s all;
         border-radius: 5px;
         &:hover {

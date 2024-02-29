@@ -22,7 +22,7 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Main />} />
-                    <Route path="/:projectName" element={<ProjectPage />} />
+                    <Route path="/:id" element={<ProjectPage />} />
                 </Routes>
                 <Footer />
             </ThemeProvider>
