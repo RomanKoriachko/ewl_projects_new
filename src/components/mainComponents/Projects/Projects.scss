@@ -34,6 +34,29 @@
         background-image: url(../../../assets/arrow-up-white.png);
     }
 }
+
+.loading {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    background-image: url(../../../assets/loading-img.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: 1.5s linear 0s infinite rotation;
+    margin: 0 auto;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .projects {
     display: grid;
     align-items: start;

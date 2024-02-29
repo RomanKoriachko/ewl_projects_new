@@ -34,11 +34,16 @@ const Projects = (props: Props) => {
     )
     const dispatch = useAppDispatch()
 
+    const [loadingState, setLoadingState] = useState(false)
+
+    console.log(loadingState)
+
     useEffect(() => {
         async function getData() {
-            getDataFromServer('/api/external-job-advertisements')
+            setLoadingState(true)
+            getDataFromServer('/job-advertisements/external-job-advertisements')
                 .then((result) => {
-                    // console.log(result.value)
+                    setLoadingState(false)
                     dispatch(setNewDataArr(result.value))
                 })
                 .catch((error) => {
@@ -48,7 +53,7 @@ const Projects = (props: Props) => {
         getData()
     }, [dispatch])
 
-    // console.log(dataArrState)
+    console.log(dataArrState)
 
     // --------------------------------------------------
 
@@ -91,6 +96,39 @@ const Projects = (props: Props) => {
     // console.log(dataArrState)
 
     // --------------------------------------------------
+
+    // const [loadingState, setLoadingState] = useState(false)
+
+    // console.log(loadingState)
+
+    // useEffect(() => {
+    //     async function getData() {
+    //         try {
+    //             const result = await getDataFromServer(
+    //                 '/job-advertisements/external-job-advertisements'
+    //             )
+    //             setLoadingState(true)
+
+    //             const newDataArr = []
+
+    //             // Циклічно отримуємо дані для кожного id
+    //             for (const item of result.value) {
+    //                 const newDataItem = await getDataFromServer(
+    //                     `/job-advertisements/external-job-advertisements/${item.id}`
+    //                 )
+    //                 newDataArr.push(newDataItem)
+    //             }
+
+    //             console.log(newDataArr)
+    //             setLoadingState(false)
+    //             dispatch(setNewDataArr(newDataArr))
+    //         } catch (error) {
+    //             console.error('Error:', error)
+    //         }
+    //     }
+
+    //     getData()
+    // }, [dispatch])
 
     // ---------------------- Search ----------------------
 
@@ -331,7 +369,9 @@ const Projects = (props: Props) => {
                 }`}
                 onClick={onScrollUpClick}
             ></div>
-            {filtredArr.length === 0 ? (
+            {loadingState ? (
+                <div className="loading"></div>
+            ) : filtredArr.length === 0 ? (
                 <div className="no-search-results">Співпадінь нема</div>
             ) : (
                 <div className="projects">
