@@ -109,7 +109,13 @@
 // Desktop
 @media (max-width: 1500px) {
     .projects {
-        gap: 20px;
+        gap: 10px;
+    }
+}
+
+// Laptop
+@media (max-width: 1200px) {
+    .projects {
         grid-template-columns: 1fr;
     }
 }

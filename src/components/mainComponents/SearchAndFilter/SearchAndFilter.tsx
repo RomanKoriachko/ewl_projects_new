@@ -16,7 +16,6 @@ import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { resetActualState, setIsActualState } from 'redux/isActualReducer'
 import { changeFilterState } from 'redux/isFilterOpenReducer'
-import { setIsMinor } from 'redux/isMinorReducer'
 import { cleanSearchInput, getSearchInput } from 'redux/searchContentReducer'
 import './SearchAndFilter.scss'
 import {
@@ -51,7 +50,6 @@ const SearchAndFilter = (props: Props) => {
     const genderCheckboxState = useAppSelector(
         (state) => state.genderCheckboxState
     )
-    // const isMinorState = useAppSelector((state) => state.isMinorState)
     const isActualState = useAppSelector((state) => state.isActualState)
     const sortingState = useAppSelector((state) => state.sortingState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
@@ -214,14 +212,6 @@ const SearchAndFilter = (props: Props) => {
         return dispatch(setTypeOfSortingState(e.target.value))
     }
 
-    // --------------------- is minor filter ---------------------
-
-    // const isMinorChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     e.target.checked
-    //         ? dispatch(setIsMinor(true))
-    //         : dispatch(setIsMinor(false))
-    // }
-
     // --------------------- Age to filter ---------------------
 
     const ageToValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -241,7 +231,6 @@ const SearchAndFilter = (props: Props) => {
     const resetFilter = () => {
         dispatch(clearAllCountrysCheckboxes())
         dispatch(clearAllGendersCheckboxes())
-        dispatch(setIsMinor(false))
         dispatch(clearAgeState())
         dispatch(clearFilters())
         dispatch(resetActualState())
@@ -528,27 +517,6 @@ const SearchAndFilter = (props: Props) => {
                         </RadioGroup>
                     </FormControl>
                 </div>
-
-                {/* <div className="filter-adult">
-                    <div className="filter-wrapper">
-                        <div className="filter-item">
-                            <FormGroup>
-                                <FormControlLabel
-                                    control={
-                                        <Switch
-                                            color="warning"
-                                            onChange={isMinorChecking}
-                                            checked={
-                                                isMinorState ? true : false
-                                            }
-                                        />
-                                    }
-                                    label="Для неповнолітніх"
-                                />
-                            </FormGroup>
-                        </div>
-                    </div>
-                </div> */}
                 <div className="filter-age">
                     <div className="filter-wrapper">
                         <div>

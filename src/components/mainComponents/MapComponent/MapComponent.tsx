@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react'
+import { useState } from 'react'
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getSearchInput } from 'redux/searchContentReducer'
@@ -14,7 +14,7 @@ type CoordinatesType = {
     long: number
 }
 
-const MapComponent = forwardRef((props: Props, ref) => {
+const MapComponent = (props: Props) => {
     const filtredArrState = useAppSelector((state) => state.filtredArrState)
     const allProjectsArr = useAppSelector((state) => state.dataArrState)
     const dispatch = useAppDispatch()
@@ -112,6 +112,6 @@ const MapComponent = forwardRef((props: Props, ref) => {
             ))}
         </GoogleMap>
     )
-})
+}
 
 export default MapComponent

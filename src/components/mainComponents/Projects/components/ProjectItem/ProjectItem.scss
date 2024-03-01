@@ -231,18 +231,25 @@
 // Mobile
 @media (max-width: 576px) {
     .project-item {
+        .project-location {
+            > a {
+                font-size: 16px;
+            }
+        }
         .project-first-descroption-row {
             flex-direction: column;
             align-items: flex-start;
-            gap: 10px;
+            gap: 20px;
             .project-row {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-wrap: wrap;
             }
         }
         .project-item-buttons {
-            flex-wrap: wrap;
             gap: 10px;
+            .project-item-btn {
+                width: 50%;
+                margin-right: 0;
+            }
         }
     }
 }

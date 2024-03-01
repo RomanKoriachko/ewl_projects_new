@@ -8,7 +8,6 @@ import editProjectReduser from './editProjectReduser'
 import filterReducer from './filterReducer'
 import isActualReducer from './isActualReducer'
 import isFilterOpenReducer from './isFilterOpenReducer'
-import isMinorReducer from './isMinorReducer'
 import loginDataReducer from './loginDataReducer'
 import nationalityCheckboxReducer from './nationalityCheckboxReducer'
 import newProjectReduser from './newProjectReduser'
@@ -31,7 +30,6 @@ export const store = configureStore({
         searchState: searchContentReducer,
         countryCheckboxState: countryCheckboxReducer,
         genderCheckboxState: genderCheckboxReducer,
-        isMinorState: isMinorReducer,
         ageSearchState: ageSearchReducer,
         filterState: filterReducer,
         showMoreState: ShowMoreReducer,

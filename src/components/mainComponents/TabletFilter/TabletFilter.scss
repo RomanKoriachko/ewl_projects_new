@@ -7,7 +7,7 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: white;
-    transition: .5s all;
+    transition: 0.5s all;
     display: none;
     .filter-button {
         width: 100%;
@@ -17,18 +17,18 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        border: 1px solid #EB6A09;
+        border: 1px solid #eb6a09;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
-        transition: .5s all;
+        transition: 0.5s all;
     }
-    .filter-wrapper{
+    .filter-wrapper {
         position: relative;
         .filter-content {
             position: absolute;
             top: -176px;
-            left: 28px;
-            height: 100vh;
+            left: 30px;
+            min-height: 100vh;
             border-radius: 10px;
         }
     }
@@ -36,27 +36,71 @@
 
 .show-filter {
     right: -2px;
-    transition: .5s all;
+    transition: 0.5s all;
 }
 .hide-filter {
     right: -40px;
-    transition: .5s all;
+    transition: 0.5s all;
 }
 
-.open{
+.open {
     right: 80%;
-    .filter-button{
-        background-color: #EB6A09;
+    .filter-button {
+        background-color: #eb6a09;
         background-image: url(./../../../assets/close-img-white.png);
         background-size: 80%;
     }
-    
 }
 
-
 // Tablet
-@media(max-width: 992px) {
+@media (max-width: 992px) {
     .tablet-filter {
         display: block;
+    }
+    .search-and-filter {
+        min-height: 100em;
+        overflow-y: auto;
+        z-index: 100;
+        .search {
+            border-top-right-radius: 0px;
+            margin-bottom: 0;
+            .search-and-btn {
+                width: 70%;
+            }
+        }
+        .filter {
+            border-bottom-right-radius: 0px;
+            height: calc(100vh - 100px);
+            overflow: scroll;
+            .filter-buttons {
+                > button {
+                    &:hover {
+                        color: #3b3b3b;
+                        background-color: transparent;
+                        border-color: #3b3b3b;
+                        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+                        transform: translateY(-2px);
+                    }
+                    &:active {
+                        color: #fff;
+                        background-color: #f18a01;
+                        border-color: #f18a01;
+                        box-shadow: none;
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Mobile
+@media (max-width: 576px) {
+    .search-and-filter {
+        .search {
+            .search-and-btn {
+                width: 90%;
+            }
+        }
     }
 }

@@ -13,8 +13,10 @@ const TabletFilter = (props: Props) => {
     const onfilterClick = () => {
         if (isFilterOpenState === 'close') {
             dispatch(changeFilterState('open'))
+            document.body.style.overflow = 'hidden'
         } else {
             dispatch(changeFilterState('close'))
+            document.body.style.overflow = 'auto'
         }
     }
 

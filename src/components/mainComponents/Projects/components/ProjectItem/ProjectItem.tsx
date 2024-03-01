@@ -28,7 +28,7 @@ const ProjectItem = ({ vacancy }: Props) => {
     async function getData(correlationId: string) {
         setIsLoading(true)
         getDataFromServer(
-            `/job-advertisements/external-job-advertisements/current/${correlationId}`
+            `/api/job-advertisements/external-job-advertisements/current/${correlationId}`
         )
             .then((result) => {
                 dispatch(setErrorState(false))
@@ -53,7 +53,7 @@ const ProjectItem = ({ vacancy }: Props) => {
     async function getDataWithProjectId(id: string) {
         setIsLoading(true)
         getDataFromServer(
-            `/job-advertisements/external-job-advertisements/${id}`
+            `/api/job-advertisements/external-job-advertisements/${id}`
         )
             .then((result) => {
                 dispatch(setErrorState(false))
@@ -229,31 +229,27 @@ const ProjectItem = ({ vacancy }: Props) => {
                 )}
             </div>
             <div className="row project-item-buttons">
-                <div className="row">
-                    <button
-                        className={`show-more-btn project-item-btn ${
-                            showMoreState[vacancy.id] ? 'hide' : 'show'
-                        }`}
-                        onClick={() =>
-                            onShowMoreClick(vacancy.correlationId, vacancy.id)
-                        }
-                    >
-                        Розгорнути
-                    </button>
-                    <button
-                        className={`show-more-btn project-item-btn ${
-                            showMoreState[vacancy.id] ? 'show' : 'hide'
-                        }`}
-                        onClick={() =>
-                            onShowLessClick(vacancy.id, vacancy.correlationId)
-                        }
-                    >
-                        Згорнути
-                    </button>
-                    <CopyButtonComponent
-                        correlationId={vacancy.correlationId}
-                    />
-                </div>
+                <button
+                    className={`show-more-btn project-item-btn ${
+                        showMoreState[vacancy.id] ? 'hide' : 'show'
+                    }`}
+                    onClick={() =>
+                        onShowMoreClick(vacancy.correlationId, vacancy.id)
+                    }
+                >
+                    Розгорнути
+                </button>
+                <button
+                    className={`show-more-btn project-item-btn ${
+                        showMoreState[vacancy.id] ? 'show' : 'hide'
+                    }`}
+                    onClick={() =>
+                        onShowLessClick(vacancy.id, vacancy.correlationId)
+                    }
+                >
+                    Згорнути
+                </button>
+                <CopyButtonComponent correlationId={vacancy.correlationId} />
             </div>
         </div>
     )

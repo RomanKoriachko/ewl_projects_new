@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-// import { Link } from 'react-router-dom'
 import { getDataFromServer } from 'helper/getDataFromServer'
 import { NewProjectType } from './NewProjectType'
 import { ProjectItem } from './components'
@@ -9,9 +8,9 @@ import {
     ActualProjectsType,
     addToActualProjectState,
 } from 'redux/actualProjectsReducer'
+import { getFiltredArrData } from 'redux/filtredArrReducer'
 
 import './Projects.scss'
-import { getFiltredArrData } from 'redux/filtredArrReducer'
 
 type Props = {}
 
@@ -24,7 +23,6 @@ const Projects = (props: Props) => {
     const genderCheckboxState = useAppSelector(
         (state) => state.genderCheckboxState
     )
-    const isMinorState = useAppSelector((state) => state.isMinorState)
     const isActualState = useAppSelector((state) => state.isActualState)
     const sortingState = useAppSelector((state) => state.sortingState)
     const ageSearchState = useAppSelector((state) => state.ageSearchState)
@@ -39,7 +37,9 @@ const Projects = (props: Props) => {
     useEffect(() => {
         async function getData() {
             setLoadingState(true)
-            getDataFromServer('/job-advertisements/external-job-advertisements')
+            getDataFromServer(
+                '/api/job-advertisements/external-job-advertisements'
+            )
                 .then((result) => {
                     setLoadingState(false)
                     dispatch(setNewDataArr(result.value))
@@ -297,19 +297,19 @@ const Projects = (props: Props) => {
 
     // ---------------------- is miner filter ----------------------
 
-    let temporaryIsMinorArr: NewProjectType[] = []
+    // let temporaryIsMinorArr: NewProjectType[] = []
 
-    if (filterState) {
-        if (isMinorState) {
-            temporaryIsMinorArr = filtredNationalityArr.filter(
-                (el: NewProjectType) => el.minAge < 18
-            )
-        } else {
-            temporaryIsMinorArr = temporaryIsActualArr
-        }
-    } else {
-        temporaryIsMinorArr = temporaryIsActualArr
-    }
+    // if (filterState) {
+    //     if (isMinorState) {
+    //         temporaryIsMinorArr = filtredNationalityArr.filter(
+    //             (el: NewProjectType) => el.minAge < 18
+    //         )
+    //     } else {
+    //         temporaryIsMinorArr = temporaryIsActualArr
+    //     }
+    // } else {
+    //     temporaryIsMinorArr = temporaryIsActualArr
+    // }
 
     // ---------------------- Age to filter ----------------------
 
@@ -317,15 +317,15 @@ const Projects = (props: Props) => {
 
     if (filterState) {
         if (ageSearchState) {
-            filtredArr = temporaryIsMinorArr.filter(
+            filtredArr = temporaryIsActualArr.filter(
                 (el: NewProjectType) =>
                     ageSearchState >= el.minAge && ageSearchState <= el.maxAge
             )
         } else {
-            filtredArr = temporaryIsMinorArr
+            filtredArr = temporaryIsActualArr
         }
     } else {
-        filtredArr = temporaryIsMinorArr
+        filtredArr = temporaryIsActualArr
     }
 
     // ---------------------- Sorting filter ----------------------
