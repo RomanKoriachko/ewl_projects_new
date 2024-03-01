@@ -3,9 +3,11 @@ import Footer from 'container/Footer/Footer'
 import Header from 'container/Header/Header'
 import Main from 'container/Main/Main'
 import { useAppSelector } from 'redux/hooks'
-import './App.scss'
 import { Route, Routes } from 'react-router-dom'
 import ProjectPage from 'pages/ProjectPage'
+import ScrollToTop from 'components/mainComponents/ScrollToTop/ScrollToTop'
+
+import './App.scss'
 
 function App() {
     const darkThemeState = useAppSelector((state) => state.darkThemeState)
@@ -25,6 +27,7 @@ function App() {
                     <Route path="/:id" element={<ProjectPage />} />
                 </Routes>
                 <Footer />
+                <ScrollToTop />
             </ThemeProvider>
         </>
     )
