@@ -224,6 +224,7 @@ const SearchAndFilter = (props: Props) => {
         dispatch(addFilters())
         dispatch(changeFilterState('close'))
         dispatch(closeAllTabs())
+        document.body.style.overflow = 'auto'
     }
 
     // --------------------- Reser Filter ---------------------

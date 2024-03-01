@@ -159,6 +159,8 @@ const ProjectItem = ({ vacancy }: Props) => {
                 <Link
                     to={`/${vacancy.id}`}
                     onClick={() => dispatch(closeAllTabs())}
+                    target="_blank"
+                    rel="noreferrer"
                 >
                     <div className="link-wrapper row">
                         <div>на сторінку</div>
