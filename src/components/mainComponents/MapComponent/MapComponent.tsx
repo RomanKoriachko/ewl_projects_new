@@ -75,6 +75,16 @@ const MapComponent = (props: Props) => {
         })
     }
 
+    const [isMapOpen, setIsMapOpen] = useState<boolean>(false)
+
+    function onOpenMapClick() {
+        setIsMapOpen(true)
+    }
+
+    function onCloseMapClick() {
+        setIsMapOpen(false)
+    }
+
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_API_KEY
             ? process.env.REACT_APP_API_KEY
@@ -86,7 +96,7 @@ const MapComponent = (props: Props) => {
         <GoogleMap
             zoom={5}
             center={mapCentring}
-            mapContainerClassName="map-container"
+            mapContainerClassName={`map-container map-open-${isMapOpen}`}
         >
             {uniqueCoordinates.map((element, i) => (
                 <div className="marker" key={i}>
@@ -110,6 +120,21 @@ const MapComponent = (props: Props) => {
                     )}
                 </div>
             ))}
+            {isMapOpen ? (
+                <button
+                    onClick={() => onCloseMapClick()}
+                    className={`map-btn close-map-btn map-open-${isMapOpen}`}
+                >
+                    згорнути
+                </button>
+            ) : (
+                <button
+                    onClick={() => onOpenMapClick()}
+                    className={`map-btn open-map-btn map-open-${isMapOpen}`}
+                >
+                    розгорнути
+                </button>
+            )}
         </GoogleMap>
     )
 }
