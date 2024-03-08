@@ -26,7 +26,7 @@ const ProjectPage = (props: Props) => {
         async function getDataWithProjectId(id: string) {
             setLoadingState(true)
             getDataFromServer(
-                `/api/job-advertisements/external-job-advertisements/${id}`
+                `/job-advertisements/external-job-advertisements/${id}`
             )
                 .then((result) => {
                     // dispatch(setErrorState(false))
@@ -60,7 +60,7 @@ const ProjectPage = (props: Props) => {
     useEffect(() => {
         async function getDataWithProjectId() {
             getDataFromServer(
-                `/api/job-advertisements/external-job-advertisements/current/${currentProject[0].correlationId}`
+                `/job-advertisements/external-job-advertisements/current/${currentProject[0].correlationId}`
             )
                 .then((result) => {
                     const arr = []

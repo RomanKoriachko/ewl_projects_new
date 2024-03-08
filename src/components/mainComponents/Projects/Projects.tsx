@@ -17,19 +17,9 @@ type Props = {}
 const Projects = (props: Props) => {
     const dataArrState = useAppSelector((state) => state.dataArrState)
     const searchState = useAppSelector((state) => state.searchState)
-    const countryCheckboxState = useAppSelector(
-        (state) => state.countryCheckboxState
-    )
-    const genderCheckboxState = useAppSelector(
-        (state) => state.genderCheckboxState
-    )
-    const isActualState = useAppSelector((state) => state.isActualState)
-    const sortingState = useAppSelector((state) => state.sortingState)
-    const ageSearchState = useAppSelector((state) => state.ageSearchState)
+    const filterApplyState = useAppSelector((state) => state.filterApplyState)
     const filterState = useAppSelector((state) => state.filterState)
-    const nationalityCheckboxState = useAppSelector(
-        (state) => state.nationalityCheckboxState
-    )
+
     const dispatch = useAppDispatch()
 
     const [loadingState, setLoadingState] = useState(false)
@@ -37,9 +27,7 @@ const Projects = (props: Props) => {
     useEffect(() => {
         async function getData() {
             setLoadingState(true)
-            getDataFromServer(
-                '/api/job-advertisements/external-job-advertisements'
-            )
+            getDataFromServer('/job-advertisements/external-job-advertisements')
                 .then((result) => {
                     setLoadingState(false)
                     dispatch(setNewDataArr(result.value))
@@ -51,24 +39,26 @@ const Projects = (props: Props) => {
         getData()
     }, [dispatch])
 
-    // console.log(dataArrState)
-
     // ---------------------- Search ----------------------
 
     const tempArr: NewProjectType[] = dataArrState.filter(
         (element: NewProjectType) =>
-            element.advertisementHtml
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.cityNames
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.companyName
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
-            element.jobPositionName
-                .toLowerCase()
-                .includes(searchState.toLowerCase()) ||
+            (element.advertisementHtml &&
+                element.advertisementHtml
+                    .toLowerCase()
+                    .includes(searchState.toLowerCase())) ||
+            (element.cityNames &&
+                element.cityNames
+                    .toLowerCase()
+                    .includes(searchState.toLowerCase())) ||
+            (element.companyName &&
+                element.companyName
+                    .toLowerCase()
+                    .includes(searchState.toLowerCase())) ||
+            (element.jobPositionName &&
+                element.jobPositionName
+                    .toLowerCase()
+                    .includes(searchState.toLowerCase())) ||
             (element.typeOfContract &&
                 element.typeOfContract
                     .toLowerCase()
@@ -80,8 +70,8 @@ const Projects = (props: Props) => {
 
     let filtredCountryArr: NewProjectType[] = []
 
-    if (filterState) {
-        const activeCountries: string[] = countryCheckboxState
+    if (filterApplyState) {
+        const activeCountries: string[] = filterState.country
             .filter((country) => country.checked)
             .map((country) => country.name)
 
@@ -104,10 +94,10 @@ const Projects = (props: Props) => {
 
     let filtredGenderArr: NewProjectType[] = []
 
-    if (filterState) {
-        const activeGenders: string[] = genderCheckboxState
-            .filter((gender) => gender.checked)
-            .map((gender) => gender.name)
+    if (filterApplyState) {
+        const activeGenders: string[] = filterState.gender
+            .filter((gender) => gender.genderChecked)
+            .map((gender) => gender.genderName)
 
         filtredGenderArr = filtredCountryArr.filter((el) =>
             el.recruitmentProjects.some((vacancy) => {
@@ -145,8 +135,8 @@ const Projects = (props: Props) => {
 
     let filtredNationalityArr: NewProjectType[] = []
 
-    if (filterState) {
-        const activeNationalities: string[] = nationalityCheckboxState
+    if (filterApplyState) {
+        const activeNationalities: string[] = filterState.nationality
             .filter((nationality) => nationality.checked)
             .map((nationality) => nationality.name)
 
@@ -200,7 +190,7 @@ const Projects = (props: Props) => {
     )
     let temporaryIsActualArr: NewProjectType[] = []
 
-    if (isActualState === 'actual') {
+    if (filterState.actuality.isActual === 'actual') {
         temporaryIsActualArr = filtredNationalityArr.filter(
             (el: NewProjectType) => {
                 return actualProjectsState.some(
@@ -208,7 +198,7 @@ const Projects = (props: Props) => {
                 )
             }
         )
-    } else if (isActualState === 'notActual') {
+    } else if (filterState.actuality.isActual === 'notActual') {
         temporaryIsActualArr = filtredNationalityArr.filter(
             (el: NewProjectType) => {
                 return actualProjectsState.some(
@@ -220,31 +210,16 @@ const Projects = (props: Props) => {
         temporaryIsActualArr = filtredNationalityArr
     }
 
-    // ---------------------- is miner filter ----------------------
-
-    // let temporaryIsMinorArr: NewProjectType[] = []
-
-    // if (filterState) {
-    //     if (isMinorState) {
-    //         temporaryIsMinorArr = filtredNationalityArr.filter(
-    //             (el: NewProjectType) => el.minAge < 18
-    //         )
-    //     } else {
-    //         temporaryIsMinorArr = temporaryIsActualArr
-    //     }
-    // } else {
-    //     temporaryIsMinorArr = temporaryIsActualArr
-    // }
-
     // ---------------------- Age to filter ----------------------
 
     let filtredArr: NewProjectType[] = []
 
-    if (filterState) {
-        if (ageSearchState) {
+    if (filterApplyState) {
+        if (filterState.age.age) {
             filtredArr = temporaryIsActualArr.filter(
                 (el: NewProjectType) =>
-                    ageSearchState >= el.minAge && ageSearchState <= el.maxAge
+                    filterState.age.age >= el.minAge &&
+                    filterState.age.age <= el.maxAge
             )
         } else {
             filtredArr = temporaryIsActualArr
@@ -255,7 +230,7 @@ const Projects = (props: Props) => {
 
     // ---------------------- Sorting filter ----------------------
 
-    if (sortingState === 'name') {
+    if (filterState.sorting.typeOfSorting === 'name') {
         filtredArr.sort((a, b) => (a.companyName > b.companyName ? 1 : -1))
     } else {
         filtredArr.sort((a, b) => (a.modifiedOn > b.modifiedOn ? -1 : 1))

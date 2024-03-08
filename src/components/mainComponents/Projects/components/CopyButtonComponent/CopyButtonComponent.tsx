@@ -8,21 +8,11 @@ type Props = {
 }
 
 const CopyButtonComponent = ({ correlationId }: Props) => {
-    // const StatusNodeMap: Record<ICopyStatus, React.ReactNode> = {
-    //     waiting: 'Копіювати',
-    //     copying: 'Копіюю..',
-    //     failed: 'Помилка!',
-    //     succeed: 'Скопійовано!',
-    // }
-
     const dispatch = useAppDispatch()
 
     function removeTags(html: string) {
         return html.replace(/<[^>]*>?/gm, '')
     }
-
-    // const [currentprojectData, setCurrentProjectData] =
-    //     useState<CurrentProjectType>()
 
     async function getData(correlationId: string) {
         try {
@@ -31,7 +21,6 @@ const CopyButtonComponent = ({ correlationId }: Props) => {
             )
             dispatch(setErrorState(false))
 
-            // Копіюємо дані в буфер обміну
             if (result) {
                 navigator.clipboard.writeText(
                     `${removeTags(result.companyName)}\n\n${removeTags(
@@ -49,8 +38,6 @@ const CopyButtonComponent = ({ correlationId }: Props) => {
             console.error('Error:', error)
         }
     }
-
-    // console.log(currentprojectData)
 
     return (
         <button

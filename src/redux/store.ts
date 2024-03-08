@@ -1,49 +1,31 @@
 import { configureStore } from '@reduxjs/toolkit'
-import ageSearchReducer from './ageSearchReducer'
 import checkboxCheckedReducer from './checkboxCheckedReducer'
-import countryCheckboxReducer from './countryCheckboxReducer'
 import darkThemeReducer from './darkThemeReducer'
-import editFormReducer from './editFormReducer'
 import editProjectReduser from './editProjectReduser'
-import filterReducer from './filterReducer'
-import isActualReducer from './isActualReducer'
+import filterApplyReducer from './filterApplyReducer'
 import isFilterOpenReducer from './isFilterOpenReducer'
-import loginDataReducer from './loginDataReducer'
-import nationalityCheckboxReducer from './nationalityCheckboxReducer'
-import newProjectReduser from './newProjectReduser'
-import registrationDataReducer from './registrationDataReducer'
 import searchContentReducer from './searchContentReducer'
 import ShowMoreReducer from './showMoreReducer'
-import typeOfSortingReducer from './typeOfSortingReducer'
 import filtredArrReducer from './filtredArrReducer'
 import dataArrReducer from './dataArrReducer'
-import genderCheckboxReducer from './genderCheckboxReducer'
 import errorReducer from './errorReducer'
 import actualProjectsReducer from './actualProjectsReducer'
+import filterStateReducer from './filterStateReducer'
 
 export const store = configureStore({
     reducer: {
-        newProjectState: newProjectReduser,
         editProjectState: editProjectReduser,
-        loginDataState: loginDataReducer,
-        registrationDataState: registrationDataReducer,
         searchState: searchContentReducer,
-        countryCheckboxState: countryCheckboxReducer,
-        genderCheckboxState: genderCheckboxReducer,
-        ageSearchState: ageSearchReducer,
-        filterState: filterReducer,
+        filterApplyState: filterApplyReducer,
         showMoreState: ShowMoreReducer,
         checkboxCheckedState: checkboxCheckedReducer,
-        editFormState: editFormReducer,
         isFilterOpenState: isFilterOpenReducer,
-        isActualState: isActualReducer,
-        nationalityCheckboxState: nationalityCheckboxReducer,
         darkThemeState: darkThemeReducer,
-        sortingState: typeOfSortingReducer,
         filtredArrState: filtredArrReducer,
         dataArrState: dataArrReducer,
         errorState: errorReducer,
         actualProjectsState: actualProjectsReducer,
+        filterState: filterStateReducer,
     },
 })
 

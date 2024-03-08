@@ -6,32 +6,26 @@ import {
     RadioGroup,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
-import {
-    clearAllCountrysCheckboxes,
-    setInitialCountries,
-    toggleCountryCheckbox,
-} from 'redux/countryCheckboxReducer'
-import { addFilters, clearFilters } from 'redux/filterReducer'
+import { addFilters, clearFilters } from 'redux/filterApplyReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { resetActualState, setIsActualState } from 'redux/isActualReducer'
 import { changeFilterState } from 'redux/isFilterOpenReducer'
 import { cleanSearchInput, getSearchInput } from 'redux/searchContentReducer'
 import './SearchAndFilter.scss'
-import {
-    resetTypeOfSortingState,
-    setTypeOfSortingState,
-} from 'redux/typeOfSortingReducer'
-import {
-    clearAllGendersCheckboxes,
-    toggleGenderCheckbox,
-} from 'redux/genderCheckboxReducer'
-import {
-    clearAllNationalitiesCheckboxes,
-    setInitialNationalities,
-    toggleNationalityCheckbox,
-} from 'redux/nationalityCheckboxReducer'
 import { closeAllTabs } from 'redux/showMoreReducer'
+import {
+    clearAgeState,
+    clearAllFilterFields,
+    getAgeFromInput,
+    resetActualState,
+    resetTypeOfSortingState,
+    setInitialCountries,
+    setInitialNationalities,
+    setIsActualState,
+    setTypeOfSortingState,
+    toggleCountryCheckbox,
+    toggleGenderCheckbox,
+    toggleNationalityCheckbox,
+} from 'redux/filterStateReducer'
 
 type Props = {}
 type FilterClassStateType = {
@@ -43,21 +37,11 @@ type FilterClassStateType = {
 }
 
 const SearchAndFilter = (props: Props) => {
-    const dispatch = useAppDispatch()
-    const countryCheckboxState = useAppSelector(
-        (state) => state.countryCheckboxState
-    )
-    const genderCheckboxState = useAppSelector(
-        (state) => state.genderCheckboxState
-    )
-    const isActualState = useAppSelector((state) => state.isActualState)
-    const sortingState = useAppSelector((state) => state.sortingState)
-    const ageSearchState = useAppSelector((state) => state.ageSearchState)
     const searchState = useAppSelector((state) => state.searchState)
+    const filterApplyState = useAppSelector((state) => state.filterApplyState)
     const filterState = useAppSelector((state) => state.filterState)
-    const nationalityCheckboxState = useAppSelector(
-        (state) => state.nationalityCheckboxState
-    )
+
+    const dispatch = useAppDispatch()
 
     // --------------------- Search ---------------------
 
@@ -154,7 +138,9 @@ const SearchAndFilter = (props: Props) => {
     }))
 
     useEffect(() => {
-        dispatch(setInitialCountries(countriesStateArray))
+        if (filterState.country.length <= 0) {
+            dispatch(setInitialCountries(countriesStateArray))
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterClassState.countryClass])
 
@@ -192,7 +178,9 @@ const SearchAndFilter = (props: Props) => {
     )
 
     useEffect(() => {
-        dispatch(setInitialNationalities(nationalitiesStateArr))
+        if (filterState.nationality.length <= 0) {
+            dispatch(setInitialNationalities(nationalitiesStateArr))
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterClassState.nationalityClass])
 
@@ -230,13 +218,11 @@ const SearchAndFilter = (props: Props) => {
     // --------------------- Reser Filter ---------------------
 
     const resetFilter = () => {
-        dispatch(clearAllCountrysCheckboxes())
-        dispatch(clearAllGendersCheckboxes())
         dispatch(clearAgeState())
         dispatch(clearFilters())
         dispatch(resetActualState())
-        dispatch(clearAllNationalitiesCheckboxes())
         dispatch(resetTypeOfSortingState())
+        dispatch(clearAllFilterFields())
     }
 
     let isFilterAdded = {
@@ -276,7 +262,7 @@ const SearchAndFilter = (props: Props) => {
                     <div
                         className={`filter-content-wrapper ${filterClassState.countryClass}`}
                     >
-                        {countryCheckboxState.map((element) => (
+                        {filterState.country.map((element) => (
                             <div key={element.name} className="filter-item">
                                 <FormControlLabel
                                     label={element.name}
@@ -322,24 +308,27 @@ const SearchAndFilter = (props: Props) => {
                     <div
                         className={`filter-content-wrapper ${filterClassState.sexClass}`}
                     >
-                        {genderCheckboxState.map((element) => (
-                            <div key={element.name} className="filter-item">
+                        {filterState.gender.map((element) => (
+                            <div
+                                key={element.genderName}
+                                className="filter-item"
+                            >
                                 <FormControlLabel
                                     label={
-                                        element.name === 'Male'
+                                        element.genderName === 'Male'
                                             ? 'Чоловіки'
-                                            : element.name === 'Female'
+                                            : element.genderName === 'Female'
                                             ? 'Жінки'
                                             : 'Пари'
                                     }
                                     className="filter-checkbox"
                                     control={
                                         <Checkbox
-                                            id={element.name}
-                                            name={element.name}
+                                            id={element.genderName}
+                                            name={element.genderName}
                                             onChange={() =>
                                                 handleGenderCheckboxChange(
-                                                    element.name
+                                                    element.genderName
                                                 )
                                             }
                                             sx={{
@@ -351,7 +340,9 @@ const SearchAndFilter = (props: Props) => {
                                                 },
                                             }}
                                             checked={
-                                                element.checked ? true : false
+                                                element.genderChecked
+                                                    ? true
+                                                    : false
                                             }
                                         />
                                     }
@@ -375,7 +366,7 @@ const SearchAndFilter = (props: Props) => {
                     <div
                         className={`filter-content-wrapper ${filterClassState.nationalityClass}`}
                     >
-                        {nationalityCheckboxState.map((element) => (
+                        {filterState.nationality.map((element) => (
                             <div key={element.name} className="filter-item">
                                 <FormControlLabel
                                     label={element.name}
@@ -423,7 +414,7 @@ const SearchAndFilter = (props: Props) => {
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="actual"
                             name="radio-buttons-group"
-                            value={isActualState}
+                            value={filterState.actuality.isActual}
                             onChange={onIsActualClick}
                         >
                             <FormControlLabel
@@ -486,7 +477,7 @@ const SearchAndFilter = (props: Props) => {
                             aria-labelledby="filter-by-group-label"
                             defaultValue="name"
                             name="radio-buttons-group"
-                            value={sortingState}
+                            value={filterState.sorting.typeOfSorting}
                             onChange={onTypeOfSortingClick}
                         >
                             <FormControlLabel
@@ -526,7 +517,11 @@ const SearchAndFilter = (props: Props) => {
                                 name="age18"
                                 maxLength={2}
                                 onChange={ageToValue}
-                                value={ageSearchState ? ageSearchState : ''}
+                                value={
+                                    filterState.age.age
+                                        ? filterState.age.age
+                                        : ''
+                                }
                             />
                             <label htmlFor="age18">Вік кандидата</label>
                         </div>
@@ -535,7 +530,7 @@ const SearchAndFilter = (props: Props) => {
                 <div className="filter-buttons">
                     <button
                         onClick={() => onAddFilterClick()}
-                        style={filterState ? isFilterAdded : {}}
+                        style={filterApplyState ? isFilterAdded : {}}
                     >
                         Застосувати фільтр
                     </button>
