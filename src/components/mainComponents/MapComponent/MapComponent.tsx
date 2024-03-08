@@ -3,6 +3,7 @@ import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { getSearchInput } from 'redux/searchContentReducer'
 import { NewProjectType } from '../Projects/NewProjectType'
+import poopIcon from '../../../assets/moscow-ship.png'
 
 import './MapComponent.scss'
 
@@ -120,6 +121,15 @@ const MapComponent = (props: Props) => {
                     )}
                 </div>
             ))}
+            <div className="poop-marker">
+                <Marker
+                    position={{
+                        lat: 55.75661983806225,
+                        lng: 37.621704195135564,
+                    }}
+                    icon={poopIcon}
+                />
+            </div>
             {isMapOpen ? (
                 <button
                     onClick={() => onCloseMapClick()}
