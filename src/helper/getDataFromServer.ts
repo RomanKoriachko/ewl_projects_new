@@ -16,6 +16,3 @@ export async function getDataFromServer(link: string) {
         console.error('Error:', error)
     }
 }
-
-// 'https://corsproxy.io/?' +
-// 'https://platform-prod.ewl.com.pl/job-advertisements/external-job-advertisements'

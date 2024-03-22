@@ -28,7 +28,7 @@ const ProjectItem = ({ vacancy }: Props) => {
     async function getData(correlationId: string) {
         setIsLoading(true)
         getDataFromServer(
-            `/job-advertisements/external-job-advertisements/current/${correlationId}`
+            `/api/job-advertisements/external-job-advertisements/current/${correlationId}`
         )
             .then((result) => {
                 dispatch(setErrorState(false))
@@ -53,7 +53,7 @@ const ProjectItem = ({ vacancy }: Props) => {
     async function getDataWithProjectId(id: string) {
         setIsLoading(true)
         getDataFromServer(
-            `/job-advertisements/external-job-advertisements/${id}`
+            `/api/job-advertisements/external-job-advertisements/${id}`
         )
             .then((result) => {
                 dispatch(setErrorState(false))
@@ -89,8 +89,12 @@ const ProjectItem = ({ vacancy }: Props) => {
 
     // useGenders(setGenders, vacancy)
 
+    const actualState = useAppSelector((state) => state.actualProjectsState)
+
+    // console.log(genders)
+
     useEffect(() => {
-        separateGenders(setGenders, vacancy)
+        separateGenders(actualState, setGenders, vacancy)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -163,8 +167,6 @@ const ProjectItem = ({ vacancy }: Props) => {
                 <Link
                     to={`/${vacancy.id}`}
                     onClick={() => dispatch(closeAllTabs())}
-                    // target="_blank"
-                    // rel="noreferrer"
                 >
                     <div className="link-wrapper row">
                         <div>на сторінку</div>

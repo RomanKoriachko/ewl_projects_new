@@ -26,7 +26,7 @@ const ProjectPage = (props: Props) => {
         async function getDataWithProjectId(id: string) {
             setLoadingState(true)
             getDataFromServer(
-                `/job-advertisements/external-job-advertisements/${id}`
+                `/api/job-advertisements/external-job-advertisements/${id}`
             )
                 .then((result) => {
                     // dispatch(setErrorState(false))
@@ -60,7 +60,7 @@ const ProjectPage = (props: Props) => {
     useEffect(() => {
         async function getDataWithProjectId() {
             getDataFromServer(
-                `/job-advertisements/external-job-advertisements/current/${currentProject[0].correlationId}`
+                `/api/job-advertisements/external-job-advertisements/current/${currentProject[0].correlationId}`
             )
                 .then((result) => {
                     const arr = []
@@ -81,9 +81,11 @@ const ProjectPage = (props: Props) => {
 
     const [genders, setGenders] = useState<string[]>([])
 
+    const actualState = useAppSelector((state) => state.actualProjectsState)
+
     useEffect(() => {
         if (currentProject.length > 0)
-            separateGenders(setGenders, undefined, currentProject)
+            separateGenders(actualState, setGenders, undefined, currentProject)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentProject.length])
 

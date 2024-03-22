@@ -25,9 +25,32 @@ const Projects = (props: Props) => {
     const [loadingState, setLoadingState] = useState(false)
 
     useEffect(() => {
+        const interval = setInterval(() => {
+            async function getData() {
+                // setLoadingState(true)
+                try {
+                    const result = await getDataFromServer(
+                        '/api/job-advertisements/external-job-advertisements'
+                    )
+                    setLoadingState(false)
+                    dispatch(setNewDataArr(result.value))
+                } catch (error) {
+                    console.error('Error:', error)
+                    setLoadingState(false)
+                }
+            }
+            getData()
+        }, 60000)
+
+        return () => clearInterval(interval)
+    }, [dispatch])
+
+    useEffect(() => {
         async function getData() {
             setLoadingState(true)
-            getDataFromServer('/job-advertisements/external-job-advertisements')
+            getDataFromServer(
+                '/api/job-advertisements/external-job-advertisements'
+            )
                 .then((result) => {
                     setLoadingState(false)
                     dispatch(setNewDataArr(result.value))
@@ -92,6 +115,8 @@ const Projects = (props: Props) => {
 
     // ---------------------- gender filter ----------------------
 
+    const actualState = useAppSelector((state) => state.actualProjectsState)
+
     let filtredGenderArr: NewProjectType[] = []
 
     if (filterApplyState) {
@@ -99,31 +124,62 @@ const Projects = (props: Props) => {
             .filter((gender) => gender.genderChecked)
             .map((gender) => gender.genderName)
 
-        filtredGenderArr = filtredCountryArr.filter((el) =>
-            el.recruitmentProjects.some((vacancy) => {
-                if (
-                    activeGenders.includes('Male') &&
-                    vacancy.numberOfManVacancies > 0
-                ) {
-                    return true
-                }
+        // eslint-disable-next-line array-callback-return
+        filtredGenderArr = filtredCountryArr.filter((el) => {
+            if (
+                actualState.some((item) => item.id === el.id && item.isActual)
+            ) {
+                return el.recruitmentProjects.some((vacancy) => {
+                    if (
+                        activeGenders.includes('Male') &&
+                        vacancy.vacancies.currentNumberOfManVacancies > 0
+                    ) {
+                        return true
+                    }
 
-                if (
-                    activeGenders.includes('Female') &&
-                    vacancy.numberOfWomanVacancies > 0
-                ) {
-                    return true
-                }
+                    if (
+                        activeGenders.includes('Female') &&
+                        vacancy.vacancies.currentNumberOfWomanVacancies > 0
+                    ) {
+                        return true
+                    }
 
-                if (
-                    activeGenders.includes('Couples') &&
-                    vacancy.numberOfAnyGenderVacancies > 0
-                ) {
-                    return true
-                }
-                return false
-            })
-        )
+                    if (
+                        activeGenders.includes('Couples') &&
+                        vacancy.vacancies.currentNumberOfAnyGenderVacancies > 0
+                    ) {
+                        return true
+                    }
+                    return false
+                })
+            } else if (
+                actualState.some((item) => item.id === el.id && !item.isActual)
+            ) {
+                return el.recruitmentProjects.some((vacancy) => {
+                    if (
+                        activeGenders.includes('Male') &&
+                        vacancy.numberOfManVacancies > 0
+                    ) {
+                        return true
+                    }
+
+                    if (
+                        activeGenders.includes('Female') &&
+                        vacancy.numberOfWomanVacancies > 0
+                    ) {
+                        return true
+                    }
+
+                    if (
+                        activeGenders.includes('Couples') &&
+                        vacancy.numberOfAnyGenderVacancies > 0
+                    ) {
+                        return true
+                    }
+                    return false
+                })
+            }
+        })
         if (activeGenders.length < 1) {
             filtredGenderArr = filtredCountryArr
         }
