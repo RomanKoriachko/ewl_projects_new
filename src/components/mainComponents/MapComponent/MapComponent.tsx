@@ -86,6 +86,11 @@ const MapComponent = (props: Props) => {
         setIsMapOpen(false)
     }
 
+    function showTaras() {
+        const url = 'https://www.youtube.com/watch?v=DyjvDsLPbeA'
+        window.open(url, '_blank')
+    }
+
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_API_KEY
             ? process.env.REACT_APP_API_KEY
@@ -128,6 +133,7 @@ const MapComponent = (props: Props) => {
                         lng: 37.621704195135564,
                     }}
                     icon={poopIcon}
+                    onClick={showTaras}
                 />
             </div>
             {isMapOpen ? (
