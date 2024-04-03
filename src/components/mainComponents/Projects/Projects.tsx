@@ -30,7 +30,7 @@ const Projects = (props: Props) => {
                 // setLoadingState(true)
                 try {
                     const result = await getDataFromServer(
-                        '/job-advertisements/external-job-advertisements'
+                        '/api/job-advertisements/external-job-advertisements'
                     )
                     setLoadingState(false)
                     dispatch(setNewDataArr(result.value))
@@ -48,7 +48,9 @@ const Projects = (props: Props) => {
     useEffect(() => {
         async function getData() {
             setLoadingState(true)
-            getDataFromServer('/job-advertisements/external-job-advertisements')
+            getDataFromServer(
+                '/api/job-advertisements/external-job-advertisements'
+            )
                 .then((result) => {
                     setLoadingState(false)
                     dispatch(setNewDataArr(result.value))
