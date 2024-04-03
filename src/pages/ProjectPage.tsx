@@ -7,6 +7,7 @@ import { CurrentProjectType } from 'components/mainComponents/Projects/NewProjec
 import { CopyButtonComponent } from 'components/mainComponents/Projects/components'
 
 import './ProjectPage.scss'
+import { PhotoViewerComponent } from './components'
 
 type Props = {}
 
@@ -26,7 +27,7 @@ const ProjectPage = (props: Props) => {
         async function getDataWithProjectId(id: string) {
             setLoadingState(true)
             getDataFromServer(
-                `/api/job-advertisements/external-job-advertisements/${id}`
+                `/job-advertisements/external-job-advertisements/${id}`
             )
                 .then((result) => {
                     // dispatch(setErrorState(false))
@@ -60,7 +61,7 @@ const ProjectPage = (props: Props) => {
     useEffect(() => {
         async function getDataWithProjectId() {
             getDataFromServer(
-                `/api/job-advertisements/external-job-advertisements/current/${currentProject[0].correlationId}`
+                `/job-advertisements/external-job-advertisements/current/${currentProject[0].correlationId}`
             )
                 .then((result) => {
                     const arr = []
@@ -227,6 +228,9 @@ const ProjectPage = (props: Props) => {
                                                 )}
                                             </div>
                                         </div>
+                                        <PhotoViewerComponent
+                                            projectId={currentProject[0].id}
+                                        />
                                         <CopyButtonComponent
                                             correlationId={
                                                 currentProject[0].correlationId

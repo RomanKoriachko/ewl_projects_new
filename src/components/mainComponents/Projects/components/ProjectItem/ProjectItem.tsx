@@ -28,7 +28,7 @@ const ProjectItem = ({ vacancy }: Props) => {
     async function getData(correlationId: string) {
         setIsLoading(true)
         getDataFromServer(
-            `/api/job-advertisements/external-job-advertisements/current/${correlationId}`
+            `/job-advertisements/external-job-advertisements/current/${correlationId}`
         )
             .then((result) => {
                 dispatch(setErrorState(false))
@@ -53,7 +53,7 @@ const ProjectItem = ({ vacancy }: Props) => {
     async function getDataWithProjectId(id: string) {
         setIsLoading(true)
         getDataFromServer(
-            `/api/job-advertisements/external-job-advertisements/${id}`
+            `/job-advertisements/external-job-advertisements/${id}`
         )
             .then((result) => {
                 dispatch(setErrorState(false))

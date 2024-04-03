@@ -27,6 +27,8 @@
     padding: 30px;
     position: relative;
     transition: 0.3s all;
+    overflow-x: hidden;
+    overflow-y: auto;
     .project-item-section {
         margin-bottom: 20px;
         .synchroner-link {
@@ -176,13 +178,6 @@
             }
         }
     }
-    // .project-category {
-    //     @include sans400();
-    //     font-size: 16px;
-    //     background-color: #eb6a09;
-    //     color: white;
-    //     padding: 5px;
-    // }
     .project-item-btn {
         border: none;
         @include raleway600();
@@ -190,18 +185,12 @@
         background-color: black;
         color: white;
         cursor: pointer;
-        margin-top: 16px;
+        // margin-top: 16px;
         transition: 0.3s all;
         border-radius: 5px;
         &:hover {
             background-color: #eb6a09;
         }
-    }
-    .delite-btn {
-        background-color: rgb(177, 33, 33);
-    }
-    .edit-btn {
-        background-color: rgb(211, 104, 43);
     }
     .project-age-row {
         gap: 15px;
