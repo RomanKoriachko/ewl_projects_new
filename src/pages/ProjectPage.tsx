@@ -5,9 +5,10 @@ import { separateGenders } from 'helper/useGenders'
 import { getDataFromServer } from 'helper/getDataFromServer'
 import { CurrentProjectType } from 'components/mainComponents/Projects/NewProjectType'
 import { CopyButtonComponent } from 'components/mainComponents/Projects/components'
+import { PhotoViewerComponent } from './components'
 
 import './ProjectPage.scss'
-import { PhotoViewerComponent } from './components'
+import { photosArr } from './components/PhotoViewerComponent/photosArr'
 
 type Props = {}
 
@@ -92,6 +93,17 @@ const ProjectPage = (props: Props) => {
 
     function splitCityNames(project: CurrentProjectType) {
         return project.cityNames.split(',')
+    }
+
+    let currentProjectPhotots: {
+        projectName: string
+        projectId: string
+        photos: string[]
+    }[] = []
+    if (currentProject.length > 0) {
+        currentProjectPhotots = photosArr.filter(
+            (element) => element.projectId === currentProject[0].id
+        )
     }
 
     return (
@@ -231,11 +243,22 @@ const ProjectPage = (props: Props) => {
                                         <PhotoViewerComponent
                                             projectId={currentProject[0].id}
                                         />
-                                        <CopyButtonComponent
-                                            correlationId={
-                                                currentProject[0].correlationId
-                                            }
-                                        />
+                                        <div className="buttons-row">
+                                            <CopyButtonComponent
+                                                correlationId={
+                                                    currentProject[0]
+                                                        .correlationId
+                                                }
+                                            />
+                                            <button className="download-btn">
+                                                <a
+                                                    href={`/files/${currentProjectPhotots[0].projectName}.zip`}
+                                                    download
+                                                >
+                                                    Завантажити фото
+                                                </a>
+                                            </button>
+                                        </div>
                                     </>
                                 ) : undefined}
                             </div>

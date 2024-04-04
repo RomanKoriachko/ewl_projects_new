@@ -1,7 +1,7 @@
 export const photosArr = [
     {
-        projectName: 'PASS POLSKA',
-        projectId: '94e2887d-aa3c-45a9-84c7-08db79708c7c',
+        projectName: 'ARVATO POLSKA SP. Z O.O',
+        projectId: '784eab2b-ab34-41db-821b-08db7329ec7a',
         photos: [
             'images/CERSANIT-1.jpg',
             'images/CERSANIT-2.jpg',

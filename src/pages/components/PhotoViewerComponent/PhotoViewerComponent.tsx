@@ -1,11 +1,10 @@
 import React from 'react'
 import { PhotoProvider, PhotoView } from 'react-photo-view'
 import { photosArr } from './photosArr'
-import Flicking from '@egjs/react-flicking'
+import Slider from 'react-slick'
 
-import './PhotoViewerComponent.scss'
 import 'react-photo-view/dist/react-photo-view.css'
-import '@egjs/react-flicking/dist/flicking.css'
+import './PhotoViewerComponent.scss'
 
 type Props = {
     projectId: string
@@ -16,31 +15,43 @@ const PhotoViewerComponent = ({ projectId }: Props) => {
         (element) => element.projectId === projectId
     )
 
+    const settings = {
+        dots: true,
+        autoplay: true,
+        pauseOnFocus: true,
+        slidesToScroll: 1,
+        variableWidth: true,
+        draggable: false,
+        centerMode: true,
+        className: 'center',
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    arrows: false,
+                },
+            },
+        ],
+    }
+
     return (
         <div className="photo-wrapper">
-            <PhotoProvider>
+            <PhotoProvider loop={1}>
                 <div className="photo-provider">
                     <div className="photos-container">
-                        <Flicking align="prev" bound={true}>
-                            {currentProjectPhotots.length > 0
-                                ? currentProjectPhotots[0].photos.map(
-                                      (photo, i) => (
-                                          <div
-                                              key={i}
-                                              className="photo-item-container"
-                                          >
-                                              <PhotoView src={photo}>
-                                                  <img
-                                                      src={photo}
-                                                      className="photo-item"
-                                                      alt=""
-                                                  />
-                                              </PhotoView>
-                                          </div>
-                                      )
-                                  )
-                                : undefined}
-                        </Flicking>
+                        <Slider {...settings}>
+                            {currentProjectPhotots[0].photos.map(
+                                (element, i) => (
+                                    <PhotoView key={i} src={element}>
+                                        <img
+                                            src={element}
+                                            className="photo-item"
+                                            alt=""
+                                        />
+                                    </PhotoView>
+                                )
+                            )}
+                        </Slider>
                     </div>
                 </div>
             </PhotoProvider>
